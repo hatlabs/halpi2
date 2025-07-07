@@ -1,0 +1,5 @@
+[book]
+authors = ["Matti Airas"]
+language = "en"
+src = "src"
+title = "HALPI2 Embedded Pi Computer User Guide"
