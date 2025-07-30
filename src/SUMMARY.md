@@ -6,7 +6,6 @@
 
 # Part I: Getting Started
 
-- [Introduction](./getting-started/introduction.md)
 - [Quick Start Guide](./getting-started/quick-start.md)
 - [Installation Guide](./getting-started/installation.md)
 
