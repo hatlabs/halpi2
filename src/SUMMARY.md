@@ -13,9 +13,11 @@
 
 # Part II: User Guide
 
+- [System Operation](./user-guide/operation.md)
+- [Interfaces and Connectivity](./user-guide/interfaces.md)
+- [Hardware Maintenance](./user-guide/hardware.md)
 - [Software Setup](./user-guide/software-setup.md)
 - [Common Use Cases](./user-guide/use-cases.md)
-- [Operating the System](./user-guide/operation.md)
 - [Troubleshooting](./user-guide/troubleshooting.md)
 
 ---
