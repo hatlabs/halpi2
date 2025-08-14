@@ -3,3 +3,8 @@ authors = ["Matti Airas"]
 language = "en"
 src = "src"
 title = "HALPI2 Pi Computer User Guide"
+
+[preprocessor.pagetoc]
+[output.html]
+additional-css = ["theme/pagetoc.css"]
+additional-js  = ["theme/pagetoc.js"]

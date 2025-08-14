@@ -1,4 +1,4 @@
-# Hardware Maintenance
+# Hardware Guide
 
 ## Enclosure Access
 
