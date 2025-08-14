@@ -14,18 +14,18 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 
 ### Enclosure Features
 - **Waterproof (IP65) aluminum enclosure**, size 200×130×60 mm
-- **Standard connectors** for power, NMEA 2000, gigabit ethernet, HDMI, and 2× USB 3.0
+- **Standard connectors** for power, NMEA 2000, gigabit ethernet, HDMI, 2× USB 3.0, and WiFi/Bluetooth antenna
 - **Flexible connectivity** with options for 3× PG7 cable glands or SP13 waterproof connectors
-- **External antenna support** via 2× SMA connectors
+- **External antenna support** via cutouts for 2 extra SMA connectors
 - **Wall-mount design** with connectors positioned for easy installation
 
-![HALPI2 Connector Layout](./halpi2_connectors.jpg)
+![HALPI2 Connector Layout](./user-guide/front-panel-connectors-all.jpg)
 
 ### Hardware Features
 - **Wide input voltage range** from 10 to 32 VDC with protection up to 100 VDC
-- **Intelligent current limiting** (0.9 or 2.5 A user-selectable)
+- **Intelligent current limiting**: max input current 0.9 or 2.5 A, user-selectable
 - **Dual power options**: 12V/24V battery or NMEA 2000 bus power
-- **Super-capacitor backup** for graceful shutdown during power loss
+- **Super-capacitor backup** for glitch immunity and graceful shutdown during power loss
 - **Advanced power management** with automatic power loss detection
 - **Passive cooling design** with CM5 in direct contact with enclosure
 - **High-speed storage** via standard M.2 NVMe SSD interface
