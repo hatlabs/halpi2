@@ -36,7 +36,8 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 - **Visual status indication** via five RGB LEDs
 - **User interaction** through configurable button headers
 
-![HALPI2 Internal View](./halpi2_internal.jpg)
+![HALPI2 Interior View](./halpi2-interior.jpg)
+*Interior view of the HALPI2 showing the carrier board and different connectors.*
 
 ### Software Features
 - **Intelligent controller** (RP2040-based) communicating via I2C
