@@ -80,7 +80,7 @@ Your HALPI2 package includes:
 - **3 pcs PG7 cable glands** for additional interfaces
 - **Quick start guide and warranty documentation** for getting started
 
-![HALPI2 Package Contents](./halpi2_package_contents.jpg)
+![HALPI2 Goodie Bag Contents](./goodie-bag-contents.jpg)
 
 Additional accessories available separately:
 - **NMEA 2000 drop cable** for bus-powered applications
