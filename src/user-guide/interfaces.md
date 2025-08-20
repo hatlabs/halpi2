@@ -1,12 +1,12 @@
 # Interfaces and Connectivity
 
-## CAN-FD / NMEA 2000
+## CAN FD / NMEA 2000
 
-HALPI2 features a fully isolated CAN-FD interface that supports both marine NMEA 2000 networks and automotive or industrial applications. The interface provides high-speed data communication with complete electrical isolation for noise immunity.
+HALPI2 features a fully isolated [CAN FD](https://en.wikipedia.org/wiki/CAN_FD) interface that supports both marine [NMEA 2000](https://en.wikipedia.org/wiki/NMEA_2000) networks and automotive or industrial applications. The interface provides high-speed data communication with complete electrical isolation for noise immunity.
 
 ### Interface Specifications
 
-The CAN-FD interface supports both standard CAN and CAN-FD protocols. For NMEA 2000 applications, the interface operates in regular CAN mode at the standard 250 kbps data rate. When used for automotive or industrial applications, the interface can utilize the full CAN-FD capabilities with data rates up to 8 Mbps.
+The CAN FD interface supports both standard CAN and CAN FD protocols. For NMEA 2000 applications, the interface operates in regular CAN mode at the standard 250 kbps data rate. When used for automotive or industrial applications, the interface can utilize the full CAN FD capabilities with data rates up to 8 Mbps.
 
 The front panel features a Micro-C connector that is compatible with standard NMEA 2000 cabling and components. This allows direct integration with existing marine networks using standard T-connectors and drop cables.
 
@@ -55,7 +55,9 @@ The Signal K server dashboard provides additional network monitoring capabilitie
 
 ## RS-485 (NMEA 0183)
 
-HALPI2 includes an isolated RS-485 interface that provides serial communication for marine NMEA 0183 networks and industrial applications.
+HALPI2 includes an isolated [RS-485](https://en.wikipedia.org/wiki/RS-485) interface that provides serial communication for marine [NMEA 0183](https://en.wikipedia.org/wiki/NMEA_0183)[^rs422] networks and industrial applications.
+
+[^rs422]: Technically, NMEA 0183 uses the RS-422 standard, but RS-485 is downwards compatible, allowing HALPI2 to communicate with both RS-422 and RS-485 devices.
 
 ### Interface Specifications
 
@@ -75,7 +77,7 @@ The interface can also be completely disabled via hardware configuration if UART
 
 ### Wiring and Connectivity
 
-The RS-485 interface requires a cable gland or panel connector that must be supplied by the user. The interface is downward compatible with RS-422 signaling used in NMEA 0183, supporting both RS-485 multi-talker networks and RS-422 single-talker-multiple-listener networks. It uses balanced differential pairs, labekled TX+/TX- and RX+/RX-.
+The RS-485 interface requires a cable gland or panel connector that must be supplied by the user. One good option is [an SP13 pigtail panel connector](https://shop.hatlabs.fi/products/sp13-pigtail-connector-pair-5-pin-female-cable-plug). The interface is downward compatible with RS-422 signaling used in NMEA 0183, supporting both RS-485 multi-talker networks and RS-422 single-talker-multiple-listener networks. It uses balanced differential pairs, labeled TX+/TX- and RX+/RX-.
 
 ### Software Integration
 

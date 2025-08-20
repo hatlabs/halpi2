@@ -12,6 +12,8 @@ To access the internal components, begin by ensuring the unit is completely powe
 
 Before reassembling the enclosure, take time to verify that all internal connections are secure and properly seated. Route any cables carefully to avoid pinching or creating sharp bends.
 
+It is easy to accidentally connect the flexible flat cables (FFCs) backwards. Observe the Contacts arrows on the silk screen to verify correct orientation.
+
 Pay special attention to the lid gasket, checking for any damage, debris, or displacement that could compromise the enclosure's weather seal.
 
 Reinstall the four M4x10 lid screws using the PH2 screwdriver. Do not over-tighten.
@@ -102,8 +104,8 @@ A list of the top-side connectors is given below.
 | **f1** | HDMI0 connector |
 | **f2** | HDMI1 connector |
 | **g1** | M.2 NVMe SSD connector |
-| **h1** | CAN-FD interface (Phoenix MC type, 3.81mm pitch) |
-| **h2** | CAN terminator jumper. Short the pins to enable the CAN-FD bus terminator. |
+| **h1** | CAN FD interface (Phoenix MC type, 3.81mm pitch) |
+| **h2** | CAN terminator jumper. Short the pins to enable the CAN FD bus terminator. |
 | **i1** | RS-485 interface (Phoenix MC type, 3.81mm pitch) |
 | **i2** | RS-485 auto/manual enable jumper. |
 | **i4** | XRS-485 RX Enable jumper. Short the pins to enable RS-485 traffic receiving. |
@@ -126,7 +128,16 @@ A list of the bottom-side connectors is given below.
 | **p1** | Compute Module 5 connector. |
 | **q1** | CM5 fan connector, alternative location. This header can be used to connect a CPU fan over the CM5 module when using a custom enclosure. **NB:** Connectors **q1** and **q2** are connected in parallel and must not be used simultaneously. |
 
-### Carrier Board LEDs
+Finally, the WiFi and Bluetooth antenna connector resides on the Compute Module 5 itself. It is shown in the image below.
+
+![WiFi Antenna Connector](./cm5-top-conx.jpg)
+*U.FL antenna connector on the Compute Module 5.*
+
+| Label | Description |
+|:------|:------------|
+| **r1** | U.FL connector for the WiFi and Bluetooth antenna. |
+
+### Blinkenlights
 
 The carrier board features several status LEDs for system monitoring.
 
@@ -148,6 +159,8 @@ The status LEDs provide information about the system's power and activity states
 | **9** | Green | CAN TX/RX LEDs. These LEDs flash when data is either received (RX) or transmitted (TX) on the CAN interface. |
 | **10** | Green | RS-485 TX/RX LEDs. These LEDs flash when data is either received (RX) or transmitted (TX) on the RS-485 interface. |
 
+The RGB LED patterns are documented in the [Operation Guide](./operation.md#status-led-indicators).
+
 ## Current Limiting Configuration
 
 The carrier board features a current limiting switch to configure the maximum current supplied to the peripherals. To locate the switch, refer to the location of switch **a2** in the image in the [Carrier Board Connectors](#carrier-board-connectors) section.
@@ -167,8 +180,6 @@ To change the current limit setting, first power down the HALPI2 completely and 
 
 ## Using HATs
 
-## Using HATs
-
 ### HAT Compatibility
 
 HALPI2 supports standard Raspberry Pi HATs through its 40-pin GPIO header, maintaining full electrical and mechanical compatibility with the Raspberry Pi HAT specification. The carrier board provides the same GPIO pinout as a standard Raspberry Pi, allowing most HATs designed for Raspberry Pi 4 and 5 to work without modification. This compatibility extends to both official Raspberry Pi HATs and third-party expansion boards that follow the HAT standard.
@@ -185,24 +196,24 @@ Several GPIO pins are utilized by HALPI2's built-in interfaces and must be consi
 |----------|----------|-----------|-------|
 | GPIO 2 | I2C SDA | System I2C | Can be shared; address 0x6d reserved |
 | GPIO 3 | I2C SCL | System I2C | Can be shared; address 0x6d reserved |
-| GPIO 6 | SPI CS | CAN-FD | Custom chip select for CAN controller |
-| GPIO 9 | SPI MISO | CAN-FD | Shared SPI0 bus |
-| GPIO 10 | SPI MOSI | CAN-FD | Shared SPI0 bus |
-| GPIO 11 | SPI SCK | CAN-FD | Shared SPI0 bus |
+| GPIO 6 | SPI CS | CAN FD | Custom chip select for CAN controller |
+| GPIO 9 | SPI MISO | CAN FD | Shared SPI0 bus |
+| GPIO 10 | SPI MOSI | CAN FD | Shared SPI0 bus |
+| GPIO 11 | SPI SCK | CAN FD | Shared SPI0 bus |
 | GPIO 12 | UART TX | RS-485 | UART4 transmit |
 | GPIO 13 | UART RX | RS-485 | UART4 receive |
 | GPIO 24 | RS-485 EN | RS-485 | Enable signal (manual mode only) |
-| GPIO 26 | CAN INT | CAN-FD | Interrupt line for CAN controller |
+| GPIO 26 | CAN INT | CAN FD | Interrupt line for CAN controller |
 
 ### Interface Sharing and Conflicts
 
 The I2C bus on GPIO 2 and 3 can be shared with HAT devices, as I2C supports multiple devices on the same bus. However, HATs must not use I2C address 0x6d, which is reserved for the HALPI2 system controller. Most I2C HATs will work without issue, but verify the I2C addresses used before installation.
 
-The SPI0 bus used for the CAN-FD interface can potentially be shared with other SPI devices, as HALPI2 uses custom chip select (GPIO 6) and interrupt (GPIO 26) pins. HATs using SPI0 with the standard chip select pins (GPIO 7 or GPIO 8) may coexist with the CAN interface but may require additional device tree overlay configuration.
+The SPI0 bus used for the CAN FD interface can potentially be shared with other SPI devices, as HALPI2 uses custom chip select (GPIO 6) and interrupt (GPIO 26) pins. HATs using SPI0 with the standard chip select pins (GPIO 7 or GPIO 8) may coexist with the CAN interface but may require additional device tree overlay configuration.
 
 ### Disabling Built-in Interfaces
 
-If a HAT requires exclusive use of pins occupied by HALPI2's built-in interfaces, these interfaces can be disabled through hardware modifications. The CAN-FD interface can be completely freed by removing the GPIO6-CAN.CS solder jumper located on the bottom side of the carrier board. This modification disconnects the CAN controller from the SPI bus, freeing GPIO 6, 9, 10, 11, and 26 for HAT use.
+If a HAT requires exclusive use of pins occupied by HALPI2's built-in interfaces, these interfaces can be disabled through hardware modifications. The CAN FD interface can be completely freed by removing the GPIO6-CAN.CS solder jumper located on the bottom side of the carrier board. This modification disconnects the CAN controller from the SPI bus, freeing GPIO 6, 9, 10, 11, and 26 for HAT use.
 
 The RS-485 interface can be disabled by removing the RX Enable jumper (i4) on the carrier board. This prevents the RS-485 transceiver from receiving data and frees GPIO 12 and 13 for other uses. If manual transmit enable control is not required, GPIO 24 can also be repurposed by setting the RS-485 auto/manual enable jumper (i2) to automatic mode.
 

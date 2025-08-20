@@ -1,6 +1,6 @@
 # Introduction
 
-HALPI2 is a pre-built, ready-to-use boat computer based on the Raspberry Pi Compute Module 5 (CM5). Powered by the same System-on-Chip (SoC) as the Raspberry Pi 5, it is fully compatible with all Raspberry Pi software as well as many hardware add-ons. Additionally, it offers a comprehensive set of features ideally suited for marine, automotive, and industrial applications.
+HALPI2 is a ready-to-use boat computer based on the Raspberry Pi Compute Module 5 (CM5). It offers a comprehensive set of features well suited for marine, automotive, and many industrial applications.
 
 ![HALPI2](./halpi2_front_view.jpg)
 
@@ -24,14 +24,14 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 ### Hardware Features
 - **Wide input voltage range** from 10 to 32 VDC with protection up to 100 VDC
 - **Intelligent current limiting**: max input current 0.9 or 2.5 A, user-selectable
-- **Dual power options**: 12V/24V battery or NMEA 2000 bus power
+- **Dual power options**: 12V/24V direct connection or 12V NMEA 2000 bus power
 - **Super-capacitor backup** for glitch immunity and graceful shutdown during power loss
 - **Advanced power management** with automatic power loss detection
 - **Passive cooling design** with CM5 in direct contact with enclosure
 - **High-speed storage** via standard M.2 NVMe SSD interface
 - **Expansion capability** through standard Raspberry Pi 40-pin GPIO header
 - **Rich I/O options**: 2× HDMI, 2× MIPI (DSI/CSI), 4× USB 3.0, gigabit ethernet
-- **Marine-specific interfaces**: CAN-FD (NMEA 2000) and RS-485 (NMEA 0183)
+- **Marine-specific interfaces**: CAN FD (NMEA 2000) and RS-485 (NMEA 0183)
 - **Real-time clock** with backup battery for accurate timekeeping
 - **Visual status indication** via five RGB LEDs
 - **User interaction** through configurable button headers
@@ -40,11 +40,9 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 *Interior view of the HALPI2 showing the carrier board and different connectors.*
 
 ### Software Features
-- **Intelligent controller** (RP2040-based) communicating via I2C
+- **Pre-configured operating system images** available for immediate deployment: OpenPlotter, Raspberry Pi OS and Raspberry Pi OS Lite
 - **Comprehensive monitoring** of voltage, current, and temperature
 - **Transparent firmware updates** over I2C interface
-- **Flexible operation** - works with or without daemon software
-- **Pre-built images** available for immediate deployment
 
 ## Target Applications
 
@@ -52,8 +50,8 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 - **Navigation systems** with Chart plotters and GPS integration
 - **Data logging** for engine parameters, environmental sensors, and vessel performance
 - **Signal K servers** for unified boat data management
-- **Weather routing** and passage planning systems
-- **AIS and radar integration** platforms
+- **General-purpose onboard computing** for internet access and communication
+- **NMEA 2000 network debugging** for improved system reliability
 
 ### Industrial Applications
 - **Process monitoring** and control systems
@@ -75,7 +73,7 @@ Your HALPI2 package includes:
 - **HALPI2 unit** with pre-installed Compute Module 5 and NVMe SSD (unless ordered without)
 - **Power cable** with E7T connector (Amphenol LTW Ceres Mini compatible), length 2 m
 - **E7T cable plug** for custom installations
-- **DC barrel connector pair** (5.5 x 2.1 mm) for usage with standard 12V/24V power supplies
+- **DC barrel connector pair** (5.5 x 2.1 mm) for use with standard 12V/24V power supplies
 - **Raspberry Pi Antenna** for WiFi and Bluetooth connectivity
 - **3 pcs PG7 cable glands** for additional interfaces
 - **Quick start guide and warranty documentation** for getting started
@@ -96,13 +94,13 @@ This documentation is structured to serve both end users seeking practical guida
 - Explore **Common Use Cases** for application-specific guidance
 - Reference **Troubleshooting** when issues arise
 
-### For Professional Developers
+### For Developers
 - Review the **Technical Reference** for detailed specifications
 - Study **Software Development** sections for custom applications
 - Examine **Design Files** for integration planning
 - Consult **Advanced Configuration** for performance optimization
 
-### Navigation Tips
+### Documentation Tips
 - 💡 **Quick Tips** boxes provide shortcuts for common tasks
 - ⚠️ **Warning** and **Caution** callouts highlight important safety information
 - 🔧 **Technical Details** sections offer in-depth implementation information

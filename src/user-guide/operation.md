@@ -1,162 +1,5 @@
 # System Operation
 
-## Power Management and Shutdown Procedures
-
-HALPI2 features a power supply designed to withstand voltage spikes, glitches and short-term outages. This section helps you understand its operation and how to configure it for your needs.
-
-### Power System Overview
-
-HALPI2's power management system consists of several integrated components:
-
-- **Wide-range power supply** (11-32 VDC input with protection up to 100 VDC)
-- **Super-capacitor backup system** for graceful shutdowns during power loss
-- **Current limiting** (0.9A or 2.5A selectable)
-- **Power loss detection** and automatic shutdown initiation
-- **Input voltage and current monitoring**
-
-The system operates in two distinct modes depending on software configuration:
-
-**Solo Mode:** HALPI2 operates independently, monitoring input voltage and managing shutdowns autonomously without software coordination.
-
-**Co-op Mode:** The HALPI daemon manages the power system, providing enhanced monitoring, configuration options, and coordinated shutdown procedures.
-
-### Operational Modes
-
-#### Solo Mode
-
-Solo mode provides basic autonomous operation when the HALPI daemon is not running or has failed to start. The controller operates independently to protect the system:
-
-**Characteristics:**
-- No software communication required
-- Basic power loss protection active
-- Automatic shutdown via simulated power button presses
-- Limited monitoring and configuration options
-
-**Automatic Behavior:**
-- Monitors input voltage continuously
-- Triggers shutdown sequence on power loss detection
-- Uses internal blackout timer (default 5 seconds) before initiating shutdown
-- Simulates double power-button presses to request system shutdown
-- Forces power-off after 60 seconds if shutdown doesn't complete
-- System will restart automatically when stable power returns
-
-**When Active:**
-- During initial boot before daemon starts
-- If HALPI daemon fails or is disabled
-- On unsupported operating systems without daemon
-
-> 💡 **Solo Mode Reliability**
->
-> While Solo mode provides basic protection, it's less reliable than Co-op mode because there's no direct communication with the operating system. The controller must rely on simulated button presses to request shutdown.
-
-#### Co-op Mode
-
-Co-op mode provides full power management functionality when the HALPI daemon is running and communicating with the controller:
-
-**Co-op Mode Features:**
-- Direct communication between controller and daemon software
-- Watchdog timer ensures system stability (30-second timeout)
-- Configurable shutdown behavior and timing
-- Real-time monitoring of power parameters
-
-**Automatic Behavior:**
-- Monitoring of input power status
-- Configurable blackout timer (default 5 seconds) allows for brief power interruptions
-- Shutdown command execution (default: `/sbin/poweroff`)
-- Super-capacitor backup provides time for safe file system closure
-- System restart management based on configuration
-
-**Watchdog Protection:**
-The daemon must "feed the watchdog" by communicating with the controller regularly. If communication stops for 30 seconds, the system automatically reboots to recover from software failures.
-
-**When Active:**
-- Normal operation with supported operating systems
-- HALPI daemon running and healthy
-- Full system monitoring and control available
-
-> 🔧 **Daemon Status Check**
->
-> Verify Co-op mode operation: `systemctl status halpid`
->
-> View controller state: `halpi status`
->
-> Green LEDs indicate active Co-op mode operation.
-
-### Shutdown Procedures
-
-#### Automatic Shutdown
-
-HALPI2 automatically protects your system during power loss events through its super-capacitor backup system and shutdown logic.
-
-**Power Loss Detection:**
-1. **Monitoring** of input voltage and power availability
-2. **Blackout detection** when input power is lost or falls below threshold
-3. **Blackout timer activation** to distinguish brief glitches from actual power loss
-
-**Shutdown Sequence:**
-When power loss exceeds the blackout timer period:
-
-**Co-op Mode Sequence:**
-1. HALPI daemon detects power loss condition
-2. Daemon initiates shutdown command
-3. Operating system closes all applications and file systems
-4. Super-capacitors provide backup power throughout the process
-5. Controller monitors for shutdown completion
-6. 5V rail disabled when Compute Module 5 powers off
-7. System remains powered off until power returns
-
-**Solo Mode Sequence:**
-1. Controller detects power loss internally
-2. Simulated power button double-presses sent to Compute Module
-3. Operating system responds to button press shutdown request
-4. Super-capacitors maintain power during shutdown process
-5. 60-second timeout ensures power-off if shutdown hangs
-6. Forced power-off if graceful shutdown doesn't complete
-
-**Backup Power Duration:**
-- Super-capacitors typically provide 30-60 seconds of backup power
-- Duration depends on system load and connected peripherals
-- Sufficient time for safe file system closure and process termination
-- Charging time: ~25 seconds (0.9A limit) or ~9 seconds (2.5A limit)
-
-> ⚠️ **Power Loss Protection**
->
-> The super-capacitor system is designed for graceful shutdown, not continued operation. Do not rely on it to maintain system operation during extended power outages.
-
-#### Manual Shutdown Considerations
-
-HALPI2's design prioritizes automated operation and recovery, which affects manual shutdown behavior:
-
-**Automatic Restart Behavior:**
-- Manual shutdowns (via command line, desktop menu, or SSH) result in normal system shutdown
-- However, if input power remains available, the system will automatically restart after a 5-second grace period
-- This ensures recovery from accidental shutdowns and maintains unattended operation reliability
-
-**Intentional Shutdown Methods:**
-
-**For Temporary Shutdown:**
-1. Use the standby mode functionality (when available) to power off the Compute Module while keeping the controller active
-2. Standby mode allows wake-up from external events without full power cycling
-
-**For Permanent Shutdown:**
-1. **Disconnect input power** after initiating graceful shutdown
-2. **Use daemon configuration** to disable automatic restart: `halpi config set auto_restart false`. After this, the system will not restart automatically after a manual shutdown.
-3. **Physical power switch** at the power source for complete shutdown
-
-**Standby Mode Operation:**
-> 🔧 **Feature Status**
->
-> Standby mode functionality is planned for future firmware releases. This will allow the Raspberry Pi to be powered off while the HALPI2 controller remains active, waiting for wake-up events.
-
-> 📖 **Related Information**
->
-> - **LED status indicators:** See [Status LED Meanings](./operation.md#status-led-meanings)
-> - **Manual power button:** See [User Button Configuration](./operation.md#user-button-configuration)
-> - **System monitoring:** See [Monitoring System Health](./operation.md#monitoring-system-health)
-> - **Technical specifications:** See [Power Supply Deep Dive](../technical-reference/power-supply.md)
-> - **Troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
-
-
 ## Status LED Indicators
 
 HALPI2 features five RGB LEDs that provide visual feedback about system status and power conditions.
@@ -189,7 +32,170 @@ During operation, the LEDs function as a voltage indicator showing super-capacit
 - **LED 4**: 8.0-9.0V
 - **LED 5**: 9.0-10.0V
 
-> 📖 **Related Information**
+## Power Management and Shutdown Procedures
+
+HALPI2 features a power supply designed to withstand voltage spikes, glitches and short-term outages.
+
+### Power System Overview
+
+HALPI2's power management system consists of:
+
+- **Wide-range power supply** (11-32 VDC input with protection up to 100 VDC)
+- **Super-capacitor backup system** for graceful shutdowns during power loss
+- **Current limiting** (0.9A or 2.5A selectable)
+- **Power loss detection** and automatic shutdown initiation
+- **Input voltage and current monitoring**
+
+The system operates in two modes: Solo Mode and Co-op Mode.
+
+### Solo Mode Operation
+
+Solo mode provides basic autonomous operation when the HALPI daemon is not running. The controller operates independently without software communication.
+
+#### Solo Mode Characteristics
+
+- **No software communication required**
+- **Basic power loss protection** - monitors input voltage and responds to power loss
+- **Automatic shutdown via simulated power button presses**
+- **Limited monitoring and configuration options**
+
+#### Solo Mode Power Loss and Shutdown
+
+**Power Loss Detection:**
+The controller monitors input voltage and detects power loss. A blackout timer (default 5 seconds) prevents shutdowns during brief interruptions.
+
+**Automatic Shutdown Sequence:**
+1. **Controller detects power loss**
+2. **Blackout timer activates** to distinguish glitches from actual power loss
+3. **Simulated power button presses** - controller sends double power-button presses to Compute Module
+4. **Operating system responds** and begins graceful shutdown
+5. **Super-capacitors maintain power** (typically 30-60 seconds available)
+6. **60-second timeout protection** - forced power-off if graceful shutdown fails
+7. **System remains off** until power returns
+8. **Automatic restart** when power is restored
+
+**Manual Shutdown in Solo Mode:**
+- Normal operating system shutdown occurs
+- System automatically restarts after 5 seconds if input power remains available
+- For permanent shutdown, disconnect input power after initiating graceful shutdown
+
+#### When Solo Mode is Active
+
+Solo mode occurs:
+- During initial boot before HALPI daemon starts
+- If HALPI daemon fails to start or is disabled
+- On unsupported operating systems without the daemon
+- When the daemon has crashed or become unresponsive
+
+> 💡 **Solo Mode Reliability**
 >
-> - **Power management:** See [Power Management and Shutdown Procedures](#power-management-and-shutdown-procedures)
-> - **System monitoring:** See [Monitoring System Health](#monitoring-system-health)
+> Solo mode provides essential protection but is less reliable than Co-op mode. The controller relies on simulated button presses to request shutdown, which may not work if the system is frozen.
+
+### Co-op Mode Operation
+
+Co-op mode provides full power management functionality when the HALPI daemon is running and communicating with the controller.
+
+#### Co-op Mode Features
+
+- **Direct software communication** - real-time data exchange between controller and daemon
+- **Watchdog timer protection** - 30-second timeout ensures system stability
+- **Configurable shutdown behavior** - customizable timing and commands
+- **Real-time monitoring** - comprehensive power parameter monitoring
+- **Advanced configuration options**
+
+#### Co-op Mode Power Loss and Shutdown
+
+**Power Loss Detection:**
+The controller monitors input power and communicates events directly to the HALPI daemon. The configurable blackout timer (default 5 seconds) allows brief power interruptions without initiating shutdown.
+
+**Automatic Shutdown Sequence:**
+1. **Controller detects power loss** and communicates to HALPI daemon
+2. **Blackout timer assessment** - daemon evaluates if power loss exceeds threshold
+3. **Shutdown command execution** - daemon executes shutdown command (default: `/sbin/poweroff`)
+4. **Operating system graceful shutdown** - applications close and filesystems unmount safely
+5. **Super-capacitor backup power** provides energy throughout shutdown
+6. **Controller monitors completion** - tracks when Compute Module powers off
+7. **5V rail disabled** when shutdown is complete
+8. **System remains off** until input power returns
+9. **Restart management** - based on configuration, system restarts automatically or remains off
+
+**Manual Shutdown in Co-op Mode:**
+- Standard graceful shutdown occurs when initiated through software
+- System automatically restarts after 5 seconds if input power remains available
+- To prevent automatic restart, disconnect power or configure `auto_restart` to `false`
+
+#### Watchdog Protection
+
+Co-op mode includes watchdog timer protection:
+
+- **30-second communication timeout** - daemon must communicate with controller regularly
+- **Automatic recovery** - system reboots if communication stops
+- **Software failure protection** - ensures recovery from daemon crashes or system hangs
+- **"Feeding the watchdog"** - daemon sends regular status updates to reset timer
+
+#### When Co-op Mode is Active
+
+Co-op mode occurs when:
+- HALPI daemon is running and healthy
+- Communication between daemon and controller is established
+- System operates on a supported operating system
+- Full system monitoring and control features are available
+
+> 🔧 **Verifying Co-op Mode**
+>
+> Check daemon status: `systemctl status halpid`
+>
+> View controller state: `halpi status`
+>
+> For further information on the `halpi` command, see the [Software Guide](./software.md#halpi-daemon-halpid).
+
+### Backup Power and Capacitor System
+
+Both modes rely on the super-capacitor backup system for graceful shutdown protection:
+
+**Backup Power Duration:**
+- Super-capacitors provide 30-60 seconds of backup power
+- Duration depends on system load and connected peripherals
+- Sufficient time for safe file system closure and process termination
+- Not designed for continued operation during extended outages
+
+**Charging Characteristics:**
+- Charging time: 25 seconds with 0.9A current limit
+- Charging time: 9 seconds with 2.5A current limit
+- Visual charging progress shown through LED progression (red fill pattern)
+
+> ⚠️ **Power Loss Protection Limitation**
+>
+> The super-capacitor system is designed for graceful shutdown, not continued operation. Do not rely on it for extended power outages.
+
+### Manual Shutdown Considerations
+
+HALPI2 prioritizes automated operation and recovery, affecting manual shutdown behavior.
+
+#### Automatic Restart Behavior
+
+By default, HALPI2 restarts after manual shutdowns when input power remains available:
+
+- Manual shutdowns result in normal operating system shutdown
+- 5-second grace period follows shutdown completion
+- System automatically restarts to maintain operational availability
+- Ensures recovery from accidental shutdowns
+
+#### Intentional Shutdown Methods
+
+For permanent shutdown, use one of these approaches:
+
+**Power Disconnection Method:**
+1. Initiate graceful shutdown through software
+2. Wait for shutdown completion (LEDs turn off)
+3. Disconnect input power to prevent automatic restart
+
+**Configuration Method:**
+1. Disable automatic restart: `halpi config set auto_restart false`
+2. Initiate shutdown through software
+3. System remains off after shutdown completion
+
+**Standby Mode (Future):**
+> 🔧 **Feature Status**
+>
+> Standby mode functionality is planned for future firmware releases. This will allow the Compute Module to be powered off while the HALPI2 controller remains active, waiting for wake-up events.

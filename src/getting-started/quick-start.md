@@ -6,7 +6,7 @@ This guide will get your HALPI2 up and running in under 30 minutes. Follow these
 
 > ⚠️ **Before You Begin**<br>
 > - Ensure power is disconnected from your electrical system before making connections
-> - Use appropriate fuses (3A or 5A) for power connections
+> - Use appropriate fuses (3–5A) for power connections
 > - Handle the unit carefully - although rugged, dropping or impact can damage internal components
 > - Verify correct polarity when connecting power cables
 > - Avoid static electricity discharges - ground yourself and avoid rubbing cats and amber objects before touching internal components
@@ -16,11 +16,14 @@ This guide will get your HALPI2 up and running in under 30 minutes. Follow these
 From your HALPI2 package:
 - HALPI2 unit with pre-installed CM5 and NVMe SSD
 - Power cable with E7T connector (2m length)
-- DC barrel connector pair (5.5 × 2.1 mm)
-- Raspberry Pi antenna
+
+Optional items (included in the sales package):
+- DC barrel connector pair (5.5 × 2.1 mm), when using a standard 12V "wall wart" type power supply
+- Raspberry Pi antenna (required if WiFi is used for initial setup)
 
 Additional items (not included):
 - 12V or 24V power source
+- A separate computer for headless setup (if not using a connected display)
 - Network cable (optional, for wired connection)
 - Display with HDMI input (optional)
 - USB keyboard and mouse (optional, for direct access)
@@ -33,28 +36,27 @@ Additional items (not included):
 
 This quick start guide assumes you will be trying the HALPI2 on a desk or workbench before installing it on your boat or vehicle. For permanent installation, refer to the [Installation Guide](./installation.md).
 
+The initial setup can be done either without a display (headless) over a network connection or with a connected display, keyboard, and mouse. A headless setup can be done either using a wired ethernet connection or the HALPI2's WiFi Access Point.
+
 ### Step 1: Connect Essential Peripherals
 
 #### For Initial Setup:
-1. **Network connection (recommended):**
-   - Connect Ethernet cable to access web interface
-   - Or use WiFi Access Point (see Software Setup)
+1. **Network connection (required for headless installation):**
+   - Connect Ethernet cable
+   - Connect the WiFi antenna (optional if using Ethernet)
 
 2. **Display connection (optional):**
    - Connect HDMI display for direct access
    - USB keyboard and mouse if using display
-
-3. **Antenna connection:**
-   - Attach provided WiFi/Bluetooth antenna to the RP-SMA connector
-   - Ensure secure connection for proper wireless performance
 
 ![Front Panel Connectors](./front-panel-connectors.jpg)
 *Front Panel Connectors*
 
 ### Step 2: NMEA 2000 Connection (Optional)
 
-Add a T-adapter to the NMEA 2000 network backbone. Connect the HALPI2's NMEA 2000 micro connector to the T-adapter using a NMEA 2000 drop cable. This allows the HALPI2 to communicate with other NMEA 2000 devices on the network.
+If you are installing the HALPI2 directly on a boat or have a desktop NMEA 2000 installation available, you can already connect it to the NMEA 2000 network.
 
+An [NMEA 2000 network](https://docs.hatlabs.fi/nmea2000/) consists of a backbone cable to which all devices connect using T-adapters and drop cables. Add a T-adapter to the NMEA 2000 network backbone. Connect the HALPI2's NMEA 2000 micro connector to the T-adapter using a NMEA 2000 drop cable.
 
 ### Step 3: Power Connection
 
@@ -85,6 +87,10 @@ HALPI2 ships with a customized OpenPlotter image that includes necessary configu
 the LED bar should start filling up with red lights, indicating that the super-capacitors are charging. The LEDs will turn yellow once the system is booting, and finally green when the operating system is running and the HALPI daemon is connected to the controller.
 
 If you have a display connected, you should see the Raspberry Pi OS splash screen, and finally, a graphical desktop will appear.
+
+> 💡 **Tip**
+>
+> The status LED patterns are documented in the [Operation Guide](../user-guide/operation.md).
 
 ### Accessing the HALPI2 without a Display
 
@@ -143,7 +149,17 @@ NMEA 2000 connectivity can be easiest verified by checking the Signal K server s
 
 ![Signal K Server Connections Activity](./sk-n2k-deltas.jpg)
 
-## Troubleshooting First Boot
+## Shutting Down the Device
+
+The HALPI2 is designed to shut down automatically when disconnected from the power supply. When you need to shut down the device, simply cut the power, either using an electrical panel switch or disconnecting the power connector. The system will automatically initiate a software shutdown sequence, ensuring that all applications close properly and the filesystem is safely unmounted.
+
+If you choose to shut down the system using the desktop interface or command-line tools (such as the `shutdown` command), the device will automatically restart after approximately 5 seconds. This behavior is due to the power management system detecting that external power is still available.
+
+During the shutdown process, you can monitor the system status through the LED indicators on the front panel. When power is initially cut, the green LEDs will dim to indicate a blackout condition. After 5 seconds, the LEDs will change to violet, providing a clear visual indication that the device is actively shutting down. Once the shutdown process is complete, all LEDs will turn off.
+
+The shutdown process typically takes only a few seconds under normal conditions. However, in some cases, certain services may require additional time to stop properly. If this occurs, the device may deplete the super-capacitors almost completely before shutting down. This extended shutdown time is normal behavior and does not indicate a fault with the system.
+
+## Troubleshooting
 
 ### Common and Uncommon Issues:
 
