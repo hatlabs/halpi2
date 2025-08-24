@@ -266,13 +266,14 @@ $ halpi status
  T_pcb                         35.2  °C
 ```
 
-**Individual Parameter Access:**
-For scripts or applications that need specific values, individual parameters can be retrieved:
+If you only want to monitor a specific value, it can be retrieved as follows:
 
 ```bash
 # Show controller firmware version
 halpi get firmware_version
 ```
+
+For scripting purposes, it is better to use the REST API instead, as described in the [REST API Access](#rest-api-access) section.
 
 #### Configuration Management
 
