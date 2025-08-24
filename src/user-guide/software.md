@@ -126,7 +126,7 @@ SSH connections are encrypted and secure, making them suitable for use over publ
 
 VNC provides remote desktop access to the HALPI2's graphical interface, allowing you to interact with the desktop environment as if you were physically present at the device. VNC comes preinstalled and preconfigured on OpenPlotter images. For Raspberry Pi OS installations, VNC can be enabled using the `raspi-config` configuration tool.
 
-To connect to the HALPI2 desktop remotely, use RealVNC's VNC Viewer application, which is available for Windows, macOS, Linux, iOS, and Android devices. VNC works effectively on local networks and offline environments, making it ideal for boat installations where internet connectivity may be limited or unavailable.
+To connect to the HALPI2 desktop remotely, use RealVNC's [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) application, which is available for Windows, macOS, Linux, iOS, and Android devices. VNC works effectively on local networks and offline environments, making it ideal for boat installations where internet connectivity may be limited or unavailable.
 
 For remote access over the internet, VNC requires additional network configuration such as port forwarding or VPN setup, as the protocol does not inherently traverse firewalls and NAT devices.
 
