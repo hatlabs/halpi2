@@ -353,3 +353,5 @@ curl --unix-socket /var/run/halpid.sock http://localhost/values/V_supercap
 ```
 
 The REST API is particularly useful for monitoring applications, data logging systems, or integration with other software that needs real-time access to HALPI2 status information.
+
+Full REST API documentation is available in the [Software Development: Daemon](../software-development/daemon.md) chapter.
