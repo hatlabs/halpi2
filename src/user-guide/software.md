@@ -242,7 +242,7 @@ The `halpi` command provides direct access to controller functions and system st
 
 The primary function of the HALPI command line tool is to provide comprehensive system status information. This includes hardware parameters, operational state, and real-time monitoring data.
 
-**Display System Status:**
+Displaying the system status:
 ```bash
 # Display comprehensive system status
 halpi status
@@ -279,7 +279,7 @@ For scripting purposes, it is better to use the REST API instead, as described i
 
 The HALPI command line tool provides comprehensive configuration management capabilities, allowing you to view current settings and modify operational parameters.
 
-**View Current Configuration:**
+Viewing current configuration:
 ```bash
 # Show current configuration
 halpi config
@@ -302,7 +302,7 @@ $ halpi config
 
 One of the most commonly adjusted settings is the LED brightness, which can be customized for different operating environments and user preferences.
 
-**LED Brightness Management:**
+Example commands for LED brightness management:
 ```bash
 # Get current LED brightness (0-255)
 halpi config get led_brightness
@@ -326,7 +326,7 @@ The LED brightness accepts values from 0 (completely off) to 255 (maximum bright
 
 The HALPI command line tool provides essential power management functions for safe system operation.
 
-**System Control Commands:**
+Power management command examples:
 ```bash
 # Initiate graceful shutdown
 halpi shutdown
@@ -341,7 +341,7 @@ The shutdown command ensures that the system powers down safely, allowing the op
 
 For advanced users and custom applications, the HALPI daemon also provides a REST API interface accessible via Unix domain socket. This allows for faster programmatic access to system data:
 
-**REST API Examples:**
+See below for some usage examples:
 ```bash
 # Get all system values
 curl --unix-socket /var/run/halpid.sock http://localhost/values
