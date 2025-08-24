@@ -85,27 +85,6 @@ If you have chosen to use the standard Raspberry Pi OS instead of OpenPlotter, f
 
 During the initial setup, you may also want to configure timezone settings, keyboard layout, and other regional preferences to match your operating environment. The Raspberry Pi configuration tool (`raspi-config`) provides access to additional system settings that can be adjusted after the initial setup is complete.
 
-## Software Updates
-
-The HALPI2 software and firmware can be updated using the standard Raspberry Pi OS update process, which ensures that all system components remain current with the latest features and security patches. Regular updates are recommended to maintain optimal system performance and security.
-
-### Command Line Updates
-
-The most reliable method for updating the system is through the command line interface. Open a terminal window and execute the following commands to update the system:
-
-```bash
-sudo apt update
-sudo apt upgrade
-```
-
-The first command (`apt update`) refreshes the package database with the latest available versions, while the second command (`apt upgrade`) downloads and installs all available updates. This process will update all installed packages, including the base Raspberry Pi OS, OpenPlotter components, and HALPI2-specific software.
-
-During the update process, you may be prompted to confirm the installation of certain packages or to restart services. It is generally safe to accept these prompts unless you have specific reasons to decline.
-
-### Graphical Updates
-
-For users who prefer a graphical interface, the desktop environment provides visual notification when updates are available. A download icon will appear in the top right corner of the desktop taskbar when updates are ready to be installed. Clicking this icon opens the update manager, which provides a user-friendly interface for reviewing and installing available updates.
-
 ## Remote Access
 
 The HALPI2 supports multiple methods for remote access, allowing you to monitor and control the system without requiring physical access to the device. This is particularly valuable for installations where the HALPI2 may be mounted without a display in difficult-to-reach locations.
@@ -135,6 +114,27 @@ For remote access over the internet, VNC requires additional network configurati
 Raspberry Pi Connect offers a modern web-based approach to remote desktop access, allowing you to connect to the HALPI2 desktop using just a standard web browser without requiring any additional software installation. This service works through firewall and NAT configurations automatically, making it particularly suitable for remote access over the internet without complex network setup.
 
 Unlike VNC, Raspberry Pi Connect handles the networking complexities automatically, providing seamless access from anywhere with an internet connection. However, it also requires that the HALPI2 itself maintains an active internet connection to function.
+
+## Software Updates
+
+The HALPI2 software and firmware can be updated using the standard Raspberry Pi OS update process, which ensures that all system components remain current with the latest features and security patches. Regular updates are recommended to maintain optimal system performance and security.
+
+### Command Line Updates
+
+The most reliable method for updating the system is through the command line interface. Open a terminal window and execute the following commands to update the system:
+
+```bash
+sudo apt update
+sudo apt upgrade
+```
+
+The first command (`apt update`) refreshes the package database with the latest available versions, while the second command (`apt upgrade`) downloads and installs all available updates. This process will update all installed packages, including the base Raspberry Pi OS, OpenPlotter components, and HALPI2-specific software.
+
+During the update process, you may be prompted to confirm the installation of certain packages or to restart services. It is generally safe to accept these prompts unless you have specific reasons to decline.
+
+### Graphical Updates
+
+For users who prefer a graphical interface, the desktop environment provides visual notification when updates are available. A download icon will appear in the top right corner of the desktop taskbar when updates are ready to be installed. Clicking this icon opens the update manager, which provides a user-friendly interface for reviewing and installing available updates.
 
 ## Firmware Updates
 
