@@ -41,7 +41,7 @@
 
 # Part V: Appendices
 
-- [❌ Design Files and Schematics](./appendices/design-files.md)
+- [✅ Design Files and Schematics](./appendices/design-files.md)
 - [❌ Compliance and Certifications](./appendices/compliance.md)
 - [❌ Errata](./appendices/errata.md)
 - [❌ Resources](./appendices/resources.md)
