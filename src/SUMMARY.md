@@ -43,7 +43,7 @@
 
 - [✅ Design Files and Schematics](./appendices/design-files.md)
 - [❌ Compliance and Certifications](./appendices/compliance.md)
-- [❌ Errata](./appendices/errata.md)
+- [✅ Errata](./appendices/errata.md)
 - [❌ Resources](./appendices/resources.md)
 
 ---
