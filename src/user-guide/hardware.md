@@ -192,7 +192,7 @@ The HALPI2 enclosure provides 45mm of vertical clearance above the carrier board
 
 Several GPIO pins are utilized by HALPI2's built-in interfaces and must be considered when selecting compatible HATs. The following table details the reserved GPIO pins and their functions:
 
-| GPIO Pin | Function | Interface | Notes |
+| GPIO Number | Function | Interface | Notes |
 |----------|----------|-----------|-------|
 | GPIO 2 | I2C SDA | System I2C | Can be shared; address 0x6d reserved |
 | GPIO 3 | I2C SCL | System I2C | Can be shared; address 0x6d reserved |
