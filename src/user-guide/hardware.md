@@ -261,9 +261,19 @@ Compatibility can only be guaranteed with SSDs supplied by Hat Labs and official
 
 Before installing a new SSD in HALPI2, the operating system should be flashed onto the drive. While it is possible to flash the SSD after installation using the CM5's USB Boot connector (j1), using an external USB to NVMe adapter is easier and faster. The flashing procedure is described in the [Software Setup section](../user-guide/software-setup.md) of the User Guide.
 
+### Disabling System 3.3V Voltage
+
+The super-capacitors can keep the carrier board 3.3V rail powered for a significant amount of time after the main power is disconnected. Since the SSD is powered from the 3.3V rail, the rail must be disabled to ensure the SSD is completely unpowered before removal or installation.
+
+Begin by powering down HALPI2 and disconnecting the power supply. Open the enclosure following the procedure described in the Enclosure Access section.
+
+Locate the "3.3V off" jumper on the carrier board. Its location varies depending on the board version. On the v0.4.0 boards, the jumper is very close to the super-capacitors, on their "south" side. On v0.5.0 and later boards, locate the "Pow.Ctrl" header to the "east" of the super-capacitors. The "3.3V off" pins are the top two ones on the header.
+
+Move the jumper to short the 3.3V off pins. This will disable the 3.3V rail, indicated by the LEDs turning off.
+
 ### Removal Procedure
 
-Begin by powering down HALPI2 and disconnecting the power supply. Open the enclosure following the procedure described in the Enclosure Access section. The M.2 slot is located at the south edge on the carrier board. Refer to the image in the [Carrier Board Connectors](#carrier-board-connectors) section to locate the M.2 connector labeled **g1**.
+The M.2 slot is located at the south edge on the carrier board. Refer to the image in the [Carrier Board Connectors](#carrier-board-connectors) section to locate the M.2 connector labeled **g1**.
 
 Using a PH1 screwdriver, remove the M2.5 mounting screw. Once the screw is removed, the SSD will spring up at an angle. Gently lift the drive from the mounting end and wiggle it out of the M.2 connector. Handle the SSD by its edges to avoid damaging the components or connectors.
 
@@ -272,6 +282,8 @@ Using a PH1 screwdriver, remove the M2.5 mounting screw. Once the screw is remov
 Insert the prepared SSD into the M.2 connector at approximately a 30-degree angle, ensuring the notch in the SSD aligns with the key in the connector. The drive should slide in smoothly without requiring force. Once fully seated, press down the mounting end of the SSD until it lies flat against the standoff.
 
 Secure the SSD with the M2.5 mounting screw using a PH1 screwdriver. Tighten the screw just enough to hold the drive firmly in place. The SSD should lie perfectly flat with no visible bend or flex.
+
+Once the SSD is in place, remove the jumper from the 3.3V off pins to re-enable the 3.3V rail. Keep the jumper stored on the header for future use.
 
 Reassemble the enclosure as described in the Enclosure Access section.
 For any software configuration or troubleshooting, refer to the Software Setup chapter in the User Guide.
