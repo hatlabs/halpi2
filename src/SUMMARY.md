@@ -36,6 +36,7 @@
 - [❌ HALPI2 Daemon](./software-development/daemon.md)
 - [❌ System Integration](./software-development/integration.md)
 - [❌ Advanced Configuration](./software-development/advanced-config.md)
+- [✅ Ubuntu Installation](./software-development/ubuntu-installation.md)
 
 ---
 
