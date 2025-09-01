@@ -12,6 +12,6 @@ Mechanical design files are initially provided for the enclosure only. The desig
 
 This is the first public release of HALPI2.
 
-- KiCad design files: https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip
+- KiCad design files: [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip)
 - Schematic PDF: [HALPI2_Schematic_v0.4.0.pdf](./HALPI2_Schematic_v0.4.0.pdf)
 - Enclosure 3D model: [HALPI2_Enclosure_v0.4.0.step](./HALPI2_Enclosure_v0.4.0.step)
