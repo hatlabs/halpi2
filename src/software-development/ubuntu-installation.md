@@ -20,7 +20,7 @@ sudo apt install curl openssh-server dpkg-dev i2c-tools npm net-tools python3-de
 ```
 
 ## Hatlabs Repository
-The prebuilt packages for the HALPI2 is provided by Hatlabs, and is available through their apt repository.
+The prebuilt packages for the HALPI2 are provided by Hatlabs, and are available through their apt repository.
 To add this repository, you need to run the following commands with root privileges (from `sudo bash`):
 ```bash
 sudo bash
