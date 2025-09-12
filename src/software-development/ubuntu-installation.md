@@ -1,6 +1,6 @@
 # Ubuntu Installation
 
-The Ubuntu distribution has an official [ubuntu image for the Raspberry Pi](https://ubuntu.com/download/raspberry-pi) Compute Module 5, which is used with HALPI2. 
+The Ubuntu distribution has an official [ubuntu image for the Raspberry Pi](https://ubuntu.com/download/raspberry-pi) Compute Module 5, which may be used with HALPI2. 
 This guide provides step-by-step instructions to install Ubuntu on your HALPI2 device. These instructions may also work with other debian-based distributions, 
 but they have not been tested.
 
@@ -105,7 +105,7 @@ snap install --classic astral-uv
 ./run build-debian
 cd ..
 dpkg -i halpid_*_arm64.deb
-apt-mark unhold halpid
+apt-mark hold halpid
 ```
 
 The HALPI2 Daemon should now be running and the `halpi` command available. You can check the status of the daemon with:
@@ -115,7 +115,7 @@ halpi status
 
 ## HALPI2 Firmware Installation
 
-Now that the `halpi` command is available, the `hapli2-firmware` package can be installed,m which will flash the latest firmware to the HALPI2 board:
+Now that the `halpi` command is available, the `hapli2-firmware` package can be installed, which will flash the latest firmware to the HALPI2 board:
 ```bash
 apt install halpi2-firmware
 ```
