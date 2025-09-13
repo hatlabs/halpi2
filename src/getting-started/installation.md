@@ -190,14 +190,14 @@ Even when using a dedicated power connection, you may want NMEA 2000 data connec
 
 ### Ethernet Connection
 
-For reliable network connectivity:
+For network connectivity:
 
 1. **Use marine-grade** or appropriate environment-rated cable
 2. **Install cable glands or cable grommets** if routing through bulkheads
 3. **Provide service loops** at both ends
 4. **Test connectivity** before final installation
 
-### WiFi Antenna
+### WiFi/Bluetooth Antenna
 
 1. **Install antenna** on RP-SMA connector
 2. **Position for optimal coverage** - away from metal obstructions. In metal cabinets, a male to female RP-SMA extension cable may be required.

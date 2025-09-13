@@ -19,7 +19,7 @@ From your HALPI2 package:
 
 Optional items (included in the sales package):
 - DC barrel connector pair (5.5 × 2.1 mm), when using a standard 12V "wall wart" type power supply
-- Raspberry Pi antenna (required if WiFi is used for initial setup)
+- Raspberry Pi WiFi/Bluetooth antenna (required if WiFi is used for initial setup)
 
 Additional items (not included):
 - 12V or 24V power source
@@ -43,7 +43,7 @@ The initial setup can be done either without a display (headless) over a network
 #### For Initial Setup:
 1. **Network connection (required for headless installation):**
    - Connect Ethernet cable
-   - Connect the WiFi antenna (optional if using Ethernet)
+   - Connect the WiFi/Bluetooth antenna
 
 2. **Display connection (optional):**
    - Connect HDMI display for direct access
