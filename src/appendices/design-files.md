@@ -8,10 +8,32 @@ The schematics are provided for convenience as PDF files below. The PCB layout d
 
 Mechanical design files are initially provided for the enclosure only. The design has been done with Autocad Fusion but the STEP format export files are readable by most CAD software.
 
+### Version 0.5.0
+
+The second production release of HALPI2 with minor fixes to the carrier board. The board functionality remains the same as in version 0.4.0.
+
+Changes include:
+- Fixed minor silkscreen bugs
+- Removed 3.3V copper pours from bottom layer next to mounting structures
+- Add solder nuts for easier mounting of HATs
+- Add solder nuts for more secure mounting of the Compute Module
+- Revert jumper headers back to THT for better mechanical strength
+- Add a dedicated +5V power LED
+- Relax supercap balancing
+- Reorganize jumper headers for better usability
+
+#### Design Files
+
+- KiCad design files: [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.5.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.5.0.zip)
+- Schematic PDF: [HALPI2-schematic_v0.5.0.pdf](./HALPI2-schematic_v0.5.0.pdf)
+- Enclosure 3D model: [HALPI2-enclosure_v0.4.0.step](./HALPI2-enclosure_v0.4.0.step) (same as in version 0.4.0)
+
 ### Version 0.4.0
 
 This is the first public release of HALPI2.
 
+#### Design Files
+
 - KiCad design files: [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip)
-- Schematic PDF: [HALPI2_Schematic_v0.4.0.pdf](./HALPI2_Schematic_v0.4.0.pdf)
-- Enclosure 3D model: [HALPI2_Enclosure_v0.4.0.step](./HALPI2_Enclosure_v0.4.0.step)
+- Schematic PDF: [HALPI2-schematic_v0.4.0.pdf](./HALPI2-schematic_v0.4.0.pdf)
+- Enclosure 3D model: [HALPI2-enclosure_v0.4.0.step](./HALPI2-enclosure_v0.4.0.step)
