@@ -310,9 +310,16 @@ Disconnect any cables that prevent the carrier board from being lifted. Remove t
 
 ### Removing the Existing Module
 
+ > ‼️ **Caution**
+ >
+ > If the CM5 module is disconnected one connector at a time, the twist forces can rip the connector off the CM5 module. This damage is not covered by warranty.
+
 The CM5 is secured by two board-to-board connectors that require careful handling. Never use metal tools for this procedure as they can damage the connectors or nearby surface-mounted components. Use a wooden or plastic spudger, guitar pick, or similar non-conductive tool.
 
-Position your tool at the center of one short edge of the CM5 module, between the module and the carrier board. Gently pry upward with minimal force – the connector should release with a light click. The module should now be free. If resistance is encountered, do not force it; instead, work alternately between both edges with gentle pressure until the module releases evenly.
+Position your tool at the center of left-hand side short edge of the CM5 module, between the module and the carrier board. Press down firmly at the right-hand side corners. Gently pry upward with minimal force – the module should be released with a light click, with both connectors detaching simultaneously.
+
+![Unmounting CM5 Module](./unmount-cm5.jpg)
+*Unmount the CM5 module by pressing down at the right edge corners while prying upward at the center of the left edge. Both connectors should detach simultaneously.*
 
 ### Installing the New Module
 
