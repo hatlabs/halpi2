@@ -60,11 +60,11 @@ An [NMEA 2000 network](https://docs.hatlabs.fi/nmea2000/) consists of a backbone
 
 ### Step 3: Power Connection
 
-#### On a Desk or Workbench
-
-> ⚠️ **Warning**
+> 💡 **Note on Powering with NMEA 2000**
 >
-> Due to the lack of a strain relief, the screw terminal barrel connector should only be used for temporary installations. Accidental pulling on the cable can disconnect and expose the wires.
+> Refer to the [Installation Guide](./installation.md) for instructions on powering the HALPI2 via the NMEA 2000 bus.
+
+#### On a Desk or Workbench
 
 For the quick start, we will use the provided E7T power cable. Connect the power cable wire ends to the female barrel plug as follows:
 - **Red wire = Positive (+)**
@@ -74,6 +74,10 @@ For the quick start, we will use the provided E7T power cable. Connect the power
 *An example of the E7T to barrel connector wiring*
 
 Plug a standard 12V or 24V power supply into the barrel connector. Ensure the power supply is rated for at least 1A to handle the HALPI2's requirements.
+
+> ⚠️ **Warning**
+>
+> Due to the lack of a strain relief, the screw terminal barrel connector should only be used for temporary installations. Accidental pulling on the cable can disconnect and expose the wires.
 
 #### On a Boat or Vehicle
 
