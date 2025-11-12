@@ -8,6 +8,25 @@ The schematics are provided for convenience as PDF files below. The PCB layout d
 
 Mechanical design files are initially provided for the enclosure only. The design has been done with Autocad Fusion but the STEP format export files are readable by most CAD software.
 
+### Version 0.6.0
+
+The third production release of HALPI2 with more minor fixes to the carrier board. The board features remain the same as in version 0.5.0.
+
+Changes include:
+- 3.3V rail output is now toggled by the controller instead of being always on
+- Add test points for improved production testing
+- Re-route HDMI, MIPI and USB3 interfaces for better signal integrity
+- Onboard FFC connectors are now horizontal
+- Improve 10V buck converter stability - no longer whines on any circumstances
+- Reimplement supercap balancing circuit with a single 4-unit opamp
+- Some component footprints have been changed to improve availability
+
+#### Design files
+
+- KiCad design files: [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.0.zip)
+- Schematic PDF: [HALPI2-schematic_v0.6.0.pdf](./HALPI2-schematic_v0.6.0.pdf)
+
+
 ### Version 0.5.0
 
 The second production release of HALPI2 with minor fixes to the carrier board. The board functionality remains the same as in version 0.4.0.
