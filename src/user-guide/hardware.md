@@ -259,7 +259,7 @@ Compatibility can only be guaranteed with SSDs supplied by Hat Labs and official
 
 ### Preparing the New SSD
 
-Before installing a new SSD in HALPI2, the operating system should be flashed onto the drive. While it is possible to flash the SSD after installation using the CM5's USB Boot connector (j1), using an external USB to NVMe adapter is easier and faster. The flashing procedure is described in the [Software Setup section](../user-guide/software-setup.md) of the User Guide.
+Before installing a new SSD in HALPI2, the operating system should be flashed onto the drive. While it is possible to flash the SSD after installation using the CM5's USB Boot connector (j1), using an external USB to NVMe adapter is easier and faster. The flashing procedure is described in the [Software Guide](./software.md).
 
 ### Disabling System 3.3V Voltage
 
@@ -286,11 +286,11 @@ Secure the SSD with the M2.5 mounting screw using a PH1 screwdriver. Tighten the
 Once the SSD is in place, remove the jumper from the 3.3V off pins to re-enable the 3.3V rail. Keep the jumper stored on the header for future use.
 
 Reassemble the enclosure as described in the Enclosure Access section.
-For any software configuration or troubleshooting, refer to the Software Setup chapter in the User Guide.
+For any software configuration or troubleshooting, refer to the [Software Guide](./software.md).
 
 > 📖 **Related Information**
 >
-> - **System images:** See [Software Setup](./software-setup.md)
+> - **System images:** See [Software Guide](./software.md)
 > - **Boot procedures:** See [System Operation](./operation.md)
 > - **Hardware access:** See [Enclosure Access](#enclosure-access)
 
@@ -350,6 +350,6 @@ Complete the reassembly following the standard enclosure closure procedure. On f
 
 > 📖 **Related Information**
 >
-> - **System setup after replacement:** See [Software Setup](./software-setup.md)
+> - **System setup after replacement:** See [Software Guide](./software.md)
 > - **Boot troubleshooting:** See [Troubleshooting](./troubleshooting.md)
 > - **Thermal management:** See [Hardware Reference](../technical-reference/hardware.md)

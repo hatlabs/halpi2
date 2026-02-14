@@ -93,8 +93,7 @@ Additional accessories available separately:
 This documentation is structured to serve both end users seeking practical guidance and professional developers requiring detailed technical information.
 
 ### For End Users
-- Start with the **Quick Start Guide** for immediate setup
-- Follow the **Installation Guide** for permanent mounting
+- Start with the **Getting Started** guide for setup and installation
 - Explore **Common Use Cases** for application-specific guidance
 - Reference **Troubleshooting** when issues arise
 
