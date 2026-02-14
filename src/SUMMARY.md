@@ -6,8 +6,7 @@
 
 # Part I: Getting Started
 
-- [✅ Quick Start Guide](./getting-started/quick-start.md)
-- [✅ Installation Guide](./getting-started/installation.md)
+- [✅ Getting Started](./getting-started/getting-started.md)
 
 ---
 

@@ -77,7 +77,7 @@ After successfully flashing and booting your HALPI2 for the first time, several 
 
 When using the OpenPlotter image, the system will boot with default passwords for both the WiFi access point and the default user account. For security reasons, it is imperative that these passwords are changed immediately after the first boot.
 
-The password change process and initial configuration are described in the [Quick Start Guide](../getting-started/quick-start.md#first-boot-configuration).
+The password change process and initial configuration are described in the [Getting Started](../getting-started/getting-started.md#first-boot-configuration) guide.
 
 ### Raspberry Pi OS Configuration
 

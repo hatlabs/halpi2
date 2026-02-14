@@ -48,8 +48,8 @@ The Signal K server dashboard provides additional network monitoring capabilitie
 
 > 📖 **Related Information**
 >
-> - **Power configuration:** See [Installation Guide](../getting-started/installation.md)
-> - **Software setup:** See [Software Setup](./software-setup.md)
+> - **Power configuration:** See [Getting Started](../getting-started/getting-started.md#permanent-power-installation)
+> - **Software setup:** See [Software Guide](./software.md)
 > - **Network troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
 
 
@@ -93,7 +93,7 @@ The high-speed capability of the interface also supports non-standard applicatio
 
 > 📖 **Related Information**
 >
-> - **Software configuration:** See [Software Setup](./software-setup.md)
+> - **Software configuration:** See [Software Guide](./software.md)
 > - **NMEA connections:** See [Marine Electronics Integration](./marine-integration.md)
 > - **Troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
 
