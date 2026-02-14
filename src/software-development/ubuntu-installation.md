@@ -21,7 +21,7 @@ exit
 The following packages should then be installed as they are needed for the installation process:
 
 ```bash
-sudo apt install curl openssh-server dpkg-dev i2c-tools npm net-tools python3-dev python3-pip debhelper-compat dh-virtualenv iw git
+sudo apt install curl openssh-server dpkg-dev i2c-tools npm net-tools iw git
 ```
 
 ## Hat Labs Repository
@@ -105,21 +105,10 @@ ifconfig can0
 ## HALPI2 Daemon
 
 The HALPI2 Daemon is used to monitor and control the HALPI2 carrier board and provide the `halpi` command line tool.
-The `halpid` package is available from the Hat Labs repository, but it currently does not work with Ubuntu.
-The following instructions will build and install the HALPI2 Daemon from source.
+Install the `halpid` package from the Hat Labs repository:
 
 ```bash
-sudo bash
-cd
-mkdir src
-cd src
-git clone https://github.com/hatlabs/HALPI2-daemon.git
-cd HALPI2-daemon
-snap install --classic astral-uv
-./run build-debian
-cd ..
-dpkg -i halpid_*_arm64.deb
-apt-mark hold halpid
+sudo apt install halpid
 ```
 
 The HALPI2 Daemon should now be running and the `halpi` command available. You can check the status of the daemon with:
