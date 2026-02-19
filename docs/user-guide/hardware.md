@@ -43,11 +43,10 @@ If you need different connector types, you can modify the panel configuration:
 
 #### Removing Connectors
 
-> ⚠️ **Important**
->
-> Only modify connectors when the unit is powered down and disconnected from all sources.
->
-> Plastic threads can be damaged by over-torquing. Use standard hex sockets but finger-tighten only.
+!!! warning "Important"
+    Only modify connectors when the unit is powered down and disconnected from all sources.
+
+    Plastic threads can be damaged by over-torquing. Use standard hex sockets but finger-tighten only.
 
 1. **Use appropriate socket size:**
    - Large connectors: 26mm socket
@@ -165,16 +164,17 @@ The RGB LED patterns are documented in the [Operation Guide](./operation.md#stat
 
 The carrier board features a current limiting switch to configure the maximum current supplied to the peripherals. To locate the switch, refer to the location of switch **a2** in the image in the [Carrier Board Connectors](#carrier-board-connectors) section.
 
-> 🔧 **Current Limit Settings**
->
-> **0.9A Setting (Default):**
-> - Mandatory for NMEA 2000 bus power
-> - Suitable for basic operation
->
-> **2.5A Setting:**
-> - For high-power peripherals
-> - Faster super-capacitor charging
-> - Only with dedicated power connection
+!!! info "Current Limit Settings"
+    **0.9A Setting (Default):**
+
+    - Mandatory for NMEA 2000 bus power
+    - Suitable for basic operation
+
+    **2.5A Setting:**
+
+    - For high-power peripherals
+    - Faster super-capacitor charging
+    - Only with dedicated power connection
 
 To change the current limit setting, first power down the HALPI2 completely and remove the enclosure lid following the procedure outlined in the Enclosure Access section. Locate the current limit switch on the carrier board and move the switch to the desired position (either 0.9A or 2.5A). Once the setting has been changed, reassemble the enclosure ensuring all connections remain secure.
 
@@ -243,11 +243,10 @@ If the HAT seems stuck, check for any overlooked mounting hardware or cables bef
 
 After hardware installation, the HAT may require software configuration to function properly. Many HATs include device tree overlays that must be enabled in the Raspberry Pi configuration. Edit `/boot/firmware/config.txt` to add the appropriate `dtoverlay` lines as specified in your HAT's documentation.
 
-> 📖 **Related Information**
->
-> - **GPIO pinout reference:** See [Hardware Reference](../technical-reference/hardware.md)
-> - **Software configuration:** See [Advanced Configuration](../software-development/advanced-config.md)
-> - **Enclosure modifications:** See [Custom Connector Options](#custom-connector-options)
+!!! quote "Related Information"
+    - **GPIO pinout reference:** See [Hardware Reference](../technical-reference/hardware.md)
+    - **Software configuration:** See [Advanced Configuration](../software-development/advanced-config.md)
+    - **Enclosure modifications:** See [Custom Connector Options](#custom-connector-options)
 
 ## Replacing the NVMe SSD
 
@@ -288,11 +287,10 @@ Once the SSD is in place, remove the jumper from the 3.3V off pins to re-enable 
 Reassemble the enclosure as described in the Enclosure Access section.
 For any software configuration or troubleshooting, refer to the [Software Guide](./software.md).
 
-> 📖 **Related Information**
->
-> - **System images:** See [Software Guide](./software.md)
-> - **Boot procedures:** See [System Operation](./operation.md)
-> - **Hardware access:** See [Enclosure Access](#enclosure-access)
+!!! quote "Related Information"
+    - **System images:** See [Software Guide](./software.md)
+    - **Boot procedures:** See [System Operation](./operation.md)
+    - **Hardware access:** See [Enclosure Access](#enclosure-access)
 
 ## Replacing the Compute Module 5
 
@@ -310,9 +308,8 @@ Disconnect any cables that prevent the carrier board from being lifted. Remove t
 
 ### Removing the Existing Module
 
- > ‼️ **Caution**
- >
- > If the CM5 module is disconnected one connector at a time, the twist forces can rip the connector off the CM5 module. This damage is not covered by warranty.
+!!! danger "Caution"
+    If the CM5 module is disconnected one connector at a time, the twist forces can rip the connector off the CM5 module. This damage is not covered by warranty.
 
 The CM5 is secured by two board-to-board connectors that require careful handling. Never use metal tools for this procedure as they can damage the connectors or nearby surface-mounted components. Use a wooden or plastic spudger, guitar pick, or similar non-conductive tool.
 
@@ -344,12 +341,10 @@ Position the carrier board back in the enclosure, ensuring the thermal pads on t
 
 Complete the reassembly following the standard enclosure closure procedure. On first boot, the system should recognize the new CM5 automatically.
 
-> ⚠️ **Connector Warning**
->
-> The board-to-board connectors are the most fragile components in this procedure. Never use metal tools near the connectors, apply only vertical force when removing or installing, and ensure perfect alignment before applying pressure. Damaged connectors typically require carrier board replacement.
+!!! warning "Connector Warning"
+    The board-to-board connectors are the most fragile components in this procedure. Never use metal tools near the connectors, apply only vertical force when removing or installing, and ensure perfect alignment before applying pressure. Damaged connectors typically require carrier board replacement.
 
-> 📖 **Related Information**
->
-> - **System setup after replacement:** See [Software Guide](./software.md)
-> - **Boot troubleshooting:** See [Troubleshooting](./troubleshooting.md)
-> - **Thermal management:** See [Hardware Reference](../technical-reference/hardware.md)
+!!! quote "Related Information"
+    - **System setup after replacement:** See [Software Guide](./software.md)
+    - **Boot troubleshooting:** See [Troubleshooting](./troubleshooting.md)
+    - **Thermal management:** See [Hardware Reference](../technical-reference/hardware.md)

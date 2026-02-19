@@ -87,9 +87,8 @@ Solo mode occurs:
 - On unsupported operating systems without the daemon
 - When the daemon has crashed or become unresponsive
 
-> 💡 **Solo Mode Reliability**
->
-> Solo mode provides essential protection but is less reliable than Co-op mode. The controller relies on simulated button presses to request shutdown, which may not work if the system is frozen.
+!!! tip "Solo Mode Reliability"
+    Solo mode provides essential protection but is less reliable than Co-op mode. The controller relies on simulated button presses to request shutdown, which may not work if the system is frozen.
 
 ### Co-op Mode Operation
 
@@ -141,13 +140,12 @@ Co-op mode occurs when:
 - System operates on a supported operating system
 - Full system monitoring and control features are available
 
-> 🔧 **Verifying Co-op Mode**
->
-> Check daemon status: `systemctl status halpid`
->
-> View controller state: `halpi status`
->
-> For further information on the `halpi` command, see the [Software Guide](./software.md#halpi-daemon-halpid).
+!!! info "Verifying Co-op Mode"
+    Check daemon status: `systemctl status halpid`
+
+    View controller state: `halpi status`
+
+    For further information on the `halpi` command, see the [Software Guide](./software.md#halpi-daemon-halpid).
 
 ### Backup Power and Capacitor System
 
@@ -164,9 +162,8 @@ Both modes rely on the super-capacitor backup system for graceful shutdown prote
 - Charging time: 9 seconds with 2.5A current limit
 - Visual charging progress shown through LED progression (red fill pattern)
 
-> ⚠️ **Power Loss Protection Limitation**
->
-> The super-capacitor system is designed for graceful shutdown, not continued operation. Do not rely on it for extended power outages.
+!!! warning "Power Loss Protection Limitation"
+    The super-capacitor system is designed for graceful shutdown, not continued operation. Do not rely on it for extended power outages.
 
 ### Manual Shutdown Considerations
 
@@ -196,6 +193,5 @@ For permanent shutdown, use one of these approaches:
 3. System remains off after shutdown completion
 
 **Standby Mode (Future):**
-> 🔧 **Feature Status**
->
-> Standby mode functionality is planned for future firmware releases. This will allow the Compute Module to be powered off while the HALPI2 controller remains active, waiting for wake-up events.
+!!! info "Feature Status"
+    Standby mode functionality is planned for future firmware releases. This will allow the Compute Module to be powered off while the HALPI2 controller remains active, waiting for wake-up events.

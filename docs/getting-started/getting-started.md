@@ -4,12 +4,12 @@ This guide will get your HALPI2 up and running in under 30 minutes and covers pe
 
 ## Safety and Handling Precautions
 
-> ⚠️ **Before You Begin**<br>
-> - Ensure power is disconnected from your electrical system before making connections
-> - Use appropriate fuses (3–5A) for power connections
-> - Handle the unit carefully - although rugged, dropping or impact can damage internal components
-> - Verify correct polarity when connecting power cables
-> - Avoid static electricity discharges - ground yourself and avoid rubbing cats and amber objects before touching internal components
+!!! warning "Before You Begin"
+    - Ensure power is disconnected from your electrical system before making connections
+    - Use appropriate fuses (3–5A) for power connections
+    - Handle the unit carefully - although rugged, dropping or impact can damage internal components
+    - Verify correct polarity when connecting power cables
+    - Avoid static electricity discharges - ground yourself and avoid rubbing cats and amber objects before touching internal components
 
 ## What You'll Need
 
@@ -28,9 +28,8 @@ Additional items (not included):
 - Display with HDMI input (optional)
 - USB keyboard and mouse (optional, for direct access)
 
-> 💡 **Quick Tip**
->
-> Any network device such as a router or WiFi Access Point tends to use a 12V power supply that can be used to power the HALPI2. Check your pile of old hardware for one!
+!!! tip "Quick Tip"
+    Any network device such as a router or WiFi Access Point tends to use a 12V power supply that can be used to power the HALPI2. Check your pile of old hardware for one!
 
 ## Desktop Setup
 
@@ -58,9 +57,8 @@ An [NMEA 2000 network](https://docs.hatlabs.fi/nmea2000/) consists of a backbone
 
 ### Step 3: Power Connection
 
-> 💡 **Note on Powering with NMEA 2000**
->
-> The HALPI2 can also be powered via the NMEA 2000 bus. See [NMEA 2000 Bus Power Connection](#nmea-2000-bus-power-connection) in the Permanent Installation section below.
+!!! tip "Note on Powering with NMEA 2000"
+    The HALPI2 can also be powered via the NMEA 2000 bus. See [NMEA 2000 Bus Power Connection](#nmea-2000-bus-power-connection) in the Permanent Installation section below.
 
 For the desktop setup, we will use the provided E7T power cable. Connect the power cable wire ends to the female barrel plug as follows:
 - **Red wire = Positive (+)**
@@ -71,9 +69,8 @@ For the desktop setup, we will use the provided E7T power cable. Connect the pow
 
 Plug a standard 12V or 24V power supply into the barrel connector. Ensure the power supply is rated for at least 1A to handle the HALPI2's requirements.
 
-> ⚠️ **Warning**
->
-> Due to the lack of a strain relief, the screw terminal barrel connector should only be used for temporary installations. Accidental pulling on the cable can disconnect and expose the wires.
+!!! warning "Warning"
+    Due to the lack of a strain relief, the screw terminal barrel connector should only be used for temporary installations. Accidental pulling on the cable can disconnect and expose the wires.
 
 ## First Boot
 
@@ -84,9 +81,8 @@ the LED bar should start filling up with red lights, indicating that the super-c
 
 If you have a display connected, you should see the Raspberry Pi OS splash screen, and finally, a graphical desktop will appear.
 
-> 💡 **Tip**
->
-> The status LED patterns are documented in the [Operation Guide](../user-guide/operation.md).
+!!! tip "Tip"
+    The status LED patterns are documented in the [Operation Guide](../user-guide/operation.md).
 
 ### Accessing the HALPI2 without a Display
 
@@ -104,9 +100,8 @@ You can connect to the device with VNC Viewer using the address `openplotter.loc
 
 ### First Boot Configuration
 
-> ⚠️ **Warning**
->
-> The HALPI2 OpenPlotter image comes with default WiFi Access Point and user passwords. These **must** be changed during the first boot or anyone will be able to access your device.
+!!! warning "Warning"
+    The HALPI2 OpenPlotter image comes with default WiFi Access Point and user passwords. These **must** be changed during the first boot or anyone will be able to access your device.
 
 #### Changing the Access Point Password
 
@@ -135,9 +130,8 @@ You can also change the password using the terminal by running the command:
 passwd
 ```
 
-> 📖 **Reference**
->
-> Detailed OpenPlotter configuration steps are available in the [OpenPlotter documentation](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
+!!! quote "Reference"
+    Detailed OpenPlotter configuration steps are available in the [OpenPlotter documentation](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
 
 ### Verifying NMEA 2000 Connection (Optional)
 
@@ -198,7 +192,8 @@ Once you've verified everything works on your desk, follow these steps for perma
 
 ### Planning Your Installation
 
-> 💡 **Quick Tip:** Take photos of your existing wiring before making changes - it helps when troubleshooting later.
+!!! tip "Quick Tip"
+    Take photos of your existing wiring before making changes - it helps when troubleshooting later.
 
 Take time to plan your installation. Consider:
 
@@ -230,14 +225,13 @@ Take time to plan your installation. Consider:
 
 Choose a mounting location that provides:
 
-> 💡 **Optimal Mounting Conditions**
->
-> - **Temperature range:** -20°C to +60°C ambient
-> - **Ventilation:** Sufficient clearance around enclosure
-> - **Protection:** Away from direct water spray and mechanical damage
-> - **Access:** Easy access to connectors and status LEDs
-> - **Support:** Solid mounting surface capable of supporting 2kg + cables
-> - **Space:** Allow at least 100mm clearance in front of the panel connectors for cable management.
+!!! tip "Optimal Mounting Conditions"
+    - **Temperature range:** -20°C to +60°C ambient
+    - **Ventilation:** Sufficient clearance around enclosure
+    - **Protection:** Away from direct water spray and mechanical damage
+    - **Access:** Easy access to connectors and status LEDs
+    - **Support:** Solid mounting surface capable of supporting 2kg + cables
+    - **Space:** Allow at least 100mm clearance in front of the panel connectors for cable management.
 
 Even though this guide focuses on fixed installations, in practice it is often sufficient to place the device on a shelf or tabletop, provided it is stable and protected from moisture and impact.
 
@@ -263,20 +257,22 @@ Even though this guide focuses on fixed installations, in practice it is often s
 
 #### Mounting Orientation
 
-> 🔧 **Recommended Orientation**
->
-> **Preferred:** Connectors facing downward
-> - Reduces water ingress risk
-> - Improves cable management
-> - Easier access for maintenance
->
-> **Acceptable:** Connectors facing sideways
-> - Ensure adequate drainage
-> - Use cable entry seals
->
-> **Avoid:** Connectors facing upward
-> - Increases water ingress risk
-> - Makes cable management difficult
+!!! info "Recommended Orientation"
+    **Preferred:** Connectors facing downward
+
+    - Reduces water ingress risk
+    - Improves cable management
+    - Easier access for maintenance
+
+    **Acceptable:** Connectors facing sideways
+
+    - Ensure adequate drainage
+    - Use cable entry seals
+
+    **Avoid:** Connectors facing upward
+
+    - Increases water ingress risk
+    - Makes cable management difficult
 
 #### Mounting Steps
 
@@ -343,11 +339,10 @@ The E7T connector is pre-wired and requires no field termination. Simply plug in
 
 #### NMEA 2000 Bus Power Connection
 
-> 🔧 **Prerequisites**
->
-> - Current limit switch **must** be set to 0.9A
-> - NMEA 2000 network must have adequate power capacity
-> - Drop cable should be close to power feed to minimize voltage drop
+!!! info "Prerequisites"
+    - Current limit switch **must** be set to 0.9A
+    - NMEA 2000 network must have adequate power capacity
+    - Drop cable should be close to power feed to minimize voltage drop
 
 ##### Required Components
 
