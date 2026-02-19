@@ -1,0 +1,6 @@
+[project]
+name = "halpi2-docs"
+version = "0.1.0"
+description = "HALPI2 User Guide documentation"
+requires-python = ">=3.11"
+dependencies = ["mkdocs-material>=9.5"]

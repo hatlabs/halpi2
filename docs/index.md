@@ -4,9 +4,8 @@ HALPI2 is a ready-to-use boat computer based on the Raspberry Pi Compute Module 
 
 ![HALPI2](./halpi2_front_view.jpg)
 
-> 🔗 **Shop Link**
->
-> Purchase HALPI2 from the [Hatlabs web shop](https://shop.hatlabs.fi/products/halpi2-computer).
+!!! note "Shop Link"
+    Purchase HALPI2 from the [Hatlabs web shop](https://shop.hatlabs.fi/products/halpi2-computer).
 
 ## What is HALPI2?
 

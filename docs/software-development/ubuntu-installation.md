@@ -1,6 +1,7 @@
 # Using Other Debian-based Distributions
 
-> ⚠️ **Note** Hat Labs cannot provide support for installing and using 3rd party operating systems. The instructions below are provided as a courtesy to users who wish to use HALPI2 with a customized software setup.
+!!! warning "Note"
+    Hat Labs cannot provide support for installing and using 3rd party operating systems. The instructions below are provided as a courtesy to users who wish to use HALPI2 with a customized software setup.
 
 HALPI2 will happily run any operating system that supports the Raspberry Pi Compute Module 5. To benefit from the full functionality of the HALPI2 hardware, including power management and monitoring features, the operating system must support the HALPI2 Daemon (`halpid`) and some configuration is required. These steps are fairly straightforward on Debian-based Linux distributions. This section provides step-by-step instructions for installing Ubuntu on HALPI2. The instructions may need some minor adjustments for other Debian-based distributions.
 

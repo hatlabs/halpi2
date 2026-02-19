@@ -46,11 +46,10 @@ This will display all incoming raw CAN messages in real-time.
 
 The Signal K server dashboard provides additional network monitoring capabilities. It displays real-time NMEA 2000 data rates from the CAN interface. The data browser tool allows viewing of decoded NMEA 2000 data.
 
-> 📖 **Related Information**
->
-> - **Power configuration:** See [Getting Started](../getting-started/getting-started.md#permanent-power-installation)
-> - **Software setup:** See [Software Guide](./software.md)
-> - **Network troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
+!!! quote "Related Information"
+    - **Power configuration:** See [Getting Started](../getting-started/getting-started.md#permanent-power-installation)
+    - **Software setup:** See [Software Guide](./software.md)
+    - **Network troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
 
 
 ## RS-485 (NMEA 0183)
@@ -91,11 +90,9 @@ In marine environments, the RS-485 interface typically connects to GPS receivers
 
 The high-speed capability of the interface also supports non-standard applications such as high-rate sensor data collection or custom communication protocols, making HALPI2 suitable for research vessels and specialized monitoring applications.
 
-> 📖 **Related Information**
->
-> - **Software configuration:** See [Software Guide](./software.md)
-> - **NMEA connections:** See [Marine Electronics Integration](./marine-integration.md)
-> - **Troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
+!!! quote "Related Information"
+    - **Software configuration:** See [Software Guide](./software.md)
+    - **Troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
 
 
 ## Ethernet
@@ -159,7 +156,6 @@ When mounting buttons on a remote control panel, select a suitable location that
 
 All button connections to the carrier board should use 2.54mm pitch female header connectors. Ensure proper pin alignment and secure connection to prevent contact issues during operation.
 
-> 📖 **Related Information**
->
-> - **Power management:** See [Power Management and Shutdown Procedures](#power-management-and-shutdown-procedures)
-> - **Hardware access:** See [Hardware Maintenance](./hardware.md)
+!!! quote "Related Information"
+    - **Power management:** See [Power Management and Shutdown Procedures](./operation.md#power-management-and-shutdown-procedures)
+    - **Hardware access:** See [Hardware Maintenance](./hardware.md)

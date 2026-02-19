@@ -2,27 +2,30 @@
 
 This repository contains the HALPI2 User Guide source.
 
-The documentation is written in Markdown format and is built using the Rust
-`mdbook` tool. The output is a static website that can be hosted on any web server
-(in our case, GitHub Pages).
+The documentation is written in Markdown format and is built using
+[MkDocs Material](https://squidfunk.github.io/mkdocs-material/). The output is
+a static website that can be hosted on any web server (in our case, GitHub Pages).
 
-The `mdBook` documentation can be found at [https://rust-lang.github.io/mdBook/](https://rust-lang.github.io/mdBook/).
-To build the documentation locally, you need to have Rust and Cargo installed
-as prerequisites. With them in place, you can install `mdBook` using:
+## Prerequisites
 
-```bash
-cargo install mdbook
-```
+Python 3.11+ and [uv](https://docs.astral.sh/uv/) must be installed.
 
-To build the documentation, run:
+## Getting Started
+
+Install dependencies:
 
 ```bash
-mdbook build
+uv sync
 ```
 
-When writing documentation, you can preview it locally by running:
+Preview the documentation locally:
 
 ```bash
-mdbook serve --open
+uv run mkdocs serve
 ```
-This command will start a local server and open the documentation in your web browser.
+
+Build for production:
+
+```bash
+uv run mkdocs build --strict
+```

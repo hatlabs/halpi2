@@ -1,0 +1,100 @@
+site_name: HALPI2 User Guide
+site_url: https://docs.hatlabs.fi/halpi2
+site_description: User guide for HALPI2, a Raspberry Pi CM5 carrier board for marine and industrial applications
+site_author: Hat Labs
+
+repo_url: https://github.com/hatlabs/halpi2
+repo_name: hatlabs/halpi2
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  logo: assets/hat_labs_logo.svg
+  favicon: assets/hat_labs_logo.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/hatlabs
+
+nav:
+  - Introduction: index.md
+  - Getting Started:
+    - Getting Started: getting-started/getting-started.md
+  - User Guide:
+    - System Operation: user-guide/operation.md
+    - Hardware Guide: user-guide/hardware.md
+    - Interfaces and Connectivity: user-guide/interfaces.md
+    - Software Guide: user-guide/software.md
+    - Common Use Cases: user-guide/use-cases.md
+    - Troubleshooting: user-guide/troubleshooting.md
+  - Technical Reference:
+    - Hardware Reference: technical-reference/hardware.md
+    - Power Supply Deep Dive: technical-reference/power-supply.md
+    - Interfaces and Connectivity: technical-reference/interfaces.md
+    - Carrier Board Controller: technical-reference/controller.md
+  - Software Development:
+    - HALPI2 Daemon: software-development/daemon.md
+    - System Integration: software-development/integration.md
+    - Advanced Configuration: software-development/advanced-config.md
+    - Other Debian Distributions: software-development/ubuntu-installation.md
+  - Appendices:
+    - Design Files and Schematics: appendices/design-files.md
+    - Compliance and Certifications: appendices/compliance.md
+    - Errata: appendices/errata.md
+    - Resources: appendices/resources.md
+  - FAQ: faq.md
