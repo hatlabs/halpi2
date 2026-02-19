@@ -80,7 +80,6 @@ nav:
     - Hardware Guide: user-guide/hardware.md
     - Interfaces and Connectivity: user-guide/interfaces.md
     - Software Guide: user-guide/software.md
-    - Common Use Cases: user-guide/use-cases.md
     - Troubleshooting: user-guide/troubleshooting.md
   - Technical Reference:
     - Hardware Reference: technical-reference/hardware.md
