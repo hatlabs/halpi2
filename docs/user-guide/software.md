@@ -2,33 +2,34 @@
 
 ## Operating System Images
 
-Hat Labs provides pre-built images for HALPI2, which can be downloaded from
-[GitHub](https://github.com/hatlabs/openplotter-halpi/releases). The pre-built
-images include the necessary configuration and customizations for the HALPI2
-hardware.
+Hat Labs provides pre-built images for HALPI2. All images include the necessary configuration and customizations for the HALPI2 hardware, including CAN (NMEA 2000) as network device `can0`, RS-485 (NMEA 0183) as `/dev/ttyAMA4`, and the `halpi2-firmware` package.
 
-All pre-built images have the CAN (NMEA 2000) interface enabled by default, as
-network device `can0`. RS-485 (NMEA 0183) is available as `/dev/ttyAMA4`.
+### HaLOS (Default)
+
+[HaLOS](https://docs.halos.fi) is a container-based Linux distribution designed for marine and industrial applications. It provides a web-managed interface for system administration, application management, and monitoring — no display, keyboard, or VNC required.
+
+**Image variants:**
+
+| Image | Description |
+|:------|:------------|
+| Halos-HALPI2 | Headless base image with Cockpit and container management |
+| Halos-HALPI2-Desktop | Base image with Raspberry Pi Desktop |
+| Halos-HALPI2-Marine | Headless with marine apps (Signal K, Grafana, InfluxDB, AvNav) |
+| Halos-HALPI2-Desktop-Marine | Desktop with marine apps |
+
+Download HaLOS images from the [HaLOS releases page](https://github.com/halos-org/halos-pi-gen/releases/latest). For detailed documentation, see [docs.halos.fi](https://docs.halos.fi).
 
 ### OpenPlotter
 
-OpenPlotter is a Raspberry Pi OS operating system image with useful
-additions for marine applications. The pre-installed image is based on the
-OpenPlotter Headless edition that enables a WiFi Access Point for easy
-configuration and access to the HALPI2.
+OpenPlotter is a Raspberry Pi OS-based image with additions for marine applications. It provides a traditional desktop environment with VNC remote access, and comes with Signal K and OpenCPN pre-installed.
 
-If you are not using a display, keyboard and a mouse with the HALPI2, you can
-connect to the computer either using an Ethernet cable or via the WiFi Access Point.
+If you are not using a display, keyboard and a mouse with the HALPI2, you can connect to the computer either using an Ethernet cable or via the WiFi Access Point (`OpenPlotter`, password `12345678`).
 
-With either, you can access the HALPI2 computer using VNC or SSH. VNC provides
-a remote desktop interface to access the HALPI2 desktop, while SSH
-allows you to access the command line interface. You need to download RealVNC's
-[VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) to use VNC.
+With either, you can access the HALPI2 computer using VNC or SSH. You need to download RealVNC's [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) to use VNC.
 
-Since both the access point and the
-default user come with default passwords, it is imperative that the passwords
-are changed immediately after the first boot. The process is described in
-the [OpenPlotter documentation](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
+Since both the access point and the default user come with default passwords, it is imperative that the passwords are changed immediately after the first boot. The process is described in the [OpenPlotter documentation](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
+
+Download OpenPlotter images from [GitHub](https://github.com/hatlabs/openplotter-halpi/releases).
 
 ### Raspberry Pi OS and Raspberry Pi OS Lite
 
@@ -39,8 +40,8 @@ can apply customizations such as setting the hostname, enabling SSH, and
 configuring WiFi.
 
 If you decide to not apply customizations, you need to have a display and
-keyboard connected to the HALPI2 to complete the initial setup. You will be asked
-to provide a username and password at the first boot.
+keyboard connected to the HALPI2 to complete the initial setup. You will be
+asked to provide a username and password at the first boot.
 
 
 ## Flashing an Operating System Image to SSD
@@ -49,11 +50,13 @@ There are two methods available for flashing an operating system image to the HA
 
 ### Flashing Using a USB NVMe Adapter
 
-To flash the image using the USB NVMe adapter method, begin by removing the NVMe SSD from the HALPI2 unit following the procedure described in the [Hardware Guide](./hardware.md#replacing-the-nvme-ssd). Next, download a HALPI2-compatible image from the [GitHub openplotter-halpi releases](https://github.com/hatlabs/openplotter-halpi/releases) page, ensuring you select the appropriate image for your intended use.
+To flash the image using the USB NVMe adapter method, begin by removing the NVMe SSD from the HALPI2 unit following the procedure described in the [Hardware Guide](./hardware.md#replacing-the-nvme-ssd). Next, download a HALPI2-compatible image — either a [HaLOS image](https://github.com/halos-org/halos-pi-gen/releases/latest) or an [OpenPlotter/Raspberry Pi OS image](https://github.com/hatlabs/openplotter-halpi/releases) — ensuring you select the appropriate image for your intended use.
 
 Insert the SSD into the USB NVMe adapter and connect it to your computer. Use the Raspberry Pi Imager to flash the downloaded image to the NVMe SSD. If you are flashing a Raspberry Pi OS image, you can edit and apply OS customization settings as needed during the flashing process. However, if custom settings are not applied, you will need a USB keyboard and mouse connected to the HALPI2 for the initial setup after installation.
 
-When using the OpenPlotter image, OS customization settings should **not** be applied during the flashing process. Instead, configuration is done after the first boot using the Raspberry Pi and OpenPlotter configuration tools, which provide the appropriate setup interface for the marine-focused environment.
+When using HaLOS images, OS customization settings should **not** be applied during the flashing process. HaLOS is configured after boot via its web interface.
+
+Similarly, when using the OpenPlotter image, OS customization settings should **not** be applied during the flashing process. Instead, configuration is done after the first boot using the Raspberry Pi and OpenPlotter configuration tools.
 
 Once the flashing process is complete, unplug the adapter and remove the SSD. Insert the SSD back into the HALPI2 unit following the installation procedure described in the Hardware Guide, then reassemble the enclosure according to the same guide.
 
@@ -73,11 +76,15 @@ After the flashing process is complete, it is essential to toggle the Boot Mode 
 
 After successfully flashing and booting your HALPI2 for the first time, several configuration steps are required to ensure secure and proper operation of the system.
 
+### HaLOS Configuration
+
+HaLOS is configured entirely through its web interface. After first boot, access Cockpit at `https://halos.local:9090/` and the dashboard at `https://halos.local/`. Change the default passwords immediately — see the [Getting Started](../getting-started/getting-started.md#first-boot-configuration) guide and the [HaLOS documentation](https://docs.halos.fi/getting-started/first-boot/) for details.
+
 ### OpenPlotter Configuration
 
 When using the OpenPlotter image, the system will boot with default passwords for both the WiFi access point and the default user account. For security reasons, it is imperative that these passwords are changed immediately after the first boot.
 
-The password change process and initial configuration are described in the [Getting Started](../getting-started/getting-started.md#first-boot-configuration) guide.
+The password change process and initial configuration are described in the [Getting Started](../getting-started/getting-started.md#first-boot-configuration) guide and the [OpenPlotter documentation](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
 
 ### Raspberry Pi OS Configuration
 
@@ -89,9 +96,16 @@ During the initial setup, you may also want to configure timezone settings, keyb
 
 The HALPI2 supports multiple methods for remote access, allowing you to monitor and control the system without requiring physical access to the device. This is particularly valuable for installations where the HALPI2 may be mounted without a display in difficult-to-reach locations.
 
+### Web-Based Access (HaLOS)
+
+HaLOS provides a complete web-based management interface with no additional software required:
+
+- **Dashboard** (`https://halos.local/`): The Homarr dashboard provides access to all installed applications including Signal K, Grafana, and other marine apps.
+- **Cockpit** (`https://halos.local:9090/`): System administration including terminal access, software updates, network configuration, and container app management.
+
 ### SSH (Secure Shell)
 
-SSH provides secure command line access to the HALPI2 system, allowing you to execute commands, transfer files, and perform system administration tasks remotely. SSH is enabled by default on OpenPlotter images and can be enabled during the image flashing process for Raspberry Pi OS. For existing installations, SSH can be activated using the `raspi-config` utility.
+SSH provides secure command line access to the HALPI2 system, allowing you to execute commands, transfer files, and perform system administration tasks remotely. SSH is enabled by default on HaLOS headless images and OpenPlotter. On HaLOS Desktop variants and Raspberry Pi OS, SSH can be enabled using `raspi-config`.
 
 To connect via SSH, use an SSH client such as the built-in terminal on macOS and Linux systems, or applications like PuTTY on Windows. The basic connection command is:
 
@@ -102,6 +116,9 @@ ssh username@halpi2-ip-address
 SSH connections are encrypted and secure, making them suitable for use over public networks when properly configured with strong authentication. It also requires very little bandwidth, making it ideal for remote access over low-speed and high-latency connections.
 
 ### VNC (Virtual Network Computing)
+
+!!! note
+    VNC is applicable to OpenPlotter and Raspberry Pi OS Desktop images only. HaLOS uses web-based access instead — see above.
 
 VNC provides remote desktop access to the HALPI2's graphical interface, allowing you to interact with the desktop environment as if you were physically present at the device. VNC comes preinstalled and preconfigured on OpenPlotter images. For Raspberry Pi OS installations, VNC can be enabled using the `raspi-config` configuration tool.
 
@@ -117,9 +134,13 @@ Unlike VNC, Raspberry Pi Connect handles the networking complexities automatical
 
 ## Software Updates
 
-The HALPI2 software and firmware can be updated using the standard Raspberry Pi OS update process, which ensures that all system components remain current with the latest features and security patches. Regular updates are recommended to maintain optimal system performance and security.
+Regular updates are recommended to maintain optimal system performance and security.
 
-### Command Line Updates
+### HaLOS Updates
+
+On HaLOS, system packages (including HALPI2 firmware) are updated via Cockpit or the command line using `apt`. Container-based applications (Signal K, Grafana, etc.) are updated through the Cockpit Container Apps interface, which checks for new container image versions.
+
+### Command Line Updates (All Images)
 
 The most reliable method for updating the system is through the command line interface. Open a terminal window and execute the following commands to update the system:
 
