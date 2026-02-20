@@ -74,7 +74,7 @@ Plug a standard 12V or 24V power supply into the barrel connector. Ensure the po
 
 ## First Boot
 
-HALPI2 ships with a customized OpenPlotter image that includes necessary configurations and software for immediate use. If you prefer a different operating system, follow the instructions in the [Software Guide](../user-guide/software.md).
+HALPI2 ships with [HaLOS](https://docs.halos.fi), a container-based Linux distribution with a web-managed interface designed for marine and industrial applications. If you prefer a different operating system such as OpenPlotter or Raspberry Pi OS, see the [Software Guide](../user-guide/software.md).
 
 **Power on the HALPI2** by connecting the power supply if you haven't done so already. After a few seconds,
 the LED bar should start filling up with red lights, indicating that the super-capacitors are charging. The LEDs will turn yellow once the system is booting, and finally green when the operating system is running and the HALPI daemon is connected to the controller.
@@ -86,56 +86,54 @@ If you have a display connected, you should see the Raspberry Pi OS splash scree
 
 ### Accessing the HALPI2 without a Display
 
-If you do not have a display connected, you can access the HALPI2 device via the WiFi Access Point or Ethernet connection. You need to download and install RealVNC's [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) to access the desktop remotely[^ssh].
+If you do not have a display connected, you can access the HALPI2 via its WiFi Access Point or an Ethernet connection. HaLOS provides a web-based interface — no additional software is needed[^ssh].
 
-[^ssh]: Alternatively, you can use SSH to access the command line interface. The default username is `pi` and the password is `raspberry`. The `nmtui` tool can be used to configure NetworkManager settings in the terminal.
+[^ssh]: SSH is also available on headless HaLOS images (enabled by default). On Desktop variants, enable SSH via `raspi-config`. Default credentials: username `pi`, password `halos`.
 
 First, wait until the LEDs turn green, indicating that the system is fully booted. Then, follow these steps:
 
-**Option 1 - Connecting to HALPI2 via WiFi Access Point:** The HALPI2 OpenPlotter image creates a WiFi Access Point named `OpenPlotter` with the password `12345678`. Connect your computer to this network.
+**Option 1 — Connecting via WiFi Access Point:** HaLOS creates a WiFi Access Point named `Halos-XXXX` (unique per device) with the password `halos1234`. Connect your computer to this network.
 
-**Option 2 - Connecting to HALPI2 via wired Ethernet:** If you have connected the HALPI2 to your network via Ethernet, it will automatically obtain an IP address via DHCP.
+**Option 2 — Connecting via wired Ethernet:** If you have connected the HALPI2 to your network via Ethernet, it will automatically obtain an IP address via DHCP.
 
-You can connect to the device with VNC Viewer using the address `openplotter.local` or the assigned IP address. The username is `pi` and the password is `raspberry`.
+Once connected, open a browser and navigate to:
+
+- **Dashboard:** `https://halos.local/` — the main Homarr dashboard with links to all installed applications
+- **System administration:** `https://halos.local:9090/` — Cockpit for system management, updates, and container apps
+
+!!! note "SSL Certificate Warning"
+    Your browser will show a certificate warning because HaLOS uses a self-signed certificate. This is expected — accept the warning to proceed.
+
+!!! info "Internet Required on First Boot"
+    The Cockpit interface is available immediately, but the main dashboard and other container-based applications require an internet connection on first boot to download their container images. Connect the HALPI2 to the internet via Ethernet or configure WiFi through Cockpit.
 
 ### First Boot Configuration
 
 !!! warning "Warning"
-    The HALPI2 OpenPlotter image comes with default WiFi Access Point and user passwords. These **must** be changed during the first boot or anyone will be able to access your device.
+    HaLOS comes with default passwords that **must** be changed during the first boot to prevent unauthorized access to your device.
 
-#### Changing the Access Point Password
+HaLOS has two sets of credentials:
 
-The WiFi access point password is changed in the network settings menu at the top right corner of the OpenPlotter desktop. Click on the network icon, then select `Advanced Options` and `Edit Connections`. Select the `OpenPlotter-Hotspot` connection and click the cogwheel icon to edit it. Change the password in the `Wireless Security` tab and save the changes.
+| Access Type | Username | Default Password | Used For |
+|:------------|:---------|:-----------------|:---------|
+| SSO (web apps) | `admin` | `halos` | Dashboard, Signal K, Grafana, and other web applications |
+| System (SSH/Cockpit) | `pi` | `halos` | SSH access, Cockpit system administration |
 
-![Networking Menu](./networking-menu.jpg)
+#### Changing Passwords
 
-![Network Connections List](./edit-connections.jpg)
+- **SSO password:** Change via Authelia (accessible from the dashboard)
+- **System password:** Change via Cockpit (`https://halos.local:9090/`) under user account settings, or via SSH with `passwd`
 
-![Edit Connection Dialog](./wifi-password.jpg)
+For detailed first-boot instructions, see the [HaLOS Getting Started guide](https://docs.halos.fi/getting-started/first-boot/).
 
-Alternatively, if you prefer to remove the access point altogether, you can remove it using the minus button in the `Edit Connections` dialog. However, if the final installation location uses a different WiFi network, the access point may be useful for initial configuration.
-
-#### Changing the User Password
-
-The default user password is `raspberry`. To change it, open the Raspberry Pi menu and navigate to `Preferences` > `Raspberry Pi Configuration`. In the `System` tab, click on `Change Password` and follow the prompts.
-
-In the Raspberry Pi Configuration tool, you can also change the hostname (the name of the device on the network) and change localization settings such as time zone and keyboard layout.
-
-![Raspberry Pi Menu](./raspi-config-menu.jpg)
-
-![Raspberry Pi Configuration](./change-user-password.jpg)
-
-You can also change the password using the terminal by running the command:
-```bash
-passwd
-```
-
-!!! quote "Reference"
-    Detailed OpenPlotter configuration steps are available in the [OpenPlotter documentation](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
+!!! info "Using OpenPlotter or Raspberry Pi OS?"
+    If you have flashed an alternative operating system, see the [Software Guide](../user-guide/software.md#initial-system-configuration) for OS-specific configuration instructions.
 
 ### Verifying NMEA 2000 Connection (Optional)
 
-NMEA 2000 connectivity can be easiest verified by checking the Signal K server status. Open the web interface at [`http://openplotter.local:3000`](http://openplotter.local:3000), either from the HALPI2 device itself or from another device on the same network. Observe the `can0` connection activity: you should be seeing some traffic being received.
+NMEA 2000 connectivity can be easiest verified by checking the Signal K server status. On HaLOS Marine image variants, Signal K is pre-installed and accessible from the dashboard at `https://halos.local/`. For non-marine HaLOS images, Signal K can be installed from the Container Apps store in Cockpit.
+
+Open the Signal K web interface and observe the `can0` connection activity: you should be seeing some traffic being received.
 
 ![Signal K Server Connections Activity](./sk-n2k-deltas.jpg)
 
@@ -164,7 +162,7 @@ The shutdown process typically takes only a few seconds under normal conditions.
 - Check if the HALPI2 is fully booted (LEDs should be green)
 - Try connecting via Ethernet first
 
-❌ **Cannot access the device using `openplotter.local`:**
+❌ **Cannot access the device using `halos.local`:**
 - There may be another device on the network with the same hostname
 - Try using the assigned IP address instead (check your router's DHCP client list)
 

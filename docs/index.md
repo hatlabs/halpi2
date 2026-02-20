@@ -43,7 +43,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 *Interior view of the HALPI2 showing the carrier board and different connectors.*
 
 ### Software Features
-- **Pre-configured operating system images** available for immediate deployment: OpenPlotter, Raspberry Pi OS and Raspberry Pi OS Lite
+- **Pre-configured operating system images** available for immediate deployment: [HaLOS](https://docs.halos.fi) (default), OpenPlotter, Raspberry Pi OS, and Raspberry Pi OS Lite
 - **Comprehensive monitoring** of voltage, current, and temperature
 - **Transparent firmware updates** over I2C interface
 

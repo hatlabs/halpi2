@@ -28,9 +28,9 @@ Connection to NMEA 2000 networks is accomplished using a standard T-connector (n
 
 ### Software Integration
 
-The CAN interface integrates seamlessly with Linux through the SocketCAN framework, appearing as network device `can0`. This standard interface allows the use of common Linux CAN utilities for monitoring and diagnostics. The network interface is preconfigured in the operating system images provided by Hat Labs.
+The CAN interface integrates seamlessly with Linux through the SocketCAN framework, appearing as network device `can0`. This standard interface allows the use of common Linux CAN utilities for monitoring and diagnostics. The network interface is preconfigured in all HALPI2 operating system images (HaLOS, OpenPlotter, and Raspberry Pi OS).
 
-Signal K server integration is preconfigured in the OpenPlotter image, automatically detecting and utilizing the CAN interface for NMEA 2000 data processing. The Signal K server handles PGN decoding and provides web-based access to real-time network data.
+Signal K server integration is available on HaLOS Marine image variants and OpenPlotter, automatically detecting and utilizing the CAN interface for NMEA 2000 data processing. On non-marine HaLOS images, Signal K can be installed from the Container Apps store in Cockpit. The Signal K server handles PGN decoding and provides web-based access to real-time network data.
 
 ### Troubleshooting
 
@@ -80,7 +80,7 @@ The RS-485 interface requires a cable gland or panel connector that must be supp
 
 ### Software Integration
 
-The OpenPlotter image comes preconfigured with the RS-485 interface ready for NMEA 0183 applications. The Signal K server automatically detects the interface and will automatically receive transmitted NMEA 0183 data.
+All HALPI2 images come preconfigured with the RS-485 interface ready for use. On HaLOS Marine images and OpenPlotter, the Signal K server automatically detects the interface and will receive transmitted NMEA 0183 data.
 
 For custom applications, the interface behaves as a standard Linux serial port. Applications can open `/dev/ttyAMA4` and configure the baud rate, data bits, stop bits, and parity as required by the connected equipment. Python, Node.js, and C/C++ applications can all easily access the interface using standard serial communication libraries.
 
