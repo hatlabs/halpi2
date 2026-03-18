@@ -8,19 +8,19 @@ HALPI2 features five RGB LEDs that provide visual feedback about system status a
 
 | LED Pattern | Color | Meaning |
 |-------------|-------|---------|
+| LED 5 solid | Red | Power on, waiting for charge |
 | Progressive fill | Red | Super-capacitor charging |
-| Rainbow | Multi | System booting |
-| All solid | Yellow | Solo mode operation |
-| All solid | Green | Co-op mode operation |
-| LED 1 flashing | Red | Input overvoltage warning |
-| LED 5 flashing | Red | Super-capacitor overvoltage warning |
+| Rainbow + color cycle | Multi | CM5 failed to start |
+| Voltage bar | Yellow | Solo mode operation |
+| Voltage bar | Green | Co-op mode operation |
+| Voltage bar | Orange | Backup power active (solo) |
+| Voltage bar | Dark green | Backup power active (co-op) |
+| All flashing | Red | Super-capacitor overvoltage |
 | All solid | Red | Watchdog timeout |
-| Scrolling | Green/Yellow | Backup power active |
-| All solid | Purple | Shutdown in progress |
-| All solid | Blue | Shutdown to Standby in progress |
-| All solid | Dim Red | Standby |
-| All off | None | System off |
-| All blinking rapidly | Red | Fault condition - contact manufacturer |
+| Voltage bar | Purple | Shutdown in progress |
+| All solid | Blue | Shutdown to standby in progress |
+| All solid | Dim red | Standby |
+| All off | — | System off |
 
 ### Super-Capacitor Voltage Indication
 
