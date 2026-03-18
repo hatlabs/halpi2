@@ -324,10 +324,10 @@ Align the new CM5 module with the carrier board connectors, using the silk scree
 
 Once aligned, apply gentle, even pressure at the connector locations on both short edges of the module. You should feel the connectors engage with a subtle click. Press firmly but avoid flexing the carrier board – support the board from underneath if necessary. Both connectors must be fully seated for proper operation.
 
-Now, add thermal pads on the CM5 module. The thermal pads should be positioned correctly: 1 mm pad on the main SoC, and 3 mm pads on the RP1 chip and power supply components. If reusing existing pads, ensure they are clean and properly positioned.
+Now, add thermal pads on the CM5 module. The thermal pads should be positioned correctly: 1 mm pad on the main SoC, and 2 mm pads on the RP1 chip and power supply components. If reusing existing pads, ensure they are clean and properly positioned.
 
 ![Thermal Pad Placement on CM5](./cm5-thermal-pads-annotated.jpg)
-*Thermal pad placement on the Compute Module 5. Use 1 mm thick pad on the SoC (center) and 3 mm thick pads on the RP1 and power supply components. The actual thermal pad shapes and sizes may vary.*
+*Thermal pad placement on the Compute Module 5. Use 1 mm thick pad on the SoC (center) and 2 mm thick pads on the RP1 and power supply components. The actual thermal pad shapes and sizes may vary.*
 
 ### Antenna Connection
 
