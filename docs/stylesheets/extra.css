@@ -19,6 +19,29 @@
   width: 2rem;
 }
 
+/* Hat Labs top navigation bar */
+.md-banner {
+  background: var(--md-primary-fg-color--dark);
+}
+
+.hat-labs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+}
+
+.hat-labs-nav a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.hat-labs-nav a:hover {
+  color: #fff;
+}
+
 /* Make nav section headers visually distinct from page links */
 .md-nav__item--section > label.md-nav__link {
   font-size: 0.65rem;
