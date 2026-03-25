@@ -67,6 +67,9 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
+  analytics:
+    provider: google
+    property: G-F3KDPEBJEF
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/hatlabs
