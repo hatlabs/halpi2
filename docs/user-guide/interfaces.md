@@ -95,6 +95,66 @@ The high-speed capability of the interface also supports non-standard applicatio
     - **Troubleshooting:** See [Troubleshooting Guide](./troubleshooting.md)
 
 
+## GNSS (GPS)
+
+HALPI2 supports GNSS receiver HATs connected to UART0 (`/dev/ttyAMA0`). Any GNSS receiver on this port will work with gpsd out of the box.
+
+For u-blox receivers (such as the Max-M8Q), HaLOS Marine images additionally provide automatic configuration optimized for marine use.
+
+### Auto-Configuration (u-blox receivers)
+
+On HaLOS Marine images, a systemd service (`configure-gnss-marine`) automatically detects and configures u-blox receivers on first boot:
+
+| Parameter | Value |
+|:----------|:------|
+| Baud rate | 115200 bps (factory default: 9600) |
+| Update rate | 10 Hz (100 ms) |
+| Dynamic model | Sea (optimized for marine use) |
+
+The configuration is saved to the receiver's flash memory, so it persists across power cycles.
+
+The auto-configuration service probes for the receiver on up to three consecutive boots. If no receiver is detected after three attempts, the service stops retrying. This accommodates manufacturing and testing workflows where the HAT may not be attached during initial device setup.
+
+### Late Installation
+
+If the GNSS HAT is installed after the auto-configuration window has passed, reset the service manually:
+
+```bash
+sudo rm -f /var/lib/halos/gnss-marine-configured /var/lib/halos/gnss-marine-attempts
+sudo reboot
+```
+
+The service will run again on the next boot and configure the receiver.
+
+### Data Access
+
+GPS data is provided by [gpsd](https://gpsd.io/) on TCP port 2947. On HaLOS Marine images, Signal K connects to gpsd automatically — no additional configuration is needed.
+
+For diagnostics, use the standard gpsd command-line tools:
+
+```bash
+# Monitor GPS data in real-time
+gpsmon
+
+# Output raw NMEA 0183 sentences
+gpspipe -r
+```
+
+### Non-HaLOS Images
+
+On Raspberry Pi OS or other operating systems, install and configure gpsd manually:
+
+```bash
+sudo apt install gpsd gpsd-clients
+```
+
+Edit `/etc/default/gpsd` to set `DEVICES="/dev/ttyAMA0"` and restart the service. The receiver will operate at its factory default settings (9600 baud, 1 Hz) unless configured with `ubxtool` from the `gpsd-clients` package.
+
+!!! quote "Related Information"
+    - **gpsd on HaLOS:** See [HaLOS GPS documentation](https://docs.halos.fi/user-guide/gps/)
+    - **Software setup:** See [Software Guide](./software.md)
+
+
 ## Ethernet
 
 HALPI2 includes a Gigabit Ethernet interface that provides high-speed network connectivity for data transfer, remote access, and integration with onboard networks. The ethernet port on the carrier board is a standard RJ45 connector. It is broken out to a panel connector that can be connected to an external Ethernet cable.
