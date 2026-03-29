@@ -103,7 +103,7 @@ For u-blox receivers (such as the Max-M8Q), HaLOS Marine images additionally pro
 
 ### Auto-Configuration (u-blox receivers)
 
-On HaLOS Marine images, a systemd service (`configure-gnss-marine`) automatically detects and configures u-blox receivers on first boot:
+On HaLOS Marine images, a systemd service (`configure-ublox-marine`) automatically detects and configures u-blox receivers on every boot:
 
 | Parameter | Value |
 |:----------|:------|
@@ -111,20 +111,9 @@ On HaLOS Marine images, a systemd service (`configure-gnss-marine`) automaticall
 | Update rate | 10 Hz (100 ms) |
 | Dynamic model | Sea (optimized for marine use) |
 
-The configuration is saved to the receiver's flash memory, so it persists across power cycles.
+The configuration runs on every boot because ROM-based u-blox modules (such as the MAX-M8Q) have no flash memory. Settings are saved to Battery-Backed RAM (BBR), which may be lost when backup battery power is interrupted — for example, when the device is unpowered for an extended period. The reconfiguration is transparent and adds approximately 2 seconds to gpsd startup.
 
-The auto-configuration service probes for the receiver on up to three consecutive boots. If no receiver is detected after three attempts, the service stops retrying. This accommodates manufacturing and testing workflows where the HAT may not be attached during initial device setup.
-
-### Late Installation
-
-If the GNSS HAT is installed after the auto-configuration window has passed, reset the service manually:
-
-```bash
-sudo rm -f /var/lib/halos/gnss-marine-configured /var/lib/halos/gnss-marine-attempts
-sudo reboot
-```
-
-The service will run again on the next boot and configure the receiver.
+If no receiver is detected, the service exits silently. A newly installed GNSS HAT will be configured automatically on the next reboot.
 
 ### Data Access
 
