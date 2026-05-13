@@ -16,6 +16,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 ## Key Features and Capabilities
 
 ### Enclosure Features
+
 - **Waterproof (IP65) aluminum enclosure**, size 200×130×60 mm
 - **Standard connectors** for power, NMEA 2000, gigabit ethernet, HDMI, 2× USB 3.0, and WiFi/Bluetooth antenna
 - **Flexible connectivity** with options for 3× PG7 cable glands or SP13 waterproof connectors
@@ -25,6 +26,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 ![HALPI2 Connector Layout](./user-guide/front-panel-connectors-all.jpg)
 
 ### Hardware Features
+
 - **Wide input voltage range** from 10 to 32 VDC with protection up to 100 VDC
 - **Intelligent current limiting**: max input current 0.9 or 2.5 A, user-selectable
 - **Dual power options**: 12V/24V direct connection or 12V NMEA 2000 bus power
@@ -43,6 +45,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 *Interior view of the HALPI2 showing the carrier board and different connectors.*
 
 ### Software Features
+
 - **Pre-configured operating system images** available for immediate deployment: [HaLOS](https://docs.halos.fi) (default), OpenPlotter, Raspberry Pi OS, and Raspberry Pi OS Lite
 - **Comprehensive monitoring** of voltage, current, and temperature
 - **Transparent firmware updates** over I2C interface
@@ -50,6 +53,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 ## Target Applications
 
 ### Marine Applications
+
 - **Navigation systems** with Chart plotters and GPS integration
 - **Data logging** for engine parameters, environmental sensors, and vessel performance
 - **Signal K servers** for unified boat data management
@@ -57,6 +61,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 - **NMEA 2000 network debugging** for improved system reliability
 
 ### Industrial Applications
+
 - **Process monitoring** and control systems
 - **Environmental sensing** and data acquisition
 - **Remote monitoring** stations
@@ -64,6 +69,7 @@ The system integrates a Raspberry Pi Compute Module 5 with a custom carrier boar
 - **Predictive maintenance** systems
 
 ### Automotive Applications
+
 - **Fleet management** systems
 - **Telematics** and vehicle tracking
 - **In-vehicle infotainment** systems
@@ -84,6 +90,7 @@ Your HALPI2 package includes:
 ![HALPI2 Goodie Bag Contents](./goodie-bag-contents.jpg)
 
 Additional accessories available separately:
+
 - **NMEA 2000 drop cable** for bus-powered applications
 - **Various connector kits** for custom installations
 
@@ -92,17 +99,20 @@ Additional accessories available separately:
 This documentation is structured to serve both end users seeking practical guidance and professional developers requiring detailed technical information.
 
 ### For End Users
+
 - Start with the **Getting Started** guide for setup and installation
 - Explore **Common Use Cases** for application-specific guidance
 - Reference **Troubleshooting** when issues arise
 
 ### For Developers
+
 - Review the **Technical Reference** for detailed specifications
 - Study **Software Development** sections for custom applications
 - Examine **Design Files** for integration planning
 - Consult **Advanced Configuration** for performance optimization
 
 ### Documentation Tips
+
 - 💡 **Quick Tips** boxes provide shortcuts for common tasks
 - ⚠️ **Warning** and **Caution** callouts highlight important safety information
 - 🔧 **Technical Details** sections offer in-depth implementation information
