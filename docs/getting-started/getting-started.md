@@ -14,14 +14,17 @@ This guide will get your HALPI2 up and running in under 30 minutes and covers pe
 ## What You'll Need
 
 From your HALPI2 package:
+
 - HALPI2 unit with pre-installed CM5 and NVMe SSD
 - Power cable with E7T connector (2m length)
 
 Optional items (included in the sales package):
+
 - DC barrel connector pair (5.5 × 2.1 mm), when using a standard 12V "wall wart" type power supply
 - Raspberry Pi WiFi/Bluetooth antenna (required if WiFi is used for initial setup)
 
 Additional items (not included):
+
 - 12V or 24V power source
 - A separate computer for headless setup (if not using a connected display)
 - Network cable (optional, for wired connection)
@@ -38,6 +41,7 @@ We recommend trying the HALPI2 on a desk or workbench before installing it perma
 ### Step 1: Connect Essential Peripherals
 
 #### For Initial Setup:
+
 1. **Network connection (required for headless installation):**
    - Connect Ethernet cable
    - Connect the WiFi/Bluetooth antenna
@@ -61,6 +65,7 @@ An [NMEA 2000 network](https://docs.hatlabs.fi/nmea2000/) consists of a backbone
     The HALPI2 can also be powered via the NMEA 2000 bus. See [NMEA 2000 Bus Power Connection](#nmea-2000-bus-power-connection) in the Permanent Installation section below.
 
 For the desktop setup, we will use the provided E7T power cable. Connect the power cable wire ends to the female barrel plug as follows:
+
 - **Red wire = Positive (+)**
 - **Black wire = Negative (-)**
 
@@ -152,21 +157,25 @@ The shutdown process typically takes only a few seconds under normal conditions.
 ### Common and Uncommon Issues:
 
 ❌ **No power/LEDs:**
+
 - Verify power connections and polarity
 - Check fuse condition
 - Ensure voltage is within 11-32V range
 
 ❌ **WiFi Access Point not visible:**
+
 - Ensure antenna is properly connected
 - Try to connect using a different device
 - Check if the HALPI2 is fully booted (LEDs should be green)
 - Try connecting via Ethernet first
 
 ❌ **Cannot access the device using `halos.local`:**
+
 - There may be another device on the network with the same hostname
 - Try using the assigned IP address instead (check your router's DHCP client list)
 
 ❌ **Display connected but not showing anything:**
+
 - Ensure HDMI cable is securely connected
 - Ensure the display is powered on and set to the correct input
 - Try a different HDMI cable or port on the display
@@ -174,6 +183,7 @@ The shutdown process typically takes only a few seconds under normal conditions.
 - If the LEDs are flashing in a rainbow pattern, the Compute Module 5 is not properly seated. This may be due to transportation damage. Follow the instructions in the [User Guide](../user-guide/operation.md) to reseat the CM5 or contact support for assistance.
 
 ❌ **Connected display is showing an error message about 'nvme':**
+
 - This indicates the NVMe SSD is not detected or not properly initialized. This can be due to transportation damage. Follow the instructions in the [User Guide](../user-guide/operation.md) to reseat the NVMe SSD or contact support for assistance.
 
 ### Getting Help:
@@ -204,6 +214,7 @@ Take time to plan your installation. Consider:
 #### Required Tools and Materials
 
 **Tools:**
+
 - Drill with bits
 - Screwdriver set (PH2 Phillips, large flathead)
 - Wire strippers and crimpers for power connections
@@ -211,6 +222,7 @@ Take time to plan your installation. Consider:
 - Heat gun or lighter (for heat-shrink tubing)
 
 **Materials (not included):**
+
 - Mounting screws (4mm or M4, depending on the mounting surface)
 - Appropriate fuses (3-5A) or respectively rated electrical panel circuit breakers
 - Marine-grade wire (1.5mm² or 16 AWG for power if the provided cable is too short)
@@ -236,18 +248,21 @@ Even though this guide focuses on fixed installations, in practice it is often s
 #### Environmental Guidelines
 
 **Marine Installations:**
+
 - Mount above expected bilge water level
 - Avoid areas with direct spray or standing water
 - Consider boat movement and vibration, and secure all connections
 - Use corrosion-resistant mounting hardware
 
 **Automotive Installations:**
+
 - Protect from engine heat and vibration
 - Ensure adequate ventilation in enclosed spaces
 - Consider accessibility for maintenance
 - Use vibration-resistant mounting
 
 **Industrial Installations:**
+
 - Protect from process chemicals and extreme temperatures
 - Consider electromagnetic interference sources
 - Ensure compliance with local electrical codes
@@ -297,11 +312,13 @@ Download the [HALPI2 Mounting Template](./HALPI2_enclosure_1B_Drill_Template_v2.
 #### Power Source Selection
 
 **Option 1: Dedicated Power Connector**
+
 - Most reliable and flexible
 - Supports full power capability
 - Easier maintenance and troubleshooting
 
 **Option 2: NMEA 2000 Bus Power**
+
 - Simplifies wiring in marine installations
 - Limited to 0.9A current draw
 - Requires careful attention to voltage drop
@@ -393,12 +410,14 @@ For network connectivity:
 #### Power Problems
 
 ❌ **No power indication:**
+
 - Check fuse condition and rating
 - Verify power source voltage (11-32V)
 - Confirm correct polarity
 - Test continuity of power cables
 
 ❌ **Intermittent power:**
+
 - Check all connection tightness
 - Inspect for corroded terminals
 - Verify adequate wire gauge for current
@@ -406,12 +425,14 @@ For network connectivity:
 #### Network Connectivity
 
 ❌ **No NMEA 2000 communication:**
+
 - Verify network termination (120Ω at both ends)
 - Check T-connector installation
 - Confirm drop cable integrity
 - Test with known-good device
 
 ❌ **No Ethernet connectivity:**
+
 - Test cable with cable tester
 - Verify switch/router configuration
 - Check for IP address conflicts
@@ -420,12 +441,14 @@ For network connectivity:
 #### Environmental Issues
 
 ❌ **Moisture ingress:**
+
 - Inspect all seal conditions
 - Verify connector orientation
 - Check cable entry points
 - Consider additional protection
 
 ❌ **Overheating:**
+
 - Move away from heat sources
 - Check for obstructed airflow around enclosure
 

@@ -65,6 +65,7 @@ Solo mode provides basic autonomous operation when the HALPI daemon is not runni
 The controller monitors input voltage and detects power loss. A blackout timer (default 5 seconds) prevents shutdowns during brief interruptions.
 
 **Automatic Shutdown Sequence:**
+
 1. **Controller detects power loss**
 2. **Blackout timer activates** to distinguish glitches from actual power loss
 3. **Simulated power button presses** - controller sends double power-button presses to Compute Module
@@ -75,6 +76,7 @@ The controller monitors input voltage and detects power loss. A blackout timer (
 8. **Automatic restart** when power is restored
 
 **Manual Shutdown in Solo Mode:**
+
 - Normal operating system shutdown occurs
 - System automatically restarts after 5 seconds if input power remains available
 - For permanent shutdown, disconnect input power after initiating graceful shutdown
@@ -82,6 +84,7 @@ The controller monitors input voltage and detects power loss. A blackout timer (
 #### When Solo Mode is Active
 
 Solo mode occurs:
+
 - During initial boot before HALPI daemon starts
 - If HALPI daemon fails to start or is disabled
 - On unsupported operating systems without the daemon
@@ -108,6 +111,7 @@ Co-op mode provides full power management functionality when the HALPI daemon is
 The controller monitors input power and communicates events directly to the HALPI daemon. The configurable blackout timer (default 5 seconds) allows brief power interruptions without initiating shutdown.
 
 **Automatic Shutdown Sequence:**
+
 1. **Controller detects power loss** and communicates to HALPI daemon
 2. **Blackout timer assessment** - daemon evaluates if power loss exceeds threshold
 3. **Shutdown command execution** - daemon executes shutdown command (default: `/sbin/poweroff`)
@@ -119,6 +123,7 @@ The controller monitors input power and communicates events directly to the HALP
 9. **Restart management** - based on configuration, system restarts automatically or remains off
 
 **Manual Shutdown in Co-op Mode:**
+
 - Standard graceful shutdown occurs when initiated through software
 - System automatically restarts after 5 seconds if input power remains available
 - To prevent automatic restart, disconnect power or configure `auto_restart` to `false`
@@ -135,6 +140,7 @@ Co-op mode includes watchdog timer protection:
 #### When Co-op Mode is Active
 
 Co-op mode occurs when:
+
 - HALPI daemon is running and healthy
 - Communication between daemon and controller is established
 - System operates on a supported operating system
@@ -152,12 +158,14 @@ Co-op mode occurs when:
 Both modes rely on the super-capacitor backup system for graceful shutdown protection:
 
 **Backup Power Duration:**
+
 - Super-capacitors provide 30-60 seconds of backup power
 - Duration depends on system load and connected peripherals
 - Sufficient time for safe file system closure and process termination
 - Not designed for continued operation during extended outages
 
 **Charging Characteristics:**
+
 - Charging time: 25 seconds with 0.9A current limit
 - Charging time: 9 seconds with 2.5A current limit
 - Visual charging progress shown through LED progression (red fill pattern)
@@ -183,11 +191,13 @@ By default, HALPI2 restarts after manual shutdowns when input power remains avai
 For permanent shutdown, use one of these approaches:
 
 **Power Disconnection Method:**
+
 1. Initiate graceful shutdown through software
 2. Wait for shutdown completion (LEDs turn off)
 3. Disconnect input power to prevent automatic restart
 
 **Configuration Method:**
+
 1. Disable automatic restart: `halpi config set auto_restart false`
 2. Initiate shutdown through software
 3. System remains off after shutdown completion
