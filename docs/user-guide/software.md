@@ -62,15 +62,22 @@ Once the flashing process is complete, unplug the adapter and remove the SSD. In
 
 ### Flashing Directly on the HALPI2
 
-Alternatively, you can flash the operating system image directly on the HALPI2 without removing the SSD. This method follows the standard Compute Module flashing procedure as documented in the [Raspberry Pi documentation](https://www.raspberrypi.com/documentation/computers/compute-module.html#flash-compute-module-emmc). Note that the board setup instructions in the Raspberry Pi documentation are for the CM5 IO Board, but the process is similar for the HALPI2.
+Alternatively, you can flash the operating system image directly on the HALPI2 without removing the SSD. This method follows the standard Compute Module flashing procedure as documented in the [Raspberry Pi documentation](https://www.raspberrypi.com/documentation/computers/compute-module.html#flash-compute-module-emmc). The board setup instructions there are written for the CM5 IO Board, but the process is similar for the HALPI2.
 
-To set up the HALPI2 for USB flashing, begin by powering off the system completely and opening the enclosure lid following the procedure described in the [Hardware Guide](./hardware.md#enclosure-access). Locate the USB-C connector labeled "USB Boot" to the right of the HAT outline on the carrier board, and switch the adjacent boot mode switch to the "Abnormal" position. An amber LED will light up to indicate that the HALPI2 is in USB boot mode.
+**Prerequisites.** Install the `rpiboot` tool from the Raspberry Pi [`usbboot` repository](https://github.com/raspberrypi/usbboot). On Linux and macOS, build and install it from source as described in the repo's README; on Windows, install the Raspberry Pi Imager or the standalone `rpiboot` installer linked from the same page.
 
-Connect a USB cable between your computer and the USB Boot connector on the HALPI2. Power the device back up - it is now ready to receive a custom boot image using the `usbboot` command. Run the `usbboot` command as described in the Raspberry Pi documentation to prepare the device for flashing.
+To set up the HALPI2 for USB flashing:
 
-Flash the operating system image using the Raspberry Pi Imager or other compatible flashing software. The HALPI2 will appear as a mass storage device during this process, allowing standard image flashing tools to write directly to the internal NVMe SSD.
+1. Power off the system completely and open the enclosure lid following the procedure described in the [Hardware Guide](./hardware.md#enclosure-access).
+2. Locate the USB-C connector labeled "USB Boot" to the right of the HAT outline on the carrier board, and switch the adjacent boot mode switch to the "Abnormal" position. (No LED feedback is available yet — the device is unpowered.)
+3. Connect a USB cable between your computer and the USB Boot connector on the HALPI2, then power the device back up. An amber LED next to the boot mode switch will now light up, confirming the HALPI2 is in USB boot mode.
+4. On your computer, run `rpiboot`. It will detect the HALPI2 and load the mass-storage gadget firmware; the HALPI2 then appears as a USB mass storage device.
+5. Once `rpiboot` succeeds and the mass storage device appears, flip the boot mode switch back to the "Normal" position. This does not interrupt the flashing session, and it ensures the HALPI2 will boot normally from the freshly flashed image after the next power cycle. Leaving it in "Abnormal" causes the device to re-enter USB boot mode on the next boot instead of starting the new OS.
+6. Flash the operating system image using the Raspberry Pi Imager (or any other tool that can write to a block device), targeting the new mass-storage device.
+7. When flashing completes, disconnect the USB cable, power-cycle the HALPI2, and close the enclosure.
 
-After the flashing process is complete, it is essential to toggle the Boot Mode switch back to the "Normal" position to ensure the device will boot normally from the newly flashed image. Disconnect the USB cable and close the enclosure.
+!!! tip "Power-cycling without unplugging"
+    With the enclosure already open, the quickest way to reboot the HALPI2 is to briefly short the two bottom pins of the Button Headers next to the USB-C socket. Touching both pins at once with the metal shell of a USB-C cable connector works well and is safe.
 
 ## Initial System Configuration
 
