@@ -102,7 +102,14 @@ First, wait until the LEDs turn green, indicating that the system is fully boote
 
 **Option 1 — Connecting via WiFi Access Point:** HaLOS creates a WiFi Access Point named `Halos-XXXX` (unique per device) with the password `halos1234`. Connect your computer to this network.
 
-The access point has no internet of its own, so the next step is to point the HALPI2 at a WiFi network that does (needed to download the container apps on first boot). Open Cockpit at `https://halos.local:9090/`, go to **Networking**, and connect the device to your WiFi network. The HALPI2 keeps the `Halos-XXXX` access point up while it joins your network, so your computer may briefly drop off the access point and reconnect on its own. For the full walkthrough, see the HaLOS [WiFi access point guide](https://docs.halos.fi/getting-started/first-boot/#wifi-access-point-headless-images-and-the-ap-desktop-variant).
+The access point has no internet of its own, so the next step is to point the HALPI2 at a WiFi network that does (needed to download the container apps on first boot):
+
+1. Open Cockpit at `https://halos.local:9090/` and log in (username `pi`, password `halos`).
+2. Go to **Networking** and click **WiFi (wlan0)**.
+3. Wait for the list of available networks to appear, then click your network.
+4. Enter the password and click **Add**.
+
+The HALPI2 keeps the `Halos-XXXX` access point up while it joins your network, so your computer may briefly drop off the access point and reconnect on its own.
 
 **Option 2 — Connecting via wired Ethernet:** If you have connected the HALPI2 to your network via Ethernet, it will automatically obtain an IP address via DHCP.
 
