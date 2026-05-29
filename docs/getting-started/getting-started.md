@@ -183,7 +183,6 @@ The shutdown process typically takes only a few seconds under normal conditions.
 
 ❌ **Cannot access the device using `halos.local`:**
 
-- There may be another device on the network with the same hostname
 - Try using the assigned IP address instead (check your router's DHCP client list)
 
 ❌ **Display connected but not showing anything:**
