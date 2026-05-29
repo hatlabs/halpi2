@@ -81,6 +81,9 @@ Plug a standard 12V or 24V power supply into the barrel connector. Ensure the po
 
 HALPI2 ships with [HaLOS](https://docs.halos.fi), a container-based Linux distribution with a web-managed interface designed for marine and industrial applications. If you prefer a different operating system such as OpenPlotter or Raspberry Pi OS, see the [Software Guide](../user-guide/software.md).
 
+!!! info "HaLOS documentation"
+    This guide covers HALPI2 hardware and the initial power-on. Everything about the operating system — first-boot setup, networking, apps, certificates, and day-to-day use — lives in the **[HaLOS documentation](https://docs.halos.fi)**. Keep it handy as you work through the steps below.
+
 **Power on the HALPI2** by connecting the power supply if you haven't done so already. After a few seconds,
 the LED bar should start filling up with red lights, indicating that the super-capacitors are charging. The LEDs will turn yellow once the system is booting, and finally green when the operating system is running and the HALPI daemon is connected to the controller.
 
@@ -98,6 +101,8 @@ If you do not have a display connected, you can access the HALPI2 via its WiFi A
 First, wait until the LEDs turn green, indicating that the system is fully booted. Then, follow these steps:
 
 **Option 1 — Connecting via WiFi Access Point:** HaLOS creates a WiFi Access Point named `Halos-XXXX` (unique per device) with the password `halos1234`. Connect your computer to this network.
+
+The access point has no internet of its own, so the next step is to point the HALPI2 at a WiFi network that does (needed to download the container apps on first boot). Open Cockpit at `https://halos.local:9090/`, go to **Networking**, and connect the device to your WiFi network. The HALPI2 keeps the `Halos-XXXX` access point up while it joins your network, so your computer may briefly drop off the access point and reconnect on its own. For the full walkthrough, see the HaLOS [WiFi access point guide](https://docs.halos.fi/getting-started/first-boot/#wifi-access-point-headless-images-and-the-ap-desktop-variant).
 
 **Option 2 — Connecting via wired Ethernet:** If you have connected the HALPI2 to your network via Ethernet, it will automatically obtain an IP address via DHCP.
 
