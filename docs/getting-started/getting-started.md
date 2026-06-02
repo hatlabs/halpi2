@@ -118,8 +118,10 @@ Once connected, open a browser and navigate to:
 - **Dashboard:** `https://halos.local/` — the main Homarr dashboard with links to all installed applications
 - **System administration:** `https://halos.local:9090/` — Cockpit for system management, updates, and container apps
 
-!!! note "SSL Certificate Warning"
-    Your browser will show a certificate warning because HaLOS uses a self-signed certificate. This is expected — accept the warning to proceed.
+!!! note "SSL certificate warning"
+    The first time you open the dashboard or Cockpit, your browser shows a "Not secure" warning. HaLOS signs its web services with a Certificate Authority (CA) it generates on the device itself, and your browser doesn't trust that CA yet. Accept the warning to proceed for now.
+
+    To remove the warning for good, install the device's CA on your computer once — afterwards every HaLOS service validates cleanly on every port. Open `https://halos.local/ca/` for a guided, per-platform installer, or see [Trust the device](https://docs.halos.fi/user-guide/trust-the-device/) in the HaLOS documentation.
 
 !!! info "Internet Required on First Boot"
     The Cockpit interface is available immediately, but the main dashboard and other container-based applications require an internet connection on first boot to download their container images. Connect the HALPI2 to the internet via Ethernet or configure WiFi through Cockpit.
