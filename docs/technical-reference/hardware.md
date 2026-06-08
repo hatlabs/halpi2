@@ -187,7 +187,7 @@ The CAN FD and RS-485 interfaces are galvanically isolated from the rest of the 
 
 | Interface | Signal isolation | Power isolation | Isolated ground |
 |:----------|:-----------------|:---------------|:----------------|
-| CAN FD | ISO7121DR | B0505S-1WR3 | GND_CAN |
+| CAN FD | ISO7721DR | B0505S-1WR3 | GND_CAN |
 | RS-485 | TI41M31 | B0505S-1WR3 | GND_RS485 |
 
 This means bus faults, ground loops and noise on the CAN or RS-485 networks cannot damage or interfere with the main system.
