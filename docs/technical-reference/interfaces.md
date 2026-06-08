@@ -27,12 +27,9 @@ Add the matching `-pi5` overlay to `/boot/firmware/config.txt` and reboot:
 dtoverlay=uart2-pi5
 ```
 
-`uart0` is enabled with `dtparam=uart0=on` instead.
-
-!!! warning "Use the `-pi5` overlays"
-    The plain `uartN` overlays target the legacy Broadcom mini-UART and do
-    nothing useful on a CM5. Always use the `uartN-pi5` form (`uart1-pi5`,
-    `uart2-pi5`, …).
+`uart0` is enabled with `dtparam=uart0=on` instead. (On a CM5 the firmware
+redirects the plain `uartN` overlays to their `uartN-pi5` equivalents, so either
+name works; the `-pi5` form is used here for clarity.)
 
 Hardware flow control is opt-in with the `ctsrts` parameter, and the overlays can
 drive an RS-485 transceiver's enable line directly with the `rs485` parameter:
