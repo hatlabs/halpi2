@@ -44,3 +44,8 @@ GitHub Actions automatically builds and deploys to GitHub Pages on push to `main
 - Cross-reference other pages using relative paths
 - Technical specs and measurements should be in the technical-reference section
 - Step-by-step instructions belong in getting-started or user-guide sections
+- Always leave a blank line before and after lists — without it, Python-Markdown folds items into the preceding paragraph and they render as inline text on the published site (see `solutions/best-practices/markdown-lists-need-blank-line-2026-05-16.md`)
+
+## Engineering Notes
+
+`solutions/` — documented solutions and best practices for authoring and tooling, organized by category with YAML frontmatter (`module`, `tags`, `problem_type`). Lives outside `docs/` so it doesn't ship to the published site. Relevant when authoring docs or making decisions in documented areas.
