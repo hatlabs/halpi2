@@ -1,3 +1,7 @@
+---
+translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+---
+
 # Fonctionnement du système
 
 ## LED d'état
@@ -151,7 +155,7 @@ Le mode coopératif s'applique lorsque :
 
     État du contrôleur : `halpi status`
 
-    Pour en savoir plus sur la commande `halpi`, voir le [Guide logiciel](./software.md#halpi-daemon-halpid).
+    Pour en savoir plus sur la commande `halpi`, voir le [Guide logiciel](./software.md#demon-halpi-halpid).
 
 ### Alimentation de secours et supercondensateurs
 

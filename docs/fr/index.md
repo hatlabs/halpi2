@@ -1,3 +1,7 @@
+---
+translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+---
+
 # Introduction
 
 Le HALPI2 est un ordinateur de bord prêt à l'emploi basé sur le Raspberry Pi Compute Module 5 (CM5). Il offre un ensemble complet de fonctions bien adaptées aux applications marines, automobiles et à de nombreuses applications industrielles.

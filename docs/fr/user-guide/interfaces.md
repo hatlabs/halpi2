@@ -1,3 +1,7 @@
+---
+translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+---
+
 # Interfaces et connectivité
 
 ## CAN FD / NMEA 2000
@@ -47,7 +51,7 @@ Cette commande affiche en temps réel tous les messages CAN bruts reçus.
 Le tableau de bord du serveur Signal K offre des moyens de surveillance supplémentaires. Il affiche en temps réel les débits de données NMEA 2000 issus de l'interface CAN, et son explorateur de données permet de consulter les données NMEA 2000 décodées.
 
 !!! quote "Voir aussi"
-    - **Configuration de l'alimentation :** voir [Prise en main](../getting-started/getting-started.md#permanent-power-installation)
+    - **Configuration de l'alimentation :** voir [Prise en main](../getting-started/getting-started.md#installation-definitive-de-lalimentation)
     - **Mise en place logicielle :** voir le [Guide logiciel](./software.md)
     - **Dépannage réseau :** voir le [Dépannage](./troubleshooting.md)
 
@@ -206,5 +210,5 @@ Pour installer les boutons sur un pupitre de commande déporté, choisissez un e
 Tous les raccordements de boutons à la carte porteuse doivent utiliser des connecteurs femelles au pas de 2,54 mm. Veillez à l'alignement correct des broches et à la fermeté du raccordement, afin d'éviter les problèmes de contact en service.
 
 !!! quote "Voir aussi"
-    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#power-management-and-shutdown-procedures)
+    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#gestion-de-lalimentation-et-procedures-darret)
     - **Accès au matériel :** voir le [Guide du matériel](./hardware.md)

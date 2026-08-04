@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Dépannage
 
 Cette page présente les problèmes courants que vous pouvez rencontrer en utilisant le HALPI2, et la manière de les résoudre.
@@ -148,8 +152,8 @@ Les motifs des LED permettent d'identifier rapidement l'état du système :
 | Défaut | Toutes les LED clignotant en rouge | Défaut matériel — contactez le fabricant |
 
 !!! quote "Voir aussi"
-    - **Motifs des LED :** voir [LED d'état](./operation.md#status-led-indicators)
-    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#power-management-and-shutdown-procedures)
-    - **Gestion du démon :** voir le [Guide logiciel](./software.md#halpi-daemon-halpid)
+    - **Motifs des LED :** voir [LED d'état](./operation.md#led-detat)
+    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#gestion-de-lalimentation-et-procedures-darret)
+    - **Gestion du démon :** voir le [Guide logiciel](./software.md#demon-halpi-halpid)
     - **Détails de l'interface CAN :** voir [Interfaces et connectivité](./interfaces.md#can-fd-nmea-2000)
     - **Détails de l'interface RS-485 :** voir [Interfaces et connectivité](./interfaces.md#rs-485-nmea-0183)

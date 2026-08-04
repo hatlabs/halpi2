@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # Fichiers de conception et schémas
 
 Cette page met à disposition les schémas et les fichiers de conception mécanique du HALPI2.

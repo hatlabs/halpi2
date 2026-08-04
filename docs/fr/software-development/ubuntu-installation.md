@@ -1,3 +1,7 @@
+---
+translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+---
+
 # Utiliser d'autres distributions basées sur Debian
 
 !!! warning "Note"

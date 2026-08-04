@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Référence matérielle
 
 Cette page rassemble les spécifications électriques, mécaniques et environnementales du HALPI2. Pour les procédures (installation, maintenance, remplacement), voir le [Guide du matériel](../user-guide/hardware.md). Pour le détail des protocoles d'interface, voir [Interfaces et connectivité](./interfaces.md).
@@ -168,7 +172,7 @@ Le connecteur GPIO suit le brochage standard 40 broches du Raspberry Pi. Les bro
 | 24 | 18 | RS-485 EN | RS-485 (mode manuel) | Libre en mode automatique |
 | 26 | 37 | CAN INT | Contrôleur CAN FD | Non |
 
-Toutes les autres broches GPIO restent disponibles pour les HAT et les applications de l'utilisateur. Le [Guide du matériel](../user-guide/hardware.md#using-hats) détaille la compatibilité des HAT et la désactivation des interfaces intégrées.
+Toutes les autres broches GPIO restent disponibles pour les HAT et les applications de l'utilisateur. Le [Guide du matériel](../user-guide/hardware.md#utiliser-des-hat) détaille la compatibilité des HAT et la désactivation des interfaces intégrées.
 
 ## Périphériques I2C
 

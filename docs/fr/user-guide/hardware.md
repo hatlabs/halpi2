@@ -1,3 +1,7 @@
+---
+translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+---
+
 # Guide du matériel
 
 ## Ouverture du boîtier
@@ -158,11 +162,11 @@ Les LED d'état renseignent sur l'alimentation et l'activité du système. En vo
 | **9** | Vert | LED TX/RX du CAN. Elles clignotent à la réception (RX) ou à l'émission (TX) de données sur l'interface CAN. |
 | **10** | Vert | LED TX/RX du RS-485. Elles clignotent à la réception (RX) ou à l'émission (TX) de données sur l'interface RS-485. |
 
-Les motifs des LED RGB sont décrits dans le [Fonctionnement du système](./operation.md#status-led-indicators).
+Les motifs des LED RGB sont décrits dans le [Fonctionnement du système](./operation.md#led-detat).
 
 ## Réglage de la limitation de courant
 
-La carte porteuse comporte un sélecteur de limitation de courant qui fixe le courant maximal fourni aux périphériques. Pour le localiser, repérez le sélecteur **a2** sur l'image de la section [Connecteurs de la carte porteuse](#carrier-board-connectors).
+La carte porteuse comporte un sélecteur de limitation de courant qui fixe le courant maximal fourni aux périphériques. Pour le localiser, repérez le sélecteur **a2** sur l'image de la section [Connecteurs de la carte porteuse](#connecteurs-de-la-carte-porteuse).
 
 !!! info "Réglages de limitation de courant"
     **0,9 A (par défaut) :**
@@ -246,7 +250,7 @@ Après l'installation matérielle, le HAT peut nécessiter une configuration log
 !!! quote "Voir aussi"
     - **Brochage GPIO :** voir la [Référence matérielle](../technical-reference/hardware.md)
     - **Configuration logicielle :** voir la [Configuration avancée](../software-development/advanced-config.md)
-    - **Modifications du boîtier :** voir [Autres choix de connecteurs](#custom-connector-options)
+    - **Modifications du boîtier :** voir [Autres choix de connecteurs](#autres-choix-de-connecteurs)
 
 ## Remplacer le SSD NVMe
 
@@ -272,7 +276,7 @@ Placez le cavalier de façon à court-circuiter les broches « 3.3V off ». La l
 
 ### Procédure de dépose
 
-L'emplacement M.2 se trouve sur le bord « sud » de la carte porteuse. Repérez le connecteur M.2 marqué **g1** sur l'image de la section [Connecteurs de la carte porteuse](#carrier-board-connectors).
+L'emplacement M.2 se trouve sur le bord « sud » de la carte porteuse. Repérez le connecteur M.2 marqué **g1** sur l'image de la section [Connecteurs de la carte porteuse](#connecteurs-de-la-carte-porteuse).
 
 À l'aide d'un tournevis PH1, retirez la vis de fixation M2.5. Une fois la vis ôtée, le SSD se relève en biais. Soulevez-le doucement par son extrémité de fixation et dégagez-le du connecteur M.2 par de petits mouvements. Manipulez le SSD par les bords pour ne pas endommager les composants ni les connecteurs.
 
@@ -289,7 +293,7 @@ Refermez le boîtier comme indiqué à la section Ouverture du boîtier. Pour la
 !!! quote "Voir aussi"
     - **Images système :** voir le [Guide logiciel](./software.md)
     - **Procédures de démarrage :** voir [Fonctionnement du système](./operation.md)
-    - **Accès au matériel :** voir [Ouverture du boîtier](#enclosure-access)
+    - **Accès au matériel :** voir [Ouverture du boîtier](#ouverture-du-boitier)
 
 ## Remplacer le Compute Module 5
 

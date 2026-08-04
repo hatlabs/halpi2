@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Interfaces et connectivité
 
 Cette page décrit la manière dont les interfaces du CM5 sont exposées sur la
@@ -68,7 +72,7 @@ HALPI2 :
   général. Le RS-485 n'est alors plus disponible.
 
 Les étapes matérielles sont décrites dans
-[Désactiver les interfaces intégrées](../user-guide/hardware.md#using-hats).
+[Désactiver les interfaces intégrées](../user-guide/hardware.md#utiliser-des-hat).
 
 ### Vérification
 
