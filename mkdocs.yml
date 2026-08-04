@@ -7,6 +7,11 @@ repo_url: https://github.com/hatlabs/halpi2
 repo_name: hatlabs/halpi2
 edit_uri: edit/main/docs/
 
+# Affinity sources live next to their exports in the repo, but must not ship.
+exclude_docs: |
+  *.afdesign
+  *.afphoto
+
 theme:
   name: material
   custom_dir: docs/overrides
