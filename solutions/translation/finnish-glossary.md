@@ -121,6 +121,22 @@ resolves them to the Finnish version when one exists and falls back to English
 when it does not. Do not rewrite `../user-guide/operation.md` into
 `../user-guide/operation.fi.md`.
 
+### Navigation titles
+
+Section and page titles in the navigation are not part of any markdown file —
+they live in `mkdocs.yml` under the i18n plugin's `nav_translations`. That is the
+single source of truth; do not restate the full list here. Two entries are
+judgement calls worth recording:
+
+- `Errata` → **Tunnetut virheet**. The Latin term is opaque to a general reader;
+  plain Finnish is clearer for a page listing known hardware defects.
+- `FAQ` → **UKK** (*usein kysytyt kysymykset*). The established Finnish
+  abbreviation.
+
+When a new page is added to the nav in English, add its Finnish title to
+`nav_translations` in the same change — an untranslated entry silently falls
+back to English and is easy to miss.
+
 ## Glossary
 
 ### Enclosure, mounting, and installation
