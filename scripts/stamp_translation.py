@@ -16,16 +16,24 @@ import subprocess
 import sys
 from pathlib import Path
 
+from translation_status import configured_languages
+
 DOCS = Path("docs")
 STAMP_KEY = "translated_from"
 
 
-def english_source(translation: Path) -> Path:
-    """docs/<lang>/<rest> -> docs/en/<rest>."""
+def english_source(translation: Path, default: str) -> Path:
+    """docs/<lang>/<rest> -> docs/<default>/<rest>."""
     parts = translation.parts
     if len(parts) < 3 or parts[0] != DOCS.name:
         raise SystemExit(f"{translation}: not a path under docs/<language>/")
-    return DOCS / "en" / Path(*parts[2:])
+    if parts[1] == default:
+        raise SystemExit(
+            f"{translation}: this is a source page, not a translation. "
+            f"Source pages carry no stamp — that is the point: an English edit "
+            f"needs no ceremony."
+        )
+    return DOCS / default / Path(*parts[2:])
 
 
 def blob_hash(path: Path) -> str:
@@ -53,10 +61,11 @@ def main() -> int:
     parser.add_argument("translations", nargs="+", type=Path)
     args = parser.parse_args()
 
+    default, _ = configured_languages()
     for translation in args.translations:
         if not translation.exists():
             raise SystemExit(f"{translation}: does not exist")
-        source = english_source(translation)
+        source = english_source(translation, default)
         if not source.exists():
             raise SystemExit(f"{translation}: no English source at {source}")
         value = blob_hash(source)

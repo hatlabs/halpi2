@@ -102,7 +102,7 @@ def english_diff(stamped: str, current: Path) -> str | None:
 class Entry:
     language: str
     page: str          # path relative to the language directory
-    state: str         # missing | unstamped | stale | current
+    state: str         # missing | unstamped | stale | orphaned | current
     expected: str      # blob hash the translation should record
     diff: str | None = None
 
@@ -126,6 +126,16 @@ def collect(default: str, languages: list[str], want_diff: bool) -> list[Entry]:
             else:
                 diff = english_diff(stamped, source) if want_diff else None
                 entries.append(Entry(language, str(relative), "stale", expected, diff))
+
+    # A translation whose source was deleted is invisible to the loop above,
+    # because that walks the sources. It is still a page being served.
+    for language in languages:
+        root = DOCS / language
+        for translation in sorted(root.rglob("*.md")):
+            if not (DOCS / default / translation.relative_to(root)).exists():
+                entries.append(
+                    Entry(language, str(translation.relative_to(root)), "orphaned", "")
+                )
     return entries
 
 
@@ -134,12 +144,13 @@ def render_text(entries: list[Entry]) -> str:
     for language in sorted({e.language for e in entries}):
         rows = [e for e in entries if e.language == language]
         counts = {s: sum(1 for e in rows if e.state == s) for s in
-                  ("current", "stale", "unstamped", "missing")}
+                  ("current", "stale", "unstamped", "missing", "orphaned")}
         out.append(f"{language}: " + "  ".join(f"{k}={v}" for k, v in counts.items()))
         for entry in rows:
             if entry.state != "current":
                 out.append(f"  {entry.state:9s} {entry.page}")
-                out.append(f"    {STAMP_KEY}: {entry.expected}")
+                if entry.expected:
+                    out.append(f"    {STAMP_KEY}: {entry.expected}")
     return "\n".join(out)
 
 
@@ -149,7 +160,7 @@ def render_markdown(entries: list[Entry], only: set[str] | None) -> str:
     for language in sorted({e.language for e in entries}):
         rows = [e for e in entries if e.language == language]
         counts = {s: sum(1 for e in rows if e.state == s) for s in
-                  ("current", "stale", "unstamped", "missing")}
+                  ("current", "stale", "unstamped", "missing", "orphaned")}
         summary = ", ".join(f"{v} {k}" for k, v in counts.items() if v)
         out.append(f"**{language}** — {summary}")
     out.append("")
