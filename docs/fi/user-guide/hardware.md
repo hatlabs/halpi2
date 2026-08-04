@@ -1,3 +1,7 @@
+---
+translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+---
+
 # Laitteisto-opas
 
 ## Kotelon käsittely

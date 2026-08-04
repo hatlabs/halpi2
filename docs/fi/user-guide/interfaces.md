@@ -1,3 +1,7 @@
+---
+translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+---
+
 # Liitännät ja tiedonsiirto
 
 ## CAN FD / NMEA 2000

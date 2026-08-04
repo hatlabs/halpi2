@@ -1,3 +1,7 @@
+---
+translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+---
+
 # Aloitusopas
 
 Tämä opas saa HALPI2:n toimintaan alle 30 minuutissa ja käsittelee myös kiinteän asennuksen. Seuraa vaiheita järjestyksessä: aloita pöytäkokoonpanolla ja varmista että kaikki toimii, ja siirry vasta sitten kiinteään asennukseen.
