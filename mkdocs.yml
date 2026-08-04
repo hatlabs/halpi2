@@ -30,6 +30,49 @@ theme:
 
 plugins:
   - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          name: English
+          default: true
+          build: true
+        - locale: fi
+          name: Suomi
+          build: true
+          site_name: HALPI2-käyttöopas
+          site_description: HALPI2:n käyttöopas — Raspberry Pi CM5 -emolevy vene- ja teollisuuskäyttöön
+          admonition_translations:
+            note: Huomio
+            warning: Varoitus
+            tip: Vinkki
+            info: Tietoa
+            danger: Vaara
+            example: Esimerkki
+          nav_translations:
+            Introduction: Johdanto
+            Getting Started: Aloitusopas
+            User Guide: Käyttöopas
+            System Operation: Järjestelmän käyttö
+            Hardware Guide: Laitteisto-opas
+            Interfaces and Connectivity: Liitännät ja tiedonsiirto
+            Software Guide: Ohjelmisto-opas
+            Troubleshooting: Vianetsintä
+            Technical Reference: Tekniset tiedot
+            Hardware Reference: Laitteiston tekniset tiedot
+            Power Supply Deep Dive: Virransyöttö tarkemmin
+            Carrier Board Controller: Emolevyn ohjain
+            Software Development: Ohjelmistokehitys
+            HALPI2 Daemon: HALPI2-daemon
+            System Integration: Järjestelmäintegraatio
+            Advanced Configuration: Lisäasetukset
+            Other Debian Distributions: Muut Debian-jakelut
+            Appendices: Liitteet
+            Design Files and Schematics: Suunnittelutiedostot ja kytkentäkaaviot
+            Compliance and Certifications: Vaatimustenmukaisuus ja sertifioinnit
+            Errata: Errata
+            Resources: Lisätietoja
+            FAQ: UKK
   - print-site:
       add_cover_page: true
       add_print_site_banner: true
