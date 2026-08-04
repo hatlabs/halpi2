@@ -145,7 +145,7 @@ HaLOSissa on kahdet tunnukset:
 Yksityiskohtaiset ensikäynnistyksen ohjeet löytyvät [HaLOSin aloitusoppaasta](https://docs.halos.fi/getting-started/first-boot/).
 
 !!! info "Käytätkö OpenPlotteria tai Raspberry Pi OS:ää?"
-    Jos olet flashannut jonkin muun käyttöjärjestelmän, katso käyttöjärjestelmäkohtaiset asetusohjeet [Ohjelmisto-oppaasta](../user-guide/software.md#initial-system-configuration).
+    Jos olet flashannut jonkin muun käyttöjärjestelmän, katso käyttöjärjestelmäkohtaiset asetusohjeet [Ohjelmisto-oppaasta](../user-guide/software.md#jarjestelman-alkuasetukset).
 
 ### NMEA 2000 -yhteyden tarkistus (valinnainen)
 
