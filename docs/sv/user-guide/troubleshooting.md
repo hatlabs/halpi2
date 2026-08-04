@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Felsökning
 
 Den här sidan tar upp vanliga problem du kan stöta på när du använder HALPI2, och hur du löser dem.
@@ -148,8 +152,8 @@ Lysdiodernas mönster gör det snabbt att avgöra systemets tillstånd:
 | Fel | Alla lysdioder blinkar rött | Hårdvarufel — kontakta tillverkaren |
 
 !!! quote "Relaterad information"
-    - **LED-mönster:** se [Status-LED:ar](./operation.md#status-led-indicators)
-    - **Strömhantering:** se [Strömhantering och avstängning](./operation.md#power-management-and-shutdown-procedures)
+    - **LED-mönster:** se [Status-LED:ar](./operation.md#status-ledar)
+    - **Strömhantering:** se [Strömhantering och avstängning](./operation.md#stromhantering-och-avstangning)
     - **Hantering av daemonen:** se [Programvaruguiden](./software.md#halpi-daemon-halpid)
     - **Detaljer om CAN-gränssnittet:** se [Gränssnitt och anslutningar](./interfaces.md#can-fd-nmea-2000)
     - **Detaljer om RS-485-gränssnittet:** se [Gränssnitt och anslutningar](./interfaces.md#rs-485-nmea-0183)

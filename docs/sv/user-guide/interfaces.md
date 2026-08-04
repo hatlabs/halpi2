@@ -1,3 +1,7 @@
+---
+translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+---
+
 # Gränssnitt och anslutningar
 
 ## CAN FD / NMEA 2000
@@ -47,7 +51,7 @@ Det visar alla inkommande råa CAN-meddelanden i realtid.
 Signal K-serverns instrumentpanel ger ytterligare övervakningsmöjligheter. Den visar NMEA 2000-datahastigheterna från CAN-gränssnittet i realtid, och med databläddraren kan du granska avkodade NMEA 2000-data.
 
 !!! quote "Relaterad information"
-    - **Konfiguration av strömförsörjningen:** se [Kom igång](../getting-started/getting-started.md#permanent-power-installation)
+    - **Konfiguration av strömförsörjningen:** se [Kom igång](../getting-started/getting-started.md#permanent-stromanslutning)
     - **Uppsättning av programvaran:** se [Programvaruguiden](./software.md)
     - **Felsökning av nätverket:** se [Felsökning](./troubleshooting.md)
 
@@ -206,5 +210,5 @@ När knapparna monteras på en separat manöverpanel väljer du en plats som är
 Alla knappanslutningar till bärkortet bör använda honkontakter med delningen 2,54 mm. Se till att stiften ligger rätt och att anslutningen sitter stadigt, så att kontaktproblem inte uppstår under drift.
 
 !!! quote "Relaterad information"
-    - **Strömhantering:** se [Strömhantering och avstängning](./operation.md#power-management-and-shutdown-procedures)
+    - **Strömhantering:** se [Strömhantering och avstängning](./operation.md#stromhantering-och-avstangning)
     - **Åtkomst till hårdvaran:** se [Hårdvaruguiden](./hardware.md)

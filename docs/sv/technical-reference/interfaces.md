@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Gränssnitt och anslutningar
 
 Den här sidan beskriver hur CM5:ns gränssnitt är utförda på HALPI2:s bärkort.
@@ -63,7 +67,7 @@ CTS/RTS upptar nästa GPIO-par, som på HALPI2 ofta redan är i bruk:
   användning. RS-485 är då inte tillgängligt.
 
 Stegen på hårdvarusidan beskrivs under
-[Stänga av inbyggda gränssnitt](../user-guide/hardware.md#using-hats).
+[Stänga av inbyggda gränssnitt](../user-guide/hardware.md#att-anvanda-hat-kort).
 
 ### Kontroll
 

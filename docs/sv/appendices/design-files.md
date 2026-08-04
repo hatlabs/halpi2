@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # Konstruktionsfiler och kopplingsscheman
 
 Den här sidan tillhandahåller kopplingsscheman och mekaniska konstruktionsfiler för HALPI2.

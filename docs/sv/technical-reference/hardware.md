@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Hårdvarureferens
 
 Den här sidan innehåller HALPI2:s elektriska, mekaniska och miljörelaterade specifikationer. För arbetsgångar (installation, underhåll, byte), se [Hårdvaruguiden](../user-guide/hardware.md). För detaljer om gränssnittens protokoll, se [Gränssnitt och anslutningar](./interfaces.md).
@@ -168,7 +172,7 @@ GPIO-stiftlisten följer Raspberry Pi:s vanliga 40-poliga utförande. Följande 
 | 24 | 18 | RS-485 EN | RS-485 (manuellt läge) | Ledigt i automatiskt läge |
 | 26 | 37 | CAN INT | CAN FD-styrkrets | Nej |
 
-Alla övriga GPIO-stift är tillgängliga för HAT-kort och egna tillämpningar. [Hårdvaruguiden](../user-guide/hardware.md#using-hats) beskriver HAT-kompatibiliteten och hur de inbyggda gränssnitten stängs av.
+Alla övriga GPIO-stift är tillgängliga för HAT-kort och egna tillämpningar. [Hårdvaruguiden](../user-guide/hardware.md#att-anvanda-hat-kort) beskriver HAT-kompatibiliteten och hur de inbyggda gränssnitten stängs av.
 
 ## I2C-enheter
 
