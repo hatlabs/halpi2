@@ -69,9 +69,16 @@ Descriptive passages use a plain statement or the passive:
 ### Typography
 
 French typography is stricter than English and this is the most common source of
-sloppy-looking translated pages:
+sloppy-looking translated pages. The space before `; : ! ?` is not decoration:
+an ordinary space lets the line break in front of the punctuation, which is the
+first thing a French reader notices.
 
-- **Narrow no-break space before** `;` `:` `!` `?` and inside `« »`
+U+00A0 rather than U+202F (narrow no-break): U+202F is the typographically
+precise character but renders inconsistently across fonts, while U+00A0 is
+universally supported and is what French technical documentation uses in
+practice.
+
+- **No-break space (U+00A0) before** `;` `:` `!` `?` and inside `« »`
 - **Guillemets** `« … »` for quotations, not `"…"`
 - **Decimal comma**, as in Finnish: `0,9 A`, `5,5 × 2,1 mm`
 - **Space before the unit**: `12 V`, `250 kbit/s`, `−20 °C`

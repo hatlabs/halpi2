@@ -6,13 +6,13 @@ translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
 
 ## Images système
 
-Hat Labs fournit des images prêtes à l'emploi pour le HALPI2. Toutes comportent la configuration et les adaptations nécessaires au matériel HALPI2 : le CAN (NMEA 2000) comme périphérique réseau `can0`, le RS-485 (NMEA 0183) comme `/dev/ttyAMA4`, ainsi que le paquet `halpi2-firmware`.
+Hat Labs fournit des images prêtes à l'emploi pour le HALPI2. Toutes comportent la configuration et les adaptations nécessaires au matériel HALPI2 : le CAN (NMEA 2000) comme périphérique réseau `can0`, le RS-485 (NMEA 0183) comme `/dev/ttyAMA4`, ainsi que le paquet `halpi2-firmware`.
 
 ### HaLOS (par défaut)
 
 [HaLOS](https://docs.halos.fi) est une distribution Linux à base de conteneurs conçue pour les applications marines et industrielles. Elle propose une interface web pour l'administration système, la gestion des applications et la surveillance — sans écran, clavier ni VNC.
 
-**Variantes de l'image :**
+**Variantes de l'image :**
 
 | Image | Description |
 |:------|:------------|
@@ -44,7 +44,7 @@ Si vous n'appliquez pas ces réglages, il vous faudra un écran et un clavier ra
 
 ## Flasher une image système sur le SSD
 
-Il existe deux méthodes pour flasher une image système sur le SSD NVMe du HALPI2 : retirer le SSD et utiliser un adaptateur USB-NVMe, ou flasher directement sur l'appareil. L'adaptateur USB-NVMe est recommandé pour sa simplicité : ces adaptateurs se trouvent facilement en ligne à bas prix et la procédure est directe.
+Il existe deux méthodes pour flasher une image système sur le SSD NVMe du HALPI2 : retirer le SSD et utiliser un adaptateur USB-NVMe, ou flasher directement sur l'appareil. L'adaptateur USB-NVMe est recommandé pour sa simplicité : ces adaptateurs se trouvent facilement en ligne à bas prix et la procédure est directe.
 
 ### Flashage avec un adaptateur USB-NVMe
 
@@ -62,15 +62,15 @@ Une fois le flashage terminé, débranchez l'adaptateur et retirez le SSD. Réin
 
 Vous pouvez aussi flasher l'image système directement sur le HALPI2, sans retirer le SSD. Cette méthode suit la procédure standard de flashage d'un Compute Module, décrite dans la [documentation Raspberry Pi](https://www.raspberrypi.com/documentation/computers/compute-module.html#flash-compute-module-emmc). Les instructions de préparation y sont écrites pour la carte CM5 IO Board, mais la démarche est comparable sur le HALPI2.
 
-**Prérequis.** Installez l'outil `rpiboot` depuis le [dépôt `usbboot`](https://github.com/raspberrypi/usbboot) de Raspberry Pi. Sous Linux et macOS, compilez-le et installez-le depuis les sources comme l'indique le README du dépôt ; sous Windows, installez Raspberry Pi Imager ou le programme d'installation `rpiboot` autonome, accessible depuis la même page.
+**Prérequis.** Installez l'outil `rpiboot` depuis le [dépôt `usbboot`](https://github.com/raspberrypi/usbboot) de Raspberry Pi. Sous Linux et macOS, compilez-le et installez-le depuis les sources comme l'indique le README du dépôt ; sous Windows, installez Raspberry Pi Imager ou le programme d'installation `rpiboot` autonome, accessible depuis la même page.
 
-Pour préparer le HALPI2 au flashage par USB :
+Pour préparer le HALPI2 au flashage par USB :
 
 1. Mettez le système complètement hors tension et ouvrez le couvercle du boîtier en suivant la procédure du [Guide du matériel](./hardware.md#ouverture-du-boitier).
-2. Repérez le connecteur USB-C marqué « USB Boot », à droite de l'emplacement HAT sur la carte porteuse, et basculez le sélecteur de mode de démarrage voisin en position « Abnormal ». (Aucune LED ne le confirme encore : l'appareil est hors tension.)
+2. Repérez le connecteur USB-C marqué « USB Boot », à droite de l'emplacement HAT sur la carte porteuse, et basculez le sélecteur de mode de démarrage voisin en position « Abnormal ». (Aucune LED ne le confirme encore : l'appareil est hors tension.)
 3. Raccordez un câble USB entre votre ordinateur et le connecteur USB Boot du HALPI2, puis remettez l'appareil sous tension. Une LED ambre s'allume à côté du sélecteur, confirmant que le HALPI2 est en mode de démarrage USB.
-4. Sur votre ordinateur, lancez `rpiboot`. L'outil détecte le HALPI2 et charge le firmware de périphérique de stockage de masse ; le HALPI2 apparaît alors comme un périphérique de stockage USB.
-5. Une fois `rpiboot` terminé et le périphérique de stockage visible, remettez le sélecteur de mode de démarrage en position « Normal ». Cela n'interrompt pas le flashage et garantit que le HALPI2 démarrera normalement sur l'image fraîchement flashée à la prochaine mise sous tension. Laissé sur « Abnormal », l'appareil repasserait en mode de démarrage USB au lieu de lancer le nouveau système.
+4. Sur votre ordinateur, lancez `rpiboot`. L'outil détecte le HALPI2 et charge le firmware de périphérique de stockage de masse ; le HALPI2 apparaît alors comme un périphérique de stockage USB.
+5. Une fois `rpiboot` terminé et le périphérique de stockage visible, remettez le sélecteur de mode de démarrage en position « Normal ». Cela n'interrompt pas le flashage et garantit que le HALPI2 démarrera normalement sur l'image fraîchement flashée à la prochaine mise sous tension. Laissé sur « Abnormal », l'appareil repasserait en mode de démarrage USB au lieu de lancer le nouveau système.
 6. Flashez l'image système avec Raspberry Pi Imager (ou tout autre outil capable d'écrire sur un périphérique bloc), en visant le nouveau périphérique de stockage.
 7. Une fois le flashage terminé, débranchez le câble USB, coupez puis rétablissez l'alimentation du HALPI2, et refermez le boîtier.
 
@@ -103,37 +103,37 @@ Le HALPI2 propose plusieurs moyens d'accès à distance, qui permettent de surve
 
 ### Accès web (HaLOS)
 
-HaLOS fournit une interface d'administration web complète, sans logiciel supplémentaire :
+HaLOS fournit une interface d'administration web complète, sans logiciel supplémentaire :
 
-- **Tableau de bord** (`https://halos.local/`) : le tableau de bord Homarr donne accès à toutes les applications installées, dont Signal K, Grafana et les autres applications marines.
-- **Cockpit** (`https://halos.local:9090/`) : administration système, avec accès au terminal, mises à jour logicielles, configuration réseau et gestion des applications conteneurisées.
+- **Tableau de bord** (`https://halos.local/`) : le tableau de bord Homarr donne accès à toutes les applications installées, dont Signal K, Grafana et les autres applications marines.
+- **Cockpit** (`https://halos.local:9090/`) : administration système, avec accès au terminal, mises à jour logicielles, configuration réseau et gestion des applications conteneurisées.
 
 ### SSH (Secure Shell)
 
-SSH donne un accès sécurisé en ligne de commande au système HALPI2 : exécution de commandes, transfert de fichiers et administration à distance. SSH est activé par défaut sur les images HaLOS sans écran et sur OpenPlotter. Sur les variantes HaLOS Desktop et sur Raspberry Pi OS, il s'active avec `raspi-config`.
+SSH donne un accès sécurisé en ligne de commande au système HALPI2 : exécution de commandes, transfert de fichiers et administration à distance. SSH est activé par défaut sur les images HaLOS sans écran et sur OpenPlotter. Sur les variantes HaLOS Desktop et sur Raspberry Pi OS, il s'active avec `raspi-config`.
 
-Pour vous connecter en SSH, utilisez un client SSH tel que le terminal intégré de macOS et Linux, ou une application comme PuTTY sous Windows. La commande de connexion de base est :
+Pour vous connecter en SSH, utilisez un client SSH tel que le terminal intégré de macOS et Linux, ou une application comme PuTTY sous Windows. La commande de connexion de base est :
 
 ```bash
 ssh username@halpi2-ip-address
 ```
 
-Les connexions SSH sont chiffrées et sûres : correctement configurées avec une authentification robuste, elles conviennent aux réseaux publics. Elles consomment en outre très peu de bande passante, ce qui les rend idéales pour un accès distant sur des liaisons lentes ou à forte latence.
+Les connexions SSH sont chiffrées et sûres : correctement configurées avec une authentification robuste, elles conviennent aux réseaux publics. Elles consomment en outre très peu de bande passante, ce qui les rend idéales pour un accès distant sur des liaisons lentes ou à forte latence.
 
 ### VNC (Virtual Network Computing)
 
 !!! note
     Le VNC ne concerne que les images OpenPlotter et Raspberry Pi OS Desktop. HaLOS utilise à la place un accès web — voir ci-dessus.
 
-Le VNC donne accès à distance à l'interface graphique du HALPI2 : vous interagissez avec le bureau comme si vous étiez devant l'appareil. Il est préinstallé et préconfiguré sur les images OpenPlotter. Sur une installation Raspberry Pi OS, il s'active avec l'outil de configuration `raspi-config`.
+Le VNC donne accès à distance à l'interface graphique du HALPI2 : vous interagissez avec le bureau comme si vous étiez devant l'appareil. Il est préinstallé et préconfiguré sur les images OpenPlotter. Sur une installation Raspberry Pi OS, il s'active avec l'outil de configuration `raspi-config`.
 
 Pour vous connecter au bureau du HALPI2 à distance, utilisez l'application [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/) de RealVNC, disponible pour Windows, macOS, Linux, iOS et Android. Le VNC fonctionne très bien en réseau local et hors ligne, ce qui le rend idéal pour les installations à bord où la connexion Internet peut être limitée ou absente.
 
-Pour un accès à distance par Internet, le VNC demande une configuration réseau supplémentaire, comme une redirection de ports ou un VPN : le protocole ne traverse pas nativement les pare-feu et les équipements NAT.
+Pour un accès à distance par Internet, le VNC demande une configuration réseau supplémentaire, comme une redirection de ports ou un VPN : le protocole ne traverse pas nativement les pare-feu et les équipements NAT.
 
 ### Raspberry Pi Connect
 
-Raspberry Pi Connect propose une approche web moderne de l'accès distant au bureau : vous vous connectez au bureau du HALPI2 avec un simple navigateur, sans installer de logiciel. Le service traverse automatiquement les pare-feu et les configurations NAT, ce qui le rend particulièrement adapté à l'accès distant par Internet sans configuration réseau complexe.
+Raspberry Pi Connect propose une approche web moderne de l'accès distant au bureau : vous vous connectez au bureau du HALPI2 avec un simple navigateur, sans installer de logiciel. Le service traverse automatiquement les pare-feu et les configurations NAT, ce qui le rend particulièrement adapté à l'accès distant par Internet sans configuration réseau complexe.
 
 Contrairement au VNC, Raspberry Pi Connect gère seul les subtilités réseau et offre un accès simple depuis n'importe quelle connexion Internet. Il exige toutefois que le HALPI2 lui-même dispose d'une connexion Internet active.
 
@@ -147,14 +147,14 @@ Sous HaLOS, les paquets système (y compris le firmware du HALPI2) se mettent à
 
 ### Mises à jour en ligne de commande (toutes les images)
 
-La méthode la plus fiable pour mettre à jour le système passe par la ligne de commande. Ouvrez un terminal et exécutez :
+La méthode la plus fiable pour mettre à jour le système passe par la ligne de commande. Ouvrez un terminal et exécutez :
 
 ```bash
 sudo apt update
 sudo apt upgrade
 ```
 
-La première commande (`apt update`) actualise la base de données des paquets avec les dernières versions disponibles ; la seconde (`apt upgrade`) télécharge et installe toutes les mises à jour. Cette opération met à jour l'ensemble des paquets installés, y compris le système Raspberry Pi OS de base, les composants OpenPlotter et les logiciels propres au HALPI2.
+La première commande (`apt update`) actualise la base de données des paquets avec les dernières versions disponibles ; la seconde (`apt upgrade`) télécharge et installe toutes les mises à jour. Cette opération met à jour l'ensemble des paquets installés, y compris le système Raspberry Pi OS de base, les composants OpenPlotter et les logiciels propres au HALPI2.
 
 Pendant la mise à jour, il peut vous être demandé de confirmer l'installation de certains paquets ou le redémarrage de services. Vous pouvez généralement accepter, sauf raison particulière de refuser.
 
@@ -168,7 +168,7 @@ Le firmware du contrôleur HALPI2 se met à jour par la procédure de mise à jo
 
 ### Mises à jour automatiques du firmware
 
-Les mises à jour du firmware sont distribuées par le mécanisme de mise à jour standard, sous forme de paquets Debian dans un dépôt APT. Pour les rechercher et les installer, ouvrez un terminal et exécutez :
+Les mises à jour du firmware sont distribuées par le mécanisme de mise à jour standard, sous forme de paquets Debian dans un dépôt APT. Pour les rechercher et les installer, ouvrez un terminal et exécutez :
 
 ```bash
 sudo apt update
@@ -177,13 +177,13 @@ sudo apt upgrade
 
 Lorsqu'un nouveau firmware HALPI2 est disponible, il est téléchargé et installé automatiquement dans le cadre de la mise à jour. Le système vous signale si des mises à jour de firmware figurent parmi les paquets disponibles.
 
-Une fois le paquet de firmware mis à jour, il est indispensable de redémarrer le système correctement pour que les changements prennent effet. Utilisez la commande d'arrêt afin de garantir une coupure complète de l'alimentation :
+Une fois le paquet de firmware mis à jour, il est indispensable de redémarrer le système correctement pour que les changements prennent effet. Utilisez la commande d'arrêt afin de garantir une coupure complète de l'alimentation :
 
 ```bash
 sudo shutdown -h now
 ```
 
-**Important :** un simple redémarrage ne suffit pas pour une mise à jour de firmware. Un arrêt complet suivi d'un démarrage est nécessaire, car c'est à ce moment que le contrôleur redémarre et applique le nouveau firmware. Le firmware du contrôleur n'est mis à jour qu'à la mise sous tension.
+**Important :** un simple redémarrage ne suffit pas pour une mise à jour de firmware. Un arrêt complet suivi d'un démarrage est nécessaire, car c'est à ce moment que le contrôleur redémarre et applique le nouveau firmware. Le firmware du contrôleur n'est mis à jour qu'à la mise sous tension.
 
 ### Sécurités du firmware
 
@@ -191,7 +191,7 @@ Le HALPI2 intègre des mécanismes de sécurité contre la corruption du firmwar
 
 ### Installation manuelle du firmware
 
-Pour les utilisateurs avertis ou dans certains cas de dépannage, le firmware peut être installé manuellement avec l'outil en ligne de commande HALPI. Les fichiers de firmware se trouvent dans le répertoire `/usr/share/halpi2-firmware/` et se flashent directement :
+Pour les utilisateurs avertis ou dans certains cas de dépannage, le firmware peut être installé manuellement avec l'outil en ligne de commande HALPI. Les fichiers de firmware se trouvent dans le répertoire `/usr/share/halpi2-firmware/` et se flashent directement :
 
 ```bash
 halpi flash <firmware_file>.bin
@@ -199,19 +199,19 @@ halpi flash <firmware_file>.bin
 
 ### Désactiver les mises à jour automatiques du firmware
 
-Vous pouvez souhaiter désactiver les mises à jour automatiques pour rester sur une version précise. Cela se fait en modifiant le fichier de configuration du HALPI2 :
+Vous pouvez souhaiter désactiver les mises à jour automatiques pour rester sur une version précise. Cela se fait en modifiant le fichier de configuration du HALPI2 :
 
 ```bash
 sudo nano /etc/halpid/firmware.conf
 ```
 
-Repérez le réglage `AUTO_FLASH_ON_INSTALL` et donnez-lui la valeur `no` :
+Repérez le réglage `AUTO_FLASH_ON_INSTALL` et donnez-lui la valeur `no` :
 
 ```bash
 AUTO_FLASH_ON_INSTALL=no
 ```
 
-Enregistrez le fichier et quittez l'éditeur. Le HALPI2 ne flashera plus automatiquement de nouveau firmware lors des mises à jour ordinaires : vous gardez la maîtrise complète du moment où elles sont appliquées. Vous pouvez toujours installer une mise à jour manuellement avec la commande `halpi flash`.
+Enregistrez le fichier et quittez l'éditeur. Le HALPI2 ne flashera plus automatiquement de nouveau firmware lors des mises à jour ordinaires : vous gardez la maîtrise complète du moment où elles sont appliquées. Vous pouvez toujours installer une mise à jour manuellement avec la commande `halpi flash`.
 
 
 ## Outil en ligne de commande HALPI
@@ -224,7 +224,7 @@ Le démon HALPI s'exécute comme service système et assure la communication ent
 
 #### Gestion du service
 
-Le démon se pilote avec systemd :
+Le démon se pilote avec systemd :
 
 ```bash
 # Check daemon status
@@ -248,13 +248,13 @@ journalctl -u halpid -f
 
 #### Configuration
 
-La configuration du démon se trouve dans `/etc/halpid/halpid.conf`. Pour la modifier :
+La configuration du démon se trouve dans `/etc/halpid/halpid.conf`. Pour la modifier :
 
 ```bash
 sudo nano /etc/halpid/halpid.conf
 ```
 
-Toute modification nécessite le redémarrage du démon :
+Toute modification nécessite le redémarrage du démon :
 
 ```bash
 sudo systemctl restart halpid
@@ -266,16 +266,16 @@ La commande `halpi` donne un accès direct aux fonctions du contrôleur et à l'
 
 #### État du système et surveillance
 
-La fonction principale de l'outil en ligne de commande HALPI est de fournir un état complet du système : mesures matérielles, état de fonctionnement et données de surveillance en temps réel.
+La fonction principale de l'outil en ligne de commande HALPI est de fournir un état complet du système : mesures matérielles, état de fonctionnement et données de surveillance en temps réel.
 
-Afficher l'état du système :
+Afficher l'état du système :
 
 ```bash
 # Display comprehensive system status
 halpi status
 ```
 
-Cette commande donne une vue d'ensemble de l'état courant du HALPI2 : tensions, consommation de courant, températures et état du contrôleur.
+Cette commande donne une vue d'ensemble de l'état courant du HALPI2 : tensions, consommation de courant, températures et état du contrôleur.
 
 ```
 $ halpi status
@@ -293,7 +293,7 @@ $ halpi status
  T_pcb                         35.2  °C
 ```
 
-Pour ne suivre qu'une seule valeur, récupérez-la ainsi :
+Pour ne suivre qu'une seule valeur, récupérez-la ainsi :
 
 ```bash
 # Show controller firmware version
@@ -306,14 +306,14 @@ Pour écrire des scripts, mieux vaut utiliser l'API REST, décrite à la section
 
 L'outil en ligne de commande HALPI permet de consulter les réglages courants et de modifier les paramètres de fonctionnement.
 
-Consulter la configuration courante :
+Consulter la configuration courante :
 
 ```bash
 # Show current configuration
 halpi config
 ```
 
-Cela affiche tous les paramètres configurables et leurs valeurs actuelles :
+Cela affiche tous les paramètres configurables et leurs valeurs actuelles :
 
 ```
 $ halpi config
@@ -330,7 +330,7 @@ $ halpi config
 
 L'un des réglages les plus souvent ajustés est la luminosité des LED, que l'on peut adapter à l'environnement et aux préférences de chacun.
 
-Exemples de commandes pour régler la luminosité des LED :
+Exemples de commandes pour régler la luminosité des LED :
 
 ```bash
 # Get current LED brightness (0-255)
@@ -355,7 +355,7 @@ La luminosité accepte des valeurs de 0 (extinction complète) à 255 (luminosit
 
 L'outil en ligne de commande HALPI offre les fonctions de gestion de l'alimentation nécessaires à un fonctionnement sûr.
 
-Exemples de commandes :
+Exemples de commandes :
 
 ```bash
 # Initiate graceful shutdown
@@ -365,13 +365,13 @@ halpi shutdown
 halpi standby
 ```
 
-La commande d'arrêt garantit une mise hors tension en sécurité : le système d'exploitation ferme les applications et démonte correctement les systèmes de fichiers avant que le contrôleur ne coupe l'alimentation.
+La commande d'arrêt garantit une mise hors tension en sécurité : le système d'exploitation ferme les applications et démonte correctement les systèmes de fichiers avant que le contrôleur ne coupe l'alimentation.
 
 #### Accès à l'API REST
 
-Pour les utilisateurs avertis et les applications sur mesure, le démon HALPI expose également une API REST accessible par socket Unix. Elle offre un accès programmatique plus rapide aux données du système :
+Pour les utilisateurs avertis et les applications sur mesure, le démon HALPI expose également une API REST accessible par socket Unix. Elle offre un accès programmatique plus rapide aux données du système :
 
-Quelques exemples d'utilisation :
+Quelques exemples d'utilisation :
 
 ```bash
 # Get all system values
@@ -386,4 +386,4 @@ curl --unix-socket /var/run/halpid.sock http://localhost/values/V_supercap
 
 L'API REST est particulièrement utile aux applications de surveillance, aux systèmes d'enregistrement de données ou à tout logiciel devant accéder en temps réel à l'état du HALPI2.
 
-La documentation complète de l'API REST figure au chapitre [Développement logiciel : démon HALPI2](../software-development/daemon.md).
+La documentation complète de l'API REST figure au chapitre [Développement logiciel : démon HALPI2](../software-development/daemon.md).

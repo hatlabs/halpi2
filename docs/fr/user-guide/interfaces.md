@@ -16,7 +16,7 @@ Le panneau avant est équipé d'un connecteur Micro-C compatible avec le câblag
 
 ### Configuration de l'alimentation et charge du réseau
 
-L'impact du HALPI2 sur l'alimentation du réseau NMEA 2000 dépend du mode d'alimentation retenu. En configuration standard, avec une alimentation externe par le connecteur E7T, l'appareil ne prélève rien sur le réseau NMEA 2000 : son indice de charge (LEN) est donc de 0.
+L'impact du HALPI2 sur l'alimentation du réseau NMEA 2000 dépend du mode d'alimentation retenu. En configuration standard, avec une alimentation externe par le connecteur E7T, l'appareil ne prélève rien sur le réseau NMEA 2000 : son indice de charge (LEN) est donc de 0.
 
 Lorsqu'il est alimenté par le bus NMEA 2000, son courant doit être limité à 0,9 A par le limiteur interne, ce qui correspond à un LEN de 18. Dans ce cas, raccordez l'appareil à la dorsale du réseau à proximité du câble d'alimentation, afin de limiter la chute de tension et d'assurer un fonctionnement fiable.
 
@@ -34,13 +34,13 @@ Le raccordement à un réseau NMEA 2000 se fait au moyen d'un connecteur en T st
 
 L'interface CAN s'intègre nativement à Linux via le cadre SocketCAN et apparaît comme le périphérique réseau `can0`. Cette interface standard permet d'utiliser les outils CAN habituels de Linux pour la surveillance et le diagnostic. Elle est préconfigurée dans toutes les images système du HALPI2 (HaLOS, OpenPlotter et Raspberry Pi OS).
 
-L'intégration au serveur Signal K est disponible sur les images HaLOS Marine et sur OpenPlotter : elles détectent l'interface CAN automatiquement et l'utilisent pour traiter les données NMEA 2000. Sur les images HaLOS non marines, Signal K s'installe depuis la boutique Container Apps de Cockpit. Le serveur Signal K décode les PGN et donne accès aux données du réseau en temps réel depuis un navigateur.
+L'intégration au serveur Signal K est disponible sur les images HaLOS Marine et sur OpenPlotter : elles détectent l'interface CAN automatiquement et l'utilisent pour traiter les données NMEA 2000. Sur les images HaLOS non marines, Signal K s'installe depuis la boutique Container Apps de Cockpit. Le serveur Signal K décode les PGN et donne accès aux données du réseau en temps réel depuis un navigateur.
 
 ### Dépannage
 
-Le diagnostic du réseau commence par les LED RX/TX de la carte porteuse. En fonctionnement normal, elles clignotent au rythme du trafic. L'absence d'activité sur la LED RX peut signaler un problème de câblage ou une terminaison incorrecte ; l'absence d'activité sur la LED TX peut évoquer un conflit sur le réseau ou un défaut de câblage.
+Le diagnostic du réseau commence par les LED RX/TX de la carte porteuse. En fonctionnement normal, elles clignotent au rythme du trafic. L'absence d'activité sur la LED RX peut signaler un problème de câblage ou une terminaison incorrecte ; l'absence d'activité sur la LED TX peut évoquer un conflit sur le réseau ou un défaut de câblage.
 
-La commande Linux `candump` permet d'observer le bus CAN directement en ligne de commande. Cet outil affiche le détail de tous les messages présents sur le bus et autorise un diagnostic approfondi. Dans sa forme la plus simple :
+La commande Linux `candump` permet d'observer le bus CAN directement en ligne de commande. Cet outil affiche le détail de tous les messages présents sur le bus et autorise un diagnostic approfondi. Dans sa forme la plus simple :
 
 ```bash
 candump can0
@@ -51,20 +51,20 @@ Cette commande affiche en temps réel tous les messages CAN bruts reçus.
 Le tableau de bord du serveur Signal K offre des moyens de surveillance supplémentaires. Il affiche en temps réel les débits de données NMEA 2000 issus de l'interface CAN, et son explorateur de données permet de consulter les données NMEA 2000 décodées.
 
 !!! quote "Voir aussi"
-    - **Configuration de l'alimentation :** voir [Prise en main](../getting-started/getting-started.md#installation-definitive-de-lalimentation)
-    - **Mise en place logicielle :** voir le [Guide logiciel](./software.md)
-    - **Dépannage réseau :** voir le [Dépannage](./troubleshooting.md)
+    - **Configuration de l'alimentation :** voir [Prise en main](../getting-started/getting-started.md#installation-definitive-de-lalimentation)
+    - **Mise en place logicielle :** voir le [Guide logiciel](./software.md)
+    - **Dépannage réseau :** voir le [Dépannage](./troubleshooting.md)
 
 
 ## RS-485 (NMEA 0183)
 
 Le HALPI2 comporte une interface [RS-485](https://en.wikipedia.org/wiki/RS-485) isolée, qui assure la liaison série avec les réseaux [NMEA 0183](https://en.wikipedia.org/wiki/NMEA_0183)[^rs422] de plaisance et les applications industrielles.
 
-[^rs422]: Techniquement, le NMEA 0183 s'appuie sur la norme RS-422, mais le RS-485 est rétrocompatible : le HALPI2 peut donc dialoguer avec des appareils RS-422 comme RS-485.
+[^rs422]: Techniquement, le NMEA 0183 s'appuie sur la norme RS-422, mais le RS-485 est rétrocompatible : le HALPI2 peut donc dialoguer avec des appareils RS-422 comme RS-485.
 
 ### Spécifications de l'interface
 
-L'émetteur-récepteur RS-485 fonctionne jusqu'à 10 Mbit/s, même si les applications NMEA 0183 courantes utilisent les débits normalisés de 4800 ou 38400 bit/s. L'interface est isolée galvaniquement et conforme à la spécification NMEA 0183 ; elle protège le HALPI2 des boucles de masse et des perturbations électriques fréquentes en milieu marin.
+L'émetteur-récepteur RS-485 fonctionne jusqu'à 10 Mbit/s, même si les applications NMEA 0183 courantes utilisent les débits normalisés de 4800 ou 38400 bit/s. L'interface est isolée galvaniquement et conforme à la spécification NMEA 0183 ; elle protège le HALPI2 des boucles de masse et des perturbations électriques fréquentes en milieu marin.
 
 Elle est raccordée en interne à l'UART 4 du Raspberry Pi et apparaît sous Linux comme `/dev/ttyAMA4`. Ce port série standard est accessible à toute application prenant en charge la liaison série, notamment le serveur Signal K, OpenCPN et vos propres logiciels.
 
@@ -72,7 +72,7 @@ Elle est raccordée en interne à l'UART 4 du Raspberry Pi et apparaît sous Lin
 
 La carte porteuse comporte des LED RX et TX dédiées qui signalent l'activité de l'interface RS-485. Elles donnent un retour visuel immédiat pendant l'installation et le dépannage, et permettent de vérifier facilement que les données sont bien émises et reçues.
 
-En interface RS-485 générique, l'appareil peut être configuré en mode d'activation d'émission automatique ou manuel. En mode manuel, une broche GPIO commande le signal d'activation d'émission : le logiciel décide donc quand l'interface émet et quand elle reçoit. C'est nécessaire pour les applications multi-émetteurs, où l'interface doit rester à l'état récessif lorsqu'elle n'émet pas. En mode automatique, le matériel active lui-même le signal à l'émission des données, ce qui simplifie les montages à émetteur unique.
+En interface RS-485 générique, l'appareil peut être configuré en mode d'activation d'émission automatique ou manuel. En mode manuel, une broche GPIO commande le signal d'activation d'émission : le logiciel décide donc quand l'interface émet et quand elle reçoit. C'est nécessaire pour les applications multi-émetteurs, où l'interface doit rester à l'état récessif lorsqu'elle n'émet pas. En mode automatique, le matériel active lui-même le signal à l'émission des données, ce qui simplifie les montages à émetteur unique.
 
 L'interface RS-485 prend en outre en charge le mode semi-duplex, qui lui permet d'émettre et de recevoir sur la même paire de conducteurs.
 
@@ -95,8 +95,8 @@ En milieu marin, l'interface RS-485 est généralement raccordée à des récept
 Son débit élevé autorise aussi des usages moins classiques, comme l'acquisition rapide de données de capteurs ou des protocoles de communication sur mesure, ce qui rend le HALPI2 adapté aux navires de recherche et aux applications de surveillance spécialisées.
 
 !!! quote "Voir aussi"
-    - **Configuration logicielle :** voir le [Guide logiciel](./software.md)
-    - **Dépannage :** voir le [Dépannage](./troubleshooting.md)
+    - **Configuration logicielle :** voir le [Guide logiciel](./software.md)
+    - **Dépannage :** voir le [Dépannage](./troubleshooting.md)
 
 
 ## GNSS (GPS)
@@ -107,11 +107,11 @@ Pour les récepteurs u-blox (comme le Max-M8Q), les images HaLOS Marine fourniss
 
 ### Configuration automatique (récepteurs u-blox)
 
-Sur les images HaLOS Marine, un service systemd (`configure-ublox-marine`) détecte et configure automatiquement les récepteurs u-blox à chaque démarrage :
+Sur les images HaLOS Marine, un service systemd (`configure-ublox-marine`) détecte et configure automatiquement les récepteurs u-blox à chaque démarrage :
 
 | Paramètre | Valeur |
 |:----------|:-------|
-| Débit | 115200 bit/s (valeur d'usine : 9600) |
+| Débit | 115200 bit/s (valeur d'usine : 9600) |
 | Fréquence de rafraîchissement | 10 Hz (100 ms) |
 | Modèle dynamique | Sea (optimisé pour la navigation) |
 
@@ -121,9 +121,9 @@ Si aucun récepteur n'est détecté, le service s'arrête sans rien signaler. Un
 
 ### Accès aux données
 
-Les données GPS sont fournies par [gpsd](https://gpsd.io/) sur le port TCP 2947. Sur les images HaLOS Marine, Signal K se connecte automatiquement à gpsd : aucune configuration supplémentaire n'est nécessaire.
+Les données GPS sont fournies par [gpsd](https://gpsd.io/) sur le port TCP 2947. Sur les images HaLOS Marine, Signal K se connecte automatiquement à gpsd : aucune configuration supplémentaire n'est nécessaire.
 
-Pour le diagnostic, utilisez les outils en ligne de commande fournis avec gpsd :
+Pour le diagnostic, utilisez les outils en ligne de commande fournis avec gpsd :
 
 ```bash
 # Monitor GPS data in real-time
@@ -135,7 +135,7 @@ gpspipe -r
 
 ### Images autres que HaLOS
 
-Sur Raspberry Pi OS ou d'autres systèmes, installez et configurez gpsd manuellement :
+Sur Raspberry Pi OS ou d'autres systèmes, installez et configurez gpsd manuellement :
 
 ```bash
 sudo apt install gpsd gpsd-clients
@@ -144,8 +144,8 @@ sudo apt install gpsd gpsd-clients
 Modifiez `/etc/default/gpsd` pour y définir `DEVICES="/dev/ttyAMA0"`, puis redémarrez le service. Le récepteur fonctionnera avec ses réglages d'usine (9600 bit/s, 1 Hz) tant qu'il n'aura pas été configuré avec `ubxtool`, fourni par le paquet `gpsd-clients`.
 
 !!! quote "Voir aussi"
-    - **gpsd sur HaLOS :** voir la [documentation GPS de HaLOS](https://docs.halos.fi/user-guide/gps/)
-    - **Mise en place logicielle :** voir le [Guide logiciel](./software.md)
+    - **gpsd sur HaLOS :** voir la [documentation GPS de HaLOS](https://docs.halos.fi/user-guide/gps/)
+    - **Mise en place logicielle :** voir le [Guide logiciel](./software.md)
 
 
 ## Ethernet
@@ -174,7 +174,7 @@ La carte porteuse du HALPI2 comporte un connecteur 2×3 broches pour raccorder d
 
 ### Brochage du connecteur de boutons
 
-La carte porteuse comporte un connecteur 6 broches avec trois fonctions repérées :
+La carte porteuse comporte un connecteur 6 broches avec trois fonctions repérées :
 
 | Repère | Fonction | Description |
 |:-------|:---------|:------------|
@@ -182,18 +182,18 @@ La carte porteuse comporte un connecteur 6 broches avec trois fonctions repéré
 | Power | Alimentation du Raspberry Pi | Bouton d'alimentation du CM5 (entrée PWR_BUT) |
 | User | Configurable par l'utilisateur | Événement défini par l'utilisateur (non encore implémenté) |
 
-Chaque bouton occupe deux broches : une pour le signal, une pour la masse. Utilisez des boutons-poussoirs à contact normalement ouvert (NO) reliant la broche de signal à la masse lorsqu'on appuie.
+Chaque bouton occupe deux broches : une pour le signal, une pour la masse. Utilisez des boutons-poussoirs à contact normalement ouvert (NO) reliant la broche de signal à la masse lorsqu'on appuie.
 
 ### Fonctions des boutons
 
-**Bouton Reset :**
-Le bouton de réinitialisation provoque une réinitialisation matérielle du système en tirant la broche RUN du RP2040 vers la masse. Cette action réinitialise l'ensemble : contrôleur, CM5 et tous les périphériques raccordés. Il est particulièrement utile en cas d'urgence, lorsque l'arrêt logiciel a échoué et que le système ne répond plus.
+**Bouton Reset :**
+Le bouton de réinitialisation provoque une réinitialisation matérielle du système en tirant la broche RUN du RP2040 vers la masse. Cette action réinitialise l'ensemble : contrôleur, CM5 et tous les périphériques raccordés. Il est particulièrement utile en cas d'urgence, lorsque l'arrêt logiciel a échoué et que le système ne répond plus.
 
-**Bouton Power :**
-Le bouton d'alimentation est relié directement à l'entrée du bouton d'alimentation du CM5 et se comporte exactement comme celui d'un Raspberry Pi 5. Un double appui demande un arrêt propre du système : le système d'exploitation ferme correctement les applications et démonte les systèmes de fichiers avant la mise hors tension. Un appui long force une coupure immédiate, à n'utiliser que si le système ne répond plus.
+**Bouton Power :**
+Le bouton d'alimentation est relié directement à l'entrée du bouton d'alimentation du CM5 et se comporte exactement comme celui d'un Raspberry Pi 5. Un double appui demande un arrêt propre du système : le système d'exploitation ferme correctement les applications et démonte les systèmes de fichiers avant la mise hors tension. Un appui long force une coupure immédiate, à n'utiliser que si le système ne répond plus.
 
-**Bouton User :**
-La fonction du bouton utilisateur attend encore son implémentation logicielle ; elle deviendra configurable dans de futures versions du firmware. Une fois disponible, ce bouton servira à déclencher des actions personnalisées et propres à chaque application, selon les besoins de l'utilisateur.
+**Bouton User :**
+La fonction du bouton utilisateur attend encore son implémentation logicielle ; elle deviendra configurable dans de futures versions du firmware. Une fois disponible, ce bouton servira à déclencher des actions personnalisées et propres à chaque application, selon les besoins de l'utilisateur.
 
 ### Installation des boutons
 
@@ -210,5 +210,5 @@ Pour installer les boutons sur un pupitre de commande déporté, choisissez un e
 Tous les raccordements de boutons à la carte porteuse doivent utiliser des connecteurs femelles au pas de 2,54 mm. Veillez à l'alignement correct des broches et à la fermeté du raccordement, afin d'éviter les problèmes de contact en service.
 
 !!! quote "Voir aussi"
-    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#gestion-de-lalimentation-et-procedures-darret)
-    - **Accès au matériel :** voir le [Guide du matériel](./hardware.md)
+    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#gestion-de-lalimentation-et-procedures-darret)
+    - **Accès au matériel :** voir le [Guide du matériel](./hardware.md)

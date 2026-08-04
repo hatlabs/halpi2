@@ -11,9 +11,9 @@ Le HALPI2 est un ordinateur de bord prêt à l'emploi basé sur le Raspberry Pi 
 !!! note "Lien vers la boutique"
     Achetez le HALPI2 sur la [boutique en ligne Hat Labs](https://shop.hatlabs.fi/products/halpi2-computer).
 
-## Qu'est-ce que le HALPI2 ?
+## Qu'est-ce que le HALPI2 ?
 
-Le HALPI2 représente la dernière évolution de l'informatique embarquée durcie : il associe la puissance et l'écosystème du Raspberry Pi à des fonctions spécialisées pour les environnements exigeants. Contrairement aux ordinateurs monocartes classiques, le HALPI2 a été conçu dès l'origine pour un fonctionnement continu dans des conditions difficiles, là où la fiabilité est primordiale.
+Le HALPI2 représente la dernière évolution de l'informatique embarquée durcie : il associe la puissance et l'écosystème du Raspberry Pi à des fonctions spécialisées pour les environnements exigeants. Contrairement aux ordinateurs monocartes classiques, le HALPI2 a été conçu dès l'origine pour un fonctionnement continu dans des conditions difficiles, là où la fiabilité est primordiale.
 
 Le système associe un Raspberry Pi Compute Module 5 à une carte porteuse spécifique, le tout logé dans un boîtier en aluminium étanche qui fait également office de dissipateur thermique. Cette conception apporte la puissance de calcul nécessaire aux applications modernes tout en conservant la robustesse qu'exigent les usages marins et industriels.
 
@@ -22,9 +22,9 @@ Le système associe un Raspberry Pi Compute Module 5 à une carte porteuse spéc
 ### Caractéristiques du boîtier
 
 - **Boîtier en aluminium étanche (IP65)**, dimensions 200 × 130 × 60 mm
-- **Connecteurs standard** : alimentation, NMEA 2000, ethernet gigabit, HDMI, 2× USB 3.0 et antenne WiFi/Bluetooth
-- **Connectique flexible** : 3× presse-étoupe PG7 ou connecteurs étanches SP13
-- **Antennes externes** : découpes prévues pour 2 connecteurs SMA supplémentaires
+- **Connecteurs standard** : alimentation, NMEA 2000, ethernet gigabit, HDMI, 2× USB 3.0 et antenne WiFi/Bluetooth
+- **Connectique flexible** : 3× presse-étoupe PG7 ou connecteurs étanches SP13
+- **Antennes externes** : découpes prévues pour 2 connecteurs SMA supplémentaires
 - **Conçu pour la fixation murale**, connecteurs positionnés pour faciliter l'installation
 
 ![Disposition des connecteurs du HALPI2](./user-guide/front-panel-connectors-all.jpg)
@@ -32,15 +32,15 @@ Le système associe un Raspberry Pi Compute Module 5 à une carte porteuse spéc
 ### Caractéristiques matérielles
 
 - **Large plage de tension d'entrée** de 10 à 32 V CC, protection jusqu'à 100 V CC
-- **Limitation de courant intelligente** : courant d'entrée maximal de 0,9 ou 2,5 A, au choix de l'utilisateur
-- **Deux modes d'alimentation** : raccordement direct en 12 V/24 V, ou alimentation par le bus NMEA 2000 en 12 V
+- **Limitation de courant intelligente** : courant d'entrée maximal de 0,9 ou 2,5 A, au choix de l'utilisateur
+- **Deux modes d'alimentation** : raccordement direct en 12 V/24 V, ou alimentation par le bus NMEA 2000 en 12 V
 - **Sauvegarde par supercondensateurs** pour l'immunité aux micro-coupures et l'arrêt propre en cas de perte d'alimentation
 - **Gestion avancée de l'alimentation** avec détection automatique des coupures
-- **Refroidissement passif** : le CM5 est en contact direct avec le boîtier
+- **Refroidissement passif** : le CM5 est en contact direct avec le boîtier
 - **Stockage rapide** via une interface M.2 NVMe SSD standard
 - **Extensibilité** par le connecteur GPIO 40 broches standard du Raspberry Pi
-- **Entrées/sorties complètes** : 2× HDMI, 2× MIPI (DSI/CSI), 4× USB 3.0, ethernet gigabit
-- **Interfaces dédiées au nautisme** : CAN FD (NMEA 2000) et RS-485 (NMEA 0183)
+- **Entrées/sorties complètes** : 2× HDMI, 2× MIPI (DSI/CSI), 4× USB 3.0, ethernet gigabit
+- **Interfaces dédiées au nautisme** : CAN FD (NMEA 2000) et RS-485 (NMEA 0183)
 - **Horloge temps réel** avec pile de sauvegarde pour une heure exacte
 - **Indication visuelle de l'état** par cinq LED RGB
 - **Interaction utilisateur** par connecteurs de boutons configurables
@@ -50,7 +50,7 @@ Le système associe un Raspberry Pi Compute Module 5 à une carte porteuse spéc
 
 ### Caractéristiques logicielles
 
-- **Images système préconfigurées** prêtes à l'emploi : [HaLOS](https://docs.halos.fi) (par défaut), OpenPlotter, Raspberry Pi OS et Raspberry Pi OS Lite
+- **Images système préconfigurées** prêtes à l'emploi : [HaLOS](https://docs.halos.fi) (par défaut), OpenPlotter, Raspberry Pi OS et Raspberry Pi OS Lite
 - **Surveillance complète** de la tension, du courant et de la température
 - **Mises à jour du firmware transparentes** via l'interface I2C
 
@@ -59,7 +59,7 @@ Le système associe un Raspberry Pi Compute Module 5 à une carte porteuse spéc
 ### Applications marines
 
 - **Systèmes de navigation** avec traceurs de cartes et intégration GPS
-- **Enregistrement de données** : paramètres moteur, capteurs environnementaux et performances du navire
+- **Enregistrement de données** : paramètres moteur, capteurs environnementaux et performances du navire
 - **Serveurs Signal K** pour une gestion unifiée des données du bateau
 - **Informatique de bord polyvalente** pour l'accès à Internet et les communications
 - **Diagnostic des réseaux NMEA 2000** pour une meilleure fiabilité du système
@@ -81,7 +81,7 @@ Le système associe un Raspberry Pi Compute Module 5 à une carte porteuse spéc
 
 ## Contenu de l'emballage
 
-L'emballage du HALPI2 contient :
+L'emballage du HALPI2 contient :
 
 - **L'unité HALPI2** avec Compute Module 5 et SSD NVMe préinstallés (sauf si commandée sans)
 - **Un câble d'alimentation** à connecteur E7T (compatible Amphenol LTW Ceres Mini), longueur 2 m
@@ -93,7 +93,7 @@ L'emballage du HALPI2 contient :
 
 ![Contenu de la pochette d'accessoires du HALPI2](./goodie-bag-contents.jpg)
 
-Accessoires disponibles séparément :
+Accessoires disponibles séparément :
 
 - **Câble de dérivation NMEA 2000** pour les installations alimentées par le bus
 - **Kits de connecteurs divers** pour les installations sur mesure

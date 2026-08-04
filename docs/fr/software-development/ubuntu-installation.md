@@ -13,7 +13,7 @@ Ubuntu propose une [image Ubuntu officielle pour le Raspberry Pi](https://ubuntu
 
 ## Prérequis
 
-Une fois l'image Ubuntu (ou toute autre image basée sur Debian) installée sur le Pi, assurez-vous que les mises à jour logicielles sont à jour :
+Une fois l'image Ubuntu (ou toute autre image basée sur Debian) installée sur le Pi, assurez-vous que les mises à jour logicielles sont à jour :
 
 ```bash
 sudo bash
@@ -23,7 +23,7 @@ apt auto-remove
 exit
 ```
 
-Installez ensuite les paquets suivants, nécessaires à la procédure d'installation :
+Installez ensuite les paquets suivants, nécessaires à la procédure d'installation :
 
 ```bash
 sudo apt install curl openssh-server dpkg-dev i2c-tools npm net-tools iw git
@@ -31,7 +31,7 @@ sudo apt install curl openssh-server dpkg-dev i2c-tools npm net-tools iw git
 
 ## Dépôt Hat Labs
 
-Les paquets précompilés pour le HALPI2 sont fournis par Hat Labs et disponibles dans un dépôt apt. Pour ajouter ce dépôt, exécutez les commandes suivantes avec les privilèges root (depuis `sudo bash`) :
+Les paquets précompilés pour le HALPI2 sont fournis par Hat Labs et disponibles dans un dépôt apt. Pour ajouter ce dépôt, exécutez les commandes suivantes avec les privilèges root (depuis `sudo bash`) :
 
 ```bash
 sudo bash
@@ -49,7 +49,7 @@ exit
 
 ## Firmware commun du HALPI2
 
-Le firmware des périphériques communs de la carte HALPI2 se configure en modifiant `/boot/firmware/config.txt` et en ajoutant les lignes suivantes dans la section `[all]` :
+Le firmware des périphériques communs de la carte HALPI2 se configure en modifiant `/boot/firmware/config.txt` et en ajoutant les lignes suivantes dans la section `[all]` :
 
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
@@ -71,7 +71,7 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 dtoverlay=uart4-pi5
 ```
 
-L'interface I2C doit ensuite être activée pour que le démon `halpid`, qui s'exécute en espace utilisateur, puisse dialoguer avec le matériel de gestion de l'alimentation. Créez pour cela le fichier `/etc/modules-load.d/i2c-dev.conf` :
+L'interface I2C doit ensuite être activée pour que le démon `halpid`, qui s'exécute en espace utilisateur, puisse dialoguer avec le matériel de gestion de l'alimentation. Créez pour cela le fichier `/etc/modules-load.d/i2c-dev.conf` :
 
 ```bash
 sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
@@ -79,7 +79,7 @@ sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
 
 ## Configuration du bus CAN (NMEA 2000)
 
-La commande suivante active le bus CAN pour les communications NMEA 2000 sur le HALPI2 :
+La commande suivante active le bus CAN pour les communications NMEA 2000 sur le HALPI2 :
 
 ```bash
 sudo bash
@@ -99,7 +99,7 @@ systemctl enable systemd-networkd
 reboot
 ```
 
-Une fois le système redémarré, vous pouvez vérifier la disponibilité de l'interface CAN avec l'une ou l'autre de ces commandes :
+Une fois le système redémarré, vous pouvez vérifier la disponibilité de l'interface CAN avec l'une ou l'autre de ces commandes :
 
 ```bash
 ip link show can0
@@ -108,13 +108,13 @@ ifconfig can0
 
 ## Démon HALPI2
 
-Le démon HALPI2 surveille et pilote la carte porteuse du HALPI2 et fournit l'outil en ligne de commande `halpi`. Installez le paquet `halpid` depuis le dépôt Hat Labs :
+Le démon HALPI2 surveille et pilote la carte porteuse du HALPI2 et fournit l'outil en ligne de commande `halpi`. Installez le paquet `halpid` depuis le dépôt Hat Labs :
 
 ```bash
 sudo apt install halpid
 ```
 
-Le démon HALPI2 devrait maintenant être en cours d'exécution et la commande `halpi` disponible. Vous pouvez vérifier l'état du démon avec :
+Le démon HALPI2 devrait maintenant être en cours d'exécution et la commande `halpi` disponible. Vous pouvez vérifier l'état du démon avec :
 
 ```bash
 halpi status
@@ -122,13 +122,13 @@ halpi status
 
 ## Installation du firmware du HALPI2
 
-Maintenant que la commande `halpi` est disponible, vous pouvez installer le paquet `halpi2-firmware`, qui flashe le firmware le plus récent sur la carte HALPI2 :
+Maintenant que la commande `halpi` est disponible, vous pouvez installer le paquet `halpi2-firmware`, qui flashe le firmware le plus récent sur la carte HALPI2 :
 
 ```bash
 apt install halpi2-firmware
 ```
 
-Le firmware peut aussi être flashé manuellement :
+Le firmware peut aussi être flashé manuellement :
 
 ```bash
 halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
@@ -136,7 +136,7 @@ halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
 
 ## Configuration du serveur Signal K
 
-Le serveur Signal K est un choix répandu pour la gestion des données de navigation ; il sait exploiter aussi bien les sources NMEA 2000 que NMEA 0183. Il s'installe avec npm. Les commandes suivantes installent le serveur et lancent la configuration initiale :
+Le serveur Signal K est un choix répandu pour la gestion des données de navigation ; il sait exploiter aussi bien les sources NMEA 2000 que NMEA 0183. Il s'installe avec npm. Les commandes suivantes installent le serveur et lancent la configuration initiale :
 
 ```bash
 npm i -g signalk-server
@@ -147,7 +147,7 @@ Vous pouvez ensuite accéder au serveur Signal K depuis un navigateur, sur le po
 
 ### Connexion NMEA 2000 dans Signal K
 
-Créer une connexion NMEA 2000 vers l'interface CAN du HALPI nécessite un compte administrateur Signal K. Dans le menu, allez dans `Server > Data Connections`, cliquez sur `+Add` et créez une connexion avec les propriétés suivantes :
+Créer une connexion NMEA 2000 vers l'interface CAN du HALPI nécessite un compte administrateur Signal K. Dans le menu, allez dans `Server > Data Connections`, cliquez sur `+Add` et créez une connexion avec les propriétés suivantes :
 
 ```text
           Data Type: NMEA2000
@@ -161,7 +161,7 @@ Redémarrez, puis vérifiez sur le tableau de bord que des données arrivent.
 
 ### Connexion NMEA 0183 dans Signal K
 
-Créer une connexion NMEA 0183 nécessite également un compte administrateur Signal K. Dans le menu, allez dans `Server > Data Connections`, cliquez sur `+Add` et créez une connexion avec au moins les propriétés suivantes :
+Créer une connexion NMEA 0183 nécessite également un compte administrateur Signal K. Dans le menu, allez dans `Server > Data Connections`, cliquez sur `+Add` et créez une connexion avec au moins les propriétés suivantes :
 
 ```text
           Data Type: NMEA0183

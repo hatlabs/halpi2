@@ -65,7 +65,7 @@ Mesures effectuées sous 12 V avec un Raspberry Pi CM5 exécutant l'image HaLOS 
 | Charge maximale | environ 590 mA |
 
 !!! note
-    Ces mesures excluent la consommation des périphériques USB externes. Chaque port USB 3.0 peut fournir jusqu'à 0,93 A ; la consommation totale du système dépend donc fortement des périphériques raccordés.
+    Ces mesures excluent la consommation des périphériques USB externes. Chaque port USB 3.0 peut fournir jusqu'à 0,93 A ; la consommation totale du système dépend donc fortement des périphériques raccordés.
 
 ## Brochages des connecteurs
 
@@ -89,7 +89,7 @@ Type Phoenix MC, pas de 3,81 mm, 4 broches. Isolé galvaniquement.
 | 3 | CAN_H |
 | 4 | CAN_L |
 
-Le cavalier de terminaison (repère « 120R ») insère une résistance de terminaison de 120 Ω entre CAN_H et CAN_L.
+Le cavalier de terminaison (repère « 120R ») insère une résistance de terminaison de 120 Ω entre CAN_H et CAN_L.
 
 ### Connecteur RS-485
 
@@ -127,7 +127,7 @@ Emplacement M.2 Socket M pour SSD NVMe, formats 2230 à 2280. Raccordé en PCIe 
 
 ### Connecteurs de ventilateur (CM5 Fan)
 
-Connecteurs de ventilateur PWM 4 broches (HC-1.0-4PLT), présents sur les faces supérieure et inférieure de la carte porteuse. Ils sont raccordés en parallèle : n'en utilisez qu'un seul à la fois.
+Connecteurs de ventilateur PWM 4 broches (HC-1.0-4PLT), présents sur les faces supérieure et inférieure de la carte porteuse. Ils sont raccordés en parallèle : n'en utilisez qu'un seul à la fois.
 
 | Broche | Fonction |
 |:-------|:---------|
@@ -157,9 +157,9 @@ Prise USB Type-C, mode périphérique USB 2.0. Raccordée au port USB 2.0 OTG du
 
 ## Connecteur GPIO 40 broches (Raspberry Pi GPIO Header)
 
-Le connecteur GPIO suit le brochage standard 40 broches du Raspberry Pi. Les broches suivantes sont utilisées par les périphériques intégrés du HALPI2 :
+Le connecteur GPIO suit le brochage standard 40 broches du Raspberry Pi. Les broches suivantes sont utilisées par les périphériques intégrés du HALPI2 :
 
-| GPIO | Broche | Fonction | Interface | Partagée ? |
+| GPIO | Broche | Fonction | Interface | Partagée ? |
 |:-----|:-------|:---------|:----------|:-----------|
 | 2 | 3 | I2C1 SDA | I2C système | Oui (adresse 0x6d réservée) |
 | 3 | 5 | I2C1 SCL | I2C système | Oui (adresse 0x6d réservée) |
@@ -176,7 +176,7 @@ Toutes les autres broches GPIO restent disponibles pour les HAT et les applicati
 
 ## Périphériques I2C
 
-Le bus I2C système (I2C1, GPIO 2/3) accueille les périphériques suivants :
+Le bus I2C système (I2C1, GPIO 2/3) accueille les périphériques suivants :
 
 | Adresse | Périphérique | Fonction |
 |:--------|:-------------|:---------|
@@ -213,7 +213,7 @@ Les défauts de bus, les boucles de masse et les perturbations présentes sur le
 
 ### Emplacements du panneau
 
-Le panneau avant comporte des emplacements prépercés pour :
+Le panneau avant comporte des emplacements prépercés pour :
 
 - 1× connecteur d'alimentation E7T
 - 1× connecteur NMEA 2000 Micro-C
@@ -227,9 +227,9 @@ Le panneau avant comporte des emplacements prépercés pour :
 
 ### Fixation
 
-- Fixation de la carte porteuse : 4 vis M4×6 sur le fond du boîtier
-- Fixation des HAT : 4 inserts filetés M2.5 (à partir de la v0.5.0 ; la v0.4.0 impose de poser les écrous à la main)
-- Fixation du CM5 : 4 écrous à souder M2.5
+- Fixation de la carte porteuse : 4 vis M4×6 sur le fond du boîtier
+- Fixation des HAT : 4 inserts filetés M2.5 (à partir de la v0.5.0 ; la v0.4.0 impose de poser les écrous à la main)
+- Fixation du CM5 : 4 écrous à souder M2.5
 
 ## Gestion thermique
 
@@ -244,8 +244,8 @@ Le CM5 est monté sous la carte porteuse. La chaleur du SoC et du jeu de composa
 Le boîtier standard assure un refroidissement passif, sans ventilateur. Un connecteur de ventilateur PWM 4 broches est disponible pour les boîtiers sur mesure ou les applications à température ambiante élevée.
 
 !!! quote "Voir aussi"
-    - **Schémas et fichiers de conception :** voir [Fichiers de conception et schémas](../appendices/design-files.md)
-    - **Comportement de la gestion d'alimentation :** voir [L'alimentation en détail](./power-supply.md)
-    - **Protocoles d'interface :** voir [Interfaces et connectivité](./interfaces.md)
-    - **Contrôleur et protocole I2C :** voir [Contrôleur de la carte porteuse](./controller.md)
-    - **Installation physique :** voir [Guide du matériel](../user-guide/hardware.md)
+    - **Schémas et fichiers de conception :** voir [Fichiers de conception et schémas](../appendices/design-files.md)
+    - **Comportement de la gestion d'alimentation :** voir [L'alimentation en détail](./power-supply.md)
+    - **Protocoles d'interface :** voir [Interfaces et connectivité](./interfaces.md)
+    - **Contrôleur et protocole I2C :** voir [Contrôleur de la carte porteuse](./controller.md)
+    - **Installation physique :** voir [Guide du matériel](../user-guide/hardware.md)

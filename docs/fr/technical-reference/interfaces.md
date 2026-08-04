@@ -13,14 +13,14 @@ intégrés, voir le guide de l'utilisateur
 
 Le Compute Module 5 atteint le connecteur 40 broches par l'intermédiaire de son
 contrôleur d'entrées/sorties RP1, qui expose cinq UART (`uart0`–`uart4`). Chaque
-UART est câblé sur une paire de broches GPIO fixe : contrairement aux modèles de
+UART est câblé sur une paire de broches GPIO fixe : contrairement aux modèles de
 Pi antérieurs, les broches ne peuvent pas être réaffectées. La console de
-connexion est un UART de débogage distinct et dédié (`/dev/ttyAMA10`) ; elle ne
+connexion est un UART de débogage distinct et dédié (`/dev/ttyAMA10`) ; elle ne
 fait pas partie de cette liste.
 
 | UART | TX / RX | Broches du connecteur | Périphérique Linux | Disponibilité sur le HALPI2 |
 |:-----|:--------|:----------------------|:-------------------|:----------------------------|
-| `uart0` | GPIO14 / 15 | 8 / 10 | `/dev/ttyAMA0` | Libre. Port série HAT conventionnel ; utilisé par les HAT GNSS. |
+| `uart0` | GPIO14 / 15 | 8 / 10 | `/dev/ttyAMA0` | Libre. Port série HAT conventionnel ; utilisé par les HAT GNSS. |
 | `uart1` | GPIO0 / 1 | 27 / 28 | `/dev/ttyAMA1` | Libre. Ce sont les broches de l'EEPROM d'identification HAT (ID_SD / ID_SC). |
 | `uart2` | GPIO4 / 5 | 7 / 29 | `/dev/ttyAMA2` | Libre. |
 | `uart3` | GPIO8 / 9 | 24 / 21 | `/dev/ttyAMA3` | Utilisé par le contrôleur CAN FD (SPI0). |
@@ -29,26 +29,26 @@ fait pas partie de cette liste.
 ### Activer un UART
 
 Ajoutez l'overlay `-pi5` correspondant dans `/boot/firmware/config.txt`, puis
-redémarrez :
+redémarrez :
 
 ```
 dtoverlay=uart2-pi5
 ```
 
 `uart0` s'active plutôt avec `dtparam=uart0=on`. (Sur un CM5, le firmware
-redirige les overlays `uartN` simples vers leurs équivalents `uartN-pi5` : les
+redirige les overlays `uartN` simples vers leurs équivalents `uartN-pi5` : les
 deux noms fonctionnent, la forme `-pi5` est employée ici par souci de clarté.)
 
 Le contrôle de flux matériel s'active explicitement avec le paramètre `ctsrts`,
 et les overlays peuvent piloter directement la ligne d'activation d'un
-émetteur-récepteur RS-485 avec le paramètre `rs485` :
+émetteur-récepteur RS-485 avec le paramètre `rs485` :
 
 ```
 dtoverlay=uart2-pi5,ctsrts
 ```
 
 CTS/RTS occupent la paire de broches GPIO suivante, souvent déjà utilisée sur le
-HALPI2 :
+HALPI2 :
 
 | UART | CTS / RTS | Entre en conflit avec |
 |:-----|:----------|:----------------------|
@@ -61,11 +61,11 @@ HALPI2 :
 
 ### Libérer un UART occupé
 
-`uart3` et `uart4` recouvrent les interfaces CAN FD et RS-485 de la carte :
+`uart3` et `uart4` recouvrent les interfaces CAN FD et RS-485 de la carte :
 
-- **`uart3`** partage le bus SPI0 avec le contrôleur CAN FD : GPIO9 est la sortie
+- **`uart3`** partage le bus SPI0 avec le contrôleur CAN FD : GPIO9 est la sortie
   de données du contrôleur (SDO). Utiliser `uart3` impose de désactiver
-  l'interface CAN et de modifier le matériel ; ce n'est pas pris en charge sur la
+  l'interface CAN et de modifier le matériel ; ce n'est pas pris en charge sur la
   carte standard.
 - **`uart4`** est le port RS-485. Retirer le cavalier d'activation de réception
   déconnecte le récepteur RS-485 de GPIO13 et libère `uart4` pour un usage
@@ -77,7 +77,7 @@ Les étapes matérielles sont décrites dans
 ### Vérification
 
 Après redémarrage, vérifiez que le nœud de périphérique existe et que les
-broches portent bien la fonction attendue :
+broches portent bien la fonction attendue :
 
 ```
 ls /dev/ttyAMA*

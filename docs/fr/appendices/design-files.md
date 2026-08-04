@@ -16,7 +16,7 @@ Les fichiers de conception mécanique ne couvrent pour l'instant que le boîtier
 
 Version corrective apportant des améliorations d'intégrité du signal et de mise à la masse identifiées lors des tests de production.
 
-Modifications :
+Modifications :
 
 - Ajout d'un oscillateur d'horloge pour le signal NVMe SUSCLK, corrigeant des problèmes de compatibilité avec certains SSD NVMe
 - Ajout des condensateurs manquants sur les paires différentielles RX du concentrateur USB3
@@ -24,14 +24,14 @@ Modifications :
 
 ### Fichiers de conception
 
-- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.1.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.1.zip)
-- Schéma (PDF) : [HALPI2-schematic_v0.6.1.pdf](./HALPI2-schematic_v0.6.1.pdf)
+- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.1.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.1.zip)
+- Schéma (PDF) : [HALPI2-schematic_v0.6.1.pdf](./HALPI2-schematic_v0.6.1.pdf)
 
 ## Version 0.6.0
 
 Troisième version de production du HALPI2, avec de nouvelles corrections mineures sur la carte porteuse. Les fonctions de la carte restent identiques à celles de la version 0.5.0.
 
-Modifications :
+Modifications :
 
 - La sortie 3,3 V est désormais commandée par le contrôleur au lieu d'être toujours active
 - Ajout de points de test pour améliorer les tests de production
@@ -43,14 +43,14 @@ Modifications :
 
 ### Fichiers de conception
 
-- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.0.zip)
-- Schéma (PDF) : [HALPI2-schematic_v0.6.0.pdf](./HALPI2-schematic_v0.6.0.pdf)
+- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.6.0.zip)
+- Schéma (PDF) : [HALPI2-schematic_v0.6.0.pdf](./HALPI2-schematic_v0.6.0.pdf)
 
 ## Version 0.5.0
 
 Deuxième version de production du HALPI2, avec des corrections mineures sur la carte porteuse. Le fonctionnement de la carte reste identique à celui de la version 0.4.0.
 
-Modifications :
+Modifications :
 
 - Correction de petites erreurs de sérigraphie
 - Suppression des plans de cuivre 3,3 V de la face inférieure, près des structures de fixation
@@ -63,9 +63,9 @@ Modifications :
 
 ### Fichiers de conception
 
-- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.5.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.5.0.zip)
-- Schéma (PDF) : [HALPI2-schematic_v0.5.0.pdf](./HALPI2-schematic_v0.5.0.pdf)
-- Modèle 3D du boîtier : [HALPI2-enclosure_v0.4.0.step](./HALPI2-enclosure_v0.4.0.step) (identique à la version 0.4.0)
+- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.5.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.5.0.zip)
+- Schéma (PDF) : [HALPI2-schematic_v0.5.0.pdf](./HALPI2-schematic_v0.5.0.pdf)
+- Modèle 3D du boîtier : [HALPI2-enclosure_v0.4.0.step](./HALPI2-enclosure_v0.4.0.step) (identique à la version 0.4.0)
 
 ## Version 0.4.0
 
@@ -73,6 +73,6 @@ Première version publique du HALPI2.
 
 ### Fichiers de conception
 
-- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip)
-- Schéma (PDF) : [HALPI2-schematic_v0.4.0.pdf](./HALPI2-schematic_v0.4.0.pdf)
-- Modèle 3D du boîtier : [HALPI2-enclosure_v0.4.0.step](./HALPI2-enclosure_v0.4.0.step)
+- Fichiers de conception KiCad : [https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip](https://github.com/hatlabs/HALPI2-hardware/archive/refs/tags/v0.4.0.zip)
+- Schéma (PDF) : [HALPI2-schematic_v0.4.0.pdf](./HALPI2-schematic_v0.4.0.pdf)
+- Modèle 3D du boîtier : [HALPI2-enclosure_v0.4.0.step](./HALPI2-enclosure_v0.4.0.step)
