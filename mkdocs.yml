@@ -150,6 +150,42 @@ plugins:
             Errata: Bekannte Fehler
             Resources: Ressourcen
             FAQ: FAQ
+        - locale: sv
+          name: Svenska
+          build: true
+          site_name: HALPI2-användarhandbok
+          site_description: Användarhandbok för HALPI2, ett Raspberry Pi CM5-bärkort för marina och industriella tillämpningar
+          admonition_translations:
+            note: Obs
+            warning: Varning
+            tip: Tips
+            info: Information
+            danger: Fara
+            example: Exempel
+          nav_translations:
+            Introduction: Introduktion
+            Getting Started: Kom igång
+            User Guide: Användarhandbok
+            System Operation: Systemdrift
+            Hardware Guide: Hårdvaruguide
+            Interfaces and Connectivity: Gränssnitt och anslutningar
+            Software Guide: Programvaruguide
+            Troubleshooting: Felsökning
+            Technical Reference: Teknisk referens
+            Hardware Reference: Hårdvarureferens
+            Power Supply Deep Dive: Strömförsörjningen i detalj
+            Carrier Board Controller: Bärkortets styrkrets
+            Software Development: Programvaruutveckling
+            HALPI2 Daemon: HALPI2-daemon
+            System Integration: Systemintegration
+            Advanced Configuration: Avancerad konfiguration
+            Other Debian Distributions: Andra Debian-distributioner
+            Appendices: Bilagor
+            Design Files and Schematics: Konstruktionsfiler och kopplingsscheman
+            Compliance and Certifications: Överensstämmelse och certifieringar
+            Errata: Kända fel
+            Resources: Resurser
+            FAQ: Vanliga frågor
 
 markdown_extensions:
   - admonition
