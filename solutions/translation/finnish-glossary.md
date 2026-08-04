@@ -7,7 +7,7 @@ problem_type: reference
 component: documentation
 severity: medium
 applies_when:
-  - Translating any page under docs/ into Finnish (*.fi.md)
+  - Translating any page from docs/en/ into Finnish under docs/fi/
   - Reviewing a Finnish translation for consistency
   - Adding a new term that has no established Finnish equivalent
 tags:
@@ -22,8 +22,13 @@ tags:
 
 ## Context
 
-The HALPI2 documentation is written in English and translated into Finnish using
-the `mkdocs-static-i18n` suffix structure (`docs/index.md` → `docs/index.fi.md`).
+The HALPI2 documentation is written in English under `docs/en/` and translated
+into Finnish under `docs/fi/`, using the `mkdocs-static-i18n` folder structure.
+Each language directory mirrors the same tree, so a translation keeps its
+source's path and filename: `docs/en/user-guide/hardware.md` becomes
+`docs/fi/user-guide/hardware.md`. Only markdown lives under `docs/fi/` — images
+and other assets stay with the English source and are shared.
+
 Translations are produced page by page, at different times, potentially by
 different people. Without a fixed terminology list the same English term drifts
 across pages — *drop cable* becomes `haarakaapeli` on one page and
@@ -116,10 +121,12 @@ intentional and correct — the reader will see English on their own screen too.
 
 ### Links
 
-Relative links between pages keep their English target path; the i18n plugin
-resolves them to the Finnish version when one exists and falls back to English
-when it does not. Do not rewrite `../user-guide/operation.md` into
-`../user-guide/operation.fi.md`.
+Relative links and image paths are copied from the English source unchanged. The
+plugin merges the language trees, so `../user-guide/operation.md` resolves to the
+Finnish page when one exists and falls back to English when it does not, and an
+image path resolves to the single shared copy under `docs/en/`. Never add an
+`en/` or `fi/` segment to a path inside a page — the language is decided by which
+directory the file itself lives in, not by its links.
 
 ### Navigation titles
 
