@@ -78,6 +78,42 @@ plugins:
             Errata: Tunnetut virheet
             Resources: Lisätietoja
             FAQ: UKK
+        - locale: fr
+          name: Français
+          build: true
+          site_name: Guide de l'utilisateur HALPI2
+          site_description: Guide de l'utilisateur du HALPI2, carte mère Raspberry Pi CM5 pour applications marines et industrielles
+          admonition_translations:
+            note: Note
+            warning: Avertissement
+            tip: Astuce
+            info: Information
+            danger: Danger
+            example: Exemple
+          nav_translations:
+            Introduction: Introduction
+            Getting Started: Prise en main
+            User Guide: Guide de l'utilisateur
+            System Operation: Fonctionnement du système
+            Hardware Guide: Guide du matériel
+            Interfaces and Connectivity: Interfaces et connectivité
+            Software Guide: Guide logiciel
+            Troubleshooting: Dépannage
+            Technical Reference: Référence technique
+            Hardware Reference: Référence matérielle
+            Power Supply Deep Dive: L'alimentation en détail
+            Carrier Board Controller: Contrôleur de la carte mère
+            Software Development: Développement logiciel
+            HALPI2 Daemon: Démon HALPI2
+            System Integration: Intégration système
+            Advanced Configuration: Configuration avancée
+            Other Debian Distributions: Autres distributions Debian
+            Appendices: Annexes
+            Design Files and Schematics: Fichiers de conception et schémas
+            Compliance and Certifications: Conformité et certifications
+            Errata: Problèmes connus
+            Resources: Ressources
+            FAQ: FAQ
 
 markdown_extensions:
   - admonition
