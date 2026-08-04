@@ -93,7 +93,7 @@ Nachstehend die Anschlüsse der Oberseite.
 |:--------|:-------------|
 | **a1** | Stromanschluss (Typ Phoenix MC, Raster 3,81 mm) |
 | **a2** | Schalter für die Eingangsstrombegrenzung (0,9 A oder 2,5 A) |
-| **a3** | Jumper zur Spannungssteuerung. Überbrücken Sie die Pins „3.3V off", um die 3,3-V-Schiene zwangsweise abzuschalten. Überbrücken Sie die Pins „5V on", um die 5-V-Schiene zwangsweise einzuschalten. **Hinweis:** Auf Platinen der Version 0.4.0 sind die Anschlüsse **a3** und **c2** anders angeordnet. |
+| **a3** | Jumper zur Spannungssteuerung. Überbrücken Sie die Pins „3.3V off“, um die 3,3-V-Schiene zwangsweise abzuschalten. Überbrücken Sie die Pins „5V on“, um die 5-V-Schiene zwangsweise einzuschalten. **Hinweis:** Auf Platinen der Version 0.4.0 sind die Anschlüsse **a3** und **c2** anders angeordnet. |
 | **b1** | Ethernet-Anschluss (RJ45) |
 | **c1** | USB-Anschluss des Controllers. Dient dem Flashen der Firmware des Mikrocontrollers RP2040. |
 | **c2** | Jumper-Stiftleiste MCU USB BOOT. Überbrücken Sie die Pins, um den RP2040 in den USB-Startmodus zu versetzen. |
@@ -113,7 +113,7 @@ Nachstehend die Anschlüsse der Oberseite.
 | **i2** | Jumper für den Automatik-/Handbetrieb des RS-485. |
 | **i4** | Jumper XRS-485 RX Enable. Überbrücken Sie die Pins, um den RS-485-Empfang zu aktivieren. |
 | **j1** | USB-Boot-Anschluss des Compute Module. Dient dem Flashen der Firmware des Compute Module 5. |
-| **j2** | Wahlschalter für den Startmodus des Compute Module. „Normal" für den normalen Betrieb, „Abnormal" für den USB-Startmodus. In Stellung „Abnormal" leuchtet eine Warn-LED. |
+| **j2** | Wahlschalter für den Startmodus des Compute Module. „Normal“ für den normalen Betrieb, „Abnormal“ für den USB-Startmodus. In Stellung „Abnormal“ leuchtet eine Warn-LED. |
 | **m1** | USB3-Anschluss 0. Direkt mit dem CM5 verbunden. |
 | **m2** | USB3-Anschluss 1-0. Mit dem USB3-Hub der Platine verbunden. |
 | **m3** | USB3-Anschluss 1-1. Mit dem USB3-Hub der Platine verbunden. |
@@ -158,7 +158,7 @@ Die Status-LEDs geben Auskunft über Stromversorgung und Aktivität des Systems.
 | **5** | Blau | Anzeige der SSD-Aktivität. Blinkt bei Lese- und Schreibzugriffen auf die M.2-NVMe-SSD. |
 | **6** | Rot | Anzeige des Pi-Betriebszustands. Leuchtet, wenn das System versorgt, aber heruntergefahren ist. |
 | **7** | Grün | Anzeige der Pi-Aktivität. Blinkt bei Aktivität des Raspberry Pi. |
-| **8** | Bernstein | Warnung „Abnormal Boot Mode". Leuchtet, wenn der USB-Startmodus-Schalter auf „Abnormal" steht. Das Gerät ist dann auf das Flashen über den USB-Boot-Anschluss eingestellt und startet nicht normal. |
+| **8** | Bernstein | Warnung „Abnormal Boot Mode“. Leuchtet, wenn der USB-Startmodus-Schalter auf „Abnormal“ steht. Das Gerät ist dann auf das Flashen über den USB-Boot-Anschluss eingestellt und startet nicht normal. |
 | **9** | Grün | CAN-TX/RX-LEDs. Sie blinken beim Empfangen (RX) oder Senden (TX) von Daten auf der CAN-Schnittstelle. |
 | **10** | Grün | RS-485-TX/RX-LEDs. Sie blinken beim Empfangen (RX) oder Senden (TX) von Daten auf der RS-485-Schnittstelle. |
 
@@ -190,7 +190,7 @@ Der HALPI2 unterstützt über seine 40-polige GPIO-Stiftleiste die üblichen Ras
 
 ### Räumliche Grenzen
 
-Das Gehäuse des HALPI2 bietet 45 mm freie Höhe über der Trägerplatine, genug für bis zu zwei gestapelte HATs. Links neben dem eingezeichneten HAT-Bereich sitzen die Superkondensatoren, was den Platz für HATs einschränkt, die über die Standardabmessungen von 65 × 56 mm hinausgehen. Achten Sie besonders auf HATs mit seitlichen Anschlüssen: Anschlüsse nach „Süden" oder „Osten" sind in der Regel unproblematisch, nach „Westen" gerichtete können mit den Superkondensatoren kollidieren.
+Das Gehäuse des HALPI2 bietet 45 mm freie Höhe über der Trägerplatine, genug für bis zu zwei gestapelte HATs. Links neben dem eingezeichneten HAT-Bereich sitzen die Superkondensatoren, was den Platz für HATs einschränkt, die über die Standardabmessungen von 65 × 56 mm hinausgehen. Achten Sie besonders auf HATs mit seitlichen Anschlüssen: Anschlüsse nach „Süden“ oder „Osten“ sind in der Regel unproblematisch, nach „Westen“ gerichtete können mit den Superkondensatoren kollidieren.
 
 ### Konflikte bei GPIO-Pins
 
@@ -270,13 +270,13 @@ Die Superkondensatoren können die 3,3-V-Schiene der Trägerplatine nach dem Tre
 
 Schalten Sie zunächst den HALPI2 aus und trennen Sie die Stromversorgung. Öffnen Sie das Gehäuse nach dem Verfahren im Abschnitt Zugang zum Gehäuse.
 
-Suchen Sie den Jumper „3.3V off" auf der Trägerplatine. Seine Lage hängt von der Platinenversion ab. Auf Platinen der Version 0.4.0 sitzt er unmittelbar neben den Superkondensatoren, auf deren „Südseite". Ab Version 0.5.0 finden Sie die Stiftleiste „Pow.Ctrl" „östlich" der Superkondensatoren; die Pins „3.3V off" sind die beiden oberen.
+Suchen Sie den Jumper „3.3V off“ auf der Trägerplatine. Seine Lage hängt von der Platinenversion ab. Auf Platinen der Version 0.4.0 sitzt er unmittelbar neben den Superkondensatoren, auf deren „Südseite“. Ab Version 0.5.0 finden Sie die Stiftleiste „Pow.Ctrl“ „östlich“ der Superkondensatoren; die Pins „3.3V off“ sind die beiden oberen.
 
-Setzen Sie den Jumper so, dass die Pins „3.3V off" überbrückt sind. Damit wird die 3,3-V-Schiene abgeschaltet, erkennbar am Erlöschen der LEDs.
+Setzen Sie den Jumper so, dass die Pins „3.3V off“ überbrückt sind. Damit wird die 3,3-V-Schiene abgeschaltet, erkennbar am Erlöschen der LEDs.
 
 ### Ausbau
 
-Der M.2-Steckplatz liegt an der „Südkante" der Trägerplatine. Den mit **g1** gekennzeichneten M.2-Anschluss finden Sie im Bild des Abschnitts [Anschlüsse der Trägerplatine](#anschlusse-der-tragerplatine).
+Der M.2-Steckplatz liegt an der „Südkante“ der Trägerplatine. Den mit **g1** gekennzeichneten M.2-Anschluss finden Sie im Bild des Abschnitts [Anschlüsse der Trägerplatine](#anschlusse-der-tragerplatine).
 
 Entfernen Sie die M2.5-Befestigungsschraube mit einem PH1-Schraubendreher. Nach dem Lösen der Schraube stellt sich die SSD schräg auf. Heben Sie das Laufwerk am Befestigungsende vorsichtig an und ziehen Sie es mit leichten Bewegungen aus dem M.2-Anschluss. Fassen Sie die SSD an den Kanten an, um Bauteile und Anschlüsse nicht zu beschädigen.
 
@@ -286,7 +286,7 @@ Setzen Sie die vorbereitete SSD in einem Winkel von etwa 30 Grad in den M.2-Ansc
 
 Sichern Sie die SSD mit der M2.5-Schraube und einem PH1-Schraubendreher. Ziehen Sie die Schraube nur so weit an, dass das Laufwerk fest sitzt. Die SSD muss völlig plan liegen, ohne sichtbare Biegung.
 
-Sobald die SSD sitzt, entfernen Sie den Jumper von den Pins „3.3V off", um die 3,3-V-Schiene wieder zu aktivieren. Bewahren Sie den Jumper für den späteren Gebrauch auf der Stiftleiste auf.
+Sobald die SSD sitzt, entfernen Sie den Jumper von den Pins „3.3V off“, um die 3,3-V-Schiene wieder zu aktivieren. Bewahren Sie den Jumper für den späteren Gebrauch auf der Stiftleiste auf.
 
 Bauen Sie das Gehäuse wie im Abschnitt Zugang zum Gehäuse beschrieben wieder zusammen. Für die Softwarekonfiguration und die Fehlersuche siehe das [Software-Handbuch](./software.md).
 

@@ -89,7 +89,7 @@ Typ Phoenix MC, Raster 3,81 mm, 4-polig. Galvanisch getrennt.
 | 3 | CAN_H |
 | 4 | CAN_L |
 
-Der Abschluss-Jumper (Beschriftung „120R") schaltet einen Abschlusswiderstand von 120 Ω zwischen CAN_H und CAN_L.
+Der Abschluss-Jumper (Beschriftung „120R“) schaltet einen Abschlusswiderstand von 120 Ω zwischen CAN_H und CAN_L.
 
 ### RS-485-Anschluss
 

@@ -36,7 +36,7 @@ Das Regenbogenmuster bedeutet, dass der Controller eingeschaltet ist, das CM5 ab
 
 Gelb bedeutet, dass der Controller das CM5 eingeschaltet hat und auf die Antwort des Daemons wartet. Bleiben die LEDs gelb, startet entweder das Betriebssystem nicht oder der HALPI-Daemon ist nicht installiert.
 
-1. Prüfen Sie, ob der Startmodus-Schalter auf „Normal" steht — die gelbe LED daneben leuchtet, wenn er auf „Abnormal" (USB-Start) steht.
+1. Prüfen Sie, ob der Startmodus-Schalter auf „Normal“ steht — die gelbe LED daneben leuchtet, wenn er auf „Abnormal“ (USB-Start) steht.
 2. Schließen Sie einen Bildschirm über HDMI an, um Startfehler oder die Anmeldeaufforderung zu sehen.
 3. Prüfen Sie, ob die NVMe-SSD richtig im M.2-Steckplatz sitzt.
 4. Startet das Betriebssystem einwandfrei, prüfen Sie, ob der Daemon installiert ist: `systemctl status halpid`

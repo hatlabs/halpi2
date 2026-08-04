@@ -122,7 +122,7 @@ Der HALPI2 hält den Access Point `Halos-XXXX` aufrecht, während er Ihrem Netz 
 - **Systemverwaltung:** `https://halos.local:9090/` — Cockpit für Systemverwaltung, Aktualisierungen und Container-Anwendungen
 
 !!! note "Warnung zum SSL-Zertifikat"
-    Beim ersten Aufruf des Dashboards oder von Cockpit zeigt Ihr Browser eine Warnung („Nicht sicher"). HaLOS signiert seine Webdienste mit einer Zertifizierungsstelle (CA), die es selbst auf dem Gerät erzeugt, und Ihr Browser vertraut dieser CA noch nicht. Bestätigen Sie die Warnung, um vorerst fortzufahren.
+    Beim ersten Aufruf des Dashboards oder von Cockpit zeigt Ihr Browser eine Warnung („Nicht sicher“). HaLOS signiert seine Webdienste mit einer Zertifizierungsstelle (CA), die es selbst auf dem Gerät erzeugt, und Ihr Browser vertraut dieser CA noch nicht. Bestätigen Sie die Warnung, um vorerst fortzufahren.
 
     Damit die Warnung dauerhaft verschwindet, installieren Sie die CA des Geräts einmalig auf Ihrem Rechner — danach werden alle HaLOS-Dienste an allen Ports einwandfrei geprüft. Öffnen Sie `https://halos.local/ca/` für eine geführte, plattformabhängige Installation, oder lesen Sie [Trust the device](https://docs.halos.fi/user-guide/trust-the-device/) in der HaLOS-Dokumentation.
 
@@ -198,7 +198,7 @@ Das Herunterfahren dauert normalerweise nur wenige Sekunden. In manchen Fällen 
 - Vergewissern Sie sich, dass der HALPI2 eingeschaltet ist (die LEDs sollten gelb oder grün leuchten)
 - Blinken die LEDs in einem Regenbogenmuster, sitzt das Compute Module 5 nicht richtig auf der Trägerplatine. Ursache kann ein Transportschaden sein. Setzen Sie das CM5 nach der Anleitung im [Benutzerhandbuch](../user-guide/operation.md) neu ein oder wenden Sie sich an den Support.
 
-❌ **Der angeschlossene Bildschirm zeigt eine Fehlermeldung mit „nvme":**
+❌ **Der angeschlossene Bildschirm zeigt eine Fehlermeldung mit „nvme“:**
 
 - Das bedeutet, dass die NVMe-SSD nicht erkannt oder nicht richtig initialisiert wird. Ursache kann ein Transportschaden sein. Setzen Sie die NVMe-SSD nach der Anleitung im [Benutzerhandbuch](../user-guide/operation.md) neu ein oder wenden Sie sich an den Support.
 

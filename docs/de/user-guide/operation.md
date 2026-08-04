@@ -139,7 +139,7 @@ Der Co-op-Modus enthält einen Watchdog:
 - **Kommunikations-Zeitüberschreitung von 30 Sekunden** — der Daemon muss sich regelmäßig beim Controller melden
 - **Automatische Wiederherstellung** — das System startet neu, wenn die Kommunikation abreißt
 - **Schutz vor Softwarefehlern** — sichert die Wiederherstellung nach einem Absturz des Daemons oder einem Systemstillstand
-- **„Füttern des Watchdogs"** — der Daemon sendet regelmäßig Statusmeldungen, die den Zeitgeber zurücksetzen
+- **„Füttern des Watchdogs“** — der Daemon sendet regelmäßig Statusmeldungen, die den Zeitgeber zurücksetzen
 
 #### Wann der Co-op-Modus aktiv ist
 

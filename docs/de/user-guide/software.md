@@ -67,10 +67,10 @@ Alternativ können Sie das Systemabbild direkt am HALPI2 flashen, ohne die SSD a
 So bereiten Sie den HALPI2 für das Flashen über USB vor:
 
 1. Schalten Sie das System vollständig aus und öffnen Sie den Gehäusedeckel nach dem Verfahren im [Hardware-Handbuch](./hardware.md#zugang-zum-gehause).
-2. Suchen Sie den mit „USB Boot" beschrifteten USB-C-Anschluss rechts neben der HAT-Umrandung auf der Trägerplatine und stellen Sie den benachbarten Startmodus-Schalter auf „Abnormal". (Eine LED-Rückmeldung gibt es noch nicht — das Gerät ist stromlos.)
+2. Suchen Sie den mit „USB Boot“ beschrifteten USB-C-Anschluss rechts neben der HAT-Umrandung auf der Trägerplatine und stellen Sie den benachbarten Startmodus-Schalter auf „Abnormal“. (Eine LED-Rückmeldung gibt es noch nicht — das Gerät ist stromlos.)
 3. Verbinden Sie Ihren Rechner über ein USB-Kabel mit dem USB-Boot-Anschluss des HALPI2 und schalten Sie das Gerät wieder ein. Neben dem Startmodus-Schalter leuchtet nun eine bernsteinfarbene LED und bestätigt den USB-Startmodus.
 4. Führen Sie auf Ihrem Rechner `rpiboot` aus. Das Werkzeug erkennt den HALPI2 und lädt die Massenspeicher-Firmware; der HALPI2 erscheint danach als USB-Massenspeicher.
-5. Sobald `rpiboot` durchgelaufen ist und der Massenspeicher erscheint, stellen Sie den Startmodus-Schalter zurück auf „Normal". Das unterbricht den Flash-Vorgang nicht und sorgt dafür, dass der HALPI2 nach dem nächsten Aus- und Einschalten normal vom frisch geflashten Abbild startet. Bleibt der Schalter auf „Abnormal", geht das Gerät beim nächsten Start erneut in den USB-Startmodus, statt das neue System zu starten.
+5. Sobald `rpiboot` durchgelaufen ist und der Massenspeicher erscheint, stellen Sie den Startmodus-Schalter zurück auf „Normal“. Das unterbricht den Flash-Vorgang nicht und sorgt dafür, dass der HALPI2 nach dem nächsten Aus- und Einschalten normal vom frisch geflashten Abbild startet. Bleibt der Schalter auf „Abnormal“, geht das Gerät beim nächsten Start erneut in den USB-Startmodus, statt das neue System zu starten.
 6. Flashen Sie das Systemabbild mit dem Raspberry Pi Imager (oder einem anderen Werkzeug, das auf ein Blockgerät schreiben kann) auf den neuen Massenspeicher.
 7. Ziehen Sie nach dem Flashen das USB-Kabel ab, schalten Sie den HALPI2 aus und wieder ein und schließen Sie das Gehäuse.
 
