@@ -43,12 +43,12 @@ We recommend trying the HALPI2 on a desk or workbench before installing it perma
 #### For Initial Setup:
 
 1. **Network connection (required for headless installation):**
-   - Connect Ethernet cable
-   - Connect the WiFi/Bluetooth antenna
+    - Connect Ethernet cable
+    - Connect the WiFi/Bluetooth antenna
 
 2. **Display connection (optional):**
-   - Connect HDMI display for direct access
-   - USB keyboard and mouse if using display
+    - Connect HDMI display for direct access
+    - USB keyboard and mouse if using display
 
 ![Front Panel Connectors](./front-panel-connectors.jpg)
 *Front Panel Connectors*
@@ -357,8 +357,8 @@ If you want to increase the initial start-up speed or need to power high-current
 2. **Strip wire ends** to appropriate length
 3. **Install terminals** using proper crimping technique
 4. **Connect to power source:**
-   - **Red wire:** Positive (+) terminal
-   - **Black wire:** Negative (-) terminal
+    - **Red wire:** Positive (+) terminal
+    - **Black wire:** Negative (-) terminal
 5. **Verify polarity** with multimeter before energizing
 
 ##### Connection at HALPI2

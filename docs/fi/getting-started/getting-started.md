@@ -43,12 +43,12 @@ Suosittelemme kokeilemaan HALPI2:ta pöydällä tai työpenkillä ennen kiinteä
 #### Käyttöönottoa varten:
 
 1. **Verkkoyhteys (pakollinen ilman näyttöä tehtävässä asennuksessa):**
-   - Kytke ethernet-kaapeli
-   - Kytke WiFi/Bluetooth-antenni
+    - Kytke ethernet-kaapeli
+    - Kytke WiFi/Bluetooth-antenni
 
 2. **Näyttöyhteys (valinnainen):**
-   - Kytke HDMI-näyttö suoraa käyttöä varten
-   - USB-näppäimistö ja -hiiri, jos käytät näyttöä
+    - Kytke HDMI-näyttö suoraa käyttöä varten
+    - USB-näppäimistö ja -hiiri, jos käytät näyttöä
 
 ![Etupaneelin liittimet](./front-panel-connectors.jpg)
 *Etupaneelin liittimet*
@@ -356,8 +356,8 @@ Jos haluat nopeuttaa käynnistystä tai tarvitset virtaa paljon kuluttaville ohe
 2. **Kuori johtimien päät** sopivan matkalta
 3. **Asenna liittimet** oikealla puristustekniikalla
 4. **Kytke virtalähteeseen:**
-   - **Punainen johdin:** plusnapa (+)
-   - **Musta johdin:** miinusnapa (−)
+    - **Punainen johdin:** plusnapa (+)
+    - **Musta johdin:** miinusnapa (−)
 5. **Varmista napaisuus** yleismittarilla ennen jännitteen kytkemistä
 
 ##### Kytkentä HALPI2:n päässä

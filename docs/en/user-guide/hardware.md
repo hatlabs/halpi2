@@ -49,10 +49,10 @@ If you need different connector types, you can modify the panel configuration:
     Plastic threads can be damaged by over-torquing. Use standard hex sockets but finger-tighten only.
 
 1. **Use appropriate socket size:**
-   - Large connectors: 26mm socket
-   - M6 nylon bolts: 10mm socket
-   - RP-SMA connectors: 8mm socket
-   - PG7 positions: Large flathead screwdriver, 17mm socket
+    - Large connectors: 26mm socket
+    - M6 nylon bolts: 10mm socket
+    - RP-SMA connectors: 8mm socket
+    - PG7 positions: Large flathead screwdriver, 17mm socket
 
 2. **Remove carefully** - plastic threads can be damaged by over-torquing
 

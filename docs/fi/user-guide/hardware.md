@@ -49,10 +49,10 @@ Jos tarvitset toisenlaisia liittimiä, paneelikokoonpanoa voi muuttaa:
     Muovikierteet voivat vaurioitua ylikiristettäessä. Käytä tavallisia kuusiohylsyjä, mutta kiristä vain sormivoimin.
 
 1. **Käytä oikean kokoista hylsyä:**
-   - Suuret liittimet: 26 mm:n hylsy
-   - M6-nailonpultit: 10 mm:n hylsy
-   - RP-SMA-liittimet: 8 mm:n hylsy
-   - PG7-paikat: iso talttapäämeisseli, 17 mm:n hylsy
+    - Suuret liittimet: 26 mm:n hylsy
+    - M6-nailonpultit: 10 mm:n hylsy
+    - RP-SMA-liittimet: 8 mm:n hylsy
+    - PG7-paikat: iso talttapäämeisseli, 17 mm:n hylsy
 
 2. **Irrota varoen** — muovikierteet voivat vaurioitua ylikiristettäessä
 
