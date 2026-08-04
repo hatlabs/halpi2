@@ -114,6 +114,42 @@ plugins:
             Errata: Problèmes connus
             Resources: Ressources
             FAQ: FAQ
+        - locale: de
+          name: Deutsch
+          build: true
+          site_name: HALPI2-Benutzerhandbuch
+          site_description: Benutzerhandbuch für den HALPI2, eine Raspberry-Pi-CM5-Trägerplatine für Schiffs- und Industrieanwendungen
+          admonition_translations:
+            note: Hinweis
+            warning: Warnung
+            tip: Tipp
+            info: Information
+            danger: Gefahr
+            example: Beispiel
+          nav_translations:
+            Introduction: Einführung
+            Getting Started: Erste Schritte
+            User Guide: Benutzerhandbuch
+            System Operation: Systembetrieb
+            Hardware Guide: Hardware-Handbuch
+            Interfaces and Connectivity: Schnittstellen und Konnektivität
+            Software Guide: Software-Handbuch
+            Troubleshooting: Fehlersuche
+            Technical Reference: Technische Referenz
+            Hardware Reference: Hardware-Referenz
+            Power Supply Deep Dive: Stromversorgung im Detail
+            Carrier Board Controller: Controller der Trägerplatine
+            Software Development: Softwareentwicklung
+            HALPI2 Daemon: HALPI2-Daemon
+            System Integration: Systemintegration
+            Advanced Configuration: Erweiterte Konfiguration
+            Other Debian Distributions: Andere Debian-Distributionen
+            Appendices: Anhänge
+            Design Files and Schematics: Konstruktionsdateien und Schaltpläne
+            Compliance and Certifications: Konformität und Zertifizierungen
+            Errata: Bekannte Fehler
+            Resources: Ressourcen
+            FAQ: FAQ
 
 markdown_extensions:
   - admonition
