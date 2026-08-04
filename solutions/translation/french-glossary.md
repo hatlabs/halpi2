@@ -103,7 +103,7 @@ centrally in `mkdocs.yml`, custom ones in the page.
 
 | English | French | Note |
 |:--------|:-------|:-----|
-| carrier board | carte mère | See the note below — deliberate, not literal |
+| carrier board | carte porteuse | Deliberately *not* the Finnish approach — see the note below |
 | enclosure | boîtier | |
 | heat sink | dissipateur thermique | |
 | waterproof | étanche | |
@@ -120,14 +120,20 @@ centrally in `mkdocs.yml`, custom ones in the page.
 | blind plug | bouchon obturateur | |
 | breather plug | bouchon d'équilibrage de pression | |
 
-**A note on `carte mère`.** As in Finnish, the term is chosen for reader
-familiarity over literal accuracy, following the same decision by Matti Airas
-for `emolevy`. It carries the same risk: *carte mère* normally means a
-motherboard, which implies the board is the computer and the CM5 an add-on — the
-reverse of how HALPI2 is built. When translating passages where that
-relationship matters (reseating the CM5, troubleshooting a board that will not
-boot), make the roles explicit in the surrounding sentence rather than relying on
-the term to carry them.
+**A note on `carte porteuse`, and why it differs from Finnish.** Finnish
+translates `carrier board` as `emolevy` — literally *motherboard* — chosen for
+reader familiarity over accuracy. French deliberately does **not** follow that:
+`carte porteuse` says what the board actually is.
+
+Do not "harmonise" the two. They differ on purpose, decided per language and per
+audience, and the divergence is the decision rather than an oversight in either
+one.
+
+The practical consequence is that French needs *less* care than Finnish here.
+`emolevy` inverts the CM5/board relationship and the Finnish glossary tells
+translators to write the roles out explicitly in passages where that matters.
+`carte porteuse` carries the relationship on its own, so the surrounding sentence
+does not have to.
 
 ### Electrical
 

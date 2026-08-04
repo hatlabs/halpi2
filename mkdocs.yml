@@ -82,7 +82,7 @@ plugins:
           name: Français
           build: true
           site_name: Guide de l'utilisateur HALPI2
-          site_description: Guide de l'utilisateur du HALPI2, carte mère Raspberry Pi CM5 pour applications marines et industrielles
+          site_description: Guide de l'utilisateur du HALPI2, carte porteuse Raspberry Pi CM5 pour applications marines et industrielles
           admonition_translations:
             note: Note
             warning: Avertissement
@@ -102,7 +102,7 @@ plugins:
             Technical Reference: Référence technique
             Hardware Reference: Référence matérielle
             Power Supply Deep Dive: L'alimentation en détail
-            Carrier Board Controller: Contrôleur de la carte mère
+            Carrier Board Controller: Contrôleur de la carte porteuse
             Software Development: Développement logiciel
             HALPI2 Daemon: Démon HALPI2
             System Integration: Intégration système
