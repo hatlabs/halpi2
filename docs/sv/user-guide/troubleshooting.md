@@ -101,10 +101,10 @@ Om systemet startar om inom 30 sekunder efter en firmwareuppdatering återgår f
     ```
 3. Kontrollera kablagets polaritet — RS-485 använder differentiell signalering på ledarna A och B. Om A och B kastats om fungerar ingen kommunikation.
 
-### Ethernet-länken kommer inte upp
+### Ethernetlänken kommer inte upp
 
-1. Kontrollera ethernet-kabeln och RJ45-kontakten. Prova en annan kabel.
-2. Öppna kapslingen och titta på ethernet-lysdioderna för att se länkens status.
+1. Kontrollera ethernetkabeln och RJ45-kontakten. Prova en annan kabel.
+2. Öppna kapslingen och titta på ethernetlysdioderna för att se länkens status.
 3. Kontrollera länkens status: `ip link show eth0`
 4. Om länken är uppe men ingen IP-adress finns, kontrollera DHCP: `sudo dhclient eth0`
 5. Vid fast IP-konfiguration, kontrollera inställningarna i `/etc/network/interfaces` eller i NetworkManager.

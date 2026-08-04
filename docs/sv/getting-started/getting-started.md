@@ -24,7 +24,7 @@ Ur HALPI2-förpackningen:
 
 Tillval (ingår i försäljningspaketet):
 
-- Par av DC-hylskontakter (5,5 × 2,1 mm), vid användning av en vanlig 12 V-nätadapter
+- Par av DC-hålkontakter (5,5 × 2,1 mm), vid användning av en vanlig 12 V-nätadapter
 - Raspberry Pi WiFi/Bluetooth-antenn (krävs om WiFi används vid den första uppsättningen)
 
 Övrigt (ingår ej):
@@ -68,18 +68,18 @@ Ett [NMEA 2000-nätverk](https://docs.hatlabs.fi/nmea2000/) består av en backbo
 !!! tip "Om matning via NMEA 2000"
     HALPI2 kan även matas från NMEA 2000-bussen. Se [Strömanslutning via NMEA 2000-bussen](#stromanslutning-via-nmea-2000-bussen) i avsnittet om permanent installation nedan.
 
-För uppsättningen på skrivbordet använder vi den medföljande E7T-strömkabeln. Anslut kabelns ledarändar till honhylskontakten så här:
+För uppsättningen på skrivbordet använder vi den medföljande E7T-strömkabeln. Anslut kabelns ledarändar till hålkontakten (hona) så här:
 
 - **Röd ledare = plus (+)**
 - **Svart ledare = minus (-)**
 
-![E7T till hylskontakt](./e7t-barrel.jpg)
-*Ett exempel på kablaget mellan E7T och hylskontakten*
+![E7T till hålkontakt](./e7t-barrel.jpg)
+*Ett exempel på kablaget mellan E7T och hålkontakten*
 
-Anslut en vanlig 12 V- eller 24 V-nätadapter till hylskontakten. Kontrollera att adaptern klarar minst 1 A, vilket HALPI2 kräver.
+Anslut en vanlig 12 V- eller 24 V-nätadapter till hålkontakten. Kontrollera att adaptern klarar minst 1 A, vilket HALPI2 kräver.
 
 !!! warning "Varning"
-    Eftersom skruvplintens hylskontakt saknar dragavlastning bör den bara användas vid tillfälliga installationer. Ett ryck i kabeln kan lossa och blottlägga ledarna.
+    Eftersom skruvplintens hålkontakt saknar dragavlastning bör den bara användas vid tillfälliga installationer. Ett ryck i kabeln kan lossa och blottlägga ledarna.
 
 ## Första start
 
@@ -316,7 +316,7 @@ Hämta [HALPI2:s borrmall](./HALPI2_enclosure_1B_Drill_Template_v2.pdf) och skri
 1. **Rengör monteringsytan**
 2. **Märk ut fästhålen** med den utskrivna mallen
 3. **Provmontera** kapslingen före installationen
-4. **Borra förborrade hål** för monteringsskruvarna
+4. **Förborra hålen** för monteringsskruvarna
 
 ##### Steg 2: Montera HALPI2
 
@@ -350,7 +350,7 @@ Om du vill att starten ska gå fortare, eller behöver mata strömtörstiga krin
 ##### Förbereda kabeln
 
 1. **Dra strömkabeln** från HALPI2 till strömkällan
-2. **Lämna serviceslingor** i båda ändar
+2. **Lämna servicelängor** i båda ändar
 3. **Skydda kabeln** mot skavning och skador
 4. **Kapa till rätt längd** och lämna tillräckligt arbetsutrymme
 
@@ -385,15 +385,15 @@ E7T-kontakten är färdigkopplad och kräver ingen montering på plats. Anslut d
 1. **Stäng av** alla NMEA 2000-enheter
 2. **Öppna HALPI2:s kapsling** (se [Användarguiden](../user-guide/operation.md) för anvisningar)
 3. **Leta upp bärkortets strömkontakt**
-4. **Dra ur den befintliga plinten**
-5. **Anslut den interna NMEA 2000-strömplinten** till bärkortets strömkontakt
+4. **Dra ur den befintliga kopplingsplinten**
+5. **Anslut den interna NMEA 2000-kopplingsplinten för ström** till bärkortets strömkontakt
 6. **Kontrollera att strömbegränsningen** står på 0,9 A
 7. **Anslut till nätverkets backbone** med lämplig stickledning och T-koppling
 8. **Provkör installationen** innan du stänger kapslingen
 9. **Montera ihop kapslingen**
 
 ![Kablage för matning via NMEA 2000](./n2k-power-conx.jpg)
-*För att mata HALPI2 via NMEA 2000, dra ur plint 1 och ersätt den med plint 2.*
+*För att mata HALPI2 via NMEA 2000, dra ur kopplingsplint 1 och ersätt den med kopplingsplint 2.*
 
 ### Nätverks- och dataanslutningar
 
@@ -412,7 +412,7 @@ För nätverksanslutning:
 
 1. **Använd marin** eller på annat sätt miljöklassad kabel
 2. **Montera kabelgenomföringar eller kabelgummin** om kabeln dras genom skott
-3. **Lämna serviceslingor** i båda ändar
+3. **Lämna servicelängor** i båda ändar
 4. **Provkör anslutningen** före den slutliga installationen
 
 #### WiFi/Bluetooth-antenn

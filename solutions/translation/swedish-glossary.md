@@ -98,7 +98,8 @@ own screen is English; standard admonition titles are translated centrally in
 | waterproof | vattentät | |
 | wall-mount | väggmontage | |
 | mounting surface | monteringsyta | |
-| pilot hole | förborrat hål | |
+| pilot hole (to drill) | förborra (verb) | `Förborra hålen` — never `borra förborrade hål` |
+| pre-drilled hole (already there) | förborrat hål | The holes the enclosure ships with |
 | mounting template | borrmall | |
 | bilge water | slagvatten | |
 | bulkhead | skott | |

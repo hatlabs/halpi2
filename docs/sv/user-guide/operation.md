@@ -94,7 +94,7 @@ Sololäget gäller:
 - på operativsystem som saknar daemonen;
 - när daemonen har kraschat eller slutat svara.
 
-!!! tip "Solulägets tillförlitlighet"
+!!! tip "Sololägets tillförlitlighet"
     Sololäget ger ett nödvändigt skydd men är mindre tillförlitligt än co-op-läget. Styrkretsen begär avstängning med simulerade knapptryck, vilket kanske inte fungerar om systemet har hängt sig.
 
 ### Co-op-läge
