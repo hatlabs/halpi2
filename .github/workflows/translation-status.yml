@@ -1,0 +1,84 @@
+name: Translation Status
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'scripts/**'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: translation-status-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history: the report resolves the stamped blob to show the
+          # English diff since a translation was written.
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+
+      - name: Report translation status
+        run: |
+          uv run python scripts/translation_status.py --format markdown --diff \
+            > report.md
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check anchors
+        id: anchors
+        run: |
+          uv run mkdocs build --strict
+          {
+            echo ""
+            echo "## Anchor check"
+            echo ""
+            echo '```'
+            uv run python scripts/check_anchors.py site || echo "BROKEN ANCHORS — see above"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Comment on the pull request
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.number }}
+        run: |
+          # Only the English pages this PR actually touches. Which paths a PR
+          # touched is a fact, so a PR editing only translations says nothing.
+          pages=$(git diff --name-only \
+            "origin/${{ github.base_ref }}...HEAD" -- 'docs/en/**/*.md' \
+            | sed 's|^docs/en/||')
+          if [ -z "$pages" ]; then
+            echo "No English pages touched; nothing to report."
+            exit 0
+          fi
+
+          # shellcheck disable=SC2086
+          uv run python scripts/translation_status.py \
+            --format markdown --diff --only-pages $pages > comment.md
+          printf '\n<!-- translation-status -->\n' >> comment.md
+
+          existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" \
+            --jq 'map(select(.body | contains("<!-- translation-status -->"))) | .[0].id // empty')
+          if [ -n "$existing" ]; then
+            gh api "repos/${{ github.repository }}/issues/comments/$existing" \
+              -X PATCH -F body=@comment.md --silent
+            echo "Updated comment $existing"
+          else
+            gh api "repos/${{ github.repository }}/issues/$PR/comments" \
+              -F body=@comment.md --silent
+            echo "Created comment"
+          fi
