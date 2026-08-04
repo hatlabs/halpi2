@@ -1,3 +1,7 @@
+---
+translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+---
+
 # Schnittstellen und Konnektivität
 
 ## CAN FD / NMEA 2000
@@ -47,7 +51,7 @@ Damit werden alle eingehenden CAN-Rohnachrichten in Echtzeit angezeigt.
 Das Dashboard des Signal-K-Servers bietet weitere Überwachungsmöglichkeiten. Es zeigt die NMEA-2000-Datenraten der CAN-Schnittstelle in Echtzeit, und mit dem Datenbrowser lassen sich die dekodierten NMEA-2000-Daten einsehen.
 
 !!! quote "Weiterführende Informationen"
-    - **Konfiguration der Stromversorgung:** siehe [Erste Schritte](../getting-started/getting-started.md#permanent-power-installation)
+    - **Konfiguration der Stromversorgung:** siehe [Erste Schritte](../getting-started/getting-started.md#feste-installation-der-stromversorgung)
     - **Softwareeinrichtung:** siehe [Software-Handbuch](./software.md)
     - **Fehlersuche im Netzwerk:** siehe [Fehlersuche](./troubleshooting.md)
 
@@ -206,5 +210,5 @@ Bei der Montage an einem abgesetzten Bedienfeld wählen Sie einen gut erreichbar
 Alle Tasteranschlüsse an der Trägerplatine sollten Buchsenleisten im Raster 2,54 mm verwenden. Achten Sie auf die richtige Ausrichtung der Pins und eine feste Verbindung, um Kontaktprobleme im Betrieb zu vermeiden.
 
 !!! quote "Weiterführende Informationen"
-    - **Energieverwaltung:** siehe [Energieverwaltung und Herunterfahren](./operation.md#power-management-and-shutdown-procedures)
+    - **Energieverwaltung:** siehe [Energieverwaltung und Herunterfahren](./operation.md#energieverwaltung-und-herunterfahren)
     - **Zugang zur Hardware:** siehe [Hardware-Handbuch](./hardware.md)

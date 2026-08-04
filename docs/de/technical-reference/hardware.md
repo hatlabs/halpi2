@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Hardware-Referenz
 
 Diese Seite enthält die elektrischen, mechanischen und umweltbezogenen Spezifikationen des HALPI2. Für Arbeitsabläufe (Installation, Wartung, Austausch) siehe das [Hardware-Handbuch](../user-guide/hardware.md). Für Einzelheiten zu den Schnittstellenprotokollen siehe [Schnittstellen und Konnektivität](./interfaces.md).
@@ -168,7 +172,7 @@ Die GPIO-Stiftleiste folgt der 40-poligen Standardbelegung des Raspberry Pi. Die
 | 24 | 18 | RS-485 EN | RS-485 (manueller Modus) | Frei im Automatikmodus |
 | 26 | 37 | CAN INT | CAN-FD-Controller | Nein |
 
-Alle übrigen GPIO-Pins stehen für HATs und eigene Anwendungen zur Verfügung. Das [Hardware-Handbuch](../user-guide/hardware.md#using-hats) beschreibt die HAT-Kompatibilität und das Deaktivieren der integrierten Schnittstellen.
+Alle übrigen GPIO-Pins stehen für HATs und eigene Anwendungen zur Verfügung. Das [Hardware-Handbuch](../user-guide/hardware.md#hats-verwenden) beschreibt die HAT-Kompatibilität und das Deaktivieren der integrierten Schnittstellen.
 
 ## I2C-Geräte
 

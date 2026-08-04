@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Schnittstellen und Konnektivität
 
 Diese Seite beschreibt, wie die Schnittstellen des CM5 auf der Trägerplatine des
@@ -68,7 +72,7 @@ RS-485-Schnittstellen:
   Nutzung frei. RS-485 steht dann nicht mehr zur Verfügung.
 
 Die Schritte an der Hardware sind unter
-[Integrierte Schnittstellen deaktivieren](../user-guide/hardware.md#using-hats)
+[Integrierte Schnittstellen deaktivieren](../user-guide/hardware.md#hats-verwenden)
 beschrieben.
 
 ### Überprüfung

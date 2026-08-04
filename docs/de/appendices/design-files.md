@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # Konstruktionsdateien und Schaltpläne
 
 Diese Seite stellt die Schaltpläne und die mechanischen Konstruktionsdateien des HALPI2 bereit.

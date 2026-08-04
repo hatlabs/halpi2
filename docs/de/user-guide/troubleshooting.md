@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Fehlersuche
 
 Diese Seite behandelt häufige Probleme beim Betrieb des HALPI2 und deren Behebung.
@@ -148,8 +152,8 @@ An den LED-Mustern lässt sich der Systemzustand rasch ablesen:
 | Fehler | Alle LEDs blinken rot | Hardwarefehler — Hersteller kontaktieren |
 
 !!! quote "Weiterführende Informationen"
-    - **LED-Muster:** siehe [Status-LEDs](./operation.md#status-led-indicators)
-    - **Energieverwaltung:** siehe [Energieverwaltung und Herunterfahren](./operation.md#power-management-and-shutdown-procedures)
+    - **LED-Muster:** siehe [Status-LEDs](./operation.md#status-leds)
+    - **Energieverwaltung:** siehe [Energieverwaltung und Herunterfahren](./operation.md#energieverwaltung-und-herunterfahren)
     - **Verwaltung des Daemons:** siehe [Software-Handbuch](./software.md#halpi-daemon-halpid)
     - **Einzelheiten zur CAN-Schnittstelle:** siehe [Schnittstellen und Konnektivität](./interfaces.md#can-fd-nmea-2000)
     - **Einzelheiten zur RS-485-Schnittstelle:** siehe [Schnittstellen und Konnektivität](./interfaces.md#rs-485-nmea-0183)
