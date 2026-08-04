@@ -30,6 +30,11 @@ GLOSSARIES = {
     "fr": "french-glossary.md",
     "de": "german-glossary.md",
     "sv": "swedish-glossary.md",
+    "es": "spanish-glossary.md",
+    "it": "italian-glossary.md",
+    "nl": "dutch-glossary.md",
+    "nb": "norwegian-glossary.md",
+    "da": "danish-glossary.md",
 }
 
 ROW = re.compile(r"^\| *`?([^|`]+?)`? *\| *`?([^|`]+?)`? *\|")
