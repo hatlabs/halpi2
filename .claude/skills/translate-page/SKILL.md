@@ -96,7 +96,21 @@ All four, every time:
 uv run mkdocs build --strict
 uv run python scripts/check_anchors.py site
 uv run python scripts/translation_status.py
+uv run python scripts/check_glossary.py fi
 ```
+
+**Measure the glossary, do not reread it.** Rereading your own pages confirms
+whatever they already say, so the terminology looks consistent right up until a
+reviewer finds the same connector under two names on adjacent pages. Every
+language so far shipped that mistake, and each time it landed on the last pages
+translated, once the glossary had stopped being opened. `check_glossary.py`
+reports terms the glossary prescribes and the pages never use — the signature of
+a rival word having quietly taken over.
+
+The same applies to whatever typography rules the glossary sets. Test them
+against the text: count the quotation marks and check they pair, count the
+spaces before `;:!?`, count the address form. A rule that was read looks
+followed.
 
 and a structure comparison against the source:
 

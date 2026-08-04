@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+"""Check that a translation actually uses the terms its glossary prescribes.
+
+A glossary read before translating looks followed afterwards, because rereading
+one's own text confirms whatever it already says. Every language branch so far
+reached review with a term the glossary defines and the pages ignore — a second
+name for the same connector, one page apart, which no reader can reconcile.
+
+The check is indirect but cheap: if a glossary term appears in the English
+source and its prescribed translation appears nowhere in the target language,
+some other word is doing that job. Run it before opening a pull request.
+
+It finds a term that is never used, not a term that has acquired a rival. German
+says both `Spannungsausfall` and `Stromausfall` for *blackout* and passes here,
+because the prescribed word does appear. Catching that needs the rival named,
+which is what the glossary cannot know in advance.
+
+Exit status is 1 if any prescribed term is unused.
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+GLOSSARIES = {
+    "fi": "finnish-glossary.md",
+    "fr": "french-glossary.md",
+    "de": "german-glossary.md",
+    "sv": "swedish-glossary.md",
+}
+
+ROW = re.compile(r"^\| *`?([^|`]+?)`? *\| *`?([^|`]+?)`? *\|")
+SHORTEST_TERM = 5
+# An English term used once may be phrased around; twice is a pattern.
+MIN_ENGLISH_USES = 2
+
+
+def read_pages(directory: Path) -> str:
+    """Concatenate a language's markdown with code and frontmatter removed."""
+    out = []
+    for page in sorted(directory.rglob("*.md")):
+        raw = page.read_text(encoding="utf-8")
+        text = re.sub(r"^---\n.*?\n---\n", "", raw, flags=re.S)
+        text = re.sub(r"```.*?```", " ", text, flags=re.S)
+        out.append(re.sub(r"`[^`\n]*`", " ", text))
+    return "\n".join(out).lower()
+
+
+def terms(glossary: Path) -> list[tuple[str, str]]:
+    """Extract (english, translation) pairs from the glossary tables."""
+    pairs = []
+    for line in glossary.read_text(encoding="utf-8").splitlines():
+        row = ROW.match(line)
+        if not row:
+            continue
+        english, translated = row.group(1).strip(), row.group(2).strip()
+        if english.lower().startswith("english") or set(english) <= set(":- "):
+            continue
+        pairs.append((english, translated))
+    return pairs
+
+
+def alternatives(term: str) -> list[str]:
+    """Split a glossary cell into the forms that would each satisfy it."""
+    term = re.sub(r"\s*\([^)]*\)", "", term).lower()
+    return [part.strip() for part in term.split("/") if part.strip()]
+
+
+def inflectable(term: str) -> re.Pattern[str]:
+    """Match a term in whatever form a sentence needs.
+
+    Every word may take an ending, not just the last one: Finnish inflects both
+    halves of `vapaa tila` and French pluralises both halves of `bouchon
+    obturateur`, so anchoring on the phrase as written finds neither. A verb
+    phrase also takes its object in the middle — `aseta CM5 uudelleen
+    paikalleen` — so a couple of words are allowed to intervene.
+    """
+    words = [re.escape(w[: max(4, len(w) - 3)]) + r"\w*" for w in term.split()]
+    return re.compile(r"(?:\W+\w+){0,2}\W+".join(words))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "language", choices=sorted(GLOSSARIES), help="target language code"
+    )
+    parser.add_argument("--docs", default="docs", help="documentation root")
+    parser.add_argument(
+        "--glossaries",
+        default="solutions/translation",
+        help="directory holding the glossaries",
+    )
+    args = parser.parse_args()
+
+    english = read_pages(Path(args.docs) / "en")
+    translated = read_pages(Path(args.docs) / args.language)
+    glossary = Path(args.glossaries) / GLOSSARIES[args.language]
+
+    checked, unused = 0, []
+    for source, target in terms(glossary):
+        wanted = [w for w in alternatives(source) if len(w) >= SHORTEST_TERM]
+        have = [h for h in alternatives(target) if len(h) >= SHORTEST_TERM]
+        if not wanted or not have:
+            continue
+        uses = sum(english.count(w) for w in wanted)
+        if uses < MIN_ENGLISH_USES:
+            continue
+        checked += 1
+        if not any(inflectable(h).search(translated) for h in have):
+            unused.append((source, target, uses))
+
+    print(f"Checked {checked} glossary terms against docs/{args.language}.")
+    if unused:
+        print(f"\n{len(unused)} prescribed but unused — something else took over:\n")
+        for source, target, uses in unused:
+            print(f"  {source}  ->  {target}   (English {uses}×, translation never)")
+        return 1
+    print("Every prescribed term is in use.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
