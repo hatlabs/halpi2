@@ -59,6 +59,13 @@ def main() -> int:
     args = parser.parse_args()
 
     ids = collect_pages(args.site)
+    if not ids:
+        # Passing on an empty site would be a false green: the build produced
+        # nothing, or the path is wrong, and neither is "all anchors resolve".
+        print(f"No built pages found under {args.site!r} — nothing to check.",
+              file=sys.stderr)
+        return 2
+
     broken: list[tuple[str, str, str]] = []
     checked = 0
 
