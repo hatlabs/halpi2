@@ -1,3 +1,7 @@
+---
+translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+---
+
 # Ohjelmisto-opas
 
 ## Käyttöjärjestelmän levykuvat

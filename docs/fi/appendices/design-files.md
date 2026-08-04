@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # Suunnittelutiedostot ja kytkentäkaaviot
 
 Tällä sivulla ovat HALPI2:n kytkentäkaaviot ja mekaniikkasuunnittelun tiedostot.

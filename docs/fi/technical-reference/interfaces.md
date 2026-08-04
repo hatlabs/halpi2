@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Liitännät ja tiedonsiirto
 
 Tällä sivulla kuvataan, miten CM5:n liitännät on tuotu HALPI2:n emolevylle.

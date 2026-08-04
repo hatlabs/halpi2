@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Vianetsintä
 
 Tällä sivulla käydään läpi tavallisia HALPI2:n käytössä vastaan tulevia ongelmia ja niiden ratkaisut.

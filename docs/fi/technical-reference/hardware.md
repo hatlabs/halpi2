@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Laitteiston tekniset tiedot
 
 Tällä sivulla ovat HALPI2:n sähköiset, mekaaniset ja ympäristöä koskevat tekniset tiedot. Toimintaohjeet (asennus, huolto, osien vaihto) löytyvät [Laitteisto-oppaasta](../user-guide/hardware.md). Liitäntöjen protokollatiedot ovat sivulla [Liitännät ja tiedonsiirto](./interfaces.md).

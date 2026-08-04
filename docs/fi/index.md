@@ -1,3 +1,7 @@
+---
+translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+---
+
 # Johdanto
 
 HALPI2 on käyttövalmis venetietokone, joka perustuu Raspberry Pi Compute Module 5 -moduuliin (CM5). Siinä on kattava valikoima ominaisuuksia, jotka sopivat hyvin vene-, ajoneuvo- ja moniin teollisuussovelluksiin.
