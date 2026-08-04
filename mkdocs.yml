@@ -7,6 +7,11 @@ repo_url: https://github.com/hatlabs/halpi2
 repo_name: hatlabs/halpi2
 edit_uri: edit/main/docs/
 
+# Affinity sources live next to their exports in the repo, but must not ship.
+exclude_docs: |
+  *.afdesign
+  *.afphoto
+
 theme:
   name: material
   custom_dir: docs/overrides
@@ -30,11 +35,49 @@ theme:
 
 plugins:
   - search
-  - print-site:
-      add_cover_page: true
-      add_print_site_banner: true
-      add_to_navigation: false
-      print_page_title: HALPI2 User Guide
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          name: English
+          default: true
+          build: true
+        - locale: fi
+          name: Suomi
+          build: true
+          site_name: HALPI2-käyttöopas
+          site_description: HALPI2:n käyttöopas — Raspberry Pi CM5 -emolevy vene- ja teollisuuskäyttöön
+          admonition_translations:
+            note: Huomio
+            warning: Varoitus
+            tip: Vinkki
+            info: Tietoa
+            danger: Vaara
+            example: Esimerkki
+          nav_translations:
+            Introduction: Johdanto
+            Getting Started: Aloitusopas
+            User Guide: Käyttöopas
+            System Operation: Järjestelmän käyttö
+            Hardware Guide: Laitteisto-opas
+            Interfaces and Connectivity: Liitännät ja tiedonsiirto
+            Software Guide: Ohjelmisto-opas
+            Troubleshooting: Vianetsintä
+            Technical Reference: Tekniset tiedot
+            Hardware Reference: Laitteiston tekniset tiedot
+            Power Supply Deep Dive: Virransyöttö tarkemmin
+            Carrier Board Controller: Emolevyn ohjain
+            Software Development: Ohjelmistokehitys
+            HALPI2 Daemon: HALPI2-daemon
+            System Integration: Järjestelmäintegraatio
+            Advanced Configuration: Lisäasetukset
+            Other Debian Distributions: Muut Debian-jakelut
+            Appendices: Liitteet
+            Design Files and Schematics: Suunnittelutiedostot ja kytkentäkaaviot
+            Compliance and Certifications: Vaatimustenmukaisuus ja sertifioinnit
+            Errata: Tunnetut virheet
+            Resources: Lisätietoja
+            FAQ: UKK
 
 markdown_extensions:
   - admonition
