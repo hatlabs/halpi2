@@ -97,9 +97,23 @@ def inflectable(term: str) -> re.Pattern[str]:
     obturateur`, so anchoring on the phrase as written finds neither. A verb
     phrase also takes its object in the middle — `aseta CM5 uudelleen
     paikalleen` — so a couple of words are allowed to intervene.
+
+    The match must start at a word boundary, or a compounding language reports
+    a term as used when only a longer word containing it is present: Finnish
+    `virtalähde` (power supply) is a substring of `vakiovirtalähde` (constant
+    current source), two different components. Without the boundary this check
+    returns a false green, which is worse than a false alarm — a checker that
+    passes when it should not is no checker at all.
+
+    The boundary only applies when the term starts with a word character. A row
+    like `−32 V and +32 V` opens with a minus sign, and `\\b` before a non-word
+    character asserts the opposite of what is meant — it would demand a letter
+    immediately before the minus and match nothing.
     """
     words = [re.escape(w[: max(3, len(w) - 3)]) + r"\w*" for w in fold(term).split()]
-    return re.compile(r"(?:\W+\w+){0,2}\W+".join(words))
+    body = r"(?:\W+\w+){0,2}\W+".join(words)
+    boundary = r"\b" if re.match(r"\w", fold(term)) else ""
+    return re.compile(boundary + body)
 
 
 def main() -> int:
