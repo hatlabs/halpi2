@@ -67,6 +67,9 @@ def prose(text: str) -> str:
     text = re.sub(r"`[^`\n]*`", "X", text)
     text = re.sub(r'^!!! \w+ ".*"$', "", text, flags=re.M)  # admonition syntax quotes
     text = re.sub(r"\]\([^)]*\)", "]", text)  # link targets
+    # A table's delimiter row carries the column alignment as colons — | ---: |
+    # — which reads as a space before a colon and is not prose at all.
+    text = re.sub(r"^[|\s:-]+$", "", text, flags=re.M)
     # Repository names and filenames are identifiers that happen to contain
     # hyphens — HALPI2-hardware, HALPI2-schematic_v0.6.1.pdf — and reading them
     # as compounds of the target language invents defects that are not there.
