@@ -10,7 +10,7 @@ HALPI2 è dotato di cinque LED RGB che forniscono un riscontro visivo sullo stat
 
 ### Riferimento rapido degli stati dei LED
 
-| Schema dei LED | Colore | Significato |
+| Sequenza dei LED | Colore | Significato |
 |-------------|-------|---------|
 | LED 5 acceso fisso | Rosso | Alimentazione presente, in attesa di carica |
 | Riempimento progressivo | Rosso | Carica dei supercondensatori |

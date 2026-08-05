@@ -166,7 +166,7 @@ Gli schemi di illuminazione dei LED RGB sono documentati nella [Guida al funzion
 
 ## Configurazione della limitazione di corrente
 
-La scheda portante è dotata di un limitatore di corrente che permette di configurare la corrente massima fornita alle periferiche. Per individuarlo, fare riferimento alla posizione dell’interruttore **a2** nell’immagine della sezione [Connettori della scheda portante](#connettori-della-scheda-portante).
+La scheda portante è dotata di un limitatore di corrente che permette di configurare la corrente massima fornita alle periferiche. Per individuarlo, fare riferimento alla posizione contrassegnata **a2** nell’immagine della sezione [Connettori della scheda portante](#connettori-della-scheda-portante).
 
 !!! info "Impostazioni del limite di corrente"
     **Impostazione 0,9 A (predefinita):**
@@ -180,7 +180,7 @@ La scheda portante è dotata di un limitatore di corrente che permette di config
     - Ricarica più rapida dei supercondensatori
     - Solo con alimentazione dedicata
 
-Per modificare l’impostazione del limite di corrente, spegnere prima completamente l’HALPI2 e rimuovere il coperchio della custodia seguendo la procedura descritta nella sezione Accesso alla custodia. Individuare il limitatore di corrente sulla scheda portante e spostare l’interruttore nella posizione desiderata (0,9 A oppure 2,5 A). Una volta modificata l’impostazione, rimontare la custodia verificando che tutti i collegamenti rimangano saldi.
+Per modificare l’impostazione del limite di corrente, spegnere prima completamente l’HALPI2 e rimuovere il coperchio della custodia seguendo la procedura descritta nella sezione Accesso alla custodia. Individuare il limitatore di corrente sulla scheda portante e spostarlo nella posizione desiderata (0,9 A oppure 2,5 A). Una volta modificata l’impostazione, rimontare la custodia verificando che tutti i collegamenti rimangano saldi.
 
 ## Uso degli HAT
 
@@ -219,7 +219,7 @@ Il bus SPI0 usato per l’interfaccia CAN FD può essere condiviso con altri dis
 
 Se un HAT richiede l’uso esclusivo di pin occupati dalle interfacce integrate dell’HALPI2, tali interfacce possono essere disattivate con modifiche hardware. L’interfaccia CAN FD può essere liberata completamente rimuovendo il jumper a saldare GPIO6-CAN.CS situato sul lato inferiore della scheda portante. Questa modifica scollega il controller CAN dal bus SPI e libera i GPIO 6, 9, 10, 11 e 26 per l’uso da parte dell’HAT.
 
-L’interfaccia RS-485 può essere disattivata rimuovendo il jumper RX Enable (i4) sulla scheda portante. In questo modo il ricetrasmettitore RS-485 non riceve più dati e i GPIO 12 e 13 restano liberi per altri usi. Se non serve il controllo manuale dell’abilitazione alla trasmissione, anche il GPIO 24 può essere riutilizzato impostando in modalità automatica il jumper di abilitazione automatica/manuale RS-485 (i2).
+L’interfaccia RS-485 può essere disattivata rimuovendo il jumper RX Enable (i4) sulla scheda portante. In questo modo il transceiver RS-485 non riceve più dati e i GPIO 12 e 13 restano liberi per altri usi. Se non serve il controllo manuale dell’abilitazione alla trasmissione, anche il GPIO 24 può essere riutilizzato impostando in modalità automatica il jumper di abilitazione automatica/manuale RS-485 (i2).
 
 ### Procedura di installazione
 

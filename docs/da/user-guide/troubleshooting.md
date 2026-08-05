@@ -88,7 +88,7 @@ Hvis systemet genstarter inden for 30 sekunder efter en firmwareopdatering, rull
     ```bash
     ip -statistics link show can0
     ```
-    Høje fejltal tyder på problemer med kablingen, forkert baudrate eller konflikter på bussen.
+    Høje fejltal tyder på problemer med kablingen, forkert baudhastighed eller konflikter på bussen.
 
 ### Ingen NMEA 0183-data på RS-485
 

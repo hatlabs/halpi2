@@ -77,7 +77,7 @@ Systemet integrerer et Raspberry Pi Compute Module 5 med et specialudviklet bær
 - **Flådestyringssystemer**
 - **Telematik** og sporing af køretøjer
 - **Infotainmentsystemer** i køretøjer
-- **Platforme til diagnose og overvågning**
+- **Platforme til diagnostik og overvågning**
 
 ## Hvad er der i æsken
 

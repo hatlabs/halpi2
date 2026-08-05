@@ -83,7 +83,7 @@ Sæt en almindelig 12 V- eller 24 V-strømforsyning i DC-jackstikket. Sørg for,
 
 ## Første opstart
 
-HALPI2 leveres med [HaLOS](https://docs.halos.fi), en containerbaseret Linux-distribution med en webadministreret grænseflade, der er udviklet til marine og industrielle anvendelser. Hvis du foretrækker et andet styresystem som OpenPlotter eller Raspberry Pi OS, kan du se [Softwarevejledningen](../user-guide/software.md).
+HALPI2 leveres med [HaLOS](https://docs.halos.fi), en containerbaseret Linux-distribution med en webstyret grænseflade, der er udviklet til marine og industrielle anvendelser. Hvis du foretrækker et andet styresystem som OpenPlotter eller Raspberry Pi OS, kan du se [Softwarevejledningen](../user-guide/software.md).
 
 !!! info "HaLOS-dokumentationen"
     Denne vejledning dækker HALPI2's hardware og den første opstart. Alt om styresystemet — opsætning ved første opstart, netværk, apps, certifikater og daglig brug — findes i **[HaLOS-dokumentationen](https://docs.halos.fi)**. Hav den ved hånden, mens du gennemgår trinnene nedenfor.
@@ -467,7 +467,7 @@ Sådan får du netværksforbindelse:
 ❌ **Overophedning:**
 
 - Flyt enheden væk fra varmekilder
-- Se efter blokeret luftstrøm omkring kabinettet
+- Se efter blokeret luftcirkulation omkring kabinettet
 
 ### Sikkerhed og overensstemmelse
 

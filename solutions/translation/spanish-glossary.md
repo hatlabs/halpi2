@@ -487,3 +487,5 @@ by each of them, because five agents share this file.
 | environmental sensing | detección ambiental | index.md. |
 | quick start guide | guía de inicio rápido | index.md. Note this is the printed leaflet in the box, distinct from the nav section `Getting Started` → `Primeros pasos`, which mkdocs.yml already fi |
 | goodie bag | bolsa de accesorios | index.md, image alt text only. |
+| clean shutdown | apagado controlado | troubleshooting.md. The source varies its wording (`clean shutdown` here, `graceful shutdown` elsewhere) for one concept; Spanish keeps the single rendering the glossary already assigns to `graceful shutdown`. Not `apagado limpio`. |
+| power connector / power socket | conector de alimentación | The English source alternates the two words for the same E7T port; Spanish uses one. `toma` is reserved for nothing here — see `receptacle / socket` above for the connector-opening senses. |

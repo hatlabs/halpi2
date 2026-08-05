@@ -11,7 +11,7 @@ e RS-485 integrate, vedere la guida utente [Interfacce e connettività](../user-
 ## Porte seriali (UART)
 
 Il Compute Module 5 raggiunge il connettore a pettine a 40 pin tramite il proprio
-controllore di I/O RP1, che espone cinque UART (`uart0`–`uart4`). Ogni UART è
+controller di I/O RP1, che espone cinque UART (`uart0`–`uart4`). Ogni UART è
 cablata a una coppia fissa di GPIO: a differenza dei modelli Pi precedenti, i pin
 non possono essere rimappati. La console di accesso è una UART di debug dedicata
 e separata (`/dev/ttyAMA10`) e non rientra tra queste.
@@ -21,7 +21,7 @@ e separata (`/dev/ttyAMA10`) e non rientra tra queste.
 | `uart0` | GPIO14 / 15 | 8 / 10 | `/dev/ttyAMA0` | Libera. Porta seriale HAT convenzionale; utilizzata dagli HAT GNSS. |
 | `uart1` | GPIO0 / 1 | 27 / 28 | `/dev/ttyAMA1` | Libera. Sono i pin della EEPROM di identificazione degli HAT (ID_SD / ID_SC). |
 | `uart2` | GPIO4 / 5 | 7 / 29 | `/dev/ttyAMA2` | Libera. |
-| `uart3` | GPIO8 / 9 | 24 / 21 | `/dev/ttyAMA3` | Utilizzata dal controllore CAN FD (SPI0). |
+| `uart3` | GPIO8 / 9 | 24 / 21 | `/dev/ttyAMA3` | Utilizzata dal controller CAN FD (SPI0). |
 | `uart4` | GPIO12 / 13 | 32 / 33 | `/dev/ttyAMA4` | Utilizzata da RS-485. |
 
 ### Abilitare una UART
@@ -59,8 +59,8 @@ CTS/RTS occupano la coppia di GPIO successiva, che su HALPI2 è spesso già in u
 
 `uart3` e `uart4` si sovrappongono alle interfacce CAN FD e RS-485 integrate:
 
-- **`uart3`** condivide il bus SPI0 con il controllore CAN FD: il pin GPIO9 è
-  l’uscita dati del controllore (SDO). L’utilizzo di `uart3` richiede la
+- **`uart3`** condivide il bus SPI0 con il controller CAN FD: il pin GPIO9 è
+  l’uscita dati del controller (SDO). L’utilizzo di `uart3` richiede la
   disabilitazione dell’interfaccia CAN e una modifica hardware, e non è
   supportato sulla scheda standard.
 - **`uart4`** è la porta RS-485. Rimuovendo il jumper di abilitazione della

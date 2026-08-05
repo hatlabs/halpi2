@@ -17,7 +17,7 @@ Esta página recoge las especificaciones eléctricas, mecánicas y ambientales d
 | Ajustes del límite de corriente | 0,9 A o 2,5 A (seleccionable) |
 | Respaldo por supercondensadores | 4× 25 F / 2,7 V en serie (6,25 F efectivos a 10,8 V máx.) |
 | Temperatura de funcionamiento | −20 °C … +60 °C |
-| Dimensiones de la carcasa | 200 × 130 × 60 mm (sin conectores) |
+| Dimensiones de la carcasa | 200×130×60 mm (sin conectores) |
 | Peso de la carcasa | TODO |
 | Material de la carcasa | Aluminio inyectado con recubrimiento en polvo |
 | Grado de protección | IP65 |
@@ -39,7 +39,7 @@ La alimentación admite un amplio rango de entrada en corriente continua y propo
 | Línea de 5 V | 5,1 V / 4 A (TPS566238, alimenta el CM5 y los puertos USB) |
 | Línea de 3,3 V | 3,33 V / 3 A (TPS566238, conmutada por el controlador en la v0.6.0 y posteriores) |
 | Umbral UVLO de 3,3 V | 4,5 V en el supercondensador |
-| LDO inicial de 3,3 V | SE8633K2 (para el arranque del controlador y del balanceador de supercondensadores) |
+| LDO inicial de 3,3 V | SE8633K2 (para el arranque del controlador y del equilibrador de supercondensadores) |
 
 ### Respaldo por supercondensadores
 
@@ -49,7 +49,7 @@ El banco de supercondensadores proporciona energía de respaldo para realizar un
 |:----------|:------|
 | Configuración | 4 celdas de 25 F / 2,7 V en serie |
 | Capacidad efectiva | 6,25 F a 10,8 V máximo |
-| Balanceo | Balanceo activo |
+| Equilibrado | Equilibrado activo |
 | Rango de tensión de carga | 0–10,8 V (supervisado por el ADC del controlador) |
 | Umbral de encendido | 8,0 V (configurable por firmware) |
 | Umbral de apagado | 5,5 V (configurable por firmware) |
@@ -203,7 +203,7 @@ Esto significa que los fallos de bus, los bucles de masa y el ruido presentes en
 | Parámetro | Valor |
 |:----------|:------|
 | Material | Aluminio inyectado con recubrimiento en polvo |
-| Dimensiones | 200 × 130 × 60 mm (sin conectores) |
+| Dimensiones | 200×130×60 mm (sin conectores) |
 | Peso | TODO |
 | Grado IP | IP65 |
 | Espacio libre interno sobre la placa portadora | 45 mm (admite hasta 2 HAT apilados) |

@@ -27,7 +27,7 @@ Denne side indeholder de elektriske, mekaniske og miljømæssige specifikationer
 
 ### Strømforsyning
 
-Strømforsyningen accepterer et bredt DC-indgangsområde og leverer regulerede 5 V- og 3,3 V-skinner til CM5 og periferienheder. Indgangsbeskyttelsen omfatter beskyttelse mod omvendt polaritet (LM74800), overspændingsfrakobling ved 38,6 V, TVS-begrænsning og EMI-filtrering af både common mode og differentielle signaler.
+Strømforsyningen accepterer et bredt DC-indgangsområde og leverer regulerede 5 V- og 3,3 V-skinner til CM5 og perifere enheder. Indgangsbeskyttelsen omfatter beskyttelse mod omvendt polaritet (LM74800), overspændingsfrakobling ved 38,6 V, TVS-begrænsning og EMI-filtrering af både common mode og differentielle signaler.
 
 | Parameter | Værdi |
 |:----------|:------|
@@ -65,7 +65,7 @@ Målt ved 12 V indgangsspænding med et Raspberry Pi CM5, der kører HaLOS-image
 | Spidsbelastning | ~590 mA |
 
 !!! note
-    Disse målinger omfatter ikke forbruget i eksterne USB-enheder. Hver USB 3.0-port kan levere op til 0,93 A, så systemets samlede forbrug afhænger i høj grad af de tilsluttede periferienheder.
+    Disse målinger omfatter ikke forbruget i eksterne USB-enheder. Hver USB 3.0-port kan levere op til 0,93 A, så systemets samlede forbrug afhænger i høj grad af de tilsluttede perifere enheder.
 
 ## Stikkenes benforbindelser
 
@@ -157,7 +157,7 @@ USB Type-C-hunstik, USB 2.0 i peripheral-tilstand. Forbundet til CM5'ens USB 2.0
 
 ## 40-benet GPIO-stikliste (Raspberry Pi GPIO-stikliste)
 
-GPIO-stiklisten følger Raspberry Pi's standardlayout med 40 ben. Følgende ben bruges af HALPI2's indbyggede periferienheder:
+GPIO-stiklisten følger Raspberry Pi's standardlayout med 40 ben. Følgende ben bruges af HALPI2's indbyggede perifere enheder:
 
 | GPIO | Ben | Funktion | Grænseflade | Delt? |
 |:-----|:----|:---------|:----------|:--------|

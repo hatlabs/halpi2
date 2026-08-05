@@ -38,7 +38,7 @@ HALPI2 leveres med en standard kontaktkonfigurasjon som passer til de fleste bru
 - **2× RP-SMA-antenneposisjoner** (med blindplugger)
 - **Trykkutjevningsplugg** for trykkutjevning
 
-![Front Panel Connectors and Blind Plugs](./front-panel-connectors-all.jpg)
+![Kontakter og blindplugger på frontpanelet](./front-panel-connectors-all.jpg)
 *Kontakter og blindplugger på frontpanelet. Kontaktene som er merket med grønt, inngår i standardkonfigurasjonen. De gule posisjonene er blindplugger som kan byttes ut med kontakter ved behov. Den røde posisjonen er trykkutjevningspluggen, som ikke må fjernes.*
 
 ### Tilpassede kontaktvalg
@@ -77,14 +77,14 @@ Hvis du trenger andre kontakttyper, kan du endre panelkonfigurasjonen:
 
 De viktigste funksjonsområdene på bærekortet er vist i bildet nedenfor.
 
-![Carrier Board Layout, Top-side](./carrier-board-top-layout.jpg)
+![Bærekortets oppbygning, oversiden](./carrier-board-top-layout.jpg)
 *Oversiden av bærekortet, med de viktigste funksjonsområdene.*
 
 ### Kontakter på bærekortet
 
 Funksjonaliteten nås gjennom en rekke kontakter på kortet, vist i bildet nedenfor.
 
-![Carrier Board Connectors, Top-side](./carrier-board-top-conx.jpg)
+![Kontakter på oversiden av bærekortet](./carrier-board-top-conx.jpg)
 *Kontakter på oversiden av bærekortet.*
 
 En oversikt over kontaktene på oversiden er gitt nedenfor.
@@ -121,7 +121,7 @@ En oversikt over kontaktene på oversiden er gitt nedenfor.
 | **n1** | CR2032-batteriholder for RTC (sanntidsklokke) |
 | **q1** | Viftekontakt for CM5. Viften kan brukes til å bedre luftsirkulasjonen inne i kabinettet. Den trengs ikke når standardkabinettet brukes. |
 
-![Carrier Board Connectors, Bottom side](./carrier-board-bottom-conx.jpg)
+![Kontakter på undersiden av bærekortet](./carrier-board-bottom-conx.jpg)
 *Kontakter på undersiden av bærekortet.*
 
 En oversikt over kontaktene på undersiden er gitt nedenfor.
@@ -133,7 +133,7 @@ En oversikt over kontaktene på undersiden er gitt nedenfor.
 
 Til slutt sitter antennekontakten for WiFi og Bluetooth på selve Compute Module 5. Den er vist i bildet nedenfor.
 
-![WiFi Antenna Connector](./cm5-top-conx.jpg)
+![Antennekontakt for WiFi](./cm5-top-conx.jpg)
 *U.FL-antennekontakt på Compute Module 5.*
 
 | Merking | Beskrivelse |
@@ -144,7 +144,7 @@ Til slutt sitter antennekontakten for WiFi og Bluetooth på selve Compute Module
 
 Bærekortet har flere status-LED-er for overvåking av systemet.
 
-![Carrier Board Status LEDs](./carrier-board-top-leds.jpg)
+![Status-LED-er på bærekortet](./carrier-board-top-leds.jpg)
 *Status-LED-ene på bærekortet og fargene deres.*
 
 Status-LED-ene gir informasjon om strøm- og aktivitetstilstanden til systemet. En oversikt over status-LED-ene er gitt nedenfor.
@@ -319,7 +319,7 @@ CM5-en er festet med to kort-til-kort-kontakter som må håndteres forsiktig. Br
 
 Plasser verktøyet midt på den korte venstrekanten av CM5-modulen, mellom modulen og bærekortet. Trykk bestemt ned i hjørnene på høyre side. Vipp forsiktig oppover med minimal kraft – modulen skal løsne med et lett klikk, slik at begge kontaktene slipper samtidig.
 
-![Unmounting CM5 Module](./unmount-cm5.jpg)
+![Demontering av CM5-modulen](./unmount-cm5.jpg)
 *Demonter CM5-modulen ved å trykke ned i hjørnene på høyre kant mens du vipper oppover midt på venstre kant. Begge kontaktene skal slippe samtidig.*
 
 ### Montere den nye modulen
@@ -330,7 +330,7 @@ Når modulen er rettet inn, trykker du forsiktig og jevnt der kontaktene sitter 
 
 Legg deretter varmeledende puter på CM5-modulen. Putene skal plasseres riktig: 1 mm pute på hoved-SoC-en, og 2 mm puter på RP1-brikken og strømforsyningskomponentene. Hvis du gjenbruker eksisterende puter, må du kontrollere at de er rene og riktig plassert.
 
-![Thermal Pad Placement on CM5](./cm5-thermal-pads-annotated.jpg)
+![Plassering av varmeledende puter på CM5](./cm5-thermal-pads-annotated.jpg)
 *Plassering av varmeledende puter på Compute Module 5. Bruk en 1 mm tykk pute på SoC-en (i midten) og 2 mm tykke puter på RP1 og strømforsyningskomponentene. De faktiske formene og størrelsene på putene kan variere.*
 
 ### Antennetilkobling

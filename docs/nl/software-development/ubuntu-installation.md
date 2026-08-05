@@ -32,7 +32,7 @@ sudo apt install curl openssh-server dpkg-dev i2c-tools npm net-tools iw git
 ## Hat Labs-repository
 
 De kant-en-klare pakketten voor de HALPI2 worden geleverd door Hat Labs en zijn beschikbaar via een apt-repository.
-Om deze repository toe te voegen, voert u de volgende commando's uit met rootrechten (vanuit `sudo bash`):
+Om deze repository toe te voegen, voert u de volgende opdrachten uit met rootrechten (vanuit `sudo bash`):
 
 ```bash
 sudo bash
@@ -80,7 +80,7 @@ sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
 ```
 ## CAN-bus (NMEA 2000) instellen
 
-Met het volgende commando schakelt u de CAN-bus voor NMEA 2000-communicatie op de HALPI2 in:
+Met de volgende opdracht schakelt u de CAN-bus voor NMEA 2000-communicatie op de HALPI2 in:
 
 ```bash
 sudo bash
@@ -100,7 +100,7 @@ systemctl enable systemd-networkd
 reboot
 ```
 
-Zodra het systeem opnieuw is opgestart, controleert u met een van de volgende commando's of de CAN-interface beschikbaar is:
+Zodra het systeem opnieuw is opgestart, controleert u met een van de volgende opdrachten of de CAN-interface beschikbaar is:
 
 ```bash
 ip link show can0
@@ -109,21 +109,21 @@ ifconfig can0
 
 ## HALPI2-daemon
 
-De HALPI2-daemon bewaakt en bestuurt het carrierboard van de HALPI2 en levert het commandoregelprogramma `halpi`.
+De HALPI2-daemon bewaakt en bestuurt het carrierboard van de HALPI2 en levert het opdrachtregelgereedschap `halpi`.
 Installeer het pakket `halpid` uit de Hat Labs-repository:
 
 ```bash
 sudo apt install halpid
 ```
 
-De HALPI2-daemon hoort nu te draaien en het commando `halpi` beschikbaar te zijn. De status van de daemon controleert u met:
+De HALPI2-daemon hoort nu te draaien en de opdracht `halpi` beschikbaar te zijn. De status van de daemon controleert u met:
 ```bash
 halpi status
 ```
 
 ## Firmware van de HALPI2 installeren
 
-Nu het commando `halpi` beschikbaar is, kunt u het pakket `halpi2-firmware` installeren, dat de nieuwste firmware naar het HALPI2-board flasht:
+Nu de opdracht `halpi` beschikbaar is, kunt u het pakket `halpi2-firmware` installeren, dat de nieuwste firmware naar het HALPI2-board flasht:
 ```bash
 apt install halpi2-firmware
 ```
@@ -136,7 +136,7 @@ halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
 ## Signal K-server instellen
 
 De Signal K-server is een populaire keuze voor het beheer van maritieme gegevens en kan zowel NMEA 2000- als NMEA 0183-gegevensbronnen aan.
-De Signal K-server kan met npm worden geïnstalleerd. De volgende commando's installeren de Signal K-server en starten de eerste configuratie:
+De Signal K-server kan met npm worden geïnstalleerd. De volgende opdrachten installeren de Signal K-server en starten de eerste configuratie:
 
 ```bash
 npm i -g signalk-server

@@ -89,7 +89,7 @@ HALPI2 viene fornito con [HaLOS](https://docs.halos.fi), una distribuzione Linux
     Questa guida riguarda l’hardware HALPI2 e la prima accensione. Tutto ciò che concerne il sistema operativo — configurazione al primo avvio, rete, applicazioni, certificati e uso quotidiano — si trova nella **[documentazione di HaLOS](https://docs.halos.fi)**. È utile tenerla a portata di mano durante i passaggi descritti di seguito.
 
 **Accendere l’HALPI2** collegando l’alimentatore, se non è già stato fatto. Dopo alcuni secondi,
-la barra LED dovrebbe iniziare a riempirsi di luci rosse, a indicare che i supercondensatori si stanno caricando. I LED diventano gialli quando il sistema si sta avviando e infine verdi quando il sistema operativo è in esecuzione e il demone HALPI è connesso al controllore.
+la barra LED dovrebbe iniziare a riempirsi di luci rosse, a indicare che i supercondensatori si stanno caricando. I LED diventano gialli quando il sistema si sta avviando e infine verdi quando il sistema operativo è in esecuzione e il demone HALPI è connesso al controller.
 
 Se è collegato un display, dovrebbe comparire la schermata iniziale di Raspberry Pi OS e infine il desktop grafico.
 
@@ -206,7 +206,7 @@ In condizioni normali lo spegnimento richiede in genere solo pochi secondi. In a
 ### Come ottenere assistenza:
 
 - **Documentazione:** consultare le sezioni specifiche per una risoluzione dei problemi dettagliata
-- **Community:** partecipare ai forum della community di Hat Labs
+- **Comunità:** partecipare ai forum della comunità di Hat Labs
 - **Assistenza:** contattare l’assistenza tecnica per i problemi hardware
 
 ---
@@ -372,7 +372,7 @@ Il connettore E7T è precablato e non richiede alcuna terminazione in campo. È 
 #### Collegamento dell’alimentazione tramite bus NMEA 2000
 
 !!! info "Prerequisiti"
-    - Il selettore del limite di corrente **deve** essere impostato su 0,9 A
+    - Il limitatore di corrente **deve** essere impostato su 0,9 A
     - La rete NMEA 2000 deve disporre di una capacità di alimentazione adeguata
     - Il cavo di derivazione deve trovarsi vicino al punto di alimentazione, per ridurre al minimo la caduta di tensione
 
@@ -495,4 +495,4 @@ Una volta che l’HALPI2 è in funzione:
 1. **Consultare la [Guida utente](../user-guide/operation.md)** per istruzioni dettagliate sul funzionamento
 2. **Esaminare i casi d’uso più comuni** per le configurazioni specifiche per applicazione
 3. **Consultare il Riferimento tecnico** per le opzioni di configurazione avanzate
-4. **Partecipare alla community** per consigli, suggerimenti e supporto
+4. **Partecipare alla comunità** per consigli, suggerimenti e assistenza

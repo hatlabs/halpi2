@@ -6,7 +6,7 @@ translated_from: 9741366021074655d667fcf3a93a634f86f3519a
 
 ## Adgang til kabinettet
 
-HALPI2 har et pulverlakeret kabinet i støbt aluminium med forborede huller til panelstik. Når der er behov for indvendige ændringer eller vedligeholdelse, får du adgang til kabinettet ved at følge fremgangsmåderne nedenfor.
+HALPI2 har et pulverlakeret kabinet i trykstøbt aluminium med forborede huller til panelstik. Når der er behov for indvendige ændringer eller vedligeholdelse, får du adgang til kabinettet ved at følge fremgangsmåderne nedenfor.
 
 ### Sådan åbner du kabinettet
 
@@ -119,7 +119,7 @@ Nedenfor er en oversigt over stikkene på oversiden.
 | **m3** | USB3-stik 1-1. Forbundet til den indbyggede USB3-hub. |
 | **m4** | USB3-stik 1-2. Forbundet til den indbyggede USB3-hub. |
 | **n1** | CR2032-batteriholder til RTC'en (realtidsuret) |
-| **q1** | Ventilatorstik til CM5. Ventilatoren kan bruges til at forbedre luftcirkulationen inde i kabinettet. Den er ikke nødvendig, når standardkabinettet anvendes. |
+| **q1** | Blæserstik til CM5. Blæseren kan bruges til at forbedre luftcirkulationen inde i kabinettet. Den er ikke nødvendig, når standardkabinettet anvendes. |
 
 ![Bærekortets stik, undersiden](./carrier-board-bottom-conx.jpg)
 *Bærekortets stik på undersiden.*
@@ -129,7 +129,7 @@ Nedenfor er en oversigt over stikkene på undersiden.
 | Mærke | Beskrivelse |
 |:------|:------------|
 | **p1** | Compute Module 5-stik. |
-| **q1** | Ventilatorstik til CM5, alternativ placering. Denne stikliste kan bruges til at tilslutte en CPU-ventilator over CM5-modulet, når der anvendes et specialkabinet. **NB:** Stikkene **q1** og **q2** er forbundet parallelt og må ikke bruges samtidig. |
+| **q1** | Blæserstik til CM5, alternativ placering. Denne stikliste kan bruges til at tilslutte en CPU-blæser over CM5-modulet, når der anvendes et specialkabinet. **NB:** Stikkene **q1** og **q2** er forbundet parallelt og må ikke bruges samtidig. |
 
 Til sidst sidder stikket til WiFi- og Bluetooth-antennen på selve Compute Module 5. Det er vist på billedet nedenfor.
 
@@ -166,7 +166,7 @@ RGB-LED'ernes mønstre er beskrevet under [Systemdrift](./operation.md#status-le
 
 ## Konfiguration af strømbegrænsning
 
-Bærekortet har en strømbegrænsningskontakt, hvor du indstiller den maksimale strøm til periferienhederne. Kontakten finder du som **a2** på billedet i afsnittet [Bærekortets stik](#brekortets-stik).
+Bærekortet har en strømbegrænsningskontakt, hvor du indstiller den maksimale strøm til de perifere enheder. Kontakten finder du som **a2** på billedet i afsnittet [Bærekortets stik](#brekortets-stik).
 
 !!! info "Indstillinger for strømbegrænsning"
     **Indstillingen 0,9 A (standard):**
@@ -176,7 +176,7 @@ Bærekortet har en strømbegrænsningskontakt, hvor du indstiller den maksimale 
 
     **Indstillingen 2,5 A:**
 
-    - Til periferienheder med stort strømforbrug
+    - Til perifere enheder med stort strømforbrug
     - Hurtigere opladning af superkondensatorerne
     - Kun ved dedikeret strømtilslutning
 
@@ -186,7 +186,7 @@ Sluk helt for HALPI2, og fjern kabinetlåget efter fremgangsmåden i afsnittet A
 
 ### HAT-kompatibilitet
 
-HALPI2 understøtter almindelige Raspberry Pi-HAT'er via sin 40-benede GPIO-stikliste og er fuldt elektrisk og mekanisk kompatibel med Raspberry Pi-HAT-specifikationen. Bærekortet har samme GPIO-benkonfiguration som en almindelig Raspberry Pi, så de fleste HAT'er, der er lavet til Raspberry Pi 4 og 5, virker uden ændringer. Kompatibiliteten gælder både officielle Raspberry Pi-HAT'er og udvidelseskort fra tredjepart, der følger HAT-standarden.
+HALPI2 understøtter almindelige Raspberry Pi-HAT'er via sin 40-benede GPIO-stikliste og er fuldt elektrisk og mekanisk kompatibel med Raspberry Pi-HAT-specifikationen. Bærekortet har samme GPIO-benforbindelser som en almindelig Raspberry Pi, så de fleste HAT'er, der er lavet til Raspberry Pi 4 og 5, virker uden ændringer. Kompatibiliteten gælder både officielle Raspberry Pi-HAT'er og udvidelseskort fra tredjepart, der følger HAT-standarden.
 
 ### Fysiske begrænsninger
 
@@ -241,14 +241,14 @@ Hvis HAT'en har udvendige stik, der skal kunne nås uden for kabinettet, kan du 
 
 En HAT afmonteres i omvendt rækkefølge af installationen. Sluk systemet helt, og frakobl alle strømkilder, før du åbner kabinettet. Fjern M2.5-monteringsskruerne, og løft forsigtigt HAT'en lige op fra GPIO-stiklisten, så du undgår sidevejs kræfter, der kan bøje benene på stiklisten.
 
-Hvis HAT'en sidder fast, skal du se efter overset monteringsmateriel eller kabler, før du bruger mere kraft. Nogle HAT'er med stramtsiddende stik kan kræve en forsigtig vippende bevægelse, mens du trækker opad. Vip HAT'en i nord-syd-retningen; vipper du øst-vest, risikerer du at bøje benene på stiklisten, når stikket pludselig slipper.
+Hvis HAT'en sidder fast, skal du se efter oversete monteringsbeslag eller kabler, før du bruger mere kraft. Nogle HAT'er med stramtsiddende stik kan kræve en forsigtig vippende bevægelse, mens du trækker opad. Vip HAT'en i nord-syd-retningen; vipper du øst-vest, risikerer du at bøje benene på stiklisten, når stikket pludselig slipper.
 
 ### Softwarekonfiguration
 
 Efter hardwareinstallationen kan HAT'en kræve softwarekonfiguration for at fungere korrekt. Mange HAT'er har device tree-overlays, som skal aktiveres i Raspberry Pi-konfigurationen. Redigér `/boot/firmware/config.txt`, og tilføj de relevante `dtoverlay`-linjer som beskrevet i dokumentationen til din HAT.
 
 !!! quote "Relaterede oplysninger"
-    - **Reference for GPIO-benkonfiguration:** Se [Hardwarereference](../technical-reference/hardware.md)
+    - **Reference for GPIO-benforbindelser:** Se [Hardwarereference](../technical-reference/hardware.md)
     - **Softwarekonfiguration:** Se [Avanceret konfiguration](../software-development/advanced-config.md)
     - **Ændringer af kabinettet:** Se [Alternative stikmuligheder](#alternative-stikmuligheder)
 

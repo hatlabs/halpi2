@@ -74,7 +74,7 @@ De HALPI2 voorbereiden op flashen via USB:
 
 1. Schakel het systeem volledig uit en open het deksel van de behuizing volgens de procedure in de [Hardwarehandleiding](./hardware.md#toegang-tot-de-behuizing).
 2. Zoek de USB-C-connector met het opschrift “USB Boot” rechts van de HAT-omtrek op het carrierboard en zet de bootmodusschakelaar ernaast in de stand “Abnormal”. (Er is nog geen terugkoppeling via leds — het apparaat is spanningsloos.)
-3. Sluit een USB-kabel aan tussen uw computer en de USB Boot-connector op de HALPI2 en schakel het apparaat weer in. Een amberkleurige led naast de bootmodusschakelaar gaat nu branden, wat bevestigt dat de HALPI2 in de USB-bootmodus staat.
+3. Sluit een USB-kabel aan tussen uw computer en de USB-bootconnector op de HALPI2 en schakel het apparaat weer in. Een amberkleurige led naast de bootmodusschakelaar gaat nu branden, wat bevestigt dat de HALPI2 in de USB-bootmodus staat.
 4. Voer op uw computer `rpiboot` uit. Het gereedschap detecteert de HALPI2 en laadt de firmware voor de massaopslag-gadget; daarna verschijnt de HALPI2 als USB-massaopslagapparaat.
 5. Zodra `rpiboot` is geslaagd en het massaopslagapparaat verschijnt, zet u de bootmodusschakelaar terug in de stand “Normal”. Dit onderbreekt de flashsessie niet en zorgt ervoor dat de HALPI2 na de volgende in- en uitschakelcyclus normaal opstart vanaf het pas geflashte image. Blijft de schakelaar in de stand “Abnormal” staan, dan gaat het apparaat bij de volgende start opnieuw in de USB-bootmodus in plaats van het nieuwe besturingssysteem te starten.
 6. Flash het systeemimage met Raspberry Pi Imager (of met een ander gereedschap dat naar een blockdevice kan schrijven), met het nieuwe massaopslagapparaat als doel.
@@ -305,7 +305,7 @@ Wilt u slechts één specifieke waarde bewaken, dan kunt u die als volgt opvrage
 halpi get firmware_version
 ```
 
-Voor scripts kunt u beter de REST API gebruiken, zoals beschreven in het gedeelte [REST API-toegang](#rest-api-toegang).
+Voor scripts kunt u beter de REST API gebruiken, zoals beschreven in het onderdeel [REST API-toegang](#rest-api-toegang).
 
 #### Configuratiebeheer
 

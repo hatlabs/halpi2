@@ -27,7 +27,7 @@ Systemet forener en Raspberry Pi Compute Module 5 med et spesialutviklet bæreko
 - **Støtte for ekstern antenne** gjennom utsparinger for 2 ekstra SMA-kontakter
 - **Konstruert for veggmontering**, med kontaktene plassert for enkel installasjon
 
-![HALPI2 Connector Layout](./user-guide/front-panel-connectors-all.jpg)
+![Kontaktplassering på HALPI2](./user-guide/front-panel-connectors-all.jpg)
 
 ### Maskinvareegenskaper
 
@@ -45,7 +45,7 @@ Systemet forener en Raspberry Pi Compute Module 5 med et spesialutviklet bæreko
 - **Visuell statusindikering** med fem RGB-LED-er
 - **Brukerinteraksjon** gjennom konfigurerbare knappepinnelister
 
-![HALPI2 Interior View](./halpi2-interior.jpg)
+![HALPI2 sett innvendig](./halpi2-interior.jpg)
 *Innvendig bilde av HALPI2 som viser bærekortet og de ulike kontaktene.*
 
 ### Programvareegenskaper
@@ -91,7 +91,7 @@ HALPI2-pakken inneholder:
 - **3 stk. PG7-kabelgjennomføringer** for flere grensesnitt
 - **Hurtigstartveiledning og garantidokumentasjon** som hjelp til å komme i gang
 
-![HALPI2 Goodie Bag Contents](./goodie-bag-contents.jpg)
+![Innholdet i tilbehørsposen til HALPI2](./goodie-bag-contents.jpg)
 
 Ekstra tilbehør fås separat:
 

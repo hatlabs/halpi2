@@ -164,7 +164,7 @@ Begge tilstande er afhængige af backupsystemet med superkondensatorer for at ku
 **Backupstrømmens varighed:**
 
 - Superkondensatorerne leverer 30–60 sekunders backupstrøm
-- Varigheden afhænger af systemets belastning og de tilsluttede periferienheder
+- Varigheden afhænger af systemets belastning og de tilsluttede perifere enheder
 - Tilstrækkelig tid til at lukke filsystemet sikkert og afslutte processerne
 - Ikke beregnet til fortsat drift under længerevarende afbrydelser
 

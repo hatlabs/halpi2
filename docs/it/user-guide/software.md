@@ -170,7 +170,7 @@ Per chi preferisce un’interfaccia grafica, l’ambiente desktop segnala visiva
 
 ## Aggiornamenti del firmware
 
-Il firmware del controllore HALPI2 può essere aggiornato con la procedura di aggiornamento standard di Raspberry Pi OS, che offre un approccio integrato e senza interruzioni per mantenere aggiornate le versioni del firmware. Aggiornamenti regolari del firmware sono importanti per garantire prestazioni ottimali, accedere a nuove funzionalità e mantenere la compatibilità con i componenti software in evoluzione.
+Il firmware del controller HALPI2 può essere aggiornato con la procedura di aggiornamento standard di Raspberry Pi OS, che offre un approccio integrato e senza interruzioni per mantenere aggiornate le versioni del firmware. Aggiornamenti regolari del firmware sono importanti per garantire prestazioni ottimali, accedere a nuove funzionalità e mantenere la compatibilità con i componenti software in evoluzione.
 
 ### Aggiornamenti automatici del firmware
 
@@ -189,7 +189,7 @@ Al termine dell’aggiornamento del pacchetto del firmware, è indispensabile ri
 sudo shutdown -h now
 ```
 
-**Importante:** il semplice riavvio del sistema non è sufficiente per gli aggiornamenti del firmware. È necessario uno spegnimento completo seguito da una riaccensione, poiché solo così il controllore può riavviarsi e applicare il nuovo firmware. Il firmware del controllore viene aggiornato esclusivamente durante la sequenza di accensione.
+**Importante:** il semplice riavvio del sistema non è sufficiente per gli aggiornamenti del firmware. È necessario uno spegnimento completo seguito da una riaccensione, poiché solo così il controller può riavviarsi e applicare il nuovo firmware. Il firmware del controller viene aggiornato esclusivamente durante la sequenza di accensione.
 
 ### Funzioni di sicurezza del firmware
 
@@ -226,7 +226,7 @@ L’interfaccia software di HALPI2 è costituita dal servizio demone `halpid` e 
 
 ### Demone HALPI (`halpid`)
 
-Il demone HALPI viene eseguito come servizio di sistema e assicura la comunicazione tra il sistema operativo e il controllore HALPI2. Consente il funzionamento in modalità Co-op con tutte le funzioni di monitoraggio e di gestione dell’alimentazione.
+Il demone HALPI viene eseguito come servizio di sistema e assicura la comunicazione tra il sistema operativo e il controller HALPI2. Consente il funzionamento in modalità Co-op con tutte le funzioni di monitoraggio e di gestione dell’alimentazione.
 
 #### Gestione del servizio
 
@@ -268,7 +268,7 @@ sudo systemctl restart halpid
 
 ### Strumento da riga di comando HALPI (`halpi`)
 
-Il comando `halpi` offre accesso diretto alle funzioni del controllore e allo stato del sistema. Comunica con il demone per eseguire i comandi e recuperare informazioni sullo stato operativo, sulla configurazione e sui parametri hardware dell’HALPI2.
+Il comando `halpi` offre accesso diretto alle funzioni del controller e allo stato del sistema. Comunica con il demone per eseguire i comandi e recuperare informazioni sullo stato operativo, sulla configurazione e sui parametri hardware dell’HALPI2.
 
 #### Stato e monitoraggio del sistema
 
@@ -280,7 +280,7 @@ Visualizzazione dello stato del sistema:
 halpi status
 ```
 
-Questo comando offre una panoramica completa dello stato operativo attuale dell’HALPI2, compresi i livelli di tensione, l’assorbimento di corrente, le letture di temperatura e lo stato del controllore:
+Questo comando offre una panoramica completa dello stato operativo attuale dell’HALPI2, compresi i livelli di tensione, l’assorbimento di corrente, le letture di temperatura e lo stato del controller:
 
 ```
 $ halpi status
@@ -367,7 +367,7 @@ halpi shutdown
 halpi standby
 ```
 
-Il comando di spegnimento garantisce che il sistema si spenga in sicurezza, consentendo al sistema operativo di chiudere le applicazioni e di smontare correttamente i file system prima che il controllore interrompa l’alimentazione.
+Il comando di spegnimento garantisce che il sistema si spenga in sicurezza, consentendo al sistema operativo di chiudere le applicazioni e di smontare correttamente i file system prima che il controller interrompa l’alimentazione.
 
 #### Accesso all’API REST
 

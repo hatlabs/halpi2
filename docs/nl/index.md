@@ -22,7 +22,7 @@ Het systeem combineert een Raspberry Pi Compute Module 5 met een speciaal ontwor
 ### Kenmerken van de behuizing
 
 - **Waterdichte aluminium behuizing (IP65)**, afmetingen 200 × 130 × 60 mm
-- **Standaardconnectoren** voor voeding, NMEA 2000, gigabit-ethernet, HDMI, 2× USB 3.0 en de WiFi/Bluetooth-antenne
+- **Standaardconnectoren** voor voeding, NMEA 2000, gigabit-ethernet, HDMI, 2× USB 3.0 en de wifi/Bluetooth-antenne
 - **Flexibele aansluitmogelijkheden**, met keuze uit 3× PG7-kabelwartel of waterdichte SP13-connectoren
 - **Ondersteuning voor externe antennes** via uitsparingen voor 2 extra SMA-connectoren
 - **Ontwerp voor wandmontage**, met connectoren op een plaats die installeren eenvoudig maakt
@@ -87,7 +87,7 @@ Uw HALPI2-pakket bevat:
 - **Voedingskabel** met E7T-connector (compatibel met Amphenol LTW Ceres Mini), lengte 2 m
 - **E7T-kabelstekker** voor eigen installaties
 - **Paar DC-pluggen (barrel connectors)** (5,5 × 2,1 mm) voor gebruik met standaardvoedingen van 12 V/24 V
-- **Raspberry Pi-antenne** voor wifi- en bluetoothverbindingen
+- **Raspberry Pi-antenne** voor wifi- en Bluetooth-verbindingen
 - **3 PG7-kabelwartels** voor extra interfaces
 - **Snelstartgids en garantiedocumentatie** om op weg te helpen
 

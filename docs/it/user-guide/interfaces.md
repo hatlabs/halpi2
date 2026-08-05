@@ -64,7 +64,7 @@ L’HALPI2 include un’interfaccia [RS-485](https://en.wikipedia.org/wiki/RS-48
 
 ### Specifiche dell’interfaccia
 
-Il ricetrasmettitore RS-485 funziona a velocità fino a 10 Mbit/s, anche se le tipiche applicazioni NMEA 0183 utilizzano le velocità standard di 4800 o 38400 bit/s. L’interfaccia è isolata galvanicamente ed è conforme alla specifica NMEA 0183: protegge l’HALPI2 dagli anelli di massa e dai disturbi elettrici comuni negli ambienti nautici.
+Il transceiver RS-485 funziona a velocità fino a 10 Mbit/s, anche se le tipiche applicazioni NMEA 0183 utilizzano le velocità standard di 4800 o 38400 bit/s. L’interfaccia è isolata galvanicamente ed è conforme alla specifica NMEA 0183: protegge l’HALPI2 dagli anelli di massa e dai disturbi elettrici comuni negli ambienti nautici.
 
 L’interfaccia è collegata internamente alla UART 4 del Raspberry Pi e compare come `/dev/ttyAMA4` nel sistema operativo Linux. A questo dispositivo seriale standard può accedere qualsiasi applicazione che supporti la comunicazione seriale, compresi il server Signal K, OpenCPN e applicazioni software personalizzate.
 
@@ -203,7 +203,7 @@ Per il montaggio diretto sulla custodia dell’HALPI2, utilizzare i fori da 6 m
 
 #### Montaggio su pannello esterno
 
-Quando i pulsanti vengono montati su un pannello di comando remoto, scegliere una posizione che offra un accesso comodo mantenendo la tenuta agli agenti atmosferici. Utilizzare pressacavi per i punti di ingresso dei cavi e collegare i pulsanti con una prolunga a conduttori da 22–26 AWG, mantenendo la lunghezza totale del cavo entro 3 metri per preservare l’integrità del segnale. Nelle installazioni esposte all’umidità o ad ambienti gravosi, impiegare connettori impermeabili nei punti di giunzione, per garantire un funzionamento affidabile nel tempo.
+Quando i pulsanti vengono montati su un pannello di comando remoto, scegliere una posizione che offra un accesso comodo mantenendo la tenuta agli agenti atmosferici. Utilizzare pressacavi per i punti di ingresso dei cavi e collegare i pulsanti con una prolunga a conduttori da 22–26 AWG, mantenendo la lunghezza totale del cavo entro 3 metri per preservare l’integrità del segnale. Nelle installazioni esposte all’umidità o ad ambienti gravosi, impiegare connettori impermeabili nei punti di giunzione, per garantire un funzionamento affidabile nel tempo.
 
 #### Collegamento
 

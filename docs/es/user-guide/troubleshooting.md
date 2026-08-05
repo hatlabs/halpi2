@@ -56,7 +56,7 @@ Después de una actualización de firmware, si el sistema se reinicia antes de 3
 
 1. Comprobar la versión de firmware actual: `halpi get firmware_version`
 2. Reintentar la actualización: `sudo apt update && sudo apt install --reinstall halpi2-firmware`
-3. Realizar un apagado limpio una vez instalada la actualización: `sudo shutdown -h now`
+3. Realizar un apagado controlado una vez instalada la actualización: `sudo shutdown -h now`
 4. Esperar a que el sistema se apague por completo antes de volver a conectarlo: deben transcurrir al menos 30 segundos antes del siguiente reinicio para evitar que se active el mecanismo de reversión.
 
 ## Problemas de red y de interfaces

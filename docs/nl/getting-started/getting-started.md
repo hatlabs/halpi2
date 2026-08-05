@@ -66,7 +66,7 @@ Een [NMEA 2000-netwerk](https://docs.hatlabs.fi/nmea2000/) bestaat uit een backb
 ### Stap 3: voedingsaansluiting
 
 !!! tip "Opmerking over voeding via NMEA 2000"
-    De HALPI2 kan ook via de NMEA 2000-bus worden gevoed. Zie [Voedingsaansluiting via de NMEA 2000-bus](#voedingsaansluiting-via-de-nmea-2000-bus) in het gedeelte over de vaste installatie hieronder.
+    De HALPI2 kan ook via de NMEA 2000-bus worden gevoed. Zie [Voedingsaansluiting via de NMEA 2000-bus](#voedingsaansluiting-via-de-nmea-2000-bus) in het onderdeel over de vaste installatie hieronder.
 
 Voor de opstelling op het bureau gebruiken we de meegeleverde E7T-voedingskabel. Sluit de aders van de voedingskabel als volgt aan op de female DC-plug:
 
@@ -164,7 +164,7 @@ Open de webinterface van Signal K en bekijk de activiteit van de verbinding `can
 
 De HALPI2 is ontworpen om automatisch af te sluiten wanneer de voeding wordt losgekoppeld. Wilt u het apparaat afsluiten, schakel dan simpelweg de spanning uit, met een schakelaar op het elektrisch paneel of door de voedingsconnector los te nemen. Het systeem start dan automatisch een gecontroleerde afsluitprocedure, zodat alle applicaties netjes worden gesloten en het bestandssysteem veilig wordt ontkoppeld.
 
-Sluit u het systeem af via de grafische werkomgeving of met opdrachtregelprogramma's (zoals de opdracht `shutdown`), dan start het apparaat na ongeveer 5 seconden automatisch opnieuw op. Dat komt doordat het energiebeheer vaststelt dat er nog externe voeding aanwezig is.
+Sluit u het systeem af via de grafische werkomgeving of met opdrachtregelgereedschap (zoals de opdracht `shutdown`), dan start het apparaat na ongeveer 5 seconden automatisch opnieuw op. Dat komt doordat het energiebeheer vaststelt dat er nog externe voeding aanwezig is.
 
 Tijdens het afsluiten kunt u de systeemstatus volgen aan de leds op het frontpaneel. Zodra de spanning wegvalt, dimmen de groene leds om een stroomuitval aan te geven. Na 5 seconden worden de leds violet; dat is een duidelijk teken dat het apparaat bezig is met afsluiten. Zodra het afsluiten voltooid is, gaan alle leds uit.
 

@@ -129,7 +129,7 @@ Hieronder staat een overzicht van de connectoren aan de onderzijde.
 | Aanduiding | Beschrijving |
 |:------|:------------|
 | **p1** | Connector voor de Compute Module 5. |
-| **q1** | Ventilatorconnector voor de CM5, alternatieve plaats. Op deze header kunt u bij een eigen behuizing een processorventilator boven de CM5-module aansluiten. **NB:** de connectoren **q1** en **q2** zijn parallel geschakeld en mogen niet tegelijk worden gebruikt. |
+| **q1** | Ventilatorconnector voor de CM5, alternatieve plaats. Op deze pinheader kunt u bij een eigen behuizing een processorventilator boven de CM5-module aansluiten. **NB:** de connectoren **q1** en **q2** zijn parallel geschakeld en mogen niet tegelijk worden gebruikt. |
 
 Tot slot zit de antenneconnector voor wifi en Bluetooth op de Compute Module 5 zelf. Hij is te zien op de onderstaande afbeelding.
 
@@ -138,7 +138,7 @@ Tot slot zit de antenneconnector voor wifi en Bluetooth op de Compute Module 5 z
 
 | Aanduiding | Beschrijving |
 |:------|:------------|
-| **r1** | U.FL-connector voor de wifi- en bluetoothantenne. |
+| **r1** | U.FL-connector voor de wifi- en Bluetooth-antenne. |
 
 ### Blinkenlights
 
@@ -227,7 +227,7 @@ Schakel het systeem uit en koppel alle voedingsbronnen los voordat u begint. Ver
 
 Carrierboards van versie 0.5.0 en later hebben op de vier HAT-montageposities al M2,5-draadinzetstukken zitten, wat de installatie vereenvoudigt. Bij oudere boards van v0.4.0 moet u de M2,5-moeren zelf aanbrengen. Daarvoor moet het carrierboard tijdelijk worden gedemonteerd. Dat kan zonder alle kabels los te koppelen.
 
-Voor veel gangbare HAT's voldoen afstandsbussen van 15 mm, maar meet de hoogte van de female header op de HAT om te zorgen voor de juiste vrije ruimte. De voet van de male header is 2,5 mm hoog; tel die op bij de hoogte van de female header om de benodigde lengte van de afstandsbus te bepalen.
+Voor veel gangbare HAT's voldoen afstandsbussen van 15 mm, maar meet de hoogte van de female pinheader op de HAT om te zorgen voor de juiste vrije ruimte. De voet van de male pinheader is 2,5 mm hoog; tel die op bij de hoogte van de female pinheader om de benodigde lengte van de afstandsbus te bepalen.
 
 Draai de afstandsbussen in de bevestigingsgaten, of zet ze bij v0.4.0-boards van onderaf vast met moeren. Lijn de HAT uit met de 40-pins GPIO-pinheader en controleer of alle pinnen goed staan voordat u met gelijkmatige druk de connector aandrukt. De HAT hoort evenwijdig aan het carrierboard te zitten, zonder zichtbare spleet bij de GPIO-verbinding.
 
@@ -239,9 +239,9 @@ Heeft de HAT connectoren die van buiten de behuizing bereikbaar moeten zijn, ove
 
 ### Verwijderingsprocedure
 
-Het verwijderen van een HAT verloopt in omgekeerde volgorde van de installatie. Schakel het systeem volledig uit en koppel alle voedingsbronnen los voordat u de behuizing opent. Verwijder de M2,5-montageschroeven en til de HAT voorzichtig recht omhoog van de GPIO-pinheader, zonder zijdelingse kracht die de pinnen van de header kan verbuigen.
+Het verwijderen van een HAT verloopt in omgekeerde volgorde van de installatie. Schakel het systeem volledig uit en koppel alle voedingsbronnen los voordat u de behuizing opent. Verwijder de M2,5-montageschroeven en til de HAT voorzichtig recht omhoog van de GPIO-pinheader, zonder zijdelingse kracht die de pinnen van de pinheader kan verbuigen.
 
-Zit de HAT vast, controleer dan eerst op over het hoofd gezien bevestigingsmateriaal of kabels voordat u meer kracht zet. Bij sommige HAT's met strak zittende connectoren is een lichte wrikkende beweging tijdens het omhoogtrekken nodig. Wrik de HAT in de noord-zuidrichting; wrikken in de oost-westrichting kan de pinnen van de header verbuigen wanneer de connector plotseling loskomt.
+Zit de HAT vast, controleer dan eerst op over het hoofd gezien bevestigingsmateriaal of kabels voordat u meer kracht zet. Bij sommige HAT's met strak zittende connectoren is een lichte wrikkende beweging tijdens het omhoogtrekken nodig. Wrik de HAT in de noord-zuidrichting; wrikken in de oost-westrichting kan de pinnen van de pinheader verbuigen wanneer de connector plotseling loskomt.
 
 ### Softwareconfiguratie
 
@@ -270,7 +270,7 @@ De supercondensatoren kunnen de 3,3 V-rail van het carrierboard nog geruime tijd
 
 Schakel eerst de HALPI2 uit en koppel de voeding los. Open de behuizing volgens de procedure in het onderdeel Toegang tot de behuizing.
 
-Zoek de jumper “3.3V off” op het carrierboard. De plaats verschilt per boardversie. Op v0.4.0-boards zit de jumper vlak bij de supercondensatoren, aan hun “zuidzijde”. Op boards van v0.5.0 en later zoekt u de header “Pow.Ctrl” ten “oosten” van de supercondensatoren. De pinnen “3.3V off” zijn de bovenste twee op die header.
+Zoek de jumper “3.3V off” op het carrierboard. De plaats verschilt per boardversie. Op v0.4.0-boards zit de jumper vlak bij de supercondensatoren, aan hun “zuidzijde”. Op boards van v0.5.0 en later zoekt u de pinheader “Pow.Ctrl” ten “oosten” van de supercondensatoren. De pinnen “3.3V off” zijn de bovenste twee op die pinheader.
 
 Verplaats de jumper zodat de pinnen “3.3V off” worden overbrugd. Daarmee schakelt u de 3,3 V-rail uit, wat te zien is doordat de leds uitgaan.
 
@@ -286,7 +286,7 @@ Steek de voorbereide SSD onder een hoek van ongeveer 30 graden in de M.2-connect
 
 Zet de SSD vast met de M2,5-montageschroef en een PH1-schroevendraaier. Draai de schroef net zo ver aan dat de schijf stevig op zijn plaats blijft. De SSD hoort volkomen vlak te liggen, zonder zichtbare buiging.
 
-Zodra de SSD op zijn plaats zit, haalt u de jumper van de pinnen “3.3V off” om de 3,3 V-rail weer in te schakelen. Bewaar de jumper op de header voor later gebruik.
+Zodra de SSD op zijn plaats zit, haalt u de jumper van de pinnen “3.3V off” om de 3,3 V-rail weer in te schakelen. Bewaar de jumper op de pinheader voor later gebruik.
 
 Zet de behuizing weer in elkaar zoals beschreven in het onderdeel Toegang tot de behuizing.
 Voor softwareconfiguratie of het oplossen van problemen raadpleegt u de [Softwarehandleiding](./software.md).

@@ -165,7 +165,7 @@ In beide modi zorgt het backupsysteem met supercondensatoren voor bescherming bi
 
 - De supercondensatoren leveren 30–60 seconden backupvoeding
 - De duur hangt af van de systeembelasting en de aangesloten randapparatuur
-- Voldoende tijd om het bestandssysteem veilig te sluiten en processen te beëindigen
+- Voldoende tijd om het bestandssysteem veilig te ontkoppelen en processen te beëindigen
 - Niet bedoeld om de werking bij langdurige uitval voort te zetten
 
 **Laadeigenschappen:**

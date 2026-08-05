@@ -6,9 +6,9 @@ translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
 
 Denne side indeholder kredsløbsdiagrammer og mekaniske designfiler til HALPI2.
 
-Det elektriske design af HALPI2 er lavet i KiCad. Designfilerne er tilgængelige i [GitHub-arkivet](https://github.com/hatlabs/HALPI2-hardware). Hver udgivet version har et tilsvarende tag i arkivet.
+Det elektriske design af HALPI2 er lavet i KiCad. Designfilerne er tilgængelige i [GitHub-repositoriet](https://github.com/hatlabs/HALPI2-hardware). Hver udgivet version har et tilsvarende tag i repositoriet.
 
-Kredsløbsdiagrammerne stilles for nemheds skyld til rådighed som PDF-filer nedenfor. Print-layoutene findes kun i GitHub-arkivet.
+Kredsløbsdiagrammerne stilles for nemheds skyld til rådighed som PDF-filer nedenfor. Print-layoutene findes kun i GitHub-repositoriet.
 
 Mekaniske designfiler stilles i første omgang kun til rådighed for kabinettet. Designet er lavet i Autocad Fusion, men de eksporterede filer i STEP-format kan læses af de fleste CAD-programmer.
 

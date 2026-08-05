@@ -154,7 +154,7 @@ HALPI2 har en gigabit-ethernetgrænseflade, der giver hurtig netværksforbindels
 
 ## USB
 
-HALPI2 har i alt fire indbyggede USB 3.0 Type A-porte, der giver hurtig tilslutning af mange forskellige periferienheder. Den ene port er ført direkte til CM5'ens USB 3.0-grænseflade, mens de tre andre er tilsluttet via en indbygget USB 3-hub. I standardkonfigurationen er to af portene ført ud til frontpanelet, mens to er tilgængelige på bærekortet til interne forbindelser.
+HALPI2 har i alt fire indbyggede USB 3.0 Type A-porte, der giver hurtig tilslutning af mange forskellige perifere enheder. Den ene port er ført direkte til CM5'ens USB 3.0-grænseflade, mens de tre andre er tilsluttet via en indbygget USB 3-hub. I standardkonfigurationen er to af portene ført ud til frontpanelet, mens to er tilgængelige på bærekortet til interne forbindelser.
 
 ## HDMI
 
@@ -187,7 +187,7 @@ Hver knaptilslutning bruger to ben: et til knappens signal og et til jord. Brug 
 ### Knappernes funktioner
 
 **Reset-knap:**
-Reset-knappen giver et hardwarereset af systemet ved at trække RP2040'ens RUN-ben lavt. Handlingen udfører en fuldstændig nulstilling af systemet, som påvirker controlleren, CM5 og alle tilsluttede periferienheder. Reset-knappen er især nyttig i nødsituationer, hvor softwarens nedlukningsprocedurer er slået fejl, og systemet ikke længere reagerer.
+Reset-knappen giver et hardwarereset af systemet ved at trække RP2040'ens RUN-ben lavt. Handlingen udfører en fuldstændig nulstilling af systemet, som påvirker controlleren, CM5 og alle tilsluttede perifere enheder. Reset-knappen er især nyttig i nødsituationer, hvor softwarens nedlukningsprocedurer er slået fejl, og systemet ikke længere reagerer.
 
 **Tænd/sluk-knap:**
 Tænd/sluk-knappen er forbundet direkte til CM5'ens indgang til tænd/sluk-knap og fungerer på samme måde som tænd/sluk-knappen på Raspberry Pi 5. Et dobbeltklik på knappen anmoder om en kontrolleret nedlukning af systemet, så styresystemet kan lukke applikationerne korrekt og afmontere filsystemerne, før strømmen slås fra. Et langt tryk på knappen fremtvinger øjeblikkelig slukning, hvilket kun bør bruges, når systemet ikke reagerer.

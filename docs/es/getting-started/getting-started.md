@@ -367,7 +367,7 @@ Para acelerar el arranque inicial o alimentar periféricos de alto consumo, pued
 
 ##### Conexión en el HALPI2
 
-El conector E7T viene precableado y no requiere ninguna terminación en campo. Basta con enchufarlo a la toma de alimentación del HALPI2.
+El conector E7T viene precableado y no requiere ninguna terminación en campo. Basta con enchufarlo al conector de alimentación del HALPI2.
 
 #### Conexión de alimentación por el bus NMEA 2000
 

@@ -32,7 +32,7 @@ De verbinding met NMEA 2000-netwerken komt tot stand met een standaard T-stuk (n
 
 ### Software-integratie
 
-De CAN-interface integreert naadloos met Linux via het SocketCAN-framework en verschijnt als netwerkapparaat `can0`. Via deze standaardinterface kunnen de gebruikelijke Linux CAN-hulpmiddelen voor bewaking en diagnose worden gebruikt. De netwerkinterface is in alle HALPI2-systeemimages (HaLOS, OpenPlotter en Raspberry Pi OS) voorgeconfigureerd.
+De CAN-interface integreert naadloos met Linux via het SocketCAN-framework en verschijnt als netwerkapparaat `can0`. Via deze standaardinterface kan het gebruikelijke Linux CAN-gereedschap voor bewaking en diagnose worden gebruikt. De netwerkinterface is in alle HALPI2-systeemimages (HaLOS, OpenPlotter en Raspberry Pi OS) voorgeconfigureerd.
 
 Integratie met de Signal K-server is beschikbaar op de HaLOS Marine-imagevarianten en op OpenPlotter; de server detecteert de CAN-interface automatisch en gebruikt deze voor de verwerking van NMEA 2000-gegevens. Op niet-maritieme HaLOS-images kan Signal K worden geïnstalleerd via de Container Apps-store in Cockpit. De Signal K-server verzorgt de PGN-decodering en biedt webgebaseerde toegang tot de netwerkgegevens in realtime.
 
@@ -48,7 +48,7 @@ candump can0
 
 Hiermee worden alle binnenkomende ruwe CAN-berichten in realtime getoond.
 
-Het dashboard van de Signal K-server biedt aanvullende mogelijkheden voor netwerkbewaking. Het toont de actuele NMEA 2000-datasnelheden van de CAN-interface. Met het hulpmiddel Data Browser bekijkt u de gedecodeerde NMEA 2000-gegevens.
+Het dashboard van de Signal K-server biedt aanvullende mogelijkheden voor netwerkbewaking. Het toont de actuele NMEA 2000-datasnelheden van de CAN-interface. Met het gereedschap Data Browser bekijkt u de gedecodeerde NMEA 2000-gegevens.
 
 !!! quote "Gerelateerde informatie"
     - **Voedingsconfiguratie:** zie [Aan de slag](../getting-started/getting-started.md#vaste-voedingsinstallatie)
@@ -64,7 +64,7 @@ De HALPI2 heeft een galvanisch gescheiden [RS-485](https://en.wikipedia.org/wiki
 
 ### Specificaties van de interface
 
-De RS-485-transceiver werkt met snelheden tot 10 Mbit/s, hoewel typische NMEA 0183-toepassingen de standaardbaudrates 4800 of 38400 bps gebruiken. De interface is galvanisch gescheiden en voldoet aan de NMEA 0183-specificatie, waardoor de HALPI2 beschermd is tegen aardlussen en tegen de elektrische ruis die in maritieme omgevingen veel voorkomt.
+De RS-485-transceiver werkt met snelheden tot 10 Mbit/s, hoewel typische NMEA 0183-toepassingen de standaardbaudrates 4800 of 38400 bit/s gebruiken. De interface is galvanisch gescheiden en voldoet aan de NMEA 0183-specificatie, waardoor de HALPI2 beschermd is tegen aardlussen en tegen de elektrische ruis die in maritieme omgevingen veel voorkomt.
 
 De interface is intern verbonden met UART 4 van de Raspberry Pi en verschijnt in het Linux-besturingssysteem als `/dev/ttyAMA4`. Dit standaard seriële apparaat is toegankelijk voor elke applicatie die seriële communicatie ondersteunt, waaronder de Signal K-server, OpenCPN en eigen softwaretoepassingen.
 
@@ -111,7 +111,7 @@ Op HaLOS Marine-images detecteert en configureert een systemd-dienst (`configure
 
 | Parameter | Waarde |
 |:----------|:------|
-| Baudrate | 115200 bps (fabrieksinstelling: 9600) |
+| Baudrate | 115200 bit/s (fabrieksinstelling: 9600) |
 | Updatesnelheid | 10 Hz (100 ms) |
 | Dynamisch model | Sea (geoptimaliseerd voor maritiem gebruik) |
 
@@ -150,7 +150,7 @@ Bewerk `/etc/default/gpsd` om `DEVICES="/dev/ttyAMA0"` in te stellen en start de
 
 ## Ethernet
 
-De HALPI2 heeft een gigabit-ethernetinterface die snelle netwerkverbindingen biedt voor gegevensoverdracht, toegang op afstand en integratie met netwerken aan boord. De ethernetpoort op het carrierboard is een standaard RJ45-connector. Die is doorverbonden naar een paneelconnector waarop een externe ethernetkabel kan worden aangesloten.
+De HALPI2 heeft een gigabit-ethernetinterface die snelle netwerkverbindingen biedt voor gegevensoverdracht, toegang op afstand en integratie met netwerken aan boord. De ethernetaansluiting op het carrierboard is een standaard RJ45-connector. Die is doorverbonden naar een paneelconnector waarop een externe ethernetkabel kan worden aangesloten.
 
 ## USB
 
@@ -174,7 +174,7 @@ De HALPI2 heeft op het carrierboard een 2×3-pinheader voor het aansluiten van e
 
 ### Pinout van de knoppenheader
 
-Het carrierboard heeft een 6-pins header met drie benoemde knopfuncties:
+Het carrierboard heeft een 6-pins pinheader met drie benoemde knopfuncties:
 
 | Opschrift | Functie | Beschrijving |
 |:------|:---------|:------------|
@@ -199,7 +199,7 @@ De functie van de gebruikersknop wacht nog op implementatie in de software en wo
 
 #### Rechtstreekse montage in de behuizing
 
-Voor rechtstreekse montage in de behuizing van de HALPI2 gebruikt u de gaten van 6 mm of 13 mm die al in het ontwerp van de behuizing aanwezig zijn. Verwijder eerst de bijbehorende blindpluggen uit deze gaten en monteer een waterdichte knop die bij de gatdiameter past. Sluit de knop met een geschikte kabel aan op de header van het carrierboard en zorg voor een goede trekontlasting en een weerbestendige afdichting bij de doorvoer in de behuizing.
+Voor rechtstreekse montage in de behuizing van de HALPI2 gebruikt u de gaten van 6 mm of 13 mm die al in het ontwerp van de behuizing aanwezig zijn. Verwijder eerst de bijbehorende blindpluggen uit deze gaten en monteer een waterdichte knop die bij de gatdiameter past. Sluit de knop met een geschikte kabel aan op de pinheader van het carrierboard en zorg voor een goede trekontlasting en een weerbestendige afdichting bij de doorvoer in de behuizing.
 
 #### Montage op een extern paneel
 
