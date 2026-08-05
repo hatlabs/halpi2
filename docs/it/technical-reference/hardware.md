@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Riferimento hardware
 
 Questa pagina riporta le specifiche elettriche, meccaniche e ambientali dell’HALPI2. Per le informazioni procedurali (installazione, manutenzione, sostituzione), consultare la [Guida all’hardware](../user-guide/hardware.md). Per i dettagli sui protocolli delle interfacce, consultare [Interfacce e connettività](./interfaces.md).
@@ -168,7 +172,7 @@ Il connettore GPIO a pettine segue il layout standard Raspberry Pi a 40 pin. I p
 | 24 | 18 | RS-485 EN | RS-485 (modalità manuale) | Libero in modalità automatica |
 | 26 | 37 | CAN INT | Controller CAN FD | No |
 
-Tutti i restanti pin GPIO sono disponibili per gli HAT e per le applicazioni dell’utente. Consultare la [Guida all’hardware](../user-guide/hardware.md#using-hats) per i dettagli sulla compatibilità degli HAT e per le istruzioni su come disattivare le interfacce integrate.
+Tutti i restanti pin GPIO sono disponibili per gli HAT e per le applicazioni dell’utente. Consultare la [Guida all’hardware](../user-guide/hardware.md#uso-degli-hat) per i dettagli sulla compatibilità degli HAT e per le istruzioni su come disattivare le interfacce integrate.
 
 ## Dispositivi I2C
 

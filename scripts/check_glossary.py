@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 GLOSSARIES = {
@@ -51,7 +52,7 @@ def read_pages(directory: Path) -> str:
         text = re.sub(r"^---\n.*?\n---\n", "", raw, flags=re.S)
         text = re.sub(r"```.*?```", " ", text, flags=re.S)
         out.append(re.sub(r"`[^`\n]*`", " ", text))
-    return "\n".join(out).lower()
+    return fold("\n".join(out).lower())
 
 
 def terms(glossary: Path) -> list[tuple[str, str]]:
@@ -66,6 +67,20 @@ def terms(glossary: Path) -> list[tuple[str, str]]:
             continue
         pairs.append((english, translated))
     return pairs
+
+
+def fold(text: str) -> str:
+    """Flatten the spelling differences that inflection introduces.
+
+    Romance plurals move accents around — `tapón` becomes `tapones`, `imagen`
+    becomes `imágenes` — and Italian sets its apostrophe as U+2019 where a
+    glossary cell is typed with U+0027. Comparing the letters underneath keeps
+    those from reading as a term the pages never used.
+    """
+    text = text.replace("’", "'").replace("ʼ", "'")
+    return "".join(
+        c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c)
+    )
 
 
 def alternatives(term: str) -> list[str]:
@@ -83,7 +98,7 @@ def inflectable(term: str) -> re.Pattern[str]:
     phrase also takes its object in the middle — `aseta CM5 uudelleen
     paikalleen` — so a couple of words are allowed to intervene.
     """
-    words = [re.escape(w[: max(4, len(w) - 3)]) + r"\w*" for w in term.split()]
+    words = [re.escape(w[: max(3, len(w) - 3)]) + r"\w*" for w in fold(term).split()]
     return re.compile(r"(?:\W+\w+){0,2}\W+".join(words))
 
 

@@ -1,3 +1,7 @@
+---
+translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+---
+
 # Funzionamento del sistema
 
 ## Indicatori LED di stato
@@ -151,7 +155,7 @@ La modalità Co-op si attiva quando:
 
     Visualizzare lo stato del controller: `halpi status`
 
-    Per ulteriori informazioni sul comando `halpi`, vedere la [Guida al software](./software.md#halpi-daemon-halpid).
+    Per ulteriori informazioni sul comando `halpi`, vedere la [Guida al software](./software.md#demone-halpi-halpid).
 
 ### Alimentazione di riserva e sistema di condensatori
 

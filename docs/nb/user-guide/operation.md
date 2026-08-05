@@ -1,3 +1,7 @@
+---
+translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+---
+
 # Systemdrift
 
 ## Status-LED-indikatorer
@@ -151,7 +155,7 @@ Samspillsmodus inntreffer når:
 
     Vis kontrollerens tilstand: `halpi status`
 
-    Mer informasjon om `halpi`-kommandoen finner du i [programvareveiledningen](./software.md#halpi-daemon-halpid).
+    Mer informasjon om `halpi`-kommandoen finner du i [programvareveiledningen](./software.md#halpi-daemonen-halpid).
 
 ### Reservestrøm og kondensatorsystem
 

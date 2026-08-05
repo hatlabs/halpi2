@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Interfaces y conectividad
 
 En esta página se documenta cómo se exponen las interfaces del CM5 en la placa
@@ -63,7 +67,7 @@ Por tanto, `uart1` solo resulta práctica como puerto de solo TX/RX.
   recepción de la placa desconecta el receptor RS-485 del GPIO13 y libera
   `uart4` para uso general. RS-485 queda entonces no disponible.
 
-Los pasos de hardware figuran en [Desactivación de las interfaces integradas](../user-guide/hardware.md#using-hats).
+Los pasos de hardware figuran en [Desactivación de las interfaces integradas](../user-guide/hardware.md#uso-de-hat).
 
 ### Comprobación
 

@@ -412,3 +412,42 @@ by each of them, because five agents share this file.
 | cross-compilation | krydskompilering | integration.md placeholder bullet |
 | security hardening | sikkerhedshærdning | advanced-config.md placeholder bullet |
 | brownout | underspænding | power-supply.md placeholder bullet; 'strømafbrydelse' in the glossary is the full blackout, so a separate word was needed |
+| wall wart (plug-in mains power supply) | netadapter | "What You'll Need" list, DC barrel connector bullet. The glossary has 'power supply' -> 'strømforsyning' but nothing for the scare-quoted colloquial ' |
+| peripherals | perifere enheder | Heading 'Step 1: Connect Essential Peripherals' and the 'high-current peripherals' sentence in the current-limiting section. Standard Danish IT term;  |
+| terminals (crimp-on ring/spade terminals) | kabelsko | 'Heat-shrink tubing and terminals' and 'Install terminals using proper crimping technique'. The glossary's 'terminal block' -> 'klemrække' is the boar |
+| cable grommet | gennemføringstyl | 'Install cable glands or cable grommets if routing through bulkheads'. The glossary covers 'cable gland' -> 'kabelforskruning' but not the rubber grom |
+| splash screen | startskærm | 'Raspberry Pi OS splash screen' in the First Boot section. |
+| mounting hardware | monteringsbeslag | 'Use corrosion-resistant mounting hardware' under Marine Installations. Glossary has 'mounting screw' and 'standoff' but no collective term. |
+| chafing | skamfiling | 'Protect cable from chafing and damage' in Cable Preparation; the standard Danish marine word for line/cable wear. |
+| electrical code | elregler | 'Ensure compliance with local electrical codes' / 'Comply with local electrical codes'. Glossary has 'compliance' -> 'overensstemmelse' but not the co |
+| flow control (hardware flow control) | flowkontrol (hardwarestyret flowkontrol) | technical-reference/interfaces.md, ctsrts paragraph. 'flowkontrol' is the established Danish trade term; 'strømningsstyring' would read as fluid mecha |
+| chip select | chip select | technical-reference/interfaces.md CTS/RTS conflict table ('CAN FD chip-select'). Kept English, as Danish PCB/embedded practice does; rendered as 'Chip |
+| transceiver (RS-485 transceiver) | transceiver | technical-reference/interfaces.md, rs485 parameter paragraph. Kept English; 'sendemodtager' exists but is not what Danish RS-485 documentation says. N |
+| device node | enhedsnode | technical-reference/interfaces.md 'Verifying' section. Solid compound, standard Danish Linux usage. |
+| block device | blokenhed | user-guide/software.md step 6 of the USB-boot procedure. Solid compound. |
+| mass storage device / mass-storage gadget firmware | masselagerenhed / firmwaren til masselagerenheden | user-guide/software.md steps 4-6. 'masselager' is the standard Danish term; the English 'gadget' is dropped because Danish has no equivalent and it ad |
+| port forwarding | portviderestilling | user-guide/software.md, VNC-over-internet paragraph. Solid compound; 'port forwarding' is also heard but the Danish form is unambiguous. |
+| marine apps | marineapplikationer | user-guide/software.md image-variant table and Homarr dashboard bullet. Solid compound. Distinct from the glossary's 'containerapp', which names the C |
+| login console | loginkonsol | technical-reference/interfaces.md UART intro. Solid compound, consistent with the glossary's 'loginoplysninger'. |
+| setup wizard | opsætningsguide | user-guide/software.md, Raspberry Pi OS configuration section. |
+| HAT (Raspberry Pi HAT) | HAT / HAT'er | hardware.md, whole 'Using HATs' section. The glossary lists no form for it; kept English as a hardware-standard name and inflected with apostrophe-s i |
+| spudger | spudger (åbnerpind) | hardware.md, CM5 removal. No Danish trade word exists; first mention glosses it, following the glossary's own 'dæmon (baggrundstjeneste)' / 'uden skær |
+| socket (the tool: 26mm socket, hex socket) | top / sekskanttop | hardware.md, connector removal. Must not collide with 'stik', which the glossary already assigns to the electrical connector sense — a reader meeting  |
+| board-to-board connector | kort-til-kort-stik | hardware.md, CM5 replacement. Phrase compound, so hyphens throughout are correct Danish here and do not conflict with rule 4, which governs proper-nam |
+| threaded insert | gevindindsats | hardware.md, HAT installation ('pre-installed M2.5 threaded inserts'). Distinct from 'afstandsbolt' (standoff), which the glossary already has and whi |
+| device tree overlay | device tree-overlay | hardware.md, interface sharing and software configuration. Kept English because it names the `dtoverlay` config key the reader types; junction hyphen  |
+| clearance (vertical clearance above the board) | frihøjde | hardware.md, physical constraints and standoff sizing. The standard Danish term for the free space above a component. |
+| voltage bar (LED pattern) | spændingssøjle | operation.md, LED status quick-reference table — the LED row acting as a bar-graph readout of super-capacitor charge. Derived from the glossary's 'spæ |
+| grace period | henstandsperiode | operation.md, automatic restart behaviour ('5-second grace period'). |
+| wake-up event | opvækningshændelse | operation.md, standby mode feature-status admonition. |
+| amber (LED colour) | ravgul | hardware.md, status LED table. Needed a distinct word from 'gul' (yellow), which the same table already uses for LED 3. |
+| TVS clamping | TVS-begrænsning | technical-reference/hardware.md, input protection sentence. The glossary has no entry for clamping; 'begrænsning' matches 'strømbegrænsning' already i |
+| thermal management | termisk styring | technical-reference/hardware.md H2. Chosen over the more literal 'varmeafledning' because docs/da/user-guide/hardware.md already renders the same Engl |
+| load equivalency number (LEN) | Load Equivalency Number (LEN) | user-guide/interfaces.md, NMEA 2000 network loading. Kept in English as an NMEA 2000 standard designation, like the other protocol names; later mentio |
+| transmit enable (RS-485) | sendetilladelse | user-guide/interfaces.md, RS-485 hardware configuration. No glossary entry; 'sendetilladelse' is the standard Danish description and avoids leaving an |
+| multi-talker / single-talker network | multi-talker- / single-talker-anvendelser, netværk med flere talere / med én taler og flere lyttere | user-guide/interfaces.md. The adjectival compounds keep the NMEA 0183 trade terms; the descriptive form is used where the source spells out 'single-ta |
+| form factor (M.2) | formfaktor | technical-reference/hardware.md, M.2 NVMe slot ('formfaktorerne 2230 til 2280'). |
+| die-cast aluminium | trykstøbt aluminium | technical-reference/hardware.md, enclosure material rows. Note docs/da/user-guide/hardware.md paraphrases the same English as 'støbt aluminium' withou |
+| ferrite bead filtering | filtrering med ferritperler | technical-reference/hardware.md, USB 3.0 ports. |
+| normally-open (NO) momentary switch | momentkontakt af typen normalt åben (NO) | user-guide/interfaces.md, button header. The glossary has 'switch (physical) = kontakt' but nothing for the momentary/NO qualifiers. |
+| pinout | benforbindelser | technical-reference/hardware.md H2 'Stikkenes benforbindelser' and user-guide/interfaces.md H3 'Benforbindelser på knapstiklisten'. Built on the gloss |

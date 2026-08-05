@@ -1,3 +1,7 @@
+---
+translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+---
+
 # Guía de hardware
 
 ## Acceso a la carcasa
@@ -158,11 +162,11 @@ Los LED de estado ofrecen información sobre los estados de alimentación y acti
 | **9** | Verde | LED TX/RX de CAN. Estos LED parpadean cuando se reciben (RX) o se transmiten (TX) datos por la interfaz CAN. |
 | **10** | Verde | LED TX/RX de RS-485. Estos LED parpadean cuando se reciben (RX) o se transmiten (TX) datos por la interfaz RS-485. |
 
-Los patrones de los LED RGB se documentan en la [Guía de funcionamiento](./operation.md#status-led-indicators).
+Los patrones de los LED RGB se documentan en la [Guía de funcionamiento](./operation.md#indicadores-led-de-estado).
 
 ## Configuración de la limitación de corriente
 
-La placa portadora incorpora un conmutador de limitación de corriente que permite configurar la corriente máxima suministrada a los periféricos. Para localizar el conmutador, consultar la ubicación del conmutador **a2** en la imagen de la sección [Conectores de la placa portadora](#carrier-board-connectors).
+La placa portadora incorpora un conmutador de limitación de corriente que permite configurar la corriente máxima suministrada a los periféricos. Para localizar el conmutador, consultar la ubicación del conmutador **a2** en la imagen de la sección [Conectores de la placa portadora](#conectores-de-la-placa-portadora).
 
 !!! info "Ajustes del límite de corriente"
     **Ajuste de 0,9 A (predeterminado):**
@@ -246,7 +250,7 @@ Tras la instalación del hardware, el HAT puede requerir configuración de softw
 !!! quote "Información relacionada"
     - **Referencia de la asignación de pines GPIO:** ver [Referencia de hardware](../technical-reference/hardware.md)
     - **Configuración del software:** ver [Configuración avanzada](../software-development/advanced-config.md)
-    - **Modificaciones de la carcasa:** ver [Opciones de conectores personalizados](#custom-connector-options)
+    - **Modificaciones de la carcasa:** ver [Opciones de conectores personalizados](#opciones-de-conectores-personalizados)
 
 ## Sustitución del SSD NVMe
 
@@ -272,7 +276,7 @@ Mover el puente para cortocircuitar los pines «3.3V off». Esto desactiva la l�
 
 ### Procedimiento de retirada
 
-La ranura M.2 se encuentra en el borde sur de la placa portadora. Consultar la imagen de la sección [Conectores de la placa portadora](#carrier-board-connectors) para localizar el conector M.2 etiquetado como **g1**.
+La ranura M.2 se encuentra en el borde sur de la placa portadora. Consultar la imagen de la sección [Conectores de la placa portadora](#conectores-de-la-placa-portadora) para localizar el conector M.2 etiquetado como **g1**.
 
 Con un destornillador PH1, retirar el tornillo de montaje M2.5. Una vez retirado el tornillo, el SSD se levantará en ángulo. Levantar con suavidad la unidad por el extremo de montaje y extraerla del conector M.2 con un ligero movimiento de vaivén. Manipular el SSD por los bordes para no dañar los componentes ni los conectores.
 
@@ -290,7 +294,7 @@ Para cualquier configuración de software o resolución de problemas, consultar 
 !!! quote "Información relacionada"
     - **Imágenes del sistema:** ver [Guía del software](./software.md)
     - **Procedimientos de arranque:** ver [Funcionamiento del sistema](./operation.md)
-    - **Acceso al hardware:** ver [Acceso a la carcasa](#enclosure-access)
+    - **Acceso al hardware:** ver [Acceso a la carcasa](#acceso-a-la-carcasa)
 
 ## Sustitución del Compute Module 5
 

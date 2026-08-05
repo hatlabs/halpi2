@@ -1,3 +1,7 @@
+---
+translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+---
+
 # Aan de slag
 
 Deze handleiding zorgt ervoor dat uw HALPI2 binnen 30 minuten draait en behandelt ook de vaste installatie. Volg deze stappen in volgorde voor een zo soepel mogelijke installatie — begin met een opstelling op het bureau om te controleren of alles werkt, en ga daarna verder met de vaste installatie.
@@ -62,7 +66,7 @@ Een [NMEA 2000-netwerk](https://docs.hatlabs.fi/nmea2000/) bestaat uit een backb
 ### Stap 3: voedingsaansluiting
 
 !!! tip "Opmerking over voeding via NMEA 2000"
-    De HALPI2 kan ook via de NMEA 2000-bus worden gevoed. Zie [Voedingsaansluiting via de NMEA 2000-bus](#nmea-2000-bus-power-connection) in het gedeelte over de vaste installatie hieronder.
+    De HALPI2 kan ook via de NMEA 2000-bus worden gevoed. Zie [Voedingsaansluiting via de NMEA 2000-bus](#voedingsaansluiting-via-de-nmea-2000-bus) in het gedeelte over de vaste installatie hieronder.
 
 Voor de opstelling op het bureau gebruiken we de meegeleverde E7T-voedingskabel. Sluit de aders van de voedingskabel als volgt aan op de female DC-plug:
 
@@ -146,7 +150,7 @@ HaLOS heeft twee sets inloggegevens:
 Uitgebreide instructies voor de eerste start vindt u in de [HaLOS Getting Started-handleiding](https://docs.halos.fi/getting-started/first-boot/).
 
 !!! info "Gebruikt u OpenPlotter of Raspberry Pi OS?"
-    Als u een ander besturingssysteem hebt geflasht, raadpleeg dan de [softwarehandleiding](../user-guide/software.md#initial-system-configuration) voor configuratie-instructies die specifiek zijn voor dat besturingssysteem.
+    Als u een ander besturingssysteem hebt geflasht, raadpleeg dan de [softwarehandleiding](../user-guide/software.md#eerste-systeemconfiguratie) voor configuratie-instructies die specifiek zijn voor dat besturingssysteem.
 
 ### De NMEA 2000-verbinding controleren (optioneel)
 

@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Interfaces en connectiviteit
 
 Deze pagina beschrijft hoe de interfaces van de CM5 op het HALPI2-carrierboard
@@ -64,7 +68,7 @@ CTS/RTS bezetten het volgende GPIO-paar, dat op de HALPI2 vaak al in gebruik is:
   verwijderen wordt de RS-485-ontvanger losgekoppeld van GPIO13, waardoor
   `uart4` vrijkomt voor algemeen gebruik. RS-485 is dan niet meer beschikbaar.
 
-Zie [Ingebouwde interfaces uitschakelen](../user-guide/hardware.md#using-hats) voor de
+Zie [Ingebouwde interfaces uitschakelen](../user-guide/hardware.md#hats-gebruiken) voor de
 hardwarestappen.
 
 ### Controleren

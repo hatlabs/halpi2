@@ -1,3 +1,7 @@
+---
+translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+---
+
 # Guida al software
 
 ## Immagini del sistema operativo
@@ -50,7 +54,7 @@ Sono disponibili due metodi per scrivere un’immagine del sistema operativo sul
 
 ### Scrittura tramite un adattatore USB NVMe
 
-Per scrivere l’immagine con il metodo dell’adattatore USB NVMe, iniziare rimuovendo l’unità SSD NVMe dall’HALPI2 seguendo la procedura descritta nella [Guida all’hardware](./hardware.md#replacing-the-nvme-ssd). Quindi scaricare un’immagine compatibile con HALPI2 — un’[immagine HaLOS](https://github.com/halos-org/halos-pi-gen/releases/latest) oppure un’[immagine OpenPlotter/Raspberry Pi OS](https://github.com/hatlabs/openplotter-halpi/releases) — assicurandosi di selezionare l’immagine adatta all’uso previsto.
+Per scrivere l’immagine con il metodo dell’adattatore USB NVMe, iniziare rimuovendo l’unità SSD NVMe dall’HALPI2 seguendo la procedura descritta nella [Guida all’hardware](./hardware.md#sostituzione-dellunita-ssd-nvme). Quindi scaricare un’immagine compatibile con HALPI2 — un’[immagine HaLOS](https://github.com/halos-org/halos-pi-gen/releases/latest) oppure un’[immagine OpenPlotter/Raspberry Pi OS](https://github.com/hatlabs/openplotter-halpi/releases) — assicurandosi di selezionare l’immagine adatta all’uso previsto.
 
 Inserire l’unità SSD nell’adattatore USB NVMe e collegarlo al computer. Utilizzare Raspberry Pi Imager per scrivere l’immagine scaricata sull’unità SSD NVMe. Se si scrive un’immagine Raspberry Pi OS, durante la procedura è possibile modificare e applicare le impostazioni di personalizzazione del sistema operativo secondo necessità. Se però non vengono applicate impostazioni personalizzate, per la configurazione iniziale successiva all’installazione occorrerà collegare all’HALPI2 una tastiera e un mouse USB.
 
@@ -68,7 +72,7 @@ In alternativa, è possibile scrivere l’immagine del sistema operativo diretta
 
 Per predisporre l’HALPI2 alla scrittura via USB:
 
-1. Spegnere completamente il sistema e aprire il coperchio della custodia seguendo la procedura descritta nella [Guida all’hardware](./hardware.md#enclosure-access).
+1. Spegnere completamente il sistema e aprire il coperchio della custodia seguendo la procedura descritta nella [Guida all’hardware](./hardware.md#accesso-alla-custodia).
 2. Individuare il connettore USB-C con l’etichetta “USB Boot” a destra del profilo dell’HAT sulla scheda portante (carrier board) e portare il selettore della modalità di avvio adiacente in posizione “Abnormal”. (Non è ancora disponibile alcuna indicazione tramite LED: il dispositivo non è alimentato.)
 3. Collegare un cavo USB tra il computer e il connettore USB Boot dell’HALPI2, quindi riaccendere il dispositivo. Un LED ambra accanto al selettore della modalità di avvio si accende, a conferma che l’HALPI2 è in modalità USB boot.
 4. Sul computer, eseguire `rpiboot`. Lo strumento rileva l’HALPI2 e carica il firmware del gadget di archiviazione di massa; l’HALPI2 compare quindi come dispositivo di archiviazione di massa USB.
@@ -85,13 +89,13 @@ Dopo aver scritto correttamente l’immagine e avviato l’HALPI2 per la prima v
 
 ### Configurazione di HaLOS
 
-HaLOS si configura interamente tramite la sua interfaccia web. Dopo il primo avvio, accedere a Cockpit all’indirizzo `https://halos.local:9090/` e alla dashboard all’indirizzo `https://halos.local/`. Modificare immediatamente le password predefinite: per i dettagli vedere la [Guida introduttiva](../getting-started/getting-started.md#first-boot-configuration) e la [documentazione di HaLOS](https://docs.halos.fi/getting-started/first-boot/).
+HaLOS si configura interamente tramite la sua interfaccia web. Dopo il primo avvio, accedere a Cockpit all’indirizzo `https://halos.local:9090/` e alla dashboard all’indirizzo `https://halos.local/`. Modificare immediatamente le password predefinite: per i dettagli vedere la [Guida introduttiva](../getting-started/getting-started.md#configurazione-al-primo-avvio) e la [documentazione di HaLOS](https://docs.halos.fi/getting-started/first-boot/).
 
 ### Configurazione di OpenPlotter
 
 Con l’immagine OpenPlotter, il sistema si avvia con password predefinite sia per l’access point WiFi sia per l’account utente predefinito. Per motivi di sicurezza è indispensabile modificare queste password immediatamente dopo il primo avvio.
 
-La procedura di modifica delle password e la configurazione iniziale sono descritte nella [Guida introduttiva](../getting-started/getting-started.md#first-boot-configuration) e nella [documentazione di OpenPlotter](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
+La procedura di modifica delle password e la configurazione iniziale sono descritte nella [Guida introduttiva](../getting-started/getting-started.md#configurazione-al-primo-avvio) e nella [documentazione di OpenPlotter](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
 
 ### Configurazione di Raspberry Pi OS
 
@@ -301,7 +305,7 @@ Per monitorare un solo valore specifico, è possibile recuperarlo come segue:
 halpi get firmware_version
 ```
 
-Per scopi di scripting è preferibile utilizzare l’API REST, come descritto nella sezione [Accesso all’API REST](#rest-api-access).
+Per scopi di scripting è preferibile utilizzare l’API REST, come descritto nella sezione [Accesso all’API REST](#accesso-allapi-rest).
 
 #### Gestione della configurazione
 

@@ -1,3 +1,7 @@
+---
+translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+---
+
 # Primeros pasos
 
 Esta guía permite poner el HALPI2 en funcionamiento en menos de 30 minutos y cubre además la instalación permanente. Conviene seguir estos pasos en orden para lograr una puesta en marcha sin contratiempos: primero una configuración de sobremesa para comprobar que todo funciona y, a continuación, la instalación permanente.
@@ -62,7 +66,7 @@ Una [red NMEA 2000](https://docs.hatlabs.fi/nmea2000/) consta de un cable tronca
 ### Paso 3: conexión de la alimentación
 
 !!! tip "Nota sobre la alimentación mediante NMEA 2000"
-    El HALPI2 también puede alimentarse a través del bus NMEA 2000. Véase [Conexión de alimentación por el bus NMEA 2000](#nmea-2000-bus-power-connection) en la sección Instalación permanente, más adelante.
+    El HALPI2 también puede alimentarse a través del bus NMEA 2000. Véase [Conexión de alimentación por el bus NMEA 2000](#conexion-de-alimentacion-por-el-bus-nmea-2000) en la sección Instalación permanente, más adelante.
 
 Para la configuración de sobremesa se utiliza el cable de alimentación E7T suministrado. Conectar los extremos del cable de alimentación al conector cilíndrico hembra de la siguiente manera:
 
@@ -146,7 +150,7 @@ HaLOS tiene dos conjuntos de credenciales:
 Para instrucciones detalladas sobre el primer arranque, véase la [guía de primeros pasos de HaLOS](https://docs.halos.fi/getting-started/first-boot/).
 
 !!! info "¿Se utiliza OpenPlotter o Raspberry Pi OS?"
-    Si se ha grabado un sistema operativo alternativo, véase la [Guía del software](../user-guide/software.md#initial-system-configuration) para conocer las instrucciones de configuración propias de cada sistema.
+    Si se ha grabado un sistema operativo alternativo, véase la [Guía del software](../user-guide/software.md#configuracion-inicial-del-sistema) para conocer las instrucciones de configuración propias de cada sistema.
 
 ### Comprobación de la conexión NMEA 2000 (opcional)
 

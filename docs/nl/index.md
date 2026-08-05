@@ -1,3 +1,7 @@
+---
+translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+---
+
 # Inleiding
 
 De HALPI2 is een kant-en-klare boordcomputer op basis van de Raspberry Pi Compute Module 5 (CM5). Hij biedt een uitgebreid pakket functies dat uitstekend past bij maritieme, automotive en veel industriële toepassingen.

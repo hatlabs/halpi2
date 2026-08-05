@@ -1,3 +1,7 @@
+---
+translated_from: 930b506809e4abe2b54e4fea058658a9d6d94461
+---
+
 # Errores conocidos
 
 En esta página se enumeran los problemas de hardware conocidos de las distintas versiones de HALPI2.

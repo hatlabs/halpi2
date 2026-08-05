@@ -1,3 +1,7 @@
+---
+translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+---
+
 # Interfacce e connettività
 
 ## CAN FD / NMEA 2000
@@ -47,7 +51,7 @@ In questo modo vengono visualizzati in tempo reale tutti i messaggi CAN grezzi i
 La dashboard del server Signal K offre ulteriori funzioni di monitoraggio della rete: mostra in tempo reale le velocità dei dati NMEA 2000 provenienti dall’interfaccia CAN. Lo strumento data browser consente di visualizzare i dati NMEA 2000 decodificati.
 
 !!! quote "Informazioni correlate"
-    - **Configurazione dell’alimentazione:** consultare [Guida introduttiva](../getting-started/getting-started.md#permanent-power-installation)
+    - **Configurazione dell’alimentazione:** consultare [Guida introduttiva](../getting-started/getting-started.md#installazione-permanente-dellalimentazione)
     - **Configurazione software:** consultare [Guida al software](./software.md)
     - **Risoluzione dei problemi di rete:** consultare [Guida alla risoluzione dei problemi](./troubleshooting.md)
 
@@ -206,5 +210,5 @@ Quando i pulsanti vengono montati su un pannello di comando remoto, scegliere un
 Tutti i collegamenti dei pulsanti alla scheda portante devono utilizzare connettori femmina a pettine con passo 2,54 mm. Verificare il corretto allineamento dei pin e la solidità del collegamento, per evitare problemi di contatto durante il funzionamento.
 
 !!! quote "Informazioni correlate"
-    - **Gestione dell’alimentazione:** consultare [Gestione dell’alimentazione e procedure di spegnimento](./operation.md#power-management-and-shutdown-procedures)
+    - **Gestione dell’alimentazione:** consultare [Gestione dell’alimentazione e procedure di spegnimento](./operation.md#gestione-dellalimentazione-e-procedure-di-spegnimento)
     - **Accesso all’hardware:** consultare [Manutenzione dell’hardware](./hardware.md)

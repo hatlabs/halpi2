@@ -1,3 +1,7 @@
+---
+translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+---
+
 # Softwarehandleiding
 
 ## Systeemimages
@@ -50,7 +54,7 @@ Er zijn twee methoden beschikbaar om een systeemimage naar de NVMe SSD van de HA
 
 ### Flashen met een USB-NVMe-adapter
 
-Om het image met de USB-NVMe-adaptermethode te flashen, verwijdert u eerst de NVMe SSD uit de HALPI2-unit volgens de procedure in de [Hardwarehandleiding](./hardware.md#replacing-the-nvme-ssd). Download vervolgens een HALPI2-compatibel image — een [HaLOS-image](https://github.com/halos-org/halos-pi-gen/releases/latest) of een [OpenPlotter- of Raspberry Pi OS-image](https://github.com/hatlabs/openplotter-halpi/releases) — en let erop dat u het juiste image voor het beoogde gebruik kiest.
+Om het image met de USB-NVMe-adaptermethode te flashen, verwijdert u eerst de NVMe SSD uit de HALPI2-unit volgens de procedure in de [Hardwarehandleiding](./hardware.md#de-nvme-ssd-vervangen). Download vervolgens een HALPI2-compatibel image — een [HaLOS-image](https://github.com/halos-org/halos-pi-gen/releases/latest) of een [OpenPlotter- of Raspberry Pi OS-image](https://github.com/hatlabs/openplotter-halpi/releases) — en let erop dat u het juiste image voor het beoogde gebruik kiest.
 
 Plaats de SSD in de USB-NVMe-adapter en sluit deze aan op uw computer. Gebruik Raspberry Pi Imager om het gedownloade image naar de NVMe SSD te flashen. Als u een Raspberry Pi OS-image flasht, kunt u tijdens het flashen desgewenst de aanpassingsinstellingen van het besturingssysteem bewerken en toepassen. Worden er geen aangepaste instellingen toegepast, dan zijn er na de installatie een USB-toetsenbord en een USB-muis op de HALPI2 nodig voor de eerste installatie.
 
@@ -68,7 +72,7 @@ Het systeemimage kan ook rechtstreeks op de HALPI2 worden geflasht, zonder de SS
 
 De HALPI2 voorbereiden op flashen via USB:
 
-1. Schakel het systeem volledig uit en open het deksel van de behuizing volgens de procedure in de [Hardwarehandleiding](./hardware.md#enclosure-access).
+1. Schakel het systeem volledig uit en open het deksel van de behuizing volgens de procedure in de [Hardwarehandleiding](./hardware.md#toegang-tot-de-behuizing).
 2. Zoek de USB-C-connector met het opschrift “USB Boot” rechts van de HAT-omtrek op het carrierboard en zet de bootmodusschakelaar ernaast in de stand “Abnormal”. (Er is nog geen terugkoppeling via leds — het apparaat is spanningsloos.)
 3. Sluit een USB-kabel aan tussen uw computer en de USB Boot-connector op de HALPI2 en schakel het apparaat weer in. Een amberkleurige led naast de bootmodusschakelaar gaat nu branden, wat bevestigt dat de HALPI2 in de USB-bootmodus staat.
 4. Voer op uw computer `rpiboot` uit. Het gereedschap detecteert de HALPI2 en laadt de firmware voor de massaopslag-gadget; daarna verschijnt de HALPI2 als USB-massaopslagapparaat.
@@ -85,13 +89,13 @@ Nadat u de HALPI2 met succes hebt geflasht en voor het eerst hebt opgestart, zij
 
 ### HaLOS-configuratie
 
-HaLOS wordt volledig via de webinterface geconfigureerd. Open na de eerste start Cockpit op `https://halos.local:9090/` en het dashboard op `https://halos.local/`. Wijzig de standaardwachtwoorden onmiddellijk — zie de handleiding [Aan de slag](../getting-started/getting-started.md#first-boot-configuration) en de [HaLOS-documentatie](https://docs.halos.fi/getting-started/first-boot/) voor details.
+HaLOS wordt volledig via de webinterface geconfigureerd. Open na de eerste start Cockpit op `https://halos.local:9090/` en het dashboard op `https://halos.local/`. Wijzig de standaardwachtwoorden onmiddellijk — zie de handleiding [Aan de slag](../getting-started/getting-started.md#configuratie-bij-de-eerste-start) en de [HaLOS-documentatie](https://docs.halos.fi/getting-started/first-boot/) voor details.
 
 ### OpenPlotter-configuratie
 
 Bij het OpenPlotter-image start het systeem op met standaardwachtwoorden voor zowel het wifi-accesspoint als het standaard gebruikersaccount. Om veiligheidsredenen is het absoluut noodzakelijk dat deze wachtwoorden onmiddellijk na de eerste start worden gewijzigd.
 
-De procedure voor het wijzigen van de wachtwoorden en de eerste configuratie staan beschreven in de handleiding [Aan de slag](../getting-started/getting-started.md#first-boot-configuration) en in de [OpenPlotter-documentatie](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
+De procedure voor het wijzigen van de wachtwoorden en de eerste configuratie staan beschreven in de handleiding [Aan de slag](../getting-started/getting-started.md#configuratie-bij-de-eerste-start) en in de [OpenPlotter-documentatie](https://openplotter.readthedocs.io/latest/getting_started/first_steps.html).
 
 ### Raspberry Pi OS-configuratie
 
@@ -301,7 +305,7 @@ Wilt u slechts één specifieke waarde bewaken, dan kunt u die als volgt opvrage
 halpi get firmware_version
 ```
 
-Voor scripts kunt u beter de REST API gebruiken, zoals beschreven in het gedeelte [REST API-toegang](#rest-api-access).
+Voor scripts kunt u beter de REST API gebruiken, zoals beschreven in het gedeelte [REST API-toegang](#rest-api-toegang).
 
 #### Configuratiebeheer
 

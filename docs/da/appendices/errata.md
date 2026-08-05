@@ -1,3 +1,7 @@
+---
+translated_from: 930b506809e4abe2b54e4fea058658a9d6d94461
+---
+
 # Kendte fejl
 
 Kendte hardwareproblemer i de forskellige HALPI2-versioner er anført på denne side.

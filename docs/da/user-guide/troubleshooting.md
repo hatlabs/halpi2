@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Fejlfinding
 
 Denne side gennemgår almindelige problemer, du kan støde på, når du bruger HALPI2, og hvordan du løser dem.
@@ -148,8 +152,8 @@ Brug LED-mønstrene til hurtigt at fastslå systemets tilstand:
 | Fejl | Alle LED'er blinker rødt | Hardwarefejl — kontakt producenten |
 
 !!! quote "Relaterede oplysninger"
-    - **LED-mønstre:** Se [Status-LED-indikatorer](./operation.md#status-led-indicators)
-    - **Strømstyring:** Se [Strømstyring og nedlukningsprocedurer](./operation.md#power-management-and-shutdown-procedures)
-    - **Håndtering af dæmonen:** Se [Softwarevejledning](./software.md#halpi-daemon-halpid)
+    - **LED-mønstre:** Se [Status-LED-indikatorer](./operation.md#status-led-indikatorer)
+    - **Strømstyring:** Se [Strømstyring og nedlukningsprocedurer](./operation.md#strmstyring-og-nedlukningsprocedurer)
+    - **Håndtering af dæmonen:** Se [Softwarevejledning](./software.md#halpi-dmonen-halpid)
     - **Detaljer om CAN-grænsefladen:** Se [Grænseflader og forbindelser](./interfaces.md#can-fd-nmea-2000)
     - **Detaljer om RS-485-grænsefladen:** Se [Grænseflader og forbindelser](./interfaces.md#rs-485-nmea-0183)

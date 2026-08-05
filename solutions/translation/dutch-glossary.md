@@ -432,3 +432,31 @@ by each of them, because five agents share this file.
 | update manager | updatebeheer | The graphical updates section. Matches the glossary's "beheer" pattern (systeembeheer, energiebeheer, containerbeheer). |
 | port forwarding | port forwarding | Kept in English in the VNC section. Dutch network documentation uses the English term; "poortdoorschakeling" exists but is not what a reader will find |
 | login console | inlogconsole | The dedicated debug UART `/dev/ttyAMA10` in interfaces.md. |
+| silk screen (board legend) | opdruk | Appears three times on hardware.md (the Contacts arrows, the CM5 module outline). The glossary fixes quoted silkscreen *labels* but has no word for th |
+| computer mainboard | hoofdprint van de computer | The Internal Layout bullet calls the carrier board "the computer mainboard". The glossary forbids *moederbord* but offers no alternative; *hoofdprint* |
+| device tree overlay | device tree overlay | Kept in English in three places. It names a Raspberry Pi OS mechanism and the reader will meet it verbatim in `config.txt` and in HAT documentation; a |
+| board-to-board connector | board-to-boardconnector | The CM5 mounting connectors, named seven times. Adopted English term becomes one Dutch word per rule 4, with the internal hyphens of the English term  |
+| expansion board | uitbreidingsprint | Third-party HAT-compatible boards in the compatibility section. Distinct from *carrierboard*, so it needs its own word. |
+| spudger | spudger | The non-conductive prying tool for the CM5. No Dutch equivalent in trade usage; the reader searching for one will search for *spudger*. |
+| guitar pick | plectrum | Listed alongside the spudger as an alternative tool. *Plectrum* is the ordinary Dutch word. |
+| to pry / to rock (a connector loose) | wrikken | Used for both the CM5 removal and the HAT removal ("gentle rocking motion"). One verb covers both senses in Dutch and keeps the two procedures reading |
+| Label (table column heading) | Aanduiding | Column head of the three connector tables and the LED table. *Label* exists in Dutch but reads as a sticker; *Aanduiding* matches how the German page  |
+| socket (hex tool) | dop / dopsleutel | The 26 mm / 10 mm / 8 mm / 17 mm sockets in the connector-removal step. Needed to be kept apart from *aansluiting*, which the glossary already uses fo |
+| surface-mounted component | SMD-component | The components near the CM5 connectors that metal tools can damage. SMD is the established Dutch trade abbreviation. |
+| countersunk screw | verzonken schroef | The four M4×10 lid screws. Matches the existing Dutch technical-reference page, which already writes "4× M4×10 verzonken, PH2-kop". |
+| heat spreading area | warmteafvoervlak | The areas in the enclosure bottom that the CM5 thermal pads meet during final assembly. |
+| Blinkenlights | Blinkenlights | Heading left untranslated, matching what the German, Swedish and French pages already do — it is a joke term, not a description. |
+| Load Equivalency Number (LEN) | belastingsgetal (LEN) | NMEA 2000 network loading in interfaces.md. Parallel to the siblings (Lastkennzahl / indice de charge / belastningstal); the abbreviation LEN is kept  |
+| voltage bar (LED pattern) | spanningsbalk | Names the LED bar acting as a charge-level gauge in the operation.md status table. Glossary has ledbalk for the physical LED bar; this is the pattern  |
+| power button | aan/uit-knop | The CM5 power button and the front-panel button on both pages, including "simulated power button presses" (gesimuleerde drukken op de aan/uit-knop). E |
+| transmit enable (signal/mode) | zendvrijgave / zendvrijgavesignaal | RS-485 manual vs automatic transmit enable in interfaces.md. Solid compound per rule 4; "zendinschakeling" would read as switching the transmitter on  |
+| watchdog timeout | watchdog-time-out | LED table row and the 30-second communication timeout in operation.md. The glossary keeps "watchdog"; "time-out" is the Dutch spelling and already car |
+| grace period | wachttijd | The 5-second window before automatic restart in operation.md. "Respijtperiode" is legal register and wrong here. |
+| normally-open (NO) momentary switch | drukknop met maakcontact (normally open, NO) | External button wiring in interfaces.md. Dutch electrical trade says maakcontact; the English abbreviation is kept because it is what the switch packa |
+| Battery-Backed RAM (BBR) | batterijgebufferd RAM (BBR) | u-blox GNSS settings storage in interfaces.md. Abbreviation kept for the u-blox documentation the reader will consult. |
+| half-duplex mode | halfduplexmodus | RS-485 single-pair operation. Solid compound, no hyphen. |
+| multi-talker / single-talker network | multi-talkernetwerk / single-talkertoepassing | NMEA 0183 topology terms in interfaces.md; kept in English as trade usage, joined solid to the Dutch noun per rule 4. "single-talker-multiple-listener |
+| baud rate / update rate | baudrate / updatesnelheid | u-blox configuration table. "baudrate" already appears in docs/nl/user-guide/troubleshooting.md, so this only records it; "updatesnelheid" is new. |
+| progressive fill / solid / dim red (LED states) | oplopende vulling / continu / gedempt rood | The LED quick-reference table in operation.md has no glossary coverage for the pattern vocabulary. "continu" matches "Continu geel" already used in tr |
+| wake-up event | wekgebeurtenis | Standby mode admonition in operation.md. |
+| Data Browser (Signal K) | Data Browser | Left in English: it is a UI string the reader sees in the Signal K interface on their own screen. |

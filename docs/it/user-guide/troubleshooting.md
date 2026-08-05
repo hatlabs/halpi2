@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Risoluzione dei problemi
 
 Questa pagina descrive i problemi più comuni che possono presentarsi durante il funzionamento dell’HALPI2 e il modo di risolverli.
@@ -148,8 +152,8 @@ Le sequenze dei LED consentono di individuare rapidamente lo stato del sistema:
 | Guasto | Tutti i LED lampeggianti in rosso | Guasto hardware: contattare il produttore |
 
 !!! quote "Informazioni correlate"
-    - **Sequenze dei LED:** vedere [Indicatori LED di stato](./operation.md#status-led-indicators)
-    - **Gestione dell’alimentazione:** vedere [Gestione dell’alimentazione e procedure di spegnimento](./operation.md#power-management-and-shutdown-procedures)
-    - **Gestione del demone:** vedere [Guida al software](./software.md#halpi-daemon-halpid)
+    - **Sequenze dei LED:** vedere [Indicatori LED di stato](./operation.md#indicatori-led-di-stato)
+    - **Gestione dell’alimentazione:** vedere [Gestione dell’alimentazione e procedure di spegnimento](./operation.md#gestione-dellalimentazione-e-procedure-di-spegnimento)
+    - **Gestione del demone:** vedere [Guida al software](./software.md#demone-halpi-halpid)
     - **Dettagli sull’interfaccia CAN:** vedere [Interfacce e connettività](./interfaces.md#can-fd-nmea-2000)
     - **Dettagli sull’interfaccia RS-485:** vedere [Interfacce e connettività](./interfaces.md#rs-485-nmea-0183)

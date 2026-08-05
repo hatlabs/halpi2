@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Probleemoplossing
 
 Deze pagina behandelt veelvoorkomende problemen bij het gebruik van de HALPI2 en hoe u ze verhelpt.
@@ -148,8 +152,8 @@ Aan de hand van de ledpatronen stelt u de systeemtoestand snel vast:
 | Storing | Alle leds knipperen rood | Hardwarefout — neem contact op met de fabrikant |
 
 !!! quote "Gerelateerde informatie"
-    - **Ledpatronen:** zie [Statusleds](./operation.md#status-led-indicators)
-    - **Energiebeheer:** zie [Energiebeheer en afsluitprocedures](./operation.md#power-management-and-shutdown-procedures)
+    - **Ledpatronen:** zie [Statusleds](./operation.md#statusleds)
+    - **Energiebeheer:** zie [Energiebeheer en afsluitprocedures](./operation.md#energiebeheer-en-afsluitprocedures)
     - **Beheer van de daemon:** zie [Softwarehandleiding](./software.md#halpi-daemon-halpid)
     - **Details over de CAN-interface:** zie [Interfaces en connectiviteit](./interfaces.md#can-fd-nmea-2000)
     - **Details over de RS-485-interface:** zie [Interfaces en connectiviteit](./interfaces.md#rs-485-nmea-0183)

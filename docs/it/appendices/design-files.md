@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # File di progetto e schemi elettrici
 
 Questa pagina mette a disposizione gli schemi elettrici e i file di progetto meccanico dell’HALPI2.

@@ -1,3 +1,7 @@
+---
+translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+---
+
 # Introduktion
 
 HALPI2 er en færdig bådcomputer baseret på Raspberry Pi Compute Module 5 (CM5). Den har et omfattende sæt funktioner, som passer godt til marine, automotive og mange industrielle anvendelser.

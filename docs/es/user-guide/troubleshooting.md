@@ -1,3 +1,7 @@
+---
+translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+---
+
 # Resolución de problemas
 
 Esta página recoge los problemas más habituales que pueden surgir durante el funcionamiento de HALPI2 y la forma de resolverlos.
@@ -148,8 +152,8 @@ Los patrones de los LED permiten diagnosticar rápidamente el estado del sistema
 | Fallo | Todos los LED parpadeando en rojo | Fallo de hardware: contactar con el fabricante |
 
 !!! quote "Información relacionada"
-    - **Patrones de LED:** véase [Indicadores LED de estado](./operation.md#status-led-indicators)
-    - **Gestión de la alimentación:** véase [Gestión de la alimentación y procedimientos de apagado](./operation.md#power-management-and-shutdown-procedures)
-    - **Gestión del demonio:** véase [Guía del software](./software.md#halpi-daemon-halpid)
+    - **Patrones de LED:** véase [Indicadores LED de estado](./operation.md#indicadores-led-de-estado)
+    - **Gestión de la alimentación:** véase [Gestión de la alimentación y procedimientos de apagado](./operation.md#gestion-de-la-alimentacion-y-procedimientos-de-apagado)
+    - **Gestión del demonio:** véase [Guía del software](./software.md#demonio-halpi-halpid)
     - **Detalles de la interfaz CAN:** véase [Interfaces y conectividad](./interfaces.md#can-fd-nmea-2000)
     - **Detalles de la interfaz RS-485:** véase [Interfaces y conectividad](./interfaces.md#rs-485-nmea-0183)

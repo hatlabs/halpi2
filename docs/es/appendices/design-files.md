@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # Archivos de diseño y esquemas
 
 Esta página recoge los esquemas y los archivos de diseño mecánico del HALPI2.

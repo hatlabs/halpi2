@@ -1,3 +1,7 @@
+---
+translated_from: fc7ea79249b080c0f717303d066b9f6ea6d64795
+---
+
 # Ontwerpbestanden en schema's
 
 Op deze pagina vindt u de schema's en de mechanische ontwerpbestanden van de HALPI2.

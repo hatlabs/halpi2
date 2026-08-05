@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Hardwarereferentie
 
 Deze pagina bevat de elektrische, mechanische en omgevingsspecificaties van de HALPI2. Voor procedurele informatie (installatie, onderhoud, vervanging) zie de [hardwarehandleiding](../user-guide/hardware.md). Voor details over de interfaceprotocollen zie [Interfaces en connectiviteit](./interfaces.md).
@@ -168,7 +172,7 @@ De GPIO-pinheader volgt de standaard 40-pins indeling van de Raspberry Pi. De vo
 | 24 | 18 | RS-485 EN | RS-485 (handmatige modus) | Vrij in de automatische modus |
 | 26 | 37 | CAN INT | CAN FD-controller | Nee |
 
-Alle overige GPIO-pinnen zijn beschikbaar voor HAT's en eigen toepassingen. Zie de [hardwarehandleiding](../user-guide/hardware.md#using-hats) voor details over de compatibiliteit van HAT's en voor instructies om ingebouwde interfaces uit te schakelen.
+Alle overige GPIO-pinnen zijn beschikbaar voor HAT's en eigen toepassingen. Zie de [hardwarehandleiding](../user-guide/hardware.md#hats-gebruiken) voor details over de compatibiliteit van HAT's en voor instructies om ingebouwde interfaces uit te schakelen.
 
 ## I2C-apparaten
 

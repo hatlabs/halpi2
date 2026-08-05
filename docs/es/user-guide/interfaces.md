@@ -1,3 +1,7 @@
+---
+translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+---
+
 # Interfaces y conectividad
 
 ## CAN FD / NMEA 2000
@@ -47,7 +51,7 @@ Esto muestra en tiempo real todos los mensajes CAN entrantes sin procesar.
 El panel de control del servidor Signal K aporta funciones adicionales de supervisión de la red. Muestra en tiempo real las velocidades de datos NMEA 2000 procedentes de la interfaz CAN. La herramienta de exploración de datos permite ver los datos NMEA 2000 descodificados.
 
 !!! quote "Información relacionada"
-    - **Configuración de la alimentación:** véase [Primeros pasos](../getting-started/getting-started.md#permanent-power-installation)
+    - **Configuración de la alimentación:** véase [Primeros pasos](../getting-started/getting-started.md#instalacion-permanente-de-la-alimentacion)
     - **Configuración del software:** véase [Guía del software](./software.md)
     - **Resolución de problemas de red:** véase [Guía de resolución de problemas](./troubleshooting.md)
 
@@ -206,5 +210,5 @@ Al montar los botones en un panel de control remoto, elegir una ubicación adecu
 Todas las conexiones de los botones a la placa portadora deben emplear conectores hembra de paso de 2,54 mm. Comprobar la alineación correcta de los pines y la firmeza de la conexión para evitar problemas de contacto durante el funcionamiento.
 
 !!! quote "Información relacionada"
-    - **Gestión de la alimentación:** véase [Gestión de la alimentación y procedimientos de apagado](./operation.md#power-management-and-shutdown-procedures)
+    - **Gestión de la alimentación:** véase [Gestión de la alimentación y procedimientos de apagado](./operation.md#gestion-de-la-alimentacion-y-procedimientos-de-apagado)
     - **Acceso al hardware:** véase [Mantenimiento del hardware](./hardware.md)

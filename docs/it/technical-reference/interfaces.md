@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Interfacce e connettività
 
 Questa pagina documenta come le interfacce del CM5 vengono rese disponibili sulla
@@ -64,7 +68,7 @@ CTS/RTS occupano la coppia di GPIO successiva, che su HALPI2 è spesso già in u
   GPIO13, liberando `uart4` per un uso generico. RS-485 non risulta più
   disponibile.
 
-Vedere [Disabilitazione delle interfacce integrate](../user-guide/hardware.md#using-hats)
+Vedere [Disabilitazione delle interfacce integrate](../user-guide/hardware.md#uso-degli-hat)
 per i passaggi hardware.
 
 ### Verifica

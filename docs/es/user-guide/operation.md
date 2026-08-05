@@ -1,3 +1,7 @@
+---
+translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+---
+
 # Funcionamiento del sistema
 
 ## Indicadores LED de estado
@@ -151,7 +155,7 @@ El modo cooperativo se activa cuando:
 
     Ver el estado del controlador: `halpi status`
 
-    Para más información sobre el comando `halpi`, consultar la [Guía del software](./software.md#halpi-daemon-halpid).
+    Para más información sobre el comando `halpi`, consultar la [Guía del software](./software.md#demonio-halpi-halpid).
 
 ### Alimentación de respaldo y sistema de condensadores
 

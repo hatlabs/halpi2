@@ -385,3 +385,41 @@ by each of them, because five agents share this file.
 | heat spreading area | varmespredende flate | The areas on the enclosure bottom the CM5 thermal pads must meet, in the CM5 final-assembly step. |
 | solid (LED state) | lyser fast | Opposed to blinker (flashing) throughout the operation.md LED table; needed one fixed rendering to keep the table columns parallel. |
 | pressure equalization | trykkutjevning | The stated purpose of the breather plug. The glossary gives the part (trykkutjevningsplugg) but not the function, which the panel-connector list state |
+| terminals (crimp-on cable terminals) | kabelsko | Appears twice in the permanent-installation materials list and in "Install terminals using proper crimping technique". The glossary covers terminal bl |
+| cable grommet | gummigjennomføring | "Install cable glands or cable grommets if routing through bulkheads" lists it alongside cable gland (kabelgjennomføring). Needed a distinct word so t |
+| "wall wart" (power supply type) | «wall wart» (kept English in guillemets) | Jargon in the optional-items list. No idiomatic Norwegian equivalent; kept as a quoted English idiom inside «…», the same treatment the glossary gives |
+| mounting clips | monteringsklips | Last item of the materials list, next to cable ties (kabelstrips). Recording it so the next page that mentions clips does not invent klemmer or festek |
+| known-good device | en enhet du vet fungerer | NMEA 2000 troubleshooting bullet. Rendered as a relative clause rather than a compound; noting it so the phrase stays the same if it recurs. |
+| Load Equivalency Number (LEN) | Load Equivalency Number (LEN) | NMEA 2000 standard term for how much bus power a device draws. Norwegian marine dealers and the standard itself use the English name and the LEN abbre |
+| multi-talker / single-talker-multiple-listener | multi-talker / single-talker-multiple-listener | NMEA 0183 / RS-485 topology terms. Kept English but glossed once on first use: 'nettverk med flere sendere (multi-talker)' and 'nettverk med én sender |
+| half-duplex | halv dupleks | The RS-485 mode that lets one wire pair both transmit and receive. Two words in Norwegian (halv dupleks) rather than a solid compound, matching establ |
+| normally-open (NO) momentary switch | normalt åpen (NO) momentbryter | The switch type required for the external Power/Reset/User buttons. Load-bearing: the wrong switch type makes the button behave inverted. 'momentbryte |
+| Battery-Backed RAM (BBR) | batteribackup-RAM (BBR) | Where the u-blox GNSS receiver stores its settings. Explains why the configuration is re-run on every boot, so it needs a stable rendering. Abbreviati |
+| PLC (programmable logic controller) | PLS | Industrial RS-485 device listed under common applications. PLS is the standard Norwegian abbreviation (programmerbar logisk styring); writing PLC woul |
+| buck converter | buck-omformer | Names the SiC463ED regulating the 10 V intermediate rail in the power-supply table. Norwegian trade usage keeps 'buck' and compounds it with a junctio |
+| ferrite bead | ferrittperle | USB 3.0 port filtering in technical-reference/hardware.md. Standard Norwegian component name. |
+| pull-up (resistor) | pull-up-motstand | The 2,2 kΩ pull-ups on the controller I2C bus. Norwegian keeps the English 'pull-up' and compounds it, as with the glossary's device tree-overlay. |
+| ingress protection | inntrengningsbeskyttelse | The IP65 row in the specifications summary. The separate 'IP rating' row in the enclosure table is rendered 'IP-klasse' — the two English phrasings ar |
+| solder nut | loddemutter | The 4× M2.5 fasteners holding the CM5, in the mounting list. Distinct from the glossary's gjengeinnsats (threaded insert), which is the HAT mounting m |
+| current limit (the value) | strømgrense | Column header in the USB 3.0 port table, where each cell is a number (0,93 A). The glossary has current limiting -> strømbegrensning for the function  |
+| depth sounder / wind instrument | ekkolodd / vindmåler | NMEA 0183 instrument types listed under common applications for RS-485. Both are the ordinary Norwegian boating words. |
+| recessive state | resessiv tilstand | The bus state an RS-485 multi-talker interface must hold when not transmitting. Direct loan, as in the CAN literature. |
+| power-on / power-off threshold | innkoblingsterskel / utkoblingsterskel | The 8,0 V and 5,5 V supercapacitor thresholds. Chosen as a matched pair so the two table rows read parallel; UVLO is kept as the English abbreviation  |
+| user space | brukerrommet (user space) | ubuntu-installation.md describes halpid as a user space daemon that talks to the power-management hardware over I2C. The glossary fixes daemon -> daem |
+| thermal throttling | termisk struping | troubleshooting.md, the 'System runs slowly or freezes' step about CPU temperature above 80 °C. The glossary covers passiv kjøling but not the throttl |
+| rollback (of a firmware update) | tilbakerulling / rulle tilbake | The whole 'Firmware Update Failed or Rolled Back' section turns on this word, and the LED/firmware sections of software.md already describe the same 3 |
+| login prompt | påloggingsledetekst | troubleshooting.md tells the reader to attach HDMI and look for boot errors or a login prompt. The glossary has to log in -> logge på but not the on-s |
+| bus contention | konflikt på bussen | The CAN error-counter step in troubleshooting.md lists it alongside wiring problems and wrong baud rate. No single-word Norwegian equivalent is in use |
+| 3rd party (operating systems) | tredjeparter | The warning admonition at the top of ubuntu-installation.md. Spelled out as a word rather than kept as a digit, so the numeric-drift check will report |
+| errata / known hardware issues | kjente feil | Page title of appendices/errata.md. Taken from the nb nav_translations block in mkdocs.yml ("Errata": "Kjente feil") so the H1 and the sidebar agree,  |
+| mounting ledge | monteringsknast | The cast aluminium ledges inside the enclosure that the PCB rests on. Central to the second errata item (heading plus three prose mentions); knast is  |
+| flash (casting residue) | støpegrad | The sharp leftover aluminium from the casting process, set in quotes in the English source. Written as stopegrad (with o-slash) and kept inside Norweg |
+| solder mask | loddemaske | The PCB coating a casting flash can penetrate, in the errata short-circuit description. |
+| copper pour / power plane | kobberflate / spenningsplan | Both appear: copper pours in the v0.5.0 changelog and a 3,3 V power plane in errata. Kept apart because the errata text names the plane as a net, not  |
+| inrush current / initial current spike | startstrom | The errata compliance item turns on this quantity (1,1 A against the NMEA 2000 limit of 1 A), so it needed one fixed rendering rather than an ad-hoc p |
+| through-hole (THT) | gjennomhullsmontering (THT) | The v0.5.0 jumper-header changelog entry. Abbreviation kept in parentheses as the source has it. |
+| footprint (component) | komponentfotavtrykk | Last v0.6.0 changelog entry. Fotavtrykk alone would read as a carbon/disk footprint in a marine document. |
+| signal integrity | signalintegritet | Appears twice in design-files (v0.6.1 summary and the v0.6.0 re-routing entry). |
+| security hardening | sikkerhetsherding | Bullet in software-development/advanced-config.md. Sikring would collide with the glossary entry fuse -> sikring, which is the reason for choosing her |
+| cross-compilation | krysskompilering | Bullet in software-development/integration.md. |
+| kernel module | kjernemodul | Bullet in software-development/integration.md; kernel is otherwise never translated in the glossary, but the compound reads badly in English here. |

@@ -1,3 +1,7 @@
+---
+translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+---
+
 # Grensesnitt og tilkoblingsmuligheter
 
 Denne siden dokumenterer hvordan grensesnittene til CM5 er ført ut på
@@ -62,7 +66,7 @@ CTS/RTS legger beslag på det neste GPIO-paret, som på HALPI2 ofte allerede er 
   RS-485-mottakeren fra GPIO13, og `uart4` frigjøres til generell bruk. RS-485
   er da utilgjengelig.
 
-Se [Slå av innebygde grensesnitt](../user-guide/hardware.md#using-hats) for
+Se [Slå av innebygde grensesnitt](../user-guide/hardware.md#bruk-av-hat-er) for
 maskinvaretrinnene.
 
 ### Verifisering

@@ -1,3 +1,7 @@
+---
+translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+---
+
 # Referencia de hardware
 
 Esta página recoge las especificaciones eléctricas, mecánicas y ambientales del HALPI2. Para la información de procedimiento (instalación, mantenimiento, sustitución), véase la [Guía de hardware](../user-guide/hardware.md). Para los detalles de los protocolos de interfaz, véase [Interfaces y conectividad](./interfaces.md).
@@ -168,7 +172,7 @@ El conector GPIO sigue la disposición estándar de 40 pines de Raspberry Pi. Lo
 | 24 | 18 | RS-485 EN | RS-485 (modo manual) | Libre en modo automático |
 | 26 | 37 | CAN INT | Controlador CAN FD | No |
 
-El resto de los pines GPIO quedan disponibles para HAT y aplicaciones de usuario. En la [Guía de hardware](../user-guide/hardware.md#using-hats) se detallan la compatibilidad de los HAT y las instrucciones para deshabilitar las interfaces integradas.
+El resto de los pines GPIO quedan disponibles para HAT y aplicaciones de usuario. En la [Guía de hardware](../user-guide/hardware.md#uso-de-hat) se detallan la compatibilidad de los HAT y las instrucciones para deshabilitar las interfaces integradas.
 
 ## Dispositivos I2C
 

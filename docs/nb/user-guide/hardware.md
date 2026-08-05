@@ -1,3 +1,7 @@
+---
+translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+---
+
 # Maskinvareveiledning
 
 ## Tilgang til kabinettet
@@ -158,11 +162,11 @@ Status-LED-ene gir informasjon om strøm- og aktivitetstilstanden til systemet. 
 | **9** | Grønn | CAN TX/RX-LED-er. Disse LED-ene blinker når data enten mottas (RX) eller sendes (TX) på CAN-grensesnittet. |
 | **10** | Grønn | RS-485 TX/RX-LED-er. Disse LED-ene blinker når data enten mottas (RX) eller sendes (TX) på RS-485-grensesnittet. |
 
-Mønstrene for RGB-LED-ene er dokumentert i [driftsveiledningen](./operation.md#status-led-indicators).
+Mønstrene for RGB-LED-ene er dokumentert i [driftsveiledningen](./operation.md#status-led-indikatorer).
 
 ## Konfigurasjon av strømbegrensning
 
-Bærekortet har en strømbegrensningsbryter for å stille inn den største strømmen som leveres til eksterne enheter. Bryteren finner du som **a2** i bildet i avsnittet [Kontakter på bærekortet](#carrier-board-connectors).
+Bærekortet har en strømbegrensningsbryter for å stille inn den største strømmen som leveres til eksterne enheter. Bryteren finner du som **a2** i bildet i avsnittet [Kontakter på bærekortet](#kontakter-pa-brekortet).
 
 !!! info "Innstillinger for strømbegrensning"
     **0,9 A-innstilling (standard):**
@@ -246,7 +250,7 @@ Etter maskinvaremonteringen kan HAT-en trenge programvarekonfigurasjon for å vi
 !!! quote "Relatert informasjon"
     - **Referanse for GPIO-pinneoppsett:** Se [Maskinvarereferanse](../technical-reference/hardware.md)
     - **Programvarekonfigurasjon:** Se [Avansert konfigurasjon](../software-development/advanced-config.md)
-    - **Endringer på kabinettet:** Se [Tilpassede kontaktvalg](#custom-connector-options)
+    - **Endringer på kabinettet:** Se [Tilpassede kontaktvalg](#tilpassede-kontaktvalg)
 
 ## Bytte NVMe SSD-en
 
@@ -272,7 +276,7 @@ Flytt jumperen slik at den kortslutter «3.3V off»-pinnene. Det deaktiverer 3,3
 
 ### Demonteringsprosedyre
 
-M.2-sporet sitter ved sørkanten av bærekortet. Se bildet i avsnittet [Kontakter på bærekortet](#carrier-board-connectors) for å finne M.2-kontakten merket **g1**.
+M.2-sporet sitter ved sørkanten av bærekortet. Se bildet i avsnittet [Kontakter på bærekortet](#kontakter-pa-brekortet) for å finne M.2-kontakten merket **g1**.
 
 Bruk en PH1-skrutrekker til å fjerne M2.5-monteringsskruen. Når skruen er fjernet, spretter SSD-en opp i en vinkel. Løft disken forsiktig i monteringsenden og vrikk den ut av M.2-kontakten. Hold SSD-en i kantene for å unngå å skade komponenter eller kontakter.
 
@@ -290,7 +294,7 @@ For programvarekonfigurasjon og feilsøking, se [programvareveiledningen](./soft
 !!! quote "Relatert informasjon"
     - **Systembilder:** Se [Programvareveiledning](./software.md)
     - **Oppstartsprosedyrer:** Se [Systemdrift](./operation.md)
-    - **Tilgang til maskinvaren:** Se [Tilgang til kabinettet](#enclosure-access)
+    - **Tilgang til maskinvaren:** Se [Tilgang til kabinettet](#tilgang-til-kabinettet)
 
 ## Bytte Compute Module 5
 

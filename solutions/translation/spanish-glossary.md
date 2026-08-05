@@ -407,7 +407,7 @@ by each of them, because five agents share this file.
 | block device | dispositivo de bloques | software.md step 6, `any other tool that can write to a block device`. |
 | boot mode switch | interruptor de modo de arranque | software.md, 3 occurrences in the USB-boot steps. Built on the glossary's `arranque`; the associated silkscreen labels stay English as `«Normal»` / `« |
 | power cycle (noun) / to power-cycle | ciclo de alimentacion / realizar un ciclo de alimentacion | software.md, 3 occurrences including the admonition title. Distinct from `apagado` and from `reinicio`, and the firmware-update section depends on the |
-| marine apps | aplicaciones nauticas | software.md image-variant table and Homarr description, 4 occurrences. The glossary has `vessel -> embarcacion` but no adjective for the application c |
+| marine apps | aplicaciones náuticas | software.md image-variant table and Homarr description, 4 occurrences. The glossary has `vessel -> embarcacion` but no adjective for the application c |
 | firewall | cortafuegos | software.md, VNC and Raspberry Pi Connect sections. |
 | port forwarding | redireccion de puertos | software.md VNC section, alongside VPN. |
 | taskbar | barra de tareas | software.md, Graphical Updates section. |
