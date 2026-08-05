@@ -459,3 +459,84 @@ A translated page is not done until:
   `swedish-glossary.md` — the sibling glossaries
 - `.claude/skills/translate-page/SKILL.md` — the procedure
 - `../best-practices/` — the two markdown traps that survive `--strict`
+
+## Terms added during translation
+
+Reported by the page translators, consolidated here rather than written
+by each of them, because five agents share this file.
+
+| English | Translation | Note |
+|:--------|:------------|:-----|
+| Getting Started (page/guide title) | Guida introduttiva | H1 of the page and the link text to the HaLOS equivalent guide. Standard Italian documentation title; 'Per iniziare' is the alternative but reads less |
+| Step (numbered procedure heading) | Passaggio | Used in 5 headings (Step 0-3). Needed a fixed choice so headings do not alternate between 'Passaggio', 'Fase' and 'Punto'. 'Fase' is reserved here for |
+| wire (individual conductor: red wire / black wire) | conduttore | The glossary covers 'wire gauge' and 'marine-grade wire' but not the countable conductor. 'Conduttore' distinguishes the individual red/black lead fro |
+| terminals (crimp-on ring/spade terminals) | capicorda | Distinct from 'morsettiera' (terminal block), which the glossary already fixes. 'Capicorda' is the standard Italian term for crimped cable-end termina |
+| cable grommet | passacavo | Appears alongside 'cable gland' (pressacavo, in glossary) in the same sentence; needed a different word so the pair does not collapse into one term. |
+| mounting hardware (corrosion-resistant) | minuteria di fissaggio | Standard Italian for screws/washers/brackets as a class; a literal 'hardware di montaggio' would clash with 'hardware' used for electronics elsewhere  |
+| mounting clips | clip di fissaggio | Listed with cable ties in the materials list; kept parallel to 'minuteria di fissaggio'. |
+| splash screen | schermata iniziale | Raspberry Pi OS boot screen. Established Italian rendering; the English term is not used in Italian consumer documentation. |
+| controller (the RP2040 the HALPI daemon connects to) | controllore | Glossary fixes 'daemon' and firmware state names but not this. 'Controllore' rather than 'controller' keeps it distinct from the loanwords the glossar |
+| rainbow pattern (LED) | sequenza arcobaleno | LED fault indication. Matched to 'sequenze dei LED di stato' used for 'status LED patterns' so the two references agree. |
+| known-good device | dispositivo sicuramente funzionante | No idiomatic Italian noun phrase exists; a descriptive rendering is the usual solution in Italian technical manuals. |
+| electrical codes | normative elettriche | Used three times (local electrical codes / comply with local electrical codes). 'Normative' rather than 'codici' — 'codice elettrico' is a calque that |
+| Automotive Installations | Installazioni su veicoli | Heading parallel to 'Installazioni nautiche' and 'Installazioni industriali'; 'automobilistiche' would wrongly exclude commercial vehicles. |
+| service loop (verb phrase 'allow/provide service loops') | prevedere una riserva di cavo | Glossary gives the noun 'riserva di cavo' and requires glossing '(service loop)' on first mention; recorded here as the verb collocation actually used |
+| UART | UART (feminine: la UART, le UART) | The glossary lists no gender for UART and warns against guessing articles for bare acronyms. Feminine is the prevailing Italian usage (implicitly 'por |
+| device tree overlay | overlay | Kept in English, masculine and invariable, matching the glossary's treatment of jumper/HAT/container. It is the literal name of the config.txt mechani |
+| transceiver (RS-485) | transceiver | Kept in English, masculine. 'ricetrasmettitore' exists but is not what Italian electronics documentation calls an RS-485 line driver IC. Invariable pe |
+| chip select | chip select | A signal name on the CAN FD controller, not prose. Left in English like the silkscreen labels; used in the conflicts table as 'Chip select del CAN FD' |
+| SPI bus / I2C bus | bus SPI / bus I2C | Follows rule 4 (name as plain apposition after the noun), consistent with the glossary's 'bus NMEA 2000'. No hyphen. |
+| mass-storage gadget | gadget di archiviazione di massa | Linux USB gadget terminology; 'gadget' has no Italian equivalent in this sense and is kept, with the rest translated. 'mass storage device' likewise b |
+| block device | dispositivo a blocchi | Standard Italian Linux usage; not in the glossary. |
+| boot mode switch | selettore della modalità di avvio | Built from the glossary's 'boot -> avvio'. The switch positions themselves stay English and quoted: “Normal”, “Abnormal”. |
+| login console | console di accesso | The dedicated debug UART in interfaces.md. 'console' is feminine and invariable in Italian. |
+| REST API | API REST | Italian inverts the order and treats API as feminine (l'API REST, un'interfaccia API REST). Appears in the heading 'Accesso all'API REST'. |
+| port forwarding | port forwarding | Kept in English; the Italian calque 'inoltro delle porte' is not what router UIs or Italian network documentation use. |
+| Hardware Guide (page title) | Guida all'hardware | Cross-reference target in software.md. Matches the pattern already established in docs/it: 'Guida introduttiva', 'Guida al software', 'Guida utente'.  |
+| hardware flow control | controllo di flusso hardware | Standard Italian term; not in the glossary. |
+| device node | nodo di dispositivo | Used in the interfaces.md verification section for the /dev/ttyAMA* entry. |
+| header pins (table column) | Pin del connettore | Derived from the glossary's 'header -> connettore a pettine' and 'pin -> pin' (invariable). Shortened for the table column head. |
+| taskbar | barra delle applicazioni | Standard Italian desktop terminology, used in the Graphical Updates section. |
+| update manager | gestore degli aggiornamenti | Descriptive, not a UI string the reader will see in English on this screen (the source does not capitalise it). |
+| pre-built images | immagini precompilate | Distinct from the glossary's 'system image -> immagine di sistema'; describes how Hat Labs ships them. |
+| solder jumper | jumper a saldare | The glossary fixes "jumper" as invariable but has no entry for the solder-bridge variant (GPIO6-CAN.CS). "Jumper a saldare" keeps the glossary's loanw |
+| backup power | alimentazione di riserva | The glossary has "backup battery = batteria tampone" but nothing for the super-capacitor-fed supply. "Batteria tampone" is wrong here (there is no bat |
+| mainboard | scheda principale del computer | Appears once, describing what the carrier board is. The glossary forbids "scheda madre" because it names the wrong board and inverts the CM5 relations |
+| voltage bar (LED pattern) | barra di tensione | LED pattern name in the status table, used five times. No glossary entry; "barra" is the usual Italian word for a bar-graph indicator and keeps the ta |
+| power-loss detection | rilevamento della mancanza di alimentazione | Built from the glossary's "power loss = mancanza di alimentazione"; recorded so the compound is spelled the same way on other pages rather than drifti |
+| silk screen | serigrafia | Used for the printed markings on the board (Contacts arrows, module outline). The glossary covers silkscreen *labels* staying English but not the surf |
+| die-cast, powder-coated (enclosure) | pressofuso, verniciato a polvere | Enclosure manufacturing terms in the opening paragraph; both are the standard Italian industrial terms and neither is in the enclosure section of the  |
+| spudger | spudger | Tool name in the CM5 removal procedure with no Italian equivalent in common use; kept as in the source alongside the translated alternatives (plettro  |
+| single-sided / double-sided (SSD) | a singola faccia / a doppia faccia | M.2 form-factor description in the SSD compatibility section; the standard Italian phrasing, recorded so the two halves of the contrast stay parallel. |
+| grace period (before automatic restart) | periodo di attesa | "5-second grace period" in the automatic-restart section. "Periodo di grazia" is a calque; "periodo di attesa" is what Italian technical prose uses fo |
+| carrier board controller | controller della scheda portante | The glossary fixes 'carrier board' but never says how 'controller' itself is handled. Kept in English, masculine and invariable (il controller / i con |
+| supercapacitor backup | riserva a supercondensatori | The glossary gives 'super-capacitor -> supercondensatore' and 'backup battery -> batteria tampone', but not the compound used as a section heading and |
+| kbps / Mbps / bps | kbit/s / Mbit/s / bit/s | The units section prescribes '250 kbit/s' in the no-thousands-separator example but never states the rule generally. Applied uniformly (250 kbit/s, 8  |
+| transceiver | ricetrasmettitore | Standard Italian technical term; the RS-485 section needs it and the glossary has no entry. Not left as the English 'transceiver', which would clash w |
+| isolated ground / galvanically isolated | massa isolata / isolato galvanicamente | The glossary gives 'grounding -> messa a terra', which is the protective-earth sense and wrong for GND_CAN and GND_RS485, a floating reference. 'Massa |
+| ferrite bead | perlina di ferrite | Component name in the USB section, not in the glossary. 'Perlina di ferrite' is the usual Italian catalogue term. |
+| threaded insert / solder nut | inserto filettato / dado da saldare | Mounting section fasteners; the glossary covers standoff and countersunk screw but not these two. |
+| powder-coated die-cast aluminium | alluminio pressofuso verniciato a polvere | Enclosure material, appears twice (summary table and mechanical table). Fixed once here so the two tables cannot disagree. |
+| depth sounder / wind instrument | ecoscandaglio / strumento del vento | Marine instrument names in the RS-485 'Common Applications' section. 'Ecoscandaglio' is the standard Italian term; 'strumento del vento' matches the u |
+| use case | caso d'uso | Page title of use-cases.md; standard Italian software-engineering rendering, written with the typographic apostrophe (caso d’uso). |
+| buck converter / overvoltage disconnect | convertitore buck / disconnessione per sovratensione | Power-supply table entries. 'Buck' is kept as the trade term (as the glossary does for jumper/watchdog); the glossary has 'overcurrent -> sovracorrent |
+| controller (the RP2040 board controller) | controller | Not in the glossary. I first wrote 'controllore', then aligned to 'controller' because the parallel Italian page docs/it/technical-reference/hardware. |
+| mounting ledge | sporgenza di appoggio | errata.md. The cast ledge inside the enclosure that the PCB rests on. Distinct from 'punto di fissaggio' (mounting point) used in design-files.md for  |
+| flash (casting defect) | bava | errata.md. Homonym trap: this is the casting sense of 'flash', nothing to do with 'flashare il firmware'. Quoted in the source as "flashes", so it app |
+| inrush current | corrente di spunto | errata.md. Standard Italian electrotechnical term; 'corrente di avviamento' would read as motor jargon. |
+| copper fill / copper pour | riempimento di rame | errata.md and design-files.md. The source uses both 'copper fill' and 'copper pours' for the same thing; both rendered identically. |
+| solder nut | dado da saldare | design-files.md changelog. |
+| test point | punto di test | design-files.md changelog. |
+| buck converter | convertitore buck | design-files.md. 'convertitore step-down' also exists but 'buck' is what Italian datasheets use. |
+| opamp | amplificatore operazionale | design-files.md. Spelled out; 'opamp' is not used in Italian running prose. |
+| footprint (component) | impronta | design-files.md. PCB land pattern sense. |
+| silkscreen | serigrafia | design-files.md. Distinct from the silkscreen *labels* themselves, which stay English per the glossary. |
+| brownout | abbassamento di tensione | power-supply.md. Kept distinct from 'caduta di tensione' (voltage drop, already in the glossary) and from 'interruzione di corrente' (blackout). |
+| cross-compilation | compilazione incrociata | integration.md. |
+| thermal throttling | limitazione termica delle prestazioni | troubleshooting.md. Kept clear of 'limitazione di corrente' (current limiting) which is the glossary term for a different mechanism. |
+| stray voltage | tensione parassita | troubleshooting.md. |
+| gigabit ethernet | ethernet gigabit | index.md. Noun-first Italian order; no hyphen, per rule 4. |
+| errata | errata corrige | errata.md page title. The standard Italian term. Note this changes the slug to 'errata-corrige'. |
+| security hardening | rafforzamento della sicurezza | advanced-config.md. |
+| cable plug (E7T cable plug) | spina volante | index.md. The free-hanging mating plug supplied loose, as opposed to the panel receptacle ('presa' in the glossary). |
+| goodie bag | busta accessori | index.md image alt text. |

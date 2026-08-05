@@ -379,3 +379,111 @@ equal within each pair.
   `swedish-glossary.md` — the siblings
 - `.claude/skills/translate-page/SKILL.md` — the procedure
 - `../best-practices/` — the two markdown traps that survive `--strict`
+
+## Terms added during translation
+
+Reported by the page translators, consolidated here rather than written
+by each of them, because five agents share this file.
+
+| English | Translation | Note |
+|:--------|:------------|:-----|
+| Getting Started (page/section title) | Primeros pasos | Page H1 and the HaLOS guide link text. Standard Spanish docs heading; avoids turning a noun phrase into a question that would need ¿…? |
+| desktop setup (on a desk/bench, as opposed to permanent installation) | configuración de sobremesa | Recurs six times on this page as the counterpart of `instalación permanente`. Not the GUI desktop — `escritorio` would be wrong here. |
+| wall wart (power supply) | «wall wart» (transformador de enchufe) | Quoted colloquial English in the source. Kept in guillemets per rule 3 with a short gloss on first and only mention; there is no established Spanish t |
+| splash screen | pantalla de inicio | Raspberry Pi OS boot screen; needed a fixed rendering so it does not drift to `pantalla de bienvenida` on other pages. |
+| cable grommet | pasacables | Appears alongside `cable gland` (prensaestopas) in the same sentence; the two must stay distinct, as with the pilot-hole / pre-drilled-hole pair. |
+| mounting hardware (screws, brackets) | herrajes de montaje | "Corrosion-resistant mounting hardware" — `hardware` alone would read as electronics in a hardware manual. |
+| cable tie / mounting clip | brida / clip de sujeción | `brida` is already in the glossary; `mounting clip` is not and is paired with it in the materials list. |
+| rainbow pattern (LED fault indication) | patrón de arcoíris | Diagnostic LED pattern for an unseated CM5; a fixed wording matters because it is the symptom a reader searches for. |
+| cable tester | comprobador de cables | Troubleshooting tool, distinct from `multímetro` which the glossary already fixes. |
+| over-torque (verb) | excederse en el par (de apriete) | Mounting-screw instruction; `sobrepar` is not idiomatic Spanish. |
+| Container Apps store (Cockpit) | tienda de aplicaciones en contenedor | Built on the glossary's `aplicación en contenedor`. Cockpit's own label is English, but the source uses it descriptively rather than as a quoted butto |
+| known-good device | dispositivo que se sepa que funciona | Troubleshooting idiom with no compact Spanish equivalent; a literal `dispositivo bueno conocido` is meaningless. |
+| device tree overlay | overlay | interfaces.md, 3 occurrences. Kept as the trade term, consistent with the glossary's decision to keep `firmware`. `superposicion de arbol de dispositi |
+| chip-select | chip-select | interfaces.md table, `CAN FD chip-select`. A signal name on the board, not prose; `seleccion de chip` would not match anything the reader can look up. |
+| transceiver | transceptor | interfaces.md, `an RS-485 transceiver's enable line`. Standard Spanish electronics term. |
+| hardware flow control | control de flujo por hardware | interfaces.md, introduces the `ctsrts` parameter. |
+| mass storage device | dispositivo de almacenamiento masivo | software.md, USB-boot procedure, 3 occurrences. The state the HALPI2 presents itself in during `rpiboot` flashing. |
+| block device | dispositivo de bloques | software.md step 6, `any other tool that can write to a block device`. |
+| boot mode switch | interruptor de modo de arranque | software.md, 3 occurrences in the USB-boot steps. Built on the glossary's `arranque`; the associated silkscreen labels stay English as `«Normal»` / `« |
+| power cycle (noun) / to power-cycle | ciclo de alimentacion / realizar un ciclo de alimentacion | software.md, 3 occurrences including the admonition title. Distinct from `apagado` and from `reinicio`, and the firmware-update section depends on the |
+| marine apps | aplicaciones nauticas | software.md image-variant table and Homarr description, 4 occurrences. The glossary has `vessel -> embarcacion` but no adjective for the application c |
+| firewall | cortafuegos | software.md, VNC and Raspberry Pi Connect sections. |
+| port forwarding | redireccion de puertos | software.md VNC section, alongside VPN. |
+| taskbar | barra de tareas | software.md, Graphical Updates section. |
+| update manager | gestor de actualizaciones | software.md, Graphical Updates section. |
+| hostname | nombre de host | software.md, Raspberry Pi Imager customisations. Kept close to the English because the Imager field itself reads `hostname`. |
+| to roll back (firmware) | volver a la version anterior | software.md Firmware Safety Features. Verbal phrase rather than a noun, so it composes with the impersonal register required by rule 1. |
+| login console | consola de inicio de sesion | interfaces.md, the dedicated debug UART. Reuses the glossary's `inicio de sesion` from `single sign-on`. |
+| power rail (3.3V rail, 5V rail) | línea (línea de 3,3 V, línea de 5 V) | Not in the glossary and it occurs eight times across both pages. Chose «línea» over the calque «raíl»/«riel» because it is regionally neutral (rule 6) |
+| flange (wide flange required on inside) | reborde | The obvious equivalent «brida» is already assigned to *cable tie* in the glossary, so using it here would collide. «Reborde» names the wide collar of  |
+| standoff | separador | HAT mounting hardware; appears five times in the HAT installation section and had no glossary entry. |
+| spudger | espátula (spudger) | No Spanish equivalent in common trade use; glossed on first mention and the English kept in parentheses, following the glossary's `sin pantalla (headl |
+| solder jumper | puente de soldadura | Distinct from the removable `jumper` already in the glossary (`puente`); this one is a PCB trace that has to be cut. |
+| Solo Mode / Co-op Mode | modo solo / modo cooperativo (co-op) | Firmware operating modes, not UI strings the reader sees on screen, so translated. «co-op» kept in parentheses on first mention because `halpi status` |
+| VDC (11-32 VDC, 100 VDC) | V CC (11–32 V CC, 100 V CC) | SI/Spanish convention for direct-current voltage; the glossary sets unit spacing but does not cover the DC suffix. |
+| chip select | selección de chip (chip select) | SPI signal name; translated with the English glossed once because the table row abbreviates it as `SPI CS`. |
+| watchdog timeout | tiempo de espera del watchdog agotado | The glossary fixes `watchdog` itself but not `timeout`; «tiempo de espera» is used consistently for all four timeout occurrences across both pages. |
+| blinkenlights | Blinkenlights | Left untranslated. It is a jargon in-joke, not a technical term, and any Spanish rendering loses the joke while gaining nothing; flagged here so a rev |
+| rail (power rail: 5V rail, 3.3V rail) | línea (línea de 5 V, línea de 3,3 V) | Not in the glossary but already used in docs/es/user-guide/operation.md:121 ("La línea de 5 V se desactiva") and hardware.md:92. Adopted for consisten |
+| pitch (connector pitch) | paso | Appears constantly in hardware.md (3.81 mm, 2.54 mm, 0.5 mm). Already established in docs/es/user-guide/hardware.md ("tipo Phoenix MC, paso de 3,81 mm |
+| hub (USB hub) | concentrador | Already established in docs/es/user-guide/hardware.md:114-116 and appendices/design-files.md ("concentrador USB3"). |
+| pinout | asignación de pines | Heading term in both pages. Already established in docs/es/user-guide/hardware.md:185,247. Chosen over "patillaje", which is Spain-marked. |
+| VDC | V CC | Unit form, not a protocol name, so it is translated. Already established in docs/es/index.md:30, operation.md:43 and troubleshooting.md:11. |
+| Load Equivalency Number (LEN) | número de equivalencia de carga (LEN) | NMEA 2000 term. Acronym kept in English because it is what the reader sees on cabling datasheets; the expansion is glossed once on first mention. |
+| multi-talker / single-talker / single-talker-multiple-listener | multiemisor / de un solo emisor / de un emisor y varios receptores | RS-485 and NMEA 0183 topology terms used three times in interfaces.md. "Talker" has no established Spanish loan here; "emisor"/"receptor" is the stand |
+| normally-open (NO) momentary switch | pulsador momentáneo normalmente abierto (NA) | Switch specification, not a UI string, so the abbreviation is translated (NO → NA) per Spanish electrical convention. |
+| thermal pad | almohadilla térmica | Thermal management table in hardware.md. Distinct from "disipador térmico" (heat sink), which the glossary already covers. |
+| half-duplex | semidúplex | RAE-accepted form; used once in the RS-485 section. |
+| flexible flat cable (FFC) | cable plano flexible (FFC) | Used for the HDMI and MIPI connectors; the acronym stays English because it is the part-ordering term. |
+| buck converter | convertidor reductor | Power supply table. "Convertidor buck" is also common but the Spanish form is unambiguous and needs no gloss. |
+| receptacle (USB receptacle) / socket (M.2 Socket M) | conector hembra / zócalo | Two different English words for connector openings in hardware.md; kept distinct because the M.2 one is a card slot and the USB one is a cable port. |
+| pigtail (panel connector) | latiguillo | Product name in the shop link in the RS-485 wiring section. |
+| threaded insert / countersunk / gasket | inserto roscado / avellanado / junta | Mechanical specifications table; none appear in the glossary's enclosure section. |
+| VDC (unit suffix, e.g. 32 VDC) | V CC | The glossary's units table covers V, A, Ω, °C, mm² but not the DC suffix. Spanish writes corriente continua, so the SI-spaced form is `32 V CC`. Appea |
+| mounting ledge | resalte de montaje | errata.md, twice. Distinct from `punto de montaje` (mounting point, design-files.md) and from `superficie de montaje` (mounting surface, already in th |
+| flash (casting defect, in quotes in the source) | rebaba | errata.md. The source quotes it as "flashes" and glosses it as leftover aluminium from casting. Standard Spanish foundry term. Written «rebabas» per r |
+| inrush current | corriente de irrupción | errata.md. The glossary has `overcurrent` → sobrecorriente and `current limiting` → limitación de corriente, but not the power-up surge. `corriente de |
+| copper pour / copper fill | vertido de cobre | design-files.md and errata.md. PCB-layout term; `relleno de cobre` used for the errata heading where the source says "Copper Fill", `vertidos de cobre |
+| power plane / rail | plano de alimentación / línea | errata.md (`3.3V power plane` → plano de alimentación de 3,3 V) and design-files.md (`3.3V rail` → la línea de 3,3 V). Kept distinct because the sourc |
+| solder nut | tuerca soldable | design-files.md, twice. |
+| footprint (PCB component) | huella | design-files.md. Established KiCad terminology in Spanish. |
+| opamp (operational amplifier) | amplificador operacional | design-files.md. |
+| test point | punto de prueba | design-files.md. |
+| silkscreen | serigrafía | design-files.md. The glossary already refers to "the board's own silkscreen labels" in the what-stays-English section but does not give the Spanish no |
+| PCB layout | trazado del PCB | design-files.md. Verb form for `to re-route`: volver a trazar. |
+| signal integrity | integridad de señal | design-files.md, twice. |
+| cable plug (the loose connector supplied for custom wiring) | clavija de cable | index.md (`E7T cable plug` → Clavija de cable E7T). Distinct from `conector` (the mating connector on the enclosure) and from `conector cilíndrico (ba |
+| cutout (in the enclosure, for an extra connector) | troquel | index.md (`cutouts for 2 extra SMA connectors`). Not the same as `orificio pretaladrado`, which the glossary reserves for holes the enclosure already  |
+| thermal throttling | limitación térmica | troubleshooting.md. |
+| runaway process | proceso desbocado | troubleshooting.md. |
+| stray voltage | tensión parásita | troubleshooting.md, twice. The source says "stray voltages" injected by a connected device. |
+| bus contention | contención en el bus | troubleshooting.md. |
+| baud rate / bit rate (prose) | velocidad de transmisión | troubleshooting.md (`incorrect baud rate`). The glossary's number rules cover how to write `115200 bps` but not the prose noun. |
+| differential signaling | señalización diferencial | troubleshooting.md (RS-485 A/B lines). |
+| differential pair | par diferencial | design-files.md (`USB3 hub RX differential pairs`). |
+| USB hub | concentrador | design-files.md. |
+| clock oscillator | oscilador de reloj | design-files.md. |
+| balancing circuit (super-capacitor) | circuito de equilibrado | design-files.md, twice. Verb/noun: equilibrado, not balanceo. |
+| 3rd party | de terceros | ubuntu-installation.md (3rd party operating systems) and resources.md (third-party software compatibility). Used consistently across both. |
+| user space | espacio de usuario | ubuntu-installation.md (`the user space halpid daemon`). |
+| prebuilt package | paquete precompilado | ubuntu-installation.md. |
+| command line tool | herramienta de línea de comandos | ubuntu-installation.md. The glossary keeps command names in English but does not give the phrase. |
+| cross-compilation | compilación cruzada | integration.md. |
+| custom image building | creación de imágenes personalizadas | integration.md. Built on the glossary's `imagen del sistema`. |
+| security hardening | refuerzo de la seguridad | advanced-config.md. |
+| backup and recovery (data, not power) | copia de seguridad y recuperación | advanced-config.md. Deliberately not `respaldo`, which the glossary assigns to the super-capacitor and RTC battery senses (`pila de respaldo`, `respal |
+| performance tuning | ajuste del rendimiento | advanced-config.md. |
+| power-on/off sequencing | secuenciación de encendido y apagado | power-supply.md. |
+| brownout | caída de tensión | power-supply.md. Reuses the glossary's `voltage drop` → caída de tensión; kept distinct from `corte de corriente` (blackout), which the glossary alrea |
+| load management | gestión de la carga | power-supply.md. |
+| status reporting | notificación del estado | controller.md. Paired with the glossary's `monitoring` → supervisión in the same bullet. |
+| CE marking | marcado CE | compliance.md. Official EU term. |
+| environmental rating | clasificación ambiental | compliance.md. |
+| chart plotter (plural) | plóteres cartográficos | index.md. Confirms the plural of the glossary's `plóter cartográfico`; plóteres, not plóters. |
+| single-board computer | ordenador de placa única | index.md. Follows rule 6 on ordenador. |
+| in-vehicle infotainment | infoentretenimiento a bordo | index.md. |
+| telematics | telemática | index.md. |
+| environmental sensing | detección ambiental | index.md. |
+| quick start guide | guía de inicio rápido | index.md. Note this is the printed leaflet in the box, distinct from the nav section `Getting Started` → `Primeros pasos`, which mkdocs.yml already fi |
+| goodie bag | bolsa de accesorios | index.md, image alt text only. |

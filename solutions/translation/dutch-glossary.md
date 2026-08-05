@@ -396,3 +396,39 @@ problem, not a typo.
   `swedish-glossary.md` — the siblings
 - `.claude/skills/translate-page/SKILL.md` — the procedure
 - `../best-practices/` — the two markdown traps that survive `--strict`
+
+## Terms added during translation
+
+Reported by the page translators, consolidated here rather than written
+by each of them, because five agents share this file.
+
+| English | Translation | Note |
+|:--------|:------------|:-----|
+| desktop setup | opstelling op het bureau | Heading and repeated body term for the pre-installation bench test. Avoided *desktopopstelling*, which collides with the graphical desktop meaning tha |
+| graphical desktop / desktop interface | grafische werkomgeving | The Raspberry Pi OS GUI. Kept distinct from *opstelling op het bureau* so the two English senses of "desktop" do not merge in Dutch. |
+| splash screen | opstartscherm | Raspberry Pi OS boot logo screen; no glossary entry. |
+| cable management | kabelbeheer | Glossary has *kabelroute* for cable routing, but this is the wider planning/tidiness sense used in the mounting-orientation list. |
+| cable grommet | doorvoertule | Appears alongside *cable gland* (kabelwartel), so it needs its own word rather than being folded into the gland. |
+| mounting hardware | bevestigingsmateriaal | Corrosion-resistant screws/brackets in the marine list. |
+| mounting screws | montageschroeven | Used in three mounting steps and the materials list. |
+| transportation damage | transportschade | Appears twice in troubleshooting (unseated CM5, undetected NVMe SSD). |
+| ambient (temperature) | omgevingstemperatuur | Renders "-20°C to +60°C ambient" as a single Dutch noun rather than a loose adjective. |
+| cable tester | kabeltester | Ethernet troubleshooting step. |
+| circuit / dedicated circuit | groep | Dutch electrical-panel usage for a breaker circuit; *circuit* alone would read as an electronic circuit. Glossary already fixes *installatieautomaat*  |
+| wire (conductor in a multi-core cable) | ader | "Red wire / black wire" are cores inside one cable, so *ader*, not *draad* or *kabel*. Glossary covers *aderdoorsnede* but not the bare noun. |
+| positive / negative terminal | plusklem / minklem | Extends the glossary's plus (+) / min (−) to the terminal at the power source. |
+| community forums | communityforums | Hat Labs support channel; *community* is established in Dutch, solid compound per rule 4. |
+| rainbow pattern (LED) | regenboogpatroon | Names the LED fault pattern for an unseated CM5. |
+| boot mode switch | bootmodusschakelaar | The switch next to the USB Boot connector on software.md. Solid compound per rule 4; "modus" is the established Dutch noun and "boot" stays as the unt |
+| amber LED | amberkleurige led | The indicator next to the boot mode switch. Glossary fixes `led` lowercase but not the colour word; "amberkleurig" keeps the distinction from the red/ |
+| mass storage device | massaopslagapparaat | What the HALPI2 appears as after `rpiboot` runs. Standard Dutch computing term, solid compound. |
+| command line tool | opdrachtregelgereedschap | Used throughout the `halpi` section and in the H2 heading. "opdrachtregel" is the Dutch term for command line; "gereedschap" rather than "tool" keeps  |
+| block device | blockdevice | Adopted English two-word term becomes one Dutch word (rule 4), same treatment as carrierboard/accesspoint. "blokapparaat" is not trade usage. |
+| device node | apparaatknooppunt | The `/dev/ttyAMA*` entry in the Verifying section of interfaces.md. |
+| hardware flow control | hardwarematige flowcontrol | The `ctsrts` parameter in interfaces.md. "flowcontrol" is the trade term; "stromingsregeling" would read as fluid dynamics. |
+| chip select | chipselect | The CAN FD conflict row in the CTS/RTS table. One word, adopted whole. |
+| Unix domain socket | Unix-domainsocket | The REST API transport. Proper name Unix takes exactly one hyphen at the junction (rule 4); the rest is one adopted word. |
+| setup wizard | installatiewizard | The Raspberry Pi OS first-boot flow. "wizard" is established in Dutch software UI language. |
+| update manager | updatebeheer | The graphical updates section. Matches the glossary's "beheer" pattern (systeembeheer, energiebeheer, containerbeheer). |
+| port forwarding | port forwarding | Kept in English in the VNC section. Dutch network documentation uses the English term; "poortdoorschakeling" exists but is not what a reader will find |
+| login console | inlogconsole | The dedicated debug UART `/dev/ttyAMA10` in interfaces.md. |

@@ -362,3 +362,26 @@ typo. The last row is not optional.
   `swedish-glossary.md`, `danish-glossary.md` — siblings
 - `.claude/skills/translate-page/SKILL.md` — the procedure
 - `../best-practices/` — the two markdown traps that survive `--strict`
+
+## Terms added during translation
+
+Reported by the page translators, consolidated here rather than written
+by each of them, because five agents share this file.
+
+| English | Translation | Note |
+|:--------|:------------|:-----|
+| guitar pick | gitarplekter | Named as an alternative non-conductive prying tool next to the spudger in the CM5 removal procedure. The glossary lists spudger -> plastspade but not  |
+| board-to-board connector | kort-til-kort-kontakt | The two high-density connectors joining the CM5 to the carrier board. Central to the CM5 replacement section and its warranty warning, so it needs one |
+| amber (LED colour) | ravgul | LED colour column in the status-LED table. Norwegian trade usage also says gul, which would collide with the yellow Ethernet-speed LED two rows above; |
+| voltage bar (LED pattern) | spenningssøyle | The LED pattern name in the operation.md quick-reference table, where the five LEDs form a bar-graph charge indicator. |
+| hex socket / socket size (tool) | pipe / pipestørrelse | The connector-removal step lists 26 mm, 10 mm, 8 mm and 17 mm sockets. pipe (pipenøkkel) is the Norwegian tool word; nøkkel alone would read as a span |
+| countersunk screw | senkeskrue | The four M4x10 lid screws. Appears in the very first procedure on the page. |
+| boot mode | oppstartsmodus | USB boot mode / Abnormal boot mode, in the connector table, the LED table and the SSD section. The glossary has to boot -> starte opp but not this com |
+| single-sided / double-sided (SSD) | ensidig / tosidig | The M.2 2230-2280 compatibility rule turns on this distinction, so it is load-bearing rather than decorative. |
+| chip select | chip select | Kept in English in the GPIO conflict table and prose, like the other SPI signal names (MISO, MOSI, SCK) which are already never-translate. |
+| transceiver | transceiver | RS-485 transceiver, in the interface-disabling section. The Norwegian trade term is the English one, consistent with the glossary keeping firmware and |
+| grace period | venteperiode | The 5-second window before HALPI2 restarts itself after a manual shutdown. naadeperiode is a legal term and wrong here. |
+| feeding the watchdog | mating av watchdogen | The source sets it in quotes as jargon; kept as jargon inside Norwegian guillemets so it still reads as a quoted idiom. |
+| heat spreading area | varmespredende flate | The areas on the enclosure bottom the CM5 thermal pads must meet, in the CM5 final-assembly step. |
+| solid (LED state) | lyser fast | Opposed to blinker (flashing) throughout the operation.md LED table; needed one fixed rendering to keep the table columns parallel. |
+| pressure equalization | trykkutjevning | The stated purpose of the breather plug. The glossary gives the part (trykkutjevningsplugg) but not the function, which the panel-connector list state |

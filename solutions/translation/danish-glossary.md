@@ -383,3 +383,32 @@ A non-zero count is the finding. A rule that was read looks followed.
   `norwegian-glossary.md`, `swedish-glossary.md` — siblings
 - `.claude/skills/translate-page/SKILL.md` — the procedure
 - `../best-practices/` — the two markdown traps that survive `--strict`
+
+## Terms added during translation
+
+Reported by the page translators, consolidated here rather than written
+by each of them, because five agents share this file.
+
+| English | Translation | Note |
+|:--------|:------------|:-----|
+| apt repository | apt-pakkearkiv | ubuntu-installation.md heading and body; glossary has 'package' but not 'repository'. 'pakkearkiv' is the standard Danish term for a Debian/apt repo;  |
+| schematic | kredsløbsdiagram | design-files.md title and body; mkdocs.yml nav_translations already fixes 'Design Files and Schematics' -> 'Designfiler og kredsløbsdiagrammer', so th |
+| PCB layout | print-layout | design-files.md; 'print' is the established Danish word for a printed circuit board, and 'layout' is the trade term |
+| component footprint | komponent-footprint | design-files.md 0.6.0 changelog; Danish PCB practice keeps 'footprint' untranslated — 'fodaftryk' would not be understood |
+| buck converter | buckomformer | design-files.md 0.6.0 changelog; solid compound per rule 4, junction hyphen only against the number: '10 V-buckomformeren' |
+| opamp / operational amplifier | operationsforstærker | design-files.md 0.6.0 changelog |
+| solder nut | loddemøtrik | design-files.md 0.5.0 changelog |
+| copper pour / copper fill | kobberflade / kobberudfyldning | design-files.md and errata.md; 'kobberflade' for the plural pours in the changelog, 'kobberudfyldning' for the errata heading |
+| power plane | forsyningsplan | errata.md; later mention shortened to '3,3 V-planet' as the glossary does for spændingsskinne |
+| mounting ledge | monteringsafsats | errata.md; the cast ledges inside the enclosure that the board rests on |
+| flash (casting residue) | grat / gratkant | errata.md; the English source quotes "flashes" as leftover casting aluminium — unrelated to 'to flash' firmware, which stays 'flashe' |
+| solder mask | loddemaske | errata.md |
+| inrush current | indkoblingsstrøm | errata.md; distinct from 'overstrøm' in the glossary |
+| thermal throttling | termisk nedregulering | troubleshooting.md, CPU temperature section |
+| stray voltage | vildfaren spænding | troubleshooting.md rainbow-LED section |
+| rollback (firmware) | tilbagerulning / rulle tilbage | troubleshooting.md firmware section |
+| single-board computer | enkeltkortcomputer | index.md; solid compound, distinct from 'bærekort' |
+| glitch immunity | immunitet over for korte spændingsudfald | index.md hardware feature list; rendered descriptively since Danish has no single trade term |
+| cross-compilation | krydskompilering | integration.md placeholder bullet |
+| security hardening | sikkerhedshærdning | advanced-config.md placeholder bullet |
+| brownout | underspænding | power-supply.md placeholder bullet; 'strømafbrydelse' in the glossary is the full blackout, so a separate word was needed |
