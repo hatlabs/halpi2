@@ -97,7 +97,21 @@ uv run mkdocs build --strict
 uv run python scripts/check_anchors.py site
 uv run python scripts/translation_status.py
 uv run python scripts/check_glossary.py fi
+uv run python scripts/check_typography.py fi
 ```
+
+**Leave every anchor fragment in its English form while translating**, then map
+them all at once once the language is complete and the site has been built:
+
+```bash
+uv run python scripts/map_anchors.py site fi          # report
+uv run python scripts/map_anchors.py site fi --apply  # rewrite
+```
+
+The mapping is positional — the nth heading of the English page and the nth
+heading of the translation are the same heading — which is why the structure
+comparison below has to pass first. Matching on heading text cannot work once
+the text is in another language.
 
 **Measure the glossary, do not reread it.** Rereading your own pages confirms
 whatever they already say, so the terminology looks consistent right up until a
