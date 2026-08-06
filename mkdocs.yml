@@ -65,7 +65,7 @@ plugins:
             Troubleshooting: Vianetsintä
             Technical Reference: Tekniset tiedot
             Hardware Reference: Laitteiston tekniset tiedot
-            Power Supply Deep Dive: Virransyöttö tarkemmin
+            Power Supply Deep Dive: Virtalähde tarkemmin
             Carrier Board Controller: Emolevyn ohjain
             Software Development: Ohjelmistokehitys
             HALPI2 Daemon: HALPI2-daemon

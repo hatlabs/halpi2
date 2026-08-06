@@ -29,7 +29,7 @@ Valinnaiset osat (sisältyvät myyntipakkaukseen):
 
 Lisäksi tarvittavat (eivät sisälly toimitukseen):
 
-- 12 V:n tai 24 V:n virtalähde
+- 12 V:n tai 24 V:n virransyöttö
 - Erillinen tietokone käyttöönottoon ilman näyttöä (headless), jos et käytä kytkettyä näyttöä
 - Verkkokaapeli (valinnainen, langallista yhteyttä varten)
 - Näyttö, jossa on HDMI-tulo (valinnainen)
@@ -161,7 +161,7 @@ Avaa Signal K:n verkkokäyttöliittymä ja tarkkaile `can0`-yhteyden aktiivisuut
 
 ## Laitteen sammuttaminen
 
-HALPI2 on suunniteltu sammumaan automaattisesti, kun virransyöttö katkaistaan. Kun haluat sammuttaa laitteen, katkaise virta joko sähkötaulun kytkimestä tai irrottamalla virtaliitin. Järjestelmä käynnistää sammutuksen automaattisesti, jolloin kaikki sovellukset sulkeutuvat hallitusti ja tiedostojärjestelmä irrotetaan turvallisesti.
+HALPI2 on suunniteltu sammumaan automaattisesti, kun virtalähde irrotetaan. Kun haluat sammuttaa laitteen, katkaise virta joko sähkötaulun kytkimestä tai irrottamalla virtaliitin. Järjestelmä käynnistää sammutuksen automaattisesti, jolloin kaikki sovellukset sulkeutuvat hallitusti ja tiedostojärjestelmä irrotetaan turvallisesti.
 
 Jos sammutat järjestelmän työpöydän kautta tai komentoriviltä (esimerkiksi `shutdown`-komennolla), laite käynnistyy automaattisesti uudelleen noin viiden sekunnin kuluttua. Tämä johtuu siitä, että virranhallinta havaitsee ulkoisen virransyötön olevan yhä käytettävissä.
 
@@ -349,17 +349,17 @@ Jos haluat nopeuttaa käynnistystä tai tarvitset virtaa paljon kuluttaville ohe
 
 ##### Kaapelin valmistelu
 
-1. **Reititä virtakaapeli** HALPI2:lta virtalähteelle
+1. **Reititä virtakaapeli** HALPI2:lta virransyötölle
 2. **Jätä johtolenkit** molempiin päihin
 3. **Suojaa kaapeli** hankautumiselta ja vaurioilta
 4. **Katkaise sopivan mittaiseksi** jättäen riittävästi työvaraa
 
-##### Kytkentä virtalähteen päässä
+##### Kytkentä virransyötön päässä
 
 1. **Varmista johtimen suojaus** varaamalla 3–5 A:n johdonsuojakatkaisija tai asentamalla linjasulake
 2. **Kuori johtimien päät** sopivan matkalta
 3. **Asenna liittimet** oikealla puristustekniikalla
-4. **Kytke virtalähteeseen:**
+4. **Kytke virransyöttöön:**
     - **Punainen johdin:** plusnapa (+)
     - **Musta johdin:** miinusnapa (−)
 5. **Varmista napaisuus** yleismittarilla ennen jännitteen kytkemistä
@@ -428,7 +428,7 @@ Verkkoyhteyttä varten:
 ❌ **Ei merkkiä virrasta:**
 
 - Tarkista sulakkeen kunto ja koko
-- Tarkista virtalähteen jännite (11–32 V)
+- Tarkista virransyötön jännite (11–32 V)
 - Varmista oikea napaisuus
 - Mittaa virtakaapelien jatkuvuus
 
