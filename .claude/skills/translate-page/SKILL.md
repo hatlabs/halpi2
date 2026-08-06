@@ -88,6 +88,33 @@ one failure the status check cannot detect, and this skill is where the
 discipline lives. If you touched only the target language (fixing wording,
 fixing a typo), the English source did not change: leave the stamp alone.
 
+## Adding a language to the site
+
+When a locale is added to `mkdocs.yml`, check the language selector too. The
+Material theme caps the open menu at `10rem`, which fits five entries at the
+site's font size; the sixth language onward scrolls out of sight behind a
+scrollbar that gives no hint anything is below it.
+
+`docs/stylesheets/extra.css` should carry:
+
+```css
+.md-select:focus-within .md-select__inner,
+.md-select:hover .md-select__inner {
+  max-height: min(24rem, 75vh);
+}
+```
+
+24rem clears thirteen entries; the viewport term keeps the menu on screen on a
+short display. The same block is in the HALPI2 and HALMET repositories — keep
+the three identical, and add it to any further site that gains a second
+language.
+
+Verify by measuring rather than by eye: open the site, read the rule's
+`max-height` off the stylesheet, and compare it against the list's natural
+height with `.md-select__list.getBoundingClientRect()`. Hovering for a
+screenshot is unreliable — the menu often has not opened by the time the frame
+is captured.
+
 ## Verifying
 
 All four, every time:
