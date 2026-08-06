@@ -223,7 +223,7 @@ RS-485-liitännän saa pois käytöstä poistamalla emolevyn RX Enable -jumpperi
 
 ### Asennus
 
-Aloita sammuttamalla järjestelmä ja irrottamalla kaikki virtalähteet. Irrota kotelon kansi Kotelon käsittely -osion ohjeen mukaan.
+Aloita sammuttamalla järjestelmä ja irrottamalla kaikki virransyötöt. Irrota kotelon kansi Kotelon käsittely -osion ohjeen mukaan.
 
 Versiosta 0.5.0 alkaen emolevyillä on valmiiksi asennetut M2.5-kierreholkit HATin neljässä kiinnityskohdassa, mikä helpottaa asennusta. Vanhemmilla version 0.4.0 korteilla M2.5-mutterit on asennettava käsin. Muttereiden asentamiseksi emolevy on irrotettava väliaikaisesti. Tämä onnistuu ilman kaikkien kaapeleiden irrottamista.
 
@@ -239,7 +239,7 @@ Jos HATissa on ulkoisia liittimiä, joihin on päästävä käsiksi kotelon ulko
 
 ### Irrotus
 
-HAT irrotetaan asennuksen vastakkaisessa järjestyksessä. Sammuta järjestelmä kokonaan ja irrota kaikki virtalähteet ennen kotelon avaamista. Irrota M2.5-kiinnitysruuvit ja nosta HAT varovasti suoraan ylös GPIO-liittimestä välttäen sivusuuntaista voimaa, joka voisi taivuttaa liittimen nastoja.
+HAT irrotetaan asennuksen vastakkaisessa järjestyksessä. Sammuta järjestelmä kokonaan ja irrota kaikki virransyötöt ennen kotelon avaamista. Irrota M2.5-kiinnitysruuvit ja nosta HAT varovasti suoraan ylös GPIO-liittimestä välttäen sivusuuntaista voimaa, joka voisi taivuttaa liittimen nastoja.
 
 Jos HAT tuntuu juuttuneen, tarkista jäikö jokin kiinnitysosa tai kaapeli huomaamatta ennen kuin käytät enemmän voimaa. Jotkin tiukkaliittimiset HATit voivat vaatia varovaista keinuttamista ylöspäin vedettäessä. Keinuta HATtia pohjois–etelä-suunnassa; itä–länsi-suuntainen keinutus voi taivuttaa liittimen nastoja, kun liitin yhtäkkiä irtoaa.
 
@@ -305,7 +305,7 @@ Varaa ennen aloittamista lämmönjohtotyynyt lämmönsiirtoa varten. Vakiokokoon
 
 ### Compute Moduleen käsiksi pääsy
 
-Sammuta HALPI2 ja irrota virtalähde. Irrota kotelon kansi Kotelon käsittely -osion ohjeen mukaan. CM5 on emolevyn alapuolella, joten emolevy on ensin irrotettava kotelosta. Emolevylle tulee useita kaapeleita, joten kannattaa ottaa muutama valokuva kytkennöistä ennen jatkamista.
+Sammuta HALPI2 ja irrota virransyöttö. Irrota kotelon kansi Kotelon käsittely -osion ohjeen mukaan. CM5 on emolevyn alapuolella, joten emolevy on ensin irrotettava kotelosta. Emolevylle tulee useita kaapeleita, joten kannattaa ottaa muutama valokuva kytkennöistä ennen jatkamista.
 
 Irrota kaapelit, jotka estävät emolevyn nostamisen. Irrota emolevyn kiinnitysruuvit ja nosta kortti pois kotelosta.
 

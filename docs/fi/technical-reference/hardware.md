@@ -25,9 +25,9 @@ Tällä sivulla ovat HALPI2:n sähköiset, mekaaniset ja ympäristöä koskevat 
 
 ## Sähköiset tiedot
 
-### Virransyöttö
+### Virtalähde
 
-Virransyöttö hyväksyy laajan tasajännitealueen ja tuottaa säädetyt 5 V:n ja 3,3 V:n jännitteet CM5:lle ja oheislaitteille. Tulosuojaukseen kuuluvat käänteisen napaisuuden suojaus (LM74800), ylijännitteen irtikytkentä 38,6 V:ssa, TVS-rajoitus sekä yhteis- ja eromuotoisten EMI-häiriöiden suodatus.
+Virtalähde hyväksyy laajan tasajännitealueen ja tuottaa säädetyt 5 V:n ja 3,3 V:n jännitteet CM5:lle ja oheislaitteille. Tulosuojaukseen kuuluvat käänteisen napaisuuden suojaus (LM74800), ylijännitteen irtikytkentä 38,6 V:ssa, TVS-rajoitus sekä yhteis- ja eromuotoisten EMI-häiriöiden suodatus.
 
 | Ominaisuus | Arvo |
 |:-----------|:-----|
@@ -245,7 +245,7 @@ Vakiokotelo jäähtyy passiivisesti ilman tuuletinta. 4-napainen PWM-tuuletinlii
 
 !!! quote "Aiheeseen liittyvää"
     - **Kytkentäkaaviot ja suunnittelutiedostot:** katso [Suunnittelutiedostot ja kytkentäkaaviot](../appendices/design-files.md)
-    - **Virranhallinnan toiminta:** katso [Virransyöttö tarkemmin](./power-supply.md)
+    - **Virranhallinnan toiminta:** katso [Virtalähde tarkemmin](./power-supply.md)
     - **Liitäntäprotokollat:** katso [Liitännät ja tiedonsiirto](./interfaces.md)
     - **Ohjain ja I2C-protokolla:** katso [Emolevyn ohjain](./controller.md)
     - **Fyysinen asennus:** katso [Laitteisto-opas](../user-guide/hardware.md)

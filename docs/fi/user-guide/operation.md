@@ -38,13 +38,13 @@ Käytön aikana LEDit toimivat jännitemittarina, joka näyttää superkondensaa
 
 ## Virranhallinta ja sammutus
 
-HALPI2:n virransyöttö on suunniteltu kestämään jännitepiikkejä, häiriöitä ja lyhyitä katkoja.
+HALPI2:n virtalähde on suunniteltu kestämään jännitepiikkejä, häiriöitä ja lyhyitä katkoja.
 
 ### Virransyöttöjärjestelmän yleiskuvaus
 
 HALPI2:n virranhallinta koostuu näistä osista:
 
-- **Laajan jännitealueen virransyöttö** (11–32 V DC, suojaus 100 V DC asti)
+- **Laajan jännitealueen virtalähde** (11–32 V DC, suojaus 100 V DC asti)
 - **Superkondensaattorivarmennus** hallittuun sammutukseen jännitteen katketessa
 - **Virranrajoitus** (valittavissa 0,9 A tai 2,5 A)
 - **Jännitteen menetyksen tunnistus** ja automaattinen sammutuksen käynnistys
