@@ -172,11 +172,10 @@ All remaining GPIO pins are available for HATs and user applications. See the [H
 
 ## I2C Devices
 
-The system I2C bus (I2C1, GPIO 2/3) hosts the following devices:
+The system I2C bus (I2C1, GPIO 2/3) hosts one onboard device:
 
 | Address | Device | Function |
 |:--------|:-------|:---------|
-| 0x4b | TMP112A | Board temperature sensor |
 | 0x6d | RP2040 | Carrier board controller (secondary mode) |
 
 The controller I2C bus (I2C0, internal to carrier board) is used for HDMI DDC and MIPI display communication, with 2.2kΩ pull-ups.
