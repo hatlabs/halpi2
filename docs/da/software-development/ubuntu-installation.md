@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Brug af andre Debian-baserede distributioner
@@ -52,6 +52,9 @@ exit
 
 Firmwaren til de fælles enheder på HALPI2-kortet konfigureres ved at redigere `/boot/firmware/config.txt` og tilføje følgende linjer i afsnittet `[all]`:
 
+!!! danger "Kontrollér din startenhed, før du indsætter dette"
+    Blokken nedenfor slutter med `dtparam=sd=off`. På en Compute Module 5 deaktiverer den linje det indbyggede microSD-stik og, på et modul med eMMC, også eMMC'en. Behold linjen, hvis du starter fra NVMe, som er HALPI2's standardkonfiguration. Fjern den, hvis du starter fra microSD eller eMMC, ellers starter enheden ikke efter næste genstart.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -70,14 +73,41 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Derefter skal I2C-grænsefladen aktiveres, så `halpid`-dæmonen i brugerrummet kan kommunikere med hardwaren til strømstyring.
+!!! warning "I2C skal være aktiveret"
+    I Raspberry Pi OS er `dtparam=i2c_arm=on` kommenteret ud, og andre distributioner kan gøre det samme. Uden den findes `/dev/i2c-1` ikke, og `halpid` kan ikke nå hardwaren til strømstyring.
+
+Kernemodulet `i2c-dev` skal desuden indlæses ved opstart, så `halpid`-dæmonen i brugerrummet kan bruge bussen.
 Det gøres ved at oprette filen `/etc/modules-load.d/i2c-dev.conf` med:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Genstart for at aktivere ændringerne, og kontrollér derefter, at I2C-bussen findes:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Hvis `/dev/i2c-1` ikke findes, så gennemgå ændringerne i `config.txt`, før du fortsætter. `halpid`-dæmonen kan ikke starte uden den.
+
 ## Opsætning af CAN-bussen (NMEA 2000)
 
 Følgende kommandoer aktiverer CAN-bussen til NMEA 2000-kommunikation på HALPI2:
@@ -121,17 +151,28 @@ HALPI2-dæmonen bør nu køre, og kommandoen `halpi` være tilgængelig. Du kan 
 halpi status
 ```
 
+Dæmonens socket kan kun læses af gruppen `halpid`. Pakken føjer din bruger til gruppen, men medlemskabet gælder først i nye login-sessioner. Hvis kommandoen ikke kan forbinde, så log ud og ind igen, eller brug `sudo halpi status`.
+
 ## Installation af HALPI2-firmware
 
-Nu hvor kommandoen `halpi` er tilgængelig, kan pakken `halpi2-firmware` installeres. Den flasher den nyeste firmware til HALPI2-kortet:
+Nu hvor kommandoen `halpi` er tilgængelig, skal du installere pakken `halpi2-firmware`, som indeholder firmware-filerne under `/usr/share/halpi2-firmware/`:
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Firmwaren kan flashes manuelt med:
+
+!!! warning "Flash firmwaren selv"
+    Pakken forsøger at flashe under installationen, men forsøget mislykkes lydløst i de nuværende udgivelser ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt melder alligevel om succes, så flash manuelt, og kontrollér resultatet.
+
+Flash firmwaren, og sluk derefter enheden. En genstart tager ikke den nye firmware i brug:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Tænd enheden igen, og bekræft versionen med `halpi status`. Ved en installation uden skærm skal du kunne nå afbryderen, før du kører nedlukningen.
+
+[Softwarevejledningen](../user-guide/software.md#manuel-installation-af-firmware) beskriver den automatiske opdateringsmekanisme, og hvordan den slås fra.
 
 ## Opsætning af Signal K-server
 
@@ -171,7 +212,7 @@ Der kan du klikke på knappen `+Add` og oprette en forbindelse med mindst følge
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Genstart, og kontrollér på dashboardet, om der modtages data.

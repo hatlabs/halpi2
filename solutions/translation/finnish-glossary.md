@@ -256,6 +256,7 @@ them.
 |:--------|:--------|:-----|
 | firmware | firmware | Not *laiteohjelmisto* — Hat Labs convention |
 | daemon | daemon | Not *taustaprosessi* — Hat Labs convention |
+| kernel module | ydinmoduuli | |
 | to flash | flashata | Established Hat Labs usage |
 | operating system image | levykuva | |
 | headless | ilman näyttöä | First mention: `ilman näyttöä (headless)` |

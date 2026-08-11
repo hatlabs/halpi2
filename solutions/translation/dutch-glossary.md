@@ -299,6 +299,7 @@ Two consequences worth stating:
 |:--------|:------|:-----|
 | firmware | firmware | Not *bedrijfsprogrammatuur* — the trade term, as in every sibling |
 | daemon | daemon | Not *achtergronddienst* |
+| kernel module | kernelmodule | |
 | to flash | flashen | Past participle *geflasht* |
 | system image / operating system image | systeemimage | |
 | container image | containerimage | Not *systeemimage* — that is a disk image |

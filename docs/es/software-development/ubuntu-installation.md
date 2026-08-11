@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Uso de otras distribuciones basadas en Debian
@@ -52,6 +52,9 @@ exit
 
 El firmware de los dispositivos comunes de la placa HALPI2 se configura editando `/boot/firmware/config.txt` y añadiendo las siguientes líneas a la sección `[all]`:
 
+!!! danger "Comprobar el dispositivo de arranque antes de pegar esto"
+    El bloque siguiente termina con `dtparam=sd=off`. En un Compute Module 5 esa línea desactiva la ranura microSD integrada y, en un módulo con eMMC, también la eMMC. Conviene mantenerla si el arranque se hace desde NVMe, que es la configuración estándar del HALPI2. Hay que quitarla si el arranque se hace desde microSD o eMMC; de lo contrario el equipo no arrancará tras el siguiente reinicio.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -70,14 +73,41 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Después hay que habilitar la interfaz I2C para que el demonio `halpid`, que se ejecuta en espacio de usuario, pueda comunicarse con el hardware de gestión de la alimentación.
+!!! warning "El I2C debe estar habilitado"
+    En Raspberry Pi OS, `dtparam=i2c_arm=on` está comentado, y otras distribuciones pueden hacer lo mismo. Sin esa línea no existe `/dev/i2c-1` y `halpid` no alcanza el hardware de gestión de la alimentación.
+
+Además, el módulo del kernel `i2c-dev` debe cargarse en el arranque para que el demonio `halpid`, que se ejecuta en espacio de usuario, pueda usar el bus.
 Para ello se crea el archivo `/etc/modules-load.d/i2c-dev.conf` con:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Reiniciar para aplicar los cambios y comprobar después que el bus I2C está presente:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Si `/dev/i2c-1` no existe, revisar los cambios en `config.txt` antes de continuar. El demonio `halpid` no puede arrancar sin él.
+
 ## Configuración del bus CAN (NMEA 2000)
 
 El siguiente comando habilita el bus CAN para la comunicación NMEA 2000 en el HALPI2:
@@ -121,17 +151,28 @@ El demonio HALPI2 debería estar ya en ejecución y el comando `halpi` disponibl
 halpi status
 ```
 
+El socket del demonio solo es legible para el grupo `halpid`. El paquete añade el usuario a ese grupo, pero la pertenencia se aplica solo en las nuevas sesiones de inicio. Si el comando no logra conectar, cerrar la sesión y volver a entrar, o usar `sudo halpi status`.
+
 ## Instalación del firmware de HALPI2
 
-Ahora que el comando `halpi` está disponible, puede instalarse el paquete `halpi2-firmware`, que graba el firmware más reciente en la placa del HALPI2:
+Ahora que el comando `halpi` está disponible, instalar el paquete `halpi2-firmware`, que incluye los archivos de firmware en `/usr/share/halpi2-firmware/`:
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-El firmware puede grabarse manualmente con:
+
+!!! warning "Grabar el firmware manualmente"
+    El paquete intenta grabar durante la instalación, pero el intento falla de forma silenciosa en las versiones actuales ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt informa igualmente de éxito, así que conviene grabar a mano y comprobar el resultado.
+
+Grabar el firmware y apagar después el equipo. Un reinicio no aplica el firmware nuevo:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Volver a encender el equipo y confirmar la versión con `halpi status`. En una instalación sin pantalla, hay que poder alcanzar el interruptor de alimentación antes de ejecutar el apagado.
+
+La [guía del software](../user-guide/software.md#instalacion-manual-del-firmware) describe el mecanismo de actualización automática y cómo desactivarlo.
 
 ## Configuración del servidor Signal K
 
@@ -171,7 +212,7 @@ Allí se puede pulsar el botón `+Add` y crear un conector con al menos las sigu
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Reiniciar y comprobar en el panel de control si se están recibiendo datos.

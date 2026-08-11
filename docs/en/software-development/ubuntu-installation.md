@@ -48,6 +48,9 @@ exit
 
 The firmware for common devices on the HALPI2 board can be configured by editing `/boot/firmware/config.txt` and adding the following lines to the `[all]` section:
 
+!!! danger "Check your boot device before you paste this"
+    The block below ends with `dtparam=sd=off`. On a Compute Module 5 that line disables the onboard microSD slot and, on a module with eMMC, the eMMC as well. Keep it if you boot from NVMe, which is the standard HALPI2 configuration. Remove it if you boot from microSD or eMMC, or the device will not boot after the next restart.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -66,17 +69,44 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Then the I2C interface needs to be enabled so that the user space `halpid` daemon can communicate with the power management hardware.
+!!! warning "I2C must be enabled"
+    Raspberry Pi OS ships `dtparam=i2c_arm=on` commented out, and other distributions may do the same. Without it there is no `/dev/i2c-1`, and `halpid` cannot reach the power management hardware.
+
+The `i2c-dev` kernel module also has to be loaded at boot so that the user space `halpid` daemon can use the bus.
 This is done by creating a file `/etc/modules-load.d/i2c-dev.conf` with:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Reboot to apply the changes, then confirm that the I2C bus is present:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+If `/dev/i2c-1` does not exist, revisit the `config.txt` edits before continuing. The `halpid` daemon cannot start without it.
+
 ## CAN Bus (NMEA 2000) Setup
 
-The following command with enable the CAN Bus for NMEA 2000 communication on the HALPI2:
+The following commands enable the CAN Bus for NMEA 2000 communication on the HALPI2:
 
 ```bash
 sudo bash
@@ -117,17 +147,27 @@ The HALPI2 Daemon should now be running and the `halpi` command available. You c
 halpi status
 ```
 
+The daemon socket is only readable by the `halpid` group. The package adds your user to that group, but the membership applies to new login sessions only. If the command fails to connect, log out and back in, or use `sudo halpi status`.
+
 ## HALPI2 Firmware Installation
 
-Now that the `halpi` command is available, the `halpi2-firmware` package can be installed, which will flash the latest firmware to the HALPI2 board:
+Now that the `halpi` command is available, install the `halpi2-firmware` package, which ships the firmware images under `/usr/share/halpi2-firmware/`:
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-The firmware can be manually flashed with:
+!!! warning "Flash the firmware yourself"
+    The package tries to flash during installation, but that attempt fails silently on current releases ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt still reports success, so flash manually and check the result.
+
+Flash the firmware, then power the device off. A reboot does not apply the new firmware:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Power the device back on and confirm the version with `halpi status`. On a headless installation, make sure you can reach the power switch before you run the shutdown.
+
+The [software guide](../user-guide/software.md#manual-firmware-installation) describes the automatic update mechanism and how to disable it.
 
 ## Signal K Server Setup
 
@@ -167,7 +207,7 @@ There you can click the `+Add` button and create a connector with at least the f
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Restart and check the dashboard to see if data is being received.

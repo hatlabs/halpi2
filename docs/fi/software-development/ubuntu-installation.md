@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Muiden Debian-pohjaisten jakeluiden käyttö
@@ -51,6 +51,9 @@ exit
 
 HALPI2-kortin yleisten laitteiden firmware määritetään muokkaamalla tiedostoa `/boot/firmware/config.txt` ja lisäämällä seuraavat rivit `[all]`-osioon:
 
+!!! danger "Tarkista käynnistyslaite ennen kuin liität tämän"
+    Alla oleva lohko päättyy riviin `dtparam=sd=off`. Compute Module 5:llä tämä rivi poistaa käytöstä kortilla olevan microSD-paikan ja, jos moduulissa on eMMC, myös eMMC:n. Säilytä rivi, jos käynnistät NVMe-levyltä — se on HALPI2:n vakiokokoonpano. Poista rivi, jos käynnistät microSD-kortilta tai eMMC:ltä, muuten laite ei käynnisty seuraavan uudelleenkäynnistyksen jälkeen.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -69,13 +72,39 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Tämän jälkeen I2C-liitäntä on otettava käyttöön, jotta käyttäjätilan `halpid`-daemon voi keskustella virranhallintalaitteiston kanssa. Tämä tehdään luomalla tiedosto `/etc/modules-load.d/i2c-dev.conf`:
+!!! warning "I2C on otettava käyttöön"
+    Raspberry Pi OS:ssä `dtparam=i2c_arm=on` on kommentoitu pois, ja muissa jakeluissa tilanne voi olla sama. Ilman sitä `/dev/i2c-1` ei ilmesty, eikä `halpid` tavoita virranhallintalaitteistoa.
+
+Myös `i2c-dev`-ydinmoduuli on ladattava käynnistyksen yhteydessä, jotta käyttäjätilan `halpid`-daemon voi käyttää väylää. Tämä tehdään luomalla tiedosto `/etc/modules-load.d/i2c-dev.conf`:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Käynnistä laite uudelleen, jotta muutokset tulevat voimaan, ja tarkista sitten että I2C-väylä on olemassa:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Jos `/dev/i2c-1` puuttuu, tarkista `config.txt`-muutokset ennen jatkamista. `halpid`-daemon ei käynnisty ilman sitä.
 
 ## CAN-väylän (NMEA 2000) asetukset
 
@@ -120,19 +149,29 @@ HALPI2-daemonin pitäisi nyt olla käynnissä ja `halpi`-komennon käytettäviss
 halpi status
 ```
 
+Daemonin soketti on luettavissa vain `halpid`-ryhmälle. Paketti lisää käyttäjäsi tähän ryhmään, mutta jäsenyys tulee voimaan vasta uusissa kirjautumisistunnoissa. Jos yhteys ei muodostu, kirjaudu ulos ja takaisin sisään tai käytä komentoa `sudo halpi status`.
+
 ## HALPI2:n firmwaren asennus
 
-Nyt kun `halpi`-komento on käytettävissä, voidaan asentaa `halpi2-firmware`-paketti, joka flashaa uusimman firmwaren HALPI2-kortille:
+Nyt kun `halpi`-komento on käytettävissä, asenna `halpi2-firmware`-paketti, joka sisältää firmware-tiedostot hakemistossa `/usr/share/halpi2-firmware/`:
 
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Firmwaren voi flashata käsin komennolla:
 
+!!! warning "Flashaa firmware itse"
+    Paketti yrittää flashata firmwaren asennuksen aikana, mutta yritys epäonnistuu huomaamatta nykyisissä julkaisuissa ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt ilmoittaa silti onnistumisesta, joten flashaa käsin ja tarkista tulos.
+
+Flashaa firmware ja katkaise sitten laitteesta virta. Uudelleenkäynnistys ei ota uutta firmwarea käyttöön:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Kytke virta takaisin ja varmista versio komennolla `halpi status`. Jos asennus on ilman näyttöä, varmista että pääset käsiksi virtakytkimeen ennen sammutuksen ajamista.
+
+[Ohjelmisto-opas](../user-guide/software.md#firmwaren-asennus-kasin) kuvaa automaattisen päivitysmekanismin ja sen poistamisen käytöstä.
 
 ## Signal K -palvelimen asetukset
 
@@ -169,7 +208,7 @@ NMEA 0183 -yhteyden luominen edellyttää niin ikään Signal K:n ylläpitäjät
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Käynnistä uudelleen ja tarkista koontinäytöltä, saapuuko dataa.
