@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
 ---
 
 # Använda andra Debian-baserade distributioner
@@ -69,12 +69,23 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Därefter måste I2C-gränssnittet aktiveras så att daemonen `halpid`, som körs i användarrymden, kan kommunicera med strömhanteringens hårdvara. Det gör du genom att skapa filen `/etc/modules-load.d/i2c-dev.conf`:
+!!! warning "I2C måste aktiveras"
+    I Raspberry Pi OS är `dtparam=i2c_arm=on` bortkommenterad, och andra distributioner kan göra likadant. Utan den finns ingen `/dev/i2c-1`, och `halpid` når inte strömhanteringens hårdvara.
+
+Kärnmodulen `i2c-dev` måste dessutom läsas in vid uppstart, så att daemonen `halpid`, som körs i användarrymden, kan använda bussen. Det gör du genom att skapa filen `/etc/modules-load.d/i2c-dev.conf`:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
 
 ## Uppsättning av CAN-bussen (NMEA 2000)
@@ -125,13 +136,15 @@ halpi status
 Nu när kommandot `halpi` är tillgängligt kan du installera paketet `halpi2-firmware`, som flashar den senaste firmwaren till HALPI2-kortet:
 
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Firmwaren kan också flashas manuellt:
+Firmwaren flashas automatiskt när paketet installeras eller uppgraderas. Du stänger av det genom att sätta `AUTO_FLASH_ON_INSTALL=no` i `/etc/halpid/firmware.conf`.
+
+Paketet installerar firmware-binärerna under `/usr/share/halpi2-firmware/`. Om du vill flasha en viss version manuellt anger du sökvägen till binären för `halpi flash`:
 
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
 ```
 
 ## Uppsättning av Signal K-server
@@ -169,7 +182,7 @@ Starta om och kontrollera på instrumentpanelen om data kommer in.
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Starta om och kontrollera på instrumentpanelen om data kommer in.

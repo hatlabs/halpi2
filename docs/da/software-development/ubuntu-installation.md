@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
 ---
 
 # Brug af andre Debian-baserede distributioner
@@ -70,14 +70,26 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Derefter skal I2C-grænsefladen aktiveres, så `halpid`-dæmonen i brugerrummet kan kommunikere med hardwaren til strømstyring.
+!!! warning "I2C skal være aktiveret"
+    I Raspberry Pi OS er `dtparam=i2c_arm=on` kommenteret ud, og andre distributioner kan gøre det samme. Uden den findes `/dev/i2c-1` ikke, og `halpid` kan ikke nå hardwaren til strømstyring.
+
+Kernemodulet `i2c-dev` skal desuden indlæses ved opstart, så `halpid`-dæmonen i brugerrummet kan bruge bussen.
 Det gøres ved at oprette filen `/etc/modules-load.d/i2c-dev.conf` med:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
 ## Opsætning af CAN-bussen (NMEA 2000)
 
 Følgende kommandoer aktiverer CAN-bussen til NMEA 2000-kommunikation på HALPI2:
@@ -125,12 +137,14 @@ halpi status
 
 Nu hvor kommandoen `halpi` er tilgængelig, kan pakken `halpi2-firmware` installeres. Den flasher den nyeste firmware til HALPI2-kortet:
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Firmwaren kan flashes manuelt med:
+Firmwaren flashes automatisk, når pakken installeres eller opgraderes. Det kan slås fra ved at sætte `AUTO_FLASH_ON_INSTALL=no` i `/etc/halpid/firmware.conf`.
+
+Pakken installerer firmware-binærfilerne under `/usr/share/halpi2-firmware/`. Hvis du vil flashe en bestemt version manuelt, skal du give `halpi flash` stien til binærfilen:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
 ```
 
 ## Opsætning af Signal K-server
@@ -171,7 +185,7 @@ Der kan du klikke på knappen `+Add` og oprette en forbindelse med mindst følge
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Genstart, og kontrollér på dashboardet, om der modtages data.

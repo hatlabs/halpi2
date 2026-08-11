@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
 ---
 
 # Muiden Debian-pohjaisten jakeluiden käyttö
@@ -69,12 +69,23 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Tämän jälkeen I2C-liitäntä on otettava käyttöön, jotta käyttäjätilan `halpid`-daemon voi keskustella virranhallintalaitteiston kanssa. Tämä tehdään luomalla tiedosto `/etc/modules-load.d/i2c-dev.conf`:
+!!! warning "I2C on otettava käyttöön"
+    Raspberry Pi OS:ssä `dtparam=i2c_arm=on` on kommentoitu pois, ja muissa jakeluissa tilanne voi olla sama. Ilman sitä `/dev/i2c-1` ei ilmesty, eikä `halpid` tavoita virranhallintalaitteistoa.
+
+Myös `i2c-dev`-ydinmoduuli on ladattava käynnistyksen yhteydessä, jotta käyttäjätilan `halpid`-daemon voi käyttää väylää. Tämä tehdään luomalla tiedosto `/etc/modules-load.d/i2c-dev.conf`:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
 
 ## CAN-väylän (NMEA 2000) asetukset
@@ -125,13 +136,15 @@ halpi status
 Nyt kun `halpi`-komento on käytettävissä, voidaan asentaa `halpi2-firmware`-paketti, joka flashaa uusimman firmwaren HALPI2-kortille:
 
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Firmwaren voi flashata käsin komennolla:
+Firmware flashataan automaattisesti, kun paketti asennetaan tai päivitetään. Toiminnon voi poistaa käytöstä asettamalla `AUTO_FLASH_ON_INSTALL=no` tiedostoon `/etc/halpid/firmware.conf`.
+
+Paketti asentaa firmware-binäärit hakemistoon `/usr/share/halpi2-firmware/`. Jos haluat flashata tietyn version käsin, anna `halpi flash` -komennolle binäärin polku:
 
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
 ```
 
 ## Signal K -palvelimen asetukset
@@ -169,7 +182,7 @@ NMEA 0183 -yhteyden luominen edellyttää niin ikään Signal K:n ylläpitäjät
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Käynnistä uudelleen ja tarkista koontinäytöltä, saapuuko dataa.

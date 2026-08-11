@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
 ---
 
 # Utilizzo di altre distribuzioni basate su Debian
@@ -70,14 +70,26 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-È quindi necessario abilitare l’interfaccia I2C, affinché il demone `halpid` in spazio utente possa comunicare con l’hardware di gestione dell’alimentazione.
+!!! warning "L’I2C deve essere abilitato"
+    In Raspberry Pi OS `dtparam=i2c_arm=on` è commentata, e altre distribuzioni possono fare lo stesso. Senza quella riga `/dev/i2c-1` non esiste e `halpid` non raggiunge l’hardware di gestione dell’alimentazione.
+
+È inoltre necessario caricare all’avvio il modulo del kernel `i2c-dev`, affinché il demone `halpid` in spazio utente possa usare il bus.
 A tale scopo si crea il file `/etc/modules-load.d/i2c-dev.conf` con:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
 ## Configurazione del bus CAN (NMEA 2000)
 
 I comandi seguenti abilitano il bus CAN per la comunicazione NMEA 2000 su HALPI2:
@@ -125,12 +137,14 @@ halpi status
 
 Ora che il comando `halpi` è disponibile, si può installare il pacchetto `halpi2-firmware`, che flasherà il firmware più recente sulla scheda HALPI2:
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Il firmware può essere flashato manualmente con:
+Il firmware viene flashato automaticamente quando il pacchetto viene installato o aggiornato. Per disattivare questo comportamento, impostare `AUTO_FLASH_ON_INSTALL=no` in `/etc/halpid/firmware.conf`.
+
+Il pacchetto installa i binari del firmware in `/usr/share/halpi2-firmware/`. Per flashare manualmente una versione specifica, indicare a `halpi flash` il percorso del binario:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
 ```
 
 ## Configurazione del server Signal K
@@ -171,7 +185,7 @@ Da lì si può fare clic sul pulsante `+Add` e creare un connettore almeno con l
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Riavviare e controllare la dashboard per verificare se i dati vengono ricevuti.

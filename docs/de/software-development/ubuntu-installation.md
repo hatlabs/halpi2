@@ -1,5 +1,5 @@
 ---
-translated_from: 8c2d1560ad56e730c3fe6476cd5cf075b632b539
+translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
 ---
 
 # Andere Debian-basierte Distributionen verwenden
@@ -69,12 +69,23 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Anschließend muss die I2C-Schnittstelle aktiviert werden, damit der im Benutzerbereich laufende Daemon `halpid` mit der Hardware der Energieverwaltung kommunizieren kann. Legen Sie dazu die Datei `/etc/modules-load.d/i2c-dev.conf` an:
+!!! warning "I2C muss aktiviert sein"
+    In Raspberry Pi OS ist `dtparam=i2c_arm=on` auskommentiert, und andere Distributionen halten es womöglich ebenso. Ohne diese Zeile gibt es kein `/dev/i2c-1`, und `halpid` erreicht die Hardware der Energieverwaltung nicht.
+
+Außerdem muss das Kernelmodul `i2c-dev` beim Start geladen werden, damit der im Benutzerbereich laufende Daemon `halpid` den Bus verwenden kann. Legen Sie dazu die Datei `/etc/modules-load.d/i2c-dev.conf` an:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
 
 ## Einrichtung des CAN-Busses (NMEA 2000)
@@ -125,13 +136,15 @@ halpi status
 Da der Befehl `halpi` nun verfügbar ist, lässt sich das Paket `halpi2-firmware` installieren, das die neueste Firmware auf die HALPI2-Platine flasht:
 
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-Die Firmware kann auch von Hand geflasht werden:
+Die Firmware wird automatisch geflasht, sobald das Paket installiert oder aktualisiert wird. Setzen Sie `AUTO_FLASH_ON_INSTALL=no` in `/etc/halpid/firmware.conf`, um das abzuschalten.
+
+Das Paket installiert die Firmware-Binärdateien unter `/usr/share/halpi2-firmware/`. Wenn Sie eine bestimmte Version von Hand flashen wollen, geben Sie `halpi flash` den Pfad zur Binärdatei an:
 
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
 ```
 
 ## Einrichtung des Signal-K-Servers
@@ -169,7 +182,7 @@ Auch für eine NMEA-0183-Verbindung benötigen Sie ein Signal-K-Administratorkon
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Starten Sie neu und prüfen Sie im Dashboard, ob Daten eintreffen.
