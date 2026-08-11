@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Hardwarereferentie
@@ -176,14 +176,13 @@ Alle overige GPIO-pinnen zijn beschikbaar voor HAT's en eigen toepassingen. Zie 
 
 ## I2C-apparaten
 
-Op de I2C-bus van het systeem (I2C1, GPIO 2/3) zitten de volgende apparaten:
+Op de I2C-bus van het systeem (I2C1, GPIO 2/3) zit één ingebouwd apparaat:
 
 | Adres | Apparaat | Functie |
 |:--------|:-------|:---------|
-| 0x4b | TMP112A | Temperatuursensor van het carrierboard |
 | 0x6d | RP2040 | Controller van het carrierboard (secondary-modus) |
 
-De I2C-bus van de controller (I2C0, intern op het carrierboard) wordt gebruikt voor HDMI DDC en de communicatie met MIPI-beeldschermen, met pull-ups van 2,2 kΩ.
+De MIPI- en HDMI-connectoren gebruiken aparte bussen. I2C0 (SDA0/SCL0 van de CM5) bedient MIPI0. MIPI1 gebruikt de ID_SD/ID_SC-pinnen van de CM5 via weerstanden van 0 Ω, met pull-ups van 2,2 kΩ. HDMI DDC loopt via speciale CM5-pinnen naar de HDMI-connectoren.
 
 ## Isolatiearchitectuur
 

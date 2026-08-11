@@ -148,6 +148,7 @@ explanation. Only the Finnish glossary needs that warning.
 | super-capacitor | superkondensator | |
 | real-time clock | realtidsklocka | |
 | backup battery | backupbatteri | |
+| resistor | motstånd | Not the loanword *resistor*; compounds as in *termineringsmotstånd*, `0 Ω-motstånd` |
 
 ### Connectors and interfaces
 
@@ -164,6 +165,8 @@ explanation. Only the Finnish glossary needs that warning.
 | front panel | frontpanel | |
 | jumper | bygel | |
 | male / female | hane / hona | |
+| onboard (device, peripheral) | inbyggd | Never *ombord* — in a marine text that reads as *on the vessel* |
+| dedicated (pin, bus) | dedikerad | Not *egen*, which the hardware pages use for user- or custom-side things |
 
 ### System behaviour and status
 

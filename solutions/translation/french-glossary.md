@@ -183,6 +183,7 @@ does not have to.
 | drop cable | câble de dérivation | |
 | T-connector | connecteur en T | |
 | termination (120 Ω) | résistance de terminaison | |
+| pull-up (resistor) | résistance de tirage | The 2,2 kΩ pull-ups on the MIPI1 I2C lines |
 | front panel | panneau avant | |
 | jumper | cavalier | |
 | male / female | mâle / femelle | |

@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Hardware-Referenz
@@ -176,14 +176,13 @@ Alle übrigen GPIO-Pins stehen für HATs und eigene Anwendungen zur Verfügung. 
 
 ## I2C-Geräte
 
-Am System-I2C-Bus (I2C1, GPIO 2/3) hängen die folgenden Geräte:
+Am System-I2C-Bus (I2C1, GPIO 2/3) hängt ein integriertes Gerät:
 
 | Adresse | Gerät | Funktion |
 |:--------|:------|:---------|
-| 0x4b | TMP112A | Temperatursensor der Platine |
 | 0x6d | RP2040 | Controller der Trägerplatine (Slave-Betrieb) |
 
-Der I2C-Bus des Controllers (I2C0, platinenintern) dient der DDC-Kommunikation von HDMI und der Ansteuerung von MIPI-Displays, mit Pull-up-Widerständen von 2,2 kΩ.
+Die MIPI- und HDMI-Anschlüsse liegen an getrennten Bussen. I2C0 (SDA0/SCL0 des CM5) bedient MIPI0. MIPI1 nutzt die Pins ID_SD/ID_SC des CM5 über Widerstände von 0 Ω, mit Pull-up-Widerständen von 2,2 kΩ. Die DDC-Kommunikation von HDMI wird über eigene Pins des CM5 zu den HDMI-Anschlüssen geführt.
 
 ## Aufbau der galvanischen Trennung
 

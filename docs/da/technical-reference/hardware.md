@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Hardwarereference
@@ -176,14 +176,13 @@ Alle øvrige GPIO-ben er til rådighed for HAT'er og brugerens egne applikatione
 
 ## I2C-enheder
 
-På system-I2C-bussen (I2C1, GPIO 2/3) sidder følgende enheder:
+På system-I2C-bussen (I2C1, GPIO 2/3) sidder én indbygget enhed:
 
 | Adresse | Enhed | Funktion |
 |:--------|:-------|:---------|
-| 0x4b | TMP112A | Temperatursensor på kortet |
 | 0x6d | RP2040 | Bærekortets controller (secondary-tilstand) |
 
-Controllerens I2C-bus (I2C0, intern på bærekortet) bruges til HDMI DDC og til kommunikation med MIPI-skærme og har pull-up-modstande på 2,2 kΩ.
+MIPI- og HDMI-stikkene bruger separate busser. I2C0 (CM5 SDA0/SCL0) betjener MIPI0. MIPI1 bruger CM5'ens ID_SD/ID_SC-ben gennem 0 Ω-modstande og har pull-up-modstande på 2,2 kΩ. HDMI DDC er ført via dedikerede CM5-ben ud til HDMI-stikkene.
 
 ## Opbygning af den galvaniske adskillelse
 
