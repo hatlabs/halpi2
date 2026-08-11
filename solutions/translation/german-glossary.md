@@ -212,6 +212,7 @@ need that warning.
 |:--------|:-------|:-----|
 | firmware | Firmware | |
 | daemon | Daemon | |
+| kernel module | Kernelmodul | |
 | to flash | flashen | |
 | operating system image | Systemabbild | |
 | headless | ohne Bildschirm | First mention: `ohne Bildschirm (headless)` |

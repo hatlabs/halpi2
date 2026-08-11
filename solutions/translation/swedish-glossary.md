@@ -191,6 +191,7 @@ explanation. Only the Finnish glossary needs that warning.
 |:--------|:--------|:-----|
 | firmware | firmware | Not *fast programvara* — matches the sibling decision to keep the trade term |
 | daemon | daemon | |
+| kernel module | kärnmodul | |
 | to flash | flasha | |
 | operating system image | systemavbild | |
 | headless | utan skärm | First mention: `utan skärm (headless)` |

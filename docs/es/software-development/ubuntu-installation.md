@@ -1,5 +1,5 @@
 ---
-translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Uso de otras distribuciones basadas en Debian
@@ -52,6 +52,9 @@ exit
 
 El firmware de los dispositivos comunes de la placa HALPI2 se configura editando `/boot/firmware/config.txt` y añadiendo las siguientes líneas a la sección `[all]`:
 
+!!! danger "Comprobar el dispositivo de arranque antes de pegar esto"
+    El bloque siguiente termina con `dtparam=sd=off`. En un Compute Module 5 esa línea desactiva la ranura microSD integrada y, en un módulo con eMMC, también la eMMC. Conviene mantenerla si el arranque se hace desde NVMe, que es la configuración estándar del HALPI2. Hay que quitarla si el arranque se hace desde microSD o eMMC; de lo contrario el equipo no arrancará tras el siguiente reinicio.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -75,7 +78,10 @@ dtoverlay=uart4-pi5
 # controller over /dev/i2c-1.
 dtparam=i2c_arm=on
 
-# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
 # See: https://github.com/raspberrypi/linux/issues/7014
 dtparam=sd=off
 ```
@@ -89,6 +95,18 @@ Para ello se crea el archivo `/etc/modules-load.d/i2c-dev.conf` con:
 ```bash
 echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Reiniciar para aplicar los cambios y comprobar después que el bus I2C está presente:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Si `/dev/i2c-1` no existe, revisar los cambios en `config.txt` antes de continuar. El demonio `halpid` no puede arrancar sin él.
 
 ## Configuración del bus CAN (NMEA 2000)
 
@@ -133,19 +151,28 @@ El demonio HALPI2 debería estar ya en ejecución y el comando `halpi` disponibl
 halpi status
 ```
 
+El socket del demonio solo es legible para el grupo `halpid`. El paquete añade el usuario a ese grupo, pero la pertenencia se aplica solo en las nuevas sesiones de inicio. Si el comando no logra conectar, cerrar la sesión y volver a entrar, o usar `sudo halpi status`.
+
 ## Instalación del firmware de HALPI2
 
-Ahora que el comando `halpi` está disponible, puede instalarse el paquete `halpi2-firmware`, que graba el firmware más reciente en la placa del HALPI2:
+Ahora que el comando `halpi` está disponible, instalar el paquete `halpi2-firmware`, que incluye los archivos de firmware en `/usr/share/halpi2-firmware/`:
 ```bash
 sudo apt install halpi2-firmware
 ```
 
-El firmware se graba automáticamente al instalar o actualizar el paquete. Para desactivarlo, establecer `AUTO_FLASH_ON_INSTALL=no` en `/etc/halpid/firmware.conf`.
 
-El paquete instala los binarios del firmware en `/usr/share/halpi2-firmware/`. Para grabar manualmente una versión concreta, indicar a `halpi flash` la ruta del binario:
+!!! warning "Grabar el firmware manualmente"
+    El paquete intenta grabar durante la instalación, pero el intento falla de forma silenciosa en las versiones actuales ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt informa igualmente de éxito, así que conviene grabar a mano y comprobar el resultado.
+
+Grabar el firmware y apagar después el equipo. Un reinicio no aplica el firmware nuevo:
 ```bash
-halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Volver a encender el equipo y confirmar la versión con `halpi status`. En una instalación sin pantalla, hay que poder alcanzar el interruptor de alimentación antes de ejecutar el apagado.
+
+La [guía del software](../user-guide/software.md#instalacion-manual-del-firmware) describe el mecanismo de actualización automática y cómo desactivarlo.
 
 ## Configuración del servidor Signal K
 

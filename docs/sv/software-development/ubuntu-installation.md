@@ -1,5 +1,5 @@
 ---
-translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Använda andra Debian-baserade distributioner
@@ -51,6 +51,9 @@ exit
 
 Firmwaren för de gemensamma enheterna på HALPI2-kortet konfigureras genom att du redigerar `/boot/firmware/config.txt` och lägger till följande rader i avsnittet `[all]`:
 
+!!! danger "Kontrollera din startenhet innan du klistrar in"
+    Blocket nedan avslutas med `dtparam=sd=off`. På en Compute Module 5 stänger den raden av det inbyggda microSD-facket och, på en modul med eMMC, även eMMC:n. Behåll raden om du startar från NVMe, vilket är HALPI2:s standardkonfiguration. Ta bort den om du startar från microSD eller eMMC, annars startar enheten inte efter nästa omstart.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -74,7 +77,10 @@ dtoverlay=uart4-pi5
 # controller over /dev/i2c-1.
 dtparam=i2c_arm=on
 
-# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
 # See: https://github.com/raspberrypi/linux/issues/7014
 dtparam=sd=off
 ```
@@ -87,6 +93,18 @@ Kärnmodulen `i2c-dev` måste dessutom läsas in vid uppstart, så att daemonen 
 ```bash
 echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Starta om för att verkställa ändringarna och kontrollera sedan att I2C-bussen finns:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Om `/dev/i2c-1` saknas, gå tillbaka till ändringarna i `config.txt` innan du fortsätter. Daemonen `halpid` kan inte starta utan den.
 
 ## Uppsättning av CAN-bussen (NMEA 2000)
 
@@ -131,21 +149,29 @@ HALPI2-daemonen ska nu vara igång och kommandot `halpi` tillgängligt. Du kontr
 halpi status
 ```
 
+Daemonens socket är bara läsbar för gruppen `halpid`. Paketet lägger till din användare i gruppen, men medlemskapet gäller först i nya inloggningssessioner. Om kommandot inte kan ansluta, logga ut och in igen, eller använd `sudo halpi status`.
+
 ## Installation av HALPI2:s firmware
 
-Nu när kommandot `halpi` är tillgängligt kan du installera paketet `halpi2-firmware`, som flashar den senaste firmwaren till HALPI2-kortet:
+Nu när kommandot `halpi` är tillgängligt installerar du paketet `halpi2-firmware`, som innehåller firmware-filerna under `/usr/share/halpi2-firmware/`:
 
 ```bash
 sudo apt install halpi2-firmware
 ```
 
-Firmwaren flashas automatiskt när paketet installeras eller uppgraderas. Du stänger av det genom att sätta `AUTO_FLASH_ON_INSTALL=no` i `/etc/halpid/firmware.conf`.
 
-Paketet installerar firmware-binärerna under `/usr/share/halpi2-firmware/`. Om du vill flasha en viss version manuellt anger du sökvägen till binären för `halpi flash`:
+!!! warning "Flasha firmwaren själv"
+    Paketet försöker flasha under installationen, men försöket misslyckas tyst i nuvarande utgåvor ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt rapporterar ändå att allt gick bra, så flasha manuellt och kontrollera resultatet.
 
+Flasha firmwaren och stäng sedan av enheten. En omstart tar inte den nya firmwaren i bruk:
 ```bash
-halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Slå på enheten igen och kontrollera versionen med `halpi status`. Vid en installation utan skärm behöver du komma åt strömbrytaren innan du kör avstängningen.
+
+[Programvaruguiden](../user-guide/software.md#installera-firmware-manuellt) beskriver den automatiska uppdateringsmekanismen och hur du stänger av den.
 
 ## Uppsättning av Signal K-server
 

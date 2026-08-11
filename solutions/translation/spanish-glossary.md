@@ -298,6 +298,7 @@ extra explanation. Only the Finnish glossary needs that warning.
 |:--------|:--------|:-----|
 | firmware | firmware | Not *microprogramación* — matches the sibling decision to keep the trade term |
 | daemon | demonio | Established in Spanish Linux usage, as in French |
+| kernel module | módulo del kernel | Not *módulo del núcleo* — matches integration.md |
 | to flash (firmware or an image) | grabar | Noun: *grabación*. Never *flashear* |
 | to flash (an LED) | parpadear | A machine translator renders both English senses the same way; these are different words in Spanish |
 | system image | imagen del sistema | |

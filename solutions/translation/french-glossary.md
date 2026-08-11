@@ -213,6 +213,7 @@ does not have to.
 |:--------|:-------|:-----|
 | firmware | firmware | Not *micrologiciel* — matches the Finnish decision to keep the term the trade uses |
 | daemon | démon | Established in French Linux usage, unlike Finnish |
+| kernel module | module du noyau | |
 | to flash | flasher | |
 | operating system image | image système | |
 | headless | sans écran | First mention: `sans écran (headless)` |

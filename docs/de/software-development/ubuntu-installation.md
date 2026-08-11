@@ -1,5 +1,5 @@
 ---
-translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Andere Debian-basierte Distributionen verwenden
@@ -51,6 +51,9 @@ exit
 
 Die Firmware der gemeinsamen Komponenten auf der HALPI2-Platine wird konfiguriert, indem Sie `/boot/firmware/config.txt` bearbeiten und die folgenden Zeilen im Abschnitt `[all]` ergänzen:
 
+!!! danger "Prüfen Sie Ihr Boot-Medium, bevor Sie das einfügen"
+    Der Block unten endet mit `dtparam=sd=off`. Auf einem Compute Module 5 deaktiviert diese Zeile den integrierten microSD-Steckplatz und, auf einem Modul mit eMMC, auch die eMMC. Behalten Sie die Zeile, wenn Sie von NVMe booten — das ist die Standardkonfiguration des HALPI2. Entfernen Sie sie, wenn Sie von microSD oder eMMC booten, sonst startet das Gerät nach dem nächsten Neustart nicht mehr.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -74,7 +77,10 @@ dtoverlay=uart4-pi5
 # controller over /dev/i2c-1.
 dtparam=i2c_arm=on
 
-# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
 # See: https://github.com/raspberrypi/linux/issues/7014
 dtparam=sd=off
 ```
@@ -87,6 +93,18 @@ Außerdem muss das Kernelmodul `i2c-dev` beim Start geladen werden, damit der im
 ```bash
 echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Starten Sie neu, damit die Änderungen wirksam werden, und prüfen Sie dann, ob der I2C-Bus vorhanden ist:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Fehlt `/dev/i2c-1`, prüfen Sie die Änderungen in `config.txt`, bevor Sie fortfahren. Ohne den Bus kann der Daemon `halpid` nicht starten.
 
 ## Einrichtung des CAN-Busses (NMEA 2000)
 
@@ -131,21 +149,29 @@ Der HALPI2-Daemon sollte nun laufen und der Befehl `halpi` verfügbar sein. Den 
 halpi status
 ```
 
+Der Socket des Daemons ist nur für die Gruppe `halpid` lesbar. Das Paket nimmt Ihren Benutzer in diese Gruppe auf, die Mitgliedschaft gilt aber erst in neuen Anmeldesitzungen. Wenn der Befehl keine Verbindung herstellt, melden Sie sich ab und wieder an, oder verwenden Sie `sudo halpi status`.
+
 ## Installation der HALPI2-Firmware
 
-Da der Befehl `halpi` nun verfügbar ist, lässt sich das Paket `halpi2-firmware` installieren, das die neueste Firmware auf die HALPI2-Platine flasht:
+Da der Befehl `halpi` nun verfügbar ist, installieren Sie das Paket `halpi2-firmware`, das die Firmware-Dateien unter `/usr/share/halpi2-firmware/` mitbringt:
 
 ```bash
 sudo apt install halpi2-firmware
 ```
 
-Die Firmware wird automatisch geflasht, sobald das Paket installiert oder aktualisiert wird. Setzen Sie `AUTO_FLASH_ON_INSTALL=no` in `/etc/halpid/firmware.conf`, um das abzuschalten.
 
-Das Paket installiert die Firmware-Binärdateien unter `/usr/share/halpi2-firmware/`. Wenn Sie eine bestimmte Version von Hand flashen wollen, geben Sie `halpi flash` den Pfad zur Binärdatei an:
+!!! warning "Flashen Sie die Firmware selbst"
+    Das Paket versucht, während der Installation zu flashen, doch der Versuch scheitert in den aktuellen Versionen stillschweigend ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt meldet trotzdem Erfolg. Flashen Sie daher von Hand und prüfen Sie das Ergebnis.
 
+Flashen Sie die Firmware und schalten Sie das Gerät danach aus. Ein Neustart übernimmt die neue Firmware nicht:
 ```bash
-halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Schalten Sie das Gerät wieder ein und prüfen Sie die Version mit `halpi status`. Bei einer Installation ohne Bildschirm müssen Sie den Netzschalter erreichen können, bevor Sie das Herunterfahren ausführen.
+
+Das [Software-Handbuch](../user-guide/software.md#firmware-von-hand-installieren) beschreibt den automatischen Aktualisierungsmechanismus und wie man ihn abschaltet.
 
 ## Einrichtung des Signal-K-Servers
 

@@ -1,5 +1,5 @@
 ---
-translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Utilizzo di altre distribuzioni basate su Debian
@@ -52,6 +52,9 @@ exit
 
 Il firmware dei dispositivi comuni presenti sulla scheda HALPI2 può essere configurato modificando `/boot/firmware/config.txt` e aggiungendo le righe seguenti alla sezione `[all]`:
 
+!!! danger "Verificare il dispositivo di avvio prima di incollare"
+    Il blocco seguente termina con `dtparam=sd=off`. Su un Compute Module 5 questa riga disabilita lo slot microSD integrato e, su un modulo con eMMC, anche l’eMMC. Conviene mantenerla se l’avvio avviene da NVMe, che è la configurazione standard di HALPI2. Va rimossa se l’avvio avviene da microSD o eMMC, altrimenti il dispositivo non si avvia dopo il riavvio successivo.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -75,7 +78,10 @@ dtoverlay=uart4-pi5
 # controller over /dev/i2c-1.
 dtparam=i2c_arm=on
 
-# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
 # See: https://github.com/raspberrypi/linux/issues/7014
 dtparam=sd=off
 ```
@@ -89,6 +95,18 @@ A tale scopo si crea il file `/etc/modules-load.d/i2c-dev.conf` con:
 ```bash
 echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Riavviare per applicare le modifiche, quindi verificare che il bus I2C sia presente:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Se `/dev/i2c-1` non esiste, rivedere le modifiche a `config.txt` prima di proseguire. Il demone `halpid` non può avviarsi senza di esso.
 
 ## Configurazione del bus CAN (NMEA 2000)
 
@@ -133,19 +151,28 @@ A questo punto il demone HALPI2 dovrebbe essere in esecuzione e il comando `halp
 halpi status
 ```
 
+Il socket del demone è leggibile solo dal gruppo `halpid`. Il pacchetto aggiunge l’utente a quel gruppo, ma l’appartenenza vale solo per le nuove sessioni di accesso. Se il comando non riesce a connettersi, disconnettersi e rientrare, oppure usare `sudo halpi status`.
+
 ## Installazione del firmware di HALPI2
 
-Ora che il comando `halpi` è disponibile, si può installare il pacchetto `halpi2-firmware`, che flasherà il firmware più recente sulla scheda HALPI2:
+Ora che il comando `halpi` è disponibile, installare il pacchetto `halpi2-firmware`, che fornisce i file del firmware in `/usr/share/halpi2-firmware/`:
 ```bash
 sudo apt install halpi2-firmware
 ```
 
-Il firmware viene flashato automaticamente quando il pacchetto viene installato o aggiornato. Per disattivare questo comportamento, impostare `AUTO_FLASH_ON_INSTALL=no` in `/etc/halpid/firmware.conf`.
 
-Il pacchetto installa i binari del firmware in `/usr/share/halpi2-firmware/`. Per flashare manualmente una versione specifica, indicare a `halpi flash` il percorso del binario:
+!!! warning "Flashare il firmware manualmente"
+    Il pacchetto tenta di flashare durante l’installazione, ma il tentativo fallisce silenziosamente nelle versioni attuali ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt segnala comunque un esito positivo, quindi conviene flashare a mano e verificare il risultato.
+
+Flashare il firmware, quindi spegnere il dispositivo. Un riavvio non applica il nuovo firmware:
 ```bash
-halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Riaccendere il dispositivo e verificare la versione con `halpi status`. In un’installazione senza monitor, occorre poter raggiungere l’interruttore di alimentazione prima di eseguire lo spegnimento.
+
+La [guida al software](../user-guide/software.md#installazione-manuale-del-firmware) descrive il meccanismo di aggiornamento automatico e come disattivarlo.
 
 ## Configurazione del server Signal K
 

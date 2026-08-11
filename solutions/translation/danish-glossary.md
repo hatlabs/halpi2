@@ -288,6 +288,7 @@ explanation. Only the Finnish glossary needs that warning.
 |:--------|:-------|:-----|
 | firmware | firmware | Not `fast programmel` — matches the sibling decision to keep the trade term |
 | daemon | dæmon | First mention: `dæmon (baggrundstjeneste)` |
+| kernel module | kernemodul | |
 | to flash | flashe | |
 | system image | systemimage | `et systemimage`, `systemimaget` — the trade says *image*, not *aftryk* |
 | operating system image | styresystemimage | |

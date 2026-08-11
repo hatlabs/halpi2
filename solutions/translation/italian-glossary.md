@@ -299,6 +299,7 @@ English term is what is printed in the schematics the reader may open next.
 |:--------|:--------|:-----|
 | firmware | firmware | Invariable, masculine — matches the sibling decision to keep the trade term |
 | daemon | demone | Established in Italian Linux usage |
+| kernel module | modulo del kernel | |
 | flash (firmware) | flashare | `flashare il firmware dell'RP2040` |
 | flash (an image) | scrivere | Writing an OS image to the SSD: `scrivere l'immagine sull'unità SSD` |
 | system image | immagine di sistema | Also `immagine del sistema operativo` where the source spells it out |

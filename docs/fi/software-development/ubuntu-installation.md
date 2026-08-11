@@ -1,5 +1,5 @@
 ---
-translated_from: e096c9a0b090c6f3ced22a4d369daab4ad1fcadb
+translated_from: 9b2819d37e8c666f7908c658418aa61209985b55
 ---
 
 # Muiden Debian-pohjaisten jakeluiden käyttö
@@ -51,6 +51,9 @@ exit
 
 HALPI2-kortin yleisten laitteiden firmware määritetään muokkaamalla tiedostoa `/boot/firmware/config.txt` ja lisäämällä seuraavat rivit `[all]`-osioon:
 
+!!! danger "Tarkista käynnistyslaite ennen kuin liität tämän"
+    Alla oleva lohko päättyy riviin `dtparam=sd=off`. Compute Module 5:llä tämä rivi poistaa käytöstä kortilla olevan microSD-paikan ja, jos moduulissa on eMMC, myös eMMC:n. Säilytä rivi, jos käynnistät NVMe-levyltä — se on HALPI2:n vakiokokoonpano. Poista rivi, jos käynnistät microSD-kortilta tai eMMC:ltä, muuten laite ei käynnisty seuraavan uudelleenkäynnistyksen jälkeen.
+
 ```text
 # --- HALPI2 / Raspberry Pi 5 IO setup ---
 
@@ -74,7 +77,10 @@ dtoverlay=uart4-pi5
 # controller over /dev/i2c-1.
 dtparam=i2c_arm=on
 
-# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# Disable the SD interface.  Without this, shutdown stalls long enough that the
+# supercapacitors can run out before the controller powers the board down.
+# This also disables the onboard microSD slot and the eMMC on a CM5 that has
+# one, so omit the line if you boot from either.
 # See: https://github.com/raspberrypi/linux/issues/7014
 dtparam=sd=off
 ```
@@ -87,6 +93,18 @@ Myös `i2c-dev`-ydinmoduuli on ladattava käynnistyksen yhteydessä, jotta käyt
 ```bash
 echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
+Käynnistä laite uudelleen, jotta muutokset tulevat voimaan, ja tarkista sitten että I2C-väylä on olemassa:
+
+```bash
+sudo reboot
+```
+
+```bash
+ls /dev/i2c-1
+```
+
+Jos `/dev/i2c-1` puuttuu, tarkista `config.txt`-muutokset ennen jatkamista. `halpid`-daemon ei käynnisty ilman sitä.
 
 ## CAN-väylän (NMEA 2000) asetukset
 
@@ -131,21 +149,29 @@ HALPI2-daemonin pitäisi nyt olla käynnissä ja `halpi`-komennon käytettäviss
 halpi status
 ```
 
+Daemonin soketti on luettavissa vain `halpid`-ryhmälle. Paketti lisää käyttäjäsi tähän ryhmään, mutta jäsenyys tulee voimaan vasta uusissa kirjautumisistunnoissa. Jos yhteys ei muodostu, kirjaudu ulos ja takaisin sisään tai käytä komentoa `sudo halpi status`.
+
 ## HALPI2:n firmwaren asennus
 
-Nyt kun `halpi`-komento on käytettävissä, voidaan asentaa `halpi2-firmware`-paketti, joka flashaa uusimman firmwaren HALPI2-kortille:
+Nyt kun `halpi`-komento on käytettävissä, asenna `halpi2-firmware`-paketti, joka sisältää firmware-tiedostot hakemistossa `/usr/share/halpi2-firmware/`:
 
 ```bash
 sudo apt install halpi2-firmware
 ```
 
-Firmware flashataan automaattisesti, kun paketti asennetaan tai päivitetään. Toiminnon voi poistaa käytöstä asettamalla `AUTO_FLASH_ON_INSTALL=no` tiedostoon `/etc/halpid/firmware.conf`.
 
-Paketti asentaa firmware-binäärit hakemistoon `/usr/share/halpi2-firmware/`. Jos haluat flashata tietyn version käsin, anna `halpi flash` -komennolle binäärin polku:
+!!! warning "Flashaa firmware itse"
+    Paketti yrittää flashata firmwaren asennuksen aikana, mutta yritys epäonnistuu huomaamatta nykyisissä julkaisuissa ([`HALPI2-firmware` #40](https://github.com/hatlabs/HALPI2-firmware/issues/40)). Apt ilmoittaa silti onnistumisesta, joten flashaa käsin ja tarkista tulos.
 
+Flashaa firmware ja katkaise sitten laitteesta virta. Uudelleenkäynnistys ei ota uutta firmwarea käyttöön:
 ```bash
-halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
+sudo halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_*.bin
+sudo shutdown -h now
 ```
+
+Kytke virta takaisin ja varmista versio komennolla `halpi status`. Jos asennus on ilman näyttöä, varmista että pääset käsiksi virtakytkimeen ennen sammutuksen ajamista.
+
+[Ohjelmisto-opas](../user-guide/software.md#firmwaren-asennus-kasin) kuvaa automaattisen päivitysmekanismin ja sen poistamisen käytöstä.
 
 ## Signal K -palvelimen asetukset
 
