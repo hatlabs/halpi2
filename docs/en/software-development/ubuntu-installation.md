@@ -66,14 +66,26 @@ dtoverlay=mcp251xfd,spi0-1,interrupt=26,oscillator=40000000
 
 # Enable PL011 UART4.  Creates /dev/ttyAMA4 for NMEA 0183 communication.
 dtoverlay=uart4-pi5
+
+# Enable the ARM I2C bus.  The halpid daemon reaches the power management
+# controller over /dev/i2c-1.
+dtparam=i2c_arm=on
+
+# Disable the unused SD card interface.  It causes a long delay at shutdown.
+# See: https://github.com/raspberrypi/linux/issues/7014
+dtparam=sd=off
 ```
 
-Then the I2C interface needs to be enabled so that the user space `halpid` daemon can communicate with the power management hardware.
+!!! warning "I2C must be enabled"
+    Raspberry Pi OS ships `dtparam=i2c_arm=on` commented out, and other distributions may do the same. Without it there is no `/dev/i2c-1`, and `halpid` cannot reach the power management hardware.
+
+The `i2c-dev` kernel module also has to be loaded at boot so that the user space `halpid` daemon can use the bus.
 This is done by creating a file `/etc/modules-load.d/i2c-dev.conf` with:
 
 ```bash
-sudo echo i2c-dev > /etc/modules-load.d/i2c-dev.conf
+echo i2c-dev | sudo tee /etc/modules-load.d/i2c-dev.conf
 ```
+
 ## CAN Bus (NMEA 2000) Setup
 
 The following command with enable the CAN Bus for NMEA 2000 communication on the HALPI2:
@@ -121,12 +133,14 @@ halpi status
 
 Now that the `halpi` command is available, the `halpi2-firmware` package can be installed, which will flash the latest firmware to the HALPI2 board:
 ```bash
-apt install halpi2-firmware
+sudo apt install halpi2-firmware
 ```
 
-The firmware can be manually flashed with:
+Flashing happens automatically when the package is installed or upgraded. To turn this off, set `AUTO_FLASH_ON_INSTALL=no` in `/etc/halpid/firmware.conf`.
+
+The package installs the firmware binaries under `/usr/share/halpi2-firmware/`. To flash a specific version manually, give `halpi flash` the path to the binary:
 ```bash
-halpi flash /usr/share/halpi2/firmware/halpi2-rs-firmware_VERSION.bin
+halpi flash /usr/share/halpi2-firmware/halpi2-rs-firmware_3.3.1.bin
 ```
 
 ## Signal K Server Setup
@@ -167,7 +181,7 @@ There you can click the `+Add` button and create a connector with at least the f
                  ID: "HALPI2N0183"
    NMEA 0183 Source: Serial
         Serial Port: /dev/ttyAMA4
-          Baud Rate: 4800 | 34800
+          Baud Rate: 4800 | 38400
 ```
 
 Restart and check the dashboard to see if data is being received.
