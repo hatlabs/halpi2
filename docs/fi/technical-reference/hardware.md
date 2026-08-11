@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Laitteiston tekniset tiedot
@@ -176,14 +176,13 @@ Kaikki muut GPIO-nastat ovat käytettävissä HATeille ja käyttäjän sovelluks
 
 ## I2C-laitteet
 
-Järjestelmän I2C-väylällä (I2C1, GPIO 2/3) on seuraavat laitteet:
+Järjestelmän I2C-väylällä (I2C1, GPIO 2/3) on yksi kortilla oleva laite:
 
 | Osoite | Laite | Toiminto |
 |:-------|:------|:---------|
-| 0x4b | TMP112A | Kortin lämpötila-anturi |
 | 0x6d | RP2040 | Emolevyn ohjain (orjatilassa) |
 
-Ohjaimen I2C-väylää (I2C0, emolevyn sisäinen) käytetään HDMI:n DDC-liikenteeseen ja MIPI-näyttöjen tiedonsiirtoon, ja siinä on 2,2 kΩ:n ylösvetovastukset.
+MIPI- ja HDMI-liittimet käyttävät erillisiä väyliä. I2C0 (CM5:n SDA0/SCL0) on kytketty MIPI0-liittimeen. MIPI1 käyttää CM5:n ID_SD/ID_SC-nastoja 0 Ω:n vastusten kautta, ja tässä väylässä on 2,2 kΩ:n ylösvetovastukset. HDMI:n DDC-liikenne kulkee CM5:n omia nastoja pitkin HDMI-liittimille.
 
 ## Galvaaninen erotus
 

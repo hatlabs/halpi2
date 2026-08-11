@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Maskinvarereferanse
@@ -176,14 +176,13 @@ Alle øvrige GPIO-pinner er tilgjengelige for HAT-er og brukerprogrammer. Se [Ma
 
 ## I2C-enheter
 
-System-I2C-bussen (I2C1, GPIO 2/3) har følgende enheter:
+System-I2C-bussen (I2C1, GPIO 2/3) har én enhet på kortet:
 
 | Adresse | Enhet | Funksjon |
 |:--------|:-------|:---------|
-| 0x4b | TMP112A | Temperatursensor på kortet |
 | 0x6d | RP2040 | Kontroller på bærekortet (secondary-modus) |
 
-I2C-bussen til kontrolleren (I2C0, internt på bærekortet) brukes til HDMI DDC og kommunikasjon med MIPI-skjermer, med pull-up-motstander på 2,2 kΩ.
+MIPI- og HDMI-kontaktene bruker separate busser. I2C0 (CM5 SDA0/SCL0) betjener MIPI0. MIPI1 bruker ID_SD/ID_SC-pinnene på CM5-en gjennom 0 Ω-motstander, med pull-up-motstander på 2,2 kΩ. HDMI DDC går fra dedikerte pinner på CM5-en til HDMI-kontaktene.
 
 ## Isolasjonsarkitektur
 

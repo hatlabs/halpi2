@@ -149,6 +149,7 @@ need that warning.
 | input voltage range | Eingangsspannungsbereich | |
 | polarity | Polarität | |
 | fuse | Sicherung | |
+| resistor | Widerstand | Value follows the noun: `Widerstände von 0 Ω`, `Pull-up-Widerstände von 2,2 kΩ` |
 | inline fuse | Leitungssicherung | |
 | circuit breaker | Leitungsschutzschalter | |
 | current limiting | Strombegrenzung | |
@@ -175,6 +176,7 @@ need that warning.
 | English | German | Note |
 |:--------|:-------|:-----|
 | connector | Stecker / Anschluss | *Anschluss* for a board-mounted socket |
+| onboard | integriert | `integriertes Gerät`, `integrierte Schnittstellen` — on the carrier board, as opposed to user-added |
 | barrel connector | Hohlstecker | |
 | header | Stiftleiste | `40-polige GPIO-Stiftleiste` |
 | pin | Pin | |

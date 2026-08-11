@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Référence matérielle
@@ -176,14 +176,13 @@ Toutes les autres broches GPIO restent disponibles pour les HAT et les applicati
 
 ## Périphériques I2C
 
-Le bus I2C système (I2C1, GPIO 2/3) accueille les périphériques suivants :
+Le bus I2C système (I2C1, GPIO 2/3) accueille un seul périphérique intégré :
 
 | Adresse | Périphérique | Fonction |
 |:--------|:-------------|:---------|
-| 0x4b | TMP112A | Capteur de température de la carte |
 | 0x6d | RP2040 | Contrôleur de la carte porteuse (mode esclave) |
 
-Le bus I2C du contrôleur (I2C0, interne à la carte porteuse) sert aux communications DDC de l'HDMI et aux écrans MIPI, avec des résistances de tirage de 2,2 kΩ.
+Les connecteurs MIPI et HDMI utilisent des bus distincts. I2C0 (SDA0/SCL0 du CM5) dessert MIPI0. MIPI1 utilise les broches ID_SD/ID_SC du CM5 via des résistances de 0 Ω, avec des résistances de tirage de 2,2 kΩ. Le DDC HDMI passe par des broches dédiées du CM5 jusqu'aux connecteurs HDMI.
 
 ## Architecture d'isolation
 

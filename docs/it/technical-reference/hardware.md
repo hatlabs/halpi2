@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Riferimento hardware
@@ -176,14 +176,13 @@ Tutti i restanti pin GPIO sono disponibili per gli HAT e per le applicazioni del
 
 ## Dispositivi I2C
 
-Il bus I2C di sistema (I2C1, GPIO 2/3) ospita i dispositivi seguenti:
+Il bus I2C di sistema (I2C1, GPIO 2/3) ospita un solo dispositivo integrato:
 
 | Indirizzo | Dispositivo | Funzione |
 |:--------|:-------|:---------|
-| 0x4b | TMP112A | Sensore di temperatura della scheda |
 | 0x6d | RP2040 | Controller della scheda portante (modalità secondaria) |
 
-Il bus I2C del controller (I2C0, interno alla scheda portante) è utilizzato per la comunicazione DDC HDMI e con i display MIPI, con pull-up da 2,2 kΩ.
+I connettori MIPI e HDMI utilizzano bus separati. Il bus I2C0 (SDA0/SCL0 del CM5) serve MIPI0. MIPI1 utilizza i pin ID_SD/ID_SC del CM5 attraverso resistenze da 0 Ω, con pull-up da 2,2 kΩ. La comunicazione DDC HDMI passa su pin dedicati del CM5 verso i connettori HDMI.
 
 ## Architettura di isolamento
 

@@ -151,6 +151,7 @@ back to English and is easy to miss.
 | English | Finnish | Note |
 |:--------|:--------|:-----|
 | carrier board | emolevy | Deliberate: not literally accurate, but the term readers know. Decided by Matti Airas, 2026-08-03 |
+| onboard (device, peripheral) | kortilla oleva | `kortilla oleva laite`; not *sisäänrakennettu* |
 | enclosure | kotelo | |
 | heat sink | jäähdytyselementti | |
 | waterproof | vesitiivis | |
@@ -193,6 +194,7 @@ them.
 | voltage drop | jännitehäviö | |
 | grounding | maadoitus | |
 | short circuit | oikosulku | |
+| pull-up resistor | ylösvetovastus | `2,2 kΩ:n ylösvetovastukset` |
 | wire gauge | johtimen poikkipinta-ala | Finnish uses mm², not AWG |
 | marine-grade wire | merikäyttöön hyväksytty johdin | |
 | strip (a wire) | kuoria | |

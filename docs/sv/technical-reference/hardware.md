@@ -1,5 +1,5 @@
 ---
-translated_from: c237d8b6a74b99528445a8bb38aa5473b824b52e
+translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
 ---
 
 # Hårdvarureferens
@@ -176,14 +176,13 @@ Alla övriga GPIO-stift är tillgängliga för HAT-kort och egna tillämpningar.
 
 ## I2C-enheter
 
-På systemets I2C-buss (I2C1, GPIO 2/3) sitter följande enheter:
+På systemets I2C-buss (I2C1, GPIO 2/3) sitter en inbyggd enhet:
 
 | Adress | Enhet | Funktion |
 |:-------|:------|:---------|
-| 0x4b | TMP112A | Temperatursensor på kortet |
 | 0x6d | RP2040 | Bärkortets styrkrets (slavläge) |
 
-Styrkretsens I2C-buss (I2C0, intern på bärkortet) används för HDMI:s DDC-kommunikation och för MIPI-skärmar, med pull-up-motstånd på 2,2 kΩ.
+MIPI- och HDMI-kontakterna ligger på separata bussar. I2C0 (CM5 SDA0/SCL0) betjänar MIPI0. MIPI1 använder CM5:ns ID_SD/ID_SC-stift via 0 Ω-motstånd, med pull-up-motstånd på 2,2 kΩ. HDMI:s DDC går på dedikerade CM5-stift till HDMI-kontakterna.
 
 ## Isolationens uppbyggnad
 
