@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Laitteiston tekniset tiedot
@@ -12,7 +12,7 @@ Tällä sivulla ovat HALPI2:n sähköiset, mekaaniset ja ympäristöä koskevat 
 |:-----------|:-----|
 | Laskentamoduuli | Raspberry Pi CM5 (yhteensopiva CM4:n kanssa) |
 | Emolevyn ohjain | RP2040 (Arm Cortex-M0+, kaksiytiminen, 133 MHz) |
-| Syöttöjännite | 9–36 V DC (absoluuttinen maksimi 38,6 V, transienttisuojaus 100 V:iin asti) |
+| Syöttöjännite | 10–32 V DC (absoluuttinen maksimi 38,6 V, transienttisuojaus 100 V:iin asti) |
 | Tehonkulutus | 250 mA joutokäynnillä, 590 mA kuormitettuna (12 V:n syöttö, HaLOS ilman näyttöä) |
 | Virranrajoituksen asetukset | 0,9 A tai 2,5 A (valittavissa) |
 | Superkondensaattorivarmennus | 4× 25 F / 2,7 V sarjassa (tehollisesti 6,25 F, enintään 10,8 V) |
@@ -31,7 +31,7 @@ Virtalähde hyväksyy laajan tasajännitealueen ja tuottaa säädetyt 5 V:n ja 3
 
 | Ominaisuus | Arvo |
 |:-----------|:-----|
-| Suositeltu syöttöjännite | 9–36 V DC |
+| Suositeltu syöttöjännite | 10–32 V DC |
 | Absoluuttinen maksimisyöttöjännite | 38,6 V (jatkuva), 100 V (transientti, TVS-rajoitettu) |
 | Suurin syöttövirta | 0,9 A tai 2,5 A (valittava virranrajoitin) |
 | Tulosulake | 7 A (vain vikasuojaus) |
@@ -76,7 +76,7 @@ Phoenix MC -tyyppi, 3,81 mm:n jako, 2-napainen. Etupaneelin E7T-pyöröliitin ky
 | Nasta | Toiminto |
 |:------|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V DC) |
+| 2 | VIN (10–32 V DC) |
 
 ### CAN FD -liitin
 

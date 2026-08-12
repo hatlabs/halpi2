@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Guide du matériel
@@ -162,7 +162,7 @@ Les LED d'état renseignent sur l'alimentation et l'activité du système. En vo
 | **9** | Vert | LED TX/RX du CAN. Elles clignotent à la réception (RX) ou à l'émission (TX) de données sur l'interface CAN. |
 | **10** | Vert | LED TX/RX du RS-485. Elles clignotent à la réception (RX) ou à l'émission (TX) de données sur l'interface RS-485. |
 
-Les motifs des LED RGB sont décrits dans le [Fonctionnement du système](./operation.md#led-detat).
+Les motifs des LED RGB sont décrits dans [Utilisation quotidienne](./operation.md#led-detat).
 
 ## Réglage de la limitation de courant
 
@@ -249,7 +249,7 @@ Après l'installation matérielle, le HAT peut nécessiter une configuration log
 
 !!! quote "Voir aussi"
     - **Brochage GPIO :** voir la [Référence matérielle](../technical-reference/hardware.md)
-    - **Configuration logicielle :** voir la [Configuration avancée](../software-development/advanced-config.md)
+    - **Configuration logicielle :** voir le [Guide logiciel](./software.md)
     - **Modifications du boîtier :** voir [Autres choix de connecteurs](#autres-choix-de-connecteurs)
 
 ## Remplacer le SSD NVMe
@@ -292,7 +292,7 @@ Refermez le boîtier comme indiqué à la section Ouverture du boîtier. Pour la
 
 !!! quote "Voir aussi"
     - **Images système :** voir le [Guide logiciel](./software.md)
-    - **Procédures de démarrage :** voir [Fonctionnement du système](./operation.md)
+    - **Procédures de démarrage :** voir [Utilisation quotidienne](./operation.md#mise-sous-tension)
     - **Accès au matériel :** voir [Ouverture du boîtier](#ouverture-du-boitier)
 
 ## Remplacer le Compute Module 5

@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Introduktion
@@ -105,7 +105,7 @@ Denne dokumentation henvender sig både til slutbrugere, der søger praktisk vej
 ### For slutbrugere
 
 - Start med vejledningen **Kom godt i gang** til opsætning og installation
-- Se **Almindelige anvendelsestilfælde** for vejledning til bestemte anvendelser
+- Læs **Daglig brug** om hverdagens betjening: LED'ernes betydning, nedlukning og adfærd ved strømsvigt
 - Slå op i **Fejlfinding**, når der opstår problemer
 
 ### For udviklere
@@ -113,7 +113,6 @@ Denne dokumentation henvender sig både til slutbrugere, der søger praktisk vej
 - Gennemgå **Teknisk reference** for detaljerede specifikationer
 - Læs afsnittene om **Softwareudvikling**, når du udvikler egne applikationer
 - Se **Designfiler** til planlægning af integration
-- Konsultér **Avanceret konfiguration** til optimering af ydelsen
 
 ### Tip til dokumentationen
 

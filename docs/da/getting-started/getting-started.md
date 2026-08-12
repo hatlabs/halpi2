@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Kom godt i gang
@@ -94,7 +94,7 @@ begynder LED-bjælken at fyldes op med rødt lys, hvilket viser, at superkondens
 Hvis du har en skærm tilsluttet, ser du Raspberry Pi OS-startskærmen, og til sidst kommer et grafisk skrivebord frem.
 
 !!! tip "Tip"
-    Status-LED'ernes mønstre er beskrevet i [Systemdrift](../user-guide/operation.md).
+    Status-LED'ernes mønstre er beskrevet i [Daglig brug](../user-guide/operation.md#status-led-indikatorer).
 
 ### Adgang til HALPI2 uden skærm
 
@@ -164,11 +164,7 @@ NMEA 2000-forbindelsen kontrolleres nemmest ved at se på status for Signal K-se
 
 HALPI2 er lavet til at lukke ned automatisk, når strømforsyningen afbrydes. Når du vil lukke enheden ned, afbryder du blot strømmen — enten med en kontakt på eltavlen eller ved at trække strømstikket ud. Systemet starter automatisk en softwarestyret nedlukning, så alle applikationer lukker korrekt, og filsystemet afmonteres sikkert.
 
-Hvis du vælger at lukke systemet ned fra skrivebordsgrænsefladen eller med kommandolinjeværktøjer (for eksempel kommandoen `shutdown`), genstarter enheden automatisk efter cirka 5 sekunder. Det skyldes, at strømstyringen registrerer, at der stadig er ekstern strøm til rådighed.
-
-Under nedlukningen kan du følge systemets tilstand på LED-indikatorerne i frontpanelet. Når strømmen afbrydes, dæmpes de grønne LED'er for at vise en strømafbrydelse. Efter 5 sekunder skifter LED'erne til violet, hvilket tydeligt viser, at enheden er ved at lukke ned. Når nedlukningen er gennemført, slukker alle LED'er.
-
-Nedlukningen tager under normale forhold kun få sekunder. I nogle tilfælde har bestemte tjenester dog brug for længere tid til at stoppe korrekt. Sker det, kan enheden nå at aflade superkondensatorerne næsten helt, før den lukker ned. Den længere nedlukningstid er normal og er ikke tegn på en fejl i systemet.
+Under nedlukningen dæmpes LED'erne først (strømafbrydelsen er registreret), lyser lilla, mens nedlukningen kører, og slukker, når den er gennemført. Nedlukningens adfærd — herunder den valgfri automatiske genstart efter en softwarenedlukning — er beskrevet i [Daglig brug](../user-guide/operation.md#nedlukning).
 
 ## Fejlfinding ved den første opsætning
 
@@ -178,7 +174,7 @@ Nedlukningen tager under normale forhold kun få sekunder. I nogle tilfælde har
 
 - Kontrollér strømtilslutninger og polaritet
 - Kontrollér sikringens tilstand
-- Sørg for, at spændingen ligger inden for området 11–32 V
+- Sørg for, at spændingen ligger inden for området 10–32 V
 
 ❌ **WiFi-adgangspunktet er ikke synligt:**
 
@@ -197,11 +193,11 @@ Nedlukningen tager under normale forhold kun få sekunder. I nogle tilfælde har
 - Sørg for, at skærmen er tændt og indstillet til den rigtige indgang
 - Prøv et andet HDMI-kabel eller en anden port på skærmen
 - Kontrollér, at HALPI2 er tændt (LED'erne skal være gule eller grønne)
-- Hvis LED'erne blinker i et regnbuemønster, sidder Compute Module 5 ikke ordentligt i sit stik. Det kan skyldes en transportskade. Følg anvisningerne i [Brugervejledningen](../user-guide/operation.md) for at genmontere CM5, eller kontakt support for at få hjælp.
+- Hvis LED'erne blinker i et regnbuemønster, sidder Compute Module 5 ikke ordentligt i sit stik. Det kan skyldes en transportskade. Følg anvisningerne i [Hardwarevejledningen](../user-guide/hardware.md#udskiftning-af-compute-module-5) for at genmontere CM5, eller kontakt support for at få hjælp.
 
 ❌ **Den tilsluttede skærm viser en fejlmeddelelse om »nvme«:**
 
-- Det betyder, at NVMe SSD'en ikke registreres eller ikke initialiseres korrekt. Det kan skyldes en transportskade. Følg anvisningerne i [Brugervejledningen](../user-guide/operation.md) for at genmontere NVMe SSD'en, eller kontakt support for at få hjælp.
+- Det betyder, at NVMe SSD'en ikke registreres eller ikke initialiseres korrekt. Det kan skyldes en transportskade. Følg anvisningerne i [Hardwarevejledningen](../user-guide/hardware.md#udskiftning-af-nvme-ssden) for at genmontere NVMe SSD'en, eller kontakt support for at få hjælp.
 
 ### Sådan får du hjælp:
 
@@ -344,7 +340,7 @@ Hent [HALPI2-boreskabelonen](./HALPI2_enclosure_1B_Drill_Template_v2.pdf), og ud
 
 HALPI2 har en indbygget strømbegrænser på indgangen, som styrer den indledende opladning af superkondensatorerne og beskytter installationen mod overstrøm. Strømgrænsen kan sættes til enten 0,9 A eller 2,5 A, afhængigt af din strømkilde og anvendelsens krav. Standardindstillingen på 0,9 A passer til de fleste anvendelser.
 
-Hvis du vil have enheden hurtigere op at køre eller skal forsyne perifere enheder med et stort strømforbrug, kan du skifte til indstillingen 2,5 A. Følg trinnene i [Brugervejledningen](../user-guide/operation.md) for at ændre strømgrænsen.
+Hvis du vil have enheden hurtigere op at køre eller skal forsyne perifere enheder med et stort strømforbrug, kan du skifte til indstillingen 2,5 A. Følg trinnene i [Hardwarevejledningen](../user-guide/hardware.md#konfiguration-af-strmbegrnsning) for at ændre strømgrænsen.
 
 #### Egen strømtilslutning
 
@@ -384,7 +380,7 @@ E7T-stikket er formonteret på kablet og kræver ingen terminering på stedet. S
 ##### Installationstrin
 
 1. **Sluk** for alle NMEA 2000-enheder
-2. **Åbn HALPI2's kabinet** (se [Brugervejledningen](../user-guide/operation.md) for anvisninger)
+2. **Åbn HALPI2's kabinet** (se [Hardwarevejledningen](../user-guide/hardware.md#adgang-til-kabinettet) for anvisninger)
 3. **Find strømtilslutningen på bærekortet**
 4. **Træk den eksisterende klemrække ud**
 5. **Sæt den interne NMEA 2000-strømklemrække** i strømtilslutningen på bærekortet
@@ -429,7 +425,7 @@ Sådan får du netværksforbindelse:
 ❌ **Ingen strømindikation:**
 
 - Kontrollér sikringens tilstand og mærkning
-- Kontrollér strømkildens spænding (11–32 V)
+- Kontrollér strømkildens spænding (10–32 V)
 - Bekræft, at polariteten er rigtig
 - Mål gennemgang i strømkablerne
 
@@ -492,7 +488,7 @@ Sådan får du netværksforbindelse:
 
 Når din HALPI2 kører:
 
-1. **Udforsk [Brugervejledningen](../user-guide/operation.md)** for detaljerede anvisninger til betjeningen
-2. **Læs Almindelige anvendelsestilfælde** for opsætning til bestemte anvendelser
-3. **Se Teknisk reference** for avancerede konfigurationsmuligheder
+1. **Læs [Daglig brug](../user-guide/operation.md)** for at lære, hvad LED'erne betyder, og hvordan nedlukningen fungerer
+2. **Udforsk [Softwarevejledningen](../user-guide/software.md)** for opdateringer, fjernadgang og kommandoen `halpi`
+3. **Se Teknisk reference** for detaljerede specifikationer
 4. **Deltag i fællesskabet** for at få tip, tricks og support

@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Interfacce e connettività
@@ -210,5 +210,5 @@ Quando i pulsanti vengono montati su un pannello di comando remoto, scegliere un
 Tutti i collegamenti dei pulsanti alla scheda portante devono utilizzare connettori femmina a pettine con passo 2,54 mm. Verificare il corretto allineamento dei pin e la solidità del collegamento, per evitare problemi di contatto durante il funzionamento.
 
 !!! quote "Informazioni correlate"
-    - **Gestione dell’alimentazione:** consultare [Gestione dell’alimentazione e procedure di spegnimento](./operation.md#gestione-dellalimentazione-e-procedure-di-spegnimento)
+    - **Gestione dell’alimentazione:** consultare [Controller della scheda portante](../technical-reference/controller.md)
     - **Accesso all’hardware:** consultare [Manutenzione dell’hardware](./hardware.md)

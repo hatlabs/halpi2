@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Interfaces en connectiviteit
@@ -210,5 +210,5 @@ Wilt u de knoppen op een bedieningspaneel op afstand monteren, kies dan een plaa
 Alle knopaansluitingen op het carrierboard moeten female headerconnectoren met een steek van 2,54 mm gebruiken. Zorg voor een juiste uitlijning van de pinnen en een stevige verbinding, zodat er tijdens het gebruik geen contactproblemen ontstaan.
 
 !!! quote "Gerelateerde informatie"
-    - **Energiebeheer:** zie [Energiebeheer en afsluitprocedures](./operation.md#energiebeheer-en-afsluitprocedures)
+    - **Energiebeheer:** zie [Controller van het carrierboard](../technical-reference/controller.md)
     - **Hardwaretoegang:** zie [Hardwareonderhoud](./hardware.md)

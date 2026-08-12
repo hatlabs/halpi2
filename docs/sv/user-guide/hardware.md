@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Hårdvaruguide
@@ -162,7 +162,7 @@ Statuslysdioderna ger information om systemets ström- och aktivitetstillstånd.
 | **9** | Grön | CAN TX/RX-lysdioder. De blinkar när data tas emot (RX) eller sänds (TX) på CAN-gränssnittet. |
 | **10** | Grön | RS-485 TX/RX-lysdioder. De blinkar när data tas emot (RX) eller sänds (TX) på RS-485-gränssnittet. |
 
-RGB-lysdiodernas mönster beskrivs i [Systemdrift](./operation.md#status-ledar).
+RGB-lysdiodernas mönster beskrivs i [Daglig användning](./operation.md#status-ledar).
 
 ## Konfiguration av strömbegränsningen
 
@@ -249,7 +249,7 @@ Efter monteringen kan HAT-kortet behöva konfigureras i programvaran för att fu
 
 !!! quote "Relaterad information"
     - **GPIO-stiftläge:** se [Hårdvarureferens](../technical-reference/hardware.md)
-    - **Konfiguration av programvaran:** se [Avancerad konfiguration](../software-development/advanced-config.md)
+    - **Konfiguration av programvaran:** se [Programvaruguiden](./software.md)
     - **Ändringar i kapslingen:** se [Egna kontaktalternativ](#egna-kontaktalternativ)
 
 ## Byte av NVMe SSD
@@ -293,7 +293,7 @@ För konfiguration av programvaran och felsökning, se [Programvaruguiden](./sof
 
 !!! quote "Relaterad information"
     - **Systemavbilder:** se [Programvaruguiden](./software.md)
-    - **Startförlopp:** se [Systemdrift](./operation.md)
+    - **Startförlopp:** se [Daglig användning](./operation.md#sla-pa-systemet)
     - **Åtkomst till hårdvaran:** se [Åtkomst till kapslingen](#atkomst-till-kapslingen)
 
 ## Byte av Compute Module 5

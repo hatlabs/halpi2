@@ -1,8 +1,8 @@
 ---
-translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+translated_from: e9e4f459212f6282e404954def18772911ead89c
 ---
 
-# Interfaces et connectivité
+# Référence des interfaces
 
 Cette page décrit la manière dont les interfaces du CM5 sont exposées sur la
 carte porteuse du HALPI2. Pour l'usage courant des ports CAN FD et RS-485

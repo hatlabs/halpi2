@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Aloitusopas
@@ -93,7 +93,7 @@ HALPI2:n mukana toimitetaan [HaLOS](https://docs.halos.fi), konttipohjainen Linu
 Jos näyttö on kytkettynä, näet Raspberry Pi OS:n aloitusruudun ja lopulta graafisen työpöydän.
 
 !!! tip "Vinkki"
-    Tila-LEDien vilkkumiskuviot on kuvattu [Järjestelmän käyttö](../user-guide/operation.md) -sivulla.
+    Tila-LEDien kuviot on kuvattu [Päivittäinen käyttö](../user-guide/operation.md#tila-ledit) -sivulla.
 
 ### HALPI2:n käyttö ilman näyttöä
 
@@ -163,11 +163,7 @@ Avaa Signal K:n verkkokäyttöliittymä ja tarkkaile `can0`-yhteyden aktiivisuut
 
 HALPI2 on suunniteltu sammumaan automaattisesti, kun virtalähde irrotetaan. Kun haluat sammuttaa laitteen, katkaise virta joko sähkötaulun kytkimestä tai irrottamalla virtaliitin. Järjestelmä käynnistää sammutuksen automaattisesti, jolloin kaikki sovellukset sulkeutuvat hallitusti ja tiedostojärjestelmä irrotetaan turvallisesti.
 
-Jos sammutat järjestelmän työpöydän kautta tai komentoriviltä (esimerkiksi `shutdown`-komennolla), laite käynnistyy automaattisesti uudelleen noin viiden sekunnin kuluttua. Tämä johtuu siitä, että virranhallinta havaitsee ulkoisen virransyötön olevan yhä käytettävissä.
-
-Sammutuksen aikana järjestelmän tilaa voi seurata etupaneelin LED-merkkivaloista. Kun virta katkaistaan, vihreät LEDit himmenevät merkiksi sähkökatkosta. Viiden sekunnin kuluttua LEDit muuttuvat violeteiksi, mikä kertoo selvästi laitteen olevan sammumassa. Kun sammutus on valmis, kaikki LEDit sammuvat.
-
-Sammutus kestää normaalisti vain muutaman sekunnin. Joissakin tapauksissa jokin palvelu tarvitsee kuitenkin enemmän aikaa pysähtyäkseen kunnolla. Tällöin laite voi kuluttaa superkondensaattorit lähes tyhjiksi ennen sammumista. Pidentynyt sammutusaika on normaalia eikä ole merkki viasta.
+Sammutuksen aikana LEDit ensin himmenevät (sähkökatko havaittu), muuttuvat violeteiksi sammutuksen ajaksi ja sammuvat, kun sammutus on valmis. Sammutuskäyttäytyminen — mukaan lukien valinnainen automaattinen uudelleenkäynnistys ohjelmallisen sammutuksen jälkeen — on kuvattu [Päivittäinen käyttö](../user-guide/operation.md#sammuttaminen) -sivulla.
 
 ## Käyttöönoton vianetsintä
 
@@ -177,7 +173,7 @@ Sammutus kestää normaalisti vain muutaman sekunnin. Joissakin tapauksissa joki
 
 - Tarkista virtakytkennät ja napaisuus
 - Tarkista sulakkeen kunto
-- Varmista että jännite on välillä 11–32 V
+- Varmista että jännite on välillä 10–32 V
 
 ❌ **WiFi-tukiasema ei näy:**
 
@@ -196,11 +192,11 @@ Sammutus kestää normaalisti vain muutaman sekunnin. Joissakin tapauksissa joki
 - Varmista että näyttö on päällä ja oikeassa tulossa
 - Kokeile toista HDMI-kaapelia tai näytön toista porttia
 - Varmista että HALPI2 on päällä (LEDien pitäisi olla keltaiset tai vihreät)
-- Jos LEDit vilkkuvat sateenkaarikuviolla, Compute Module 5 -moduuli ei ole kunnolla paikallaan emolevyllä. Syynä voi olla kuljetusvaurio. Aseta CM5 uudelleen paikalleen [Käyttöoppaan](../user-guide/operation.md) ohjeiden mukaan tai ota yhteyttä tukeen.
+- Jos LEDit vilkkuvat sateenkaarikuviolla, Compute Module 5 -moduuli ei ole kunnolla paikallaan emolevyllä. Syynä voi olla kuljetusvaurio. Aseta CM5 uudelleen paikalleen [Laitteisto-oppaan](../user-guide/hardware.md#compute-module-5n-vaihtaminen) ohjeiden mukaan tai ota yhteyttä tukeen.
 
 ❌ **Kytketty näyttö näyttää virheilmoituksen, jossa mainitaan 'nvme':**
 
-- Tämä tarkoittaa, ettei NVMe SSD:tä havaita tai sen alustus ei onnistu. Syynä voi olla kuljetusvaurio. Aseta NVMe SSD uudelleen paikalleen [Käyttöoppaan](../user-guide/operation.md) ohjeiden mukaan tai ota yhteyttä tukeen.
+- Tämä tarkoittaa, ettei NVMe SSD:tä havaita tai sen alustus ei onnistu. Syynä voi olla kuljetusvaurio. Aseta NVMe SSD uudelleen paikalleen [Laitteisto-oppaan](../user-guide/hardware.md#nvme-ssdn-vaihtaminen) ohjeiden mukaan tai ota yhteyttä tukeen.
 
 ### Mistä saat apua:
 
@@ -343,7 +339,7 @@ Lataa [HALPI2:n porausmalline](./HALPI2_enclosure_1B_Drill_Template_v2.pdf) ja t
 
 HALPI2:ssa on sisäänrakennettu syöttövirran rajoitin, joka hallitsee superkondensaattorien alkulatausta ja suojaa asennusta ylivirralta. Virranrajoitukseksi voi asettaa joko 0,9 A tai 2,5 A virtalähteen ja sovelluksen vaatimusten mukaan. Oletusasetus 0,9 A sopii useimpiin käyttökohteisiin.
 
-Jos haluat nopeuttaa käynnistystä tai tarvitset virtaa paljon kuluttaville oheislaitteille, voit vaihtaa asetukseksi 2,5 A. Vaihda virranrajoitus [Käyttöoppaan](../user-guide/operation.md) ohjeiden mukaan.
+Jos haluat nopeuttaa käynnistystä tai tarvitset virtaa paljon kuluttaville oheislaitteille, voit vaihtaa asetukseksi 2,5 A. Vaihda virranrajoitus [Laitteisto-oppaan](../user-guide/hardware.md#virranrajoituksen-asetus) ohjeiden mukaan.
 
 #### Oma virtaliitäntä
 
@@ -383,7 +379,7 @@ E7T-liitin on valmiiksi johdotettu eikä vaadi kytkentää paikan päällä. Kyt
 ##### Asennuksen vaiheet
 
 1. **Katkaise virta** kaikista NMEA 2000 -laitteista
-2. **Avaa HALPI2:n kotelo** (ohjeet [Käyttöoppaassa](../user-guide/operation.md))
+2. **Avaa HALPI2:n kotelo** (ohjeet [Laitteisto-oppaassa](../user-guide/hardware.md#kotelon-kasittely))
 3. **Paikanna emolevyn virtaliitin**
 4. **Irrota nykyinen riviliitin**
 5. **Kytke sisäinen NMEA 2000 -virtariviliitin** emolevyn virtaliittimeen
@@ -428,7 +424,7 @@ Verkkoyhteyttä varten:
 ❌ **Ei merkkiä virrasta:**
 
 - Tarkista sulakkeen kunto ja koko
-- Tarkista virransyötön jännite (11–32 V)
+- Tarkista virransyötön jännite (10–32 V)
 - Varmista oikea napaisuus
 - Mittaa virtakaapelien jatkuvuus
 
@@ -491,7 +487,7 @@ Verkkoyhteyttä varten:
 
 Kun HALPI2 on toiminnassa:
 
-1. **Tutustu [Käyttöoppaaseen](../user-guide/operation.md)** yksityiskohtaisia käyttöohjeita varten
-2. **Käy läpi yleiset käyttötapaukset** sovelluskohtaista käyttöönottoa varten
-3. **Katso Tekniset tiedot** edistyneempiä asetusvaihtoehtoja varten
+1. **Lue [Päivittäinen käyttö](../user-guide/operation.md)** -sivulta, mitä LEDit tarkoittavat ja miten sammutus toimii
+2. **Tutustu [Ohjelmisto-oppaaseen](../user-guide/software.md)**, joka kattaa päivitykset, etäkäytön ja `halpi`-komennon
+3. **Katso Tekniset tiedot** yksityiskohtaisia määrityksiä varten
 4. **Liity yhteisöön** vinkkien ja tuen saamiseksi

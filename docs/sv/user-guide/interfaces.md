@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Gränssnitt och anslutningar
@@ -210,5 +210,5 @@ När knapparna monteras på en separat manöverpanel väljer du en plats som är
 Alla knappanslutningar till bärkortet bör använda honkontakter med delningen 2,54 mm. Se till att stiften ligger rätt och att anslutningen sitter stadigt, så att kontaktproblem inte uppstår under drift.
 
 !!! quote "Relaterad information"
-    - **Strömhantering:** se [Strömhantering och avstängning](./operation.md#stromhantering-och-avstangning)
+    - **Strömhantering:** se [Bärkortets styrkrets](../technical-reference/controller.md)
     - **Åtkomst till hårdvaran:** se [Hårdvaruguiden](./hardware.md)

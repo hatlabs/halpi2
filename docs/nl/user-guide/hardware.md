@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Hardwarehandleiding
@@ -162,7 +162,7 @@ De statusleds geven informatie over de voedings- en activiteitstoestand van het 
 | **9** | Groen | TX/RX-leds van CAN. Deze leds knipperen wanneer er gegevens worden ontvangen (RX) of verzonden (TX) op de CAN-interface. |
 | **10** | Groen | TX/RX-leds van RS-485. Deze leds knipperen wanneer er gegevens worden ontvangen (RX) of verzonden (TX) op de RS-485-interface. |
 
-De patronen van de RGB-leds staan beschreven in de [Systeemwerking](./operation.md#statusleds).
+De patronen van de RGB-leds staan beschreven in [Dagelijks gebruik](./operation.md#statusleds).
 
 ## Instelling van de stroombegrenzing
 
@@ -249,7 +249,7 @@ Na de hardware-installatie heeft de HAT mogelijk nog softwareconfiguratie nodig 
 
 !!! quote "Gerelateerde informatie"
     - **Referentie van de GPIO-pinbezetting:** zie [Hardwarereferentie](../technical-reference/hardware.md)
-    - **Softwareconfiguratie:** zie [Geavanceerde configuratie](../software-development/advanced-config.md)
+    - **Softwareconfiguratie:** zie [Softwarehandleiding](./software.md)
     - **Aanpassingen aan de behuizing:** zie [Eigen connectoropties](#eigen-connectoropties)
 
 ## De NVMe SSD vervangen
@@ -293,7 +293,7 @@ Voor softwareconfiguratie of het oplossen van problemen raadpleegt u de [Softwar
 
 !!! quote "Gerelateerde informatie"
     - **Systeemimages:** zie [Softwarehandleiding](./software.md)
-    - **Opstartprocedures:** zie [Systeemwerking](./operation.md)
+    - **Opstartprocedures:** zie [Dagelijks gebruik](./operation.md#inschakelen)
     - **Toegang tot de hardware:** zie [Toegang tot de behuizing](#toegang-tot-de-behuizing)
 
 ## De Compute Module 5 vervangen

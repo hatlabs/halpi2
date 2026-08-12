@@ -1,8 +1,8 @@
 ---
-translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+translated_from: e9e4f459212f6282e404954def18772911ead89c
 ---
 
-# Grensesnitt og tilkoblingsmuligheter
+# Grensesnittreferanse
 
 Denne siden dokumenterer hvordan grensesnittene til CM5 er ført ut på
 HALPI2-bærekortet. For daglig bruk av de innebygde CAN FD- og RS-485-portene, se

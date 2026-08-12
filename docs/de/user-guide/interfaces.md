@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Schnittstellen und Konnektivität
@@ -210,5 +210,5 @@ Bei der Montage an einem abgesetzten Bedienfeld wählen Sie einen gut erreichbar
 Alle Tasteranschlüsse an der Trägerplatine sollten Buchsenleisten im Raster 2,54 mm verwenden. Achten Sie auf die richtige Ausrichtung der Pins und eine feste Verbindung, um Kontaktprobleme im Betrieb zu vermeiden.
 
 !!! quote "Weiterführende Informationen"
-    - **Energieverwaltung:** siehe [Energieverwaltung und Herunterfahren](./operation.md#energieverwaltung-und-herunterfahren)
+    - **Energieverwaltung:** siehe [Controller der Trägerplatine](../technical-reference/controller.md)
     - **Zugang zur Hardware:** siehe [Hardware-Handbuch](./hardware.md)

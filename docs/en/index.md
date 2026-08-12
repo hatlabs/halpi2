@@ -101,7 +101,7 @@ This documentation is structured to serve both end users seeking practical guida
 ### For End Users
 
 - Start with the **Getting Started** guide for setup and installation
-- Explore **Common Use Cases** for application-specific guidance
+- Read **Daily Operation** for everyday use: LED meanings, shutdown, power loss behavior
 - Reference **Troubleshooting** when issues arise
 
 ### For Developers
@@ -109,7 +109,6 @@ This documentation is structured to serve both end users seeking practical guida
 - Review the **Technical Reference** for detailed specifications
 - Study **Software Development** sections for custom applications
 - Examine **Design Files** for integration planning
-- Consult **Advanced Configuration** for performance optimization
 
 ### Documentation Tips
 

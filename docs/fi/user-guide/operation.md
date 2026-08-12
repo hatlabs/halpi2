@@ -1,212 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Järjestelmän käyttö
+# Päivittäinen käyttö
+
+HALPI2 on suunniteltu toimimaan ilman valvontaa. Esiasennetulla HaLOS-levykuvalla — tai millä tahansa käyttöjärjestelmällä, johon on asennettu [HALPI-daemon](./software.md#halpi-komentorivityokalu) — virranhallinta on automaattista: laite lataa varavirtana toimivat superkondensaattorinsa, sietää jännitehäiriöt, sammuttaa käyttöjärjestelmän turvallisesti virransyötön katketessa ja käynnistyy uudelleen, kun virta palaa. Mikään tästä ei vaadi käyttäjän toimia.
+
+## Käynnistäminen
+
+HALPI2:n kotelossa ei ole virtapainiketta: laite käynnistyy aina, kun syöttöjännite kytketään. (Emolevylle voi johdottaa ulkoisen virtapainikkeen — katso [Ulkoiset painikkeet](./interfaces.md#ulkoiset-painikkeet).) LED-rivi täyttyy ensin punaisella superkondensaattorien latautuessa (muutamasta sekunnista puoleen minuuttiin [virranrajoituksen asetuksesta](./hardware.md#virranrajoituksen-asetus) riippuen). Sitten LEDit näyttävät lyhyen sateenkaari- ja värikiertoanimaation Compute Modulen käynnistyessä ja keltaisen palkin käyttöjärjestelmän käynnistyessä, ja muuttuvat vihreiksi, kun käyttöjärjestelmä on käynnissä ja HALPI-daemon on muodostanut yhteyden.
+
+## Sammuttaminen
+
+Sammuta HALPI2 katkaisemalla syöttöjännite — esimerkiksi sähkötaulun kytkimestä. Järjestelmä havaitsee jännitteen menetyksen, sammuttaa käyttöjärjestelmän hallitusti superkondensaattorien virralla ja jää pois päältä. LEDit näyttävät violettia palkkia sammutuksen ajan ja sammuvat, kun sammutus on valmis.
+
+Sammuttaa voi myös ohjelmallisesti — työpöydän valikosta, `shutdown`-komennolla tai komennolla `halpi shutdown`. Järjestelmä sammuu ja pysyy pois päältä, kunnes syöttöjännite katkaistaan ja kytketään uudelleen (tai kunnes [ulkoista virtapainiketta](./interfaces.md#ulkoiset-painikkeet), jos sellainen on asennettu, painetaan).
+
+Halutessasi ohjain voi käynnistää järjestelmän automaattisesti uudelleen noin 5 sekunnin kuluttua ohjelmallisesta sammutuksesta, kun syöttöjännite on yhä kytkettynä — näin vahingossa annettu sammutuskomento ei koskaan jätä pois päältä asennusta, johon on hankala päästä käsiksi. Ota toiminto käyttöön komennolla `halpi config set auto_restart true`; asetus säilyy ohjaimen muistissa. Ennen vuoden 2026 alkua valmistetuissa laitteissa toiminto oli toimitettaessa käytössä — tarkista omasi komennolla `halpi config get auto_restart`.
+
+Järjestelmän voi myös asettaa valmiustilaan, jossa se sammuu ja herää uudelleen ajastettuna ajankohtana — katso [Emolevyn ohjain](../technical-reference/controller.md#valmiustila) -sivu.
 
 ## Tila-LEDit
 
-HALPI2:ssa on viisi RGB-LEDiä, jotka kertovat järjestelmän ja virransyötön tilan.
+Etupaneelin viisi LEDiä kertovat, mitä järjestelmä tekee:
 
-### LEDien pikaopas
+| LED-kuvio | Merkitys |
+|:----------|:---------|
+| Punaisella täyttyvä palkki | Superkondensaattorit latautuvat ennen käynnistystä — odota |
+| Sateenkaari ja kiertävät värit | Compute Module käynnistyy. Jos kuvio toistuu ilman etenemistä, moduuli ei käynnistynyt — katso [Vianetsintä](./troubleshooting.md#sateenkaari-ledit) |
+| Keltainen palkki | Järjestelmä käynnissä, HALPI-daemon ei ole yhteydessä — normaalia hetken aikaa käynnistyksen aikana. Jos tila jatkuu, katso [Vianetsintä](./troubleshooting.md#ledit-jaavat-keltaisiksi) |
+| Vihreä palkki | Normaali toiminta |
+| Oranssi tai tummanvihreä palkki | Syöttöjännite menetetty, toiminta jatkuu varavirralla — sammutus seuraa, ellei virta palaa muutamassa sekunnissa |
+| Violetti palkki | Sammutus käynnissä |
+| Kaikki palavat punaisina | Käyttöjärjestelmä ei vastaa — ohjain käynnistää sen automaattisesti uudelleen |
+| Kaikki vilkkuvat punaisina | Superkondensaattorivika — ota yhteyttä tukeen |
+| Kaikki palavat sinisinä | Siirtyminen valmiustilaan |
+| Kaikki himmeän punaisina | Valmiustila |
+| Kaikki sammuneet | Virta katkaistu |
 
-| LED-kuvio | Väri | Merkitys |
-|-----------|------|----------|
-| LED 5 palaa | Punainen | Virta kytketty, odottaa latausta |
-| Täyttyvä rivi | Punainen | Superkondensaattorit latautuvat |
-| Sateenkaari ja värikierto | Monivärinen | CM5 ei käynnistynyt |
-| Jännitepalkki | Keltainen | Solo-tila käytössä |
-| Jännitepalkki | Vihreä | Co-op-tila käytössä |
-| Jännitepalkki | Oranssi | Varavirta käytössä (solo) |
-| Jännitepalkki | Tummanvihreä | Varavirta käytössä (co-op) |
-| Kaikki vilkkuvat | Punainen | Superkondensaattorien ylijännite |
-| Kaikki palavat | Punainen | Vahtikoiran aikakatkaisu |
-| Jännitepalkki | Violetti | Sammutus käynnissä |
-| Kaikki palavat | Sininen | Sammutus valmiustilaan käynnissä |
-| Kaikki palavat | Himmeä punainen | Valmiustila |
-| Kaikki sammuneet | — | Järjestelmä pois päältä |
+Palkkikuvioissa palavien LEDien määrä kertoo superkondensaattorien varaustason. Tarkat jännitealueet ja täydellinen tilakartta ovat [Emolevyn ohjain](../technical-reference/controller.md#tila-ledien-kuviot) -sivulla.
 
-### Superkondensaattorien jännitenäyttö
+LEDien kirkkautta voi säätää — katso [LEDien ohjaus](./software.md#ledien-ohjaus). LEDit voi myös valjastaa näyttämään järjestelmän mittaustietoja ja veneilytietoa (verkkoliikennettä, tankkien pinnankorkeuksia, NMEA 2000- ja Signal K -arvoja) [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights) -lisäosalla.
 
-Käytön aikana LEDit toimivat jännitemittarina, joka näyttää superkondensaattorien varaustason:
+## Kun virransyöttö katkeaa
 
-- **LED 1**: 5,0–6,0 V
-- **LED 2**: 6,0–7,0 V
-- **LED 3**: 7,0–8,0 V
-- **LED 4**: 8,0–9,0 V
-- **LED 5**: 9,0–10,0 V
+Mitään ei tarvitse tehdä. Superkondensaattorit siltaavat lyhyet notkahdukset ja häiriöt — oletuksena enintään 5 sekuntia — ja toiminta jatkuu keskeytyksettä. Pidemmässä katkossa järjestelmä sammuttaa itsensä hallitusti superkondensaattorien 30–60 sekunnin varavirralla. Kun syöttöjännite palaa, järjestelmä käynnistyy automaattisesti uudelleen.
 
-## Virranhallinta ja sammutus
+!!! warning "Ei UPS-laite"
+    Superkondensaattorien tehtävä on siltata häiriöt ja antaa virta turvalliseen sammutukseen. Pitkien sähkökatkojen yli jatkuvaan käyttöön tarvitaan erillinen UPS-laite (keskeytymätön virransyöttö).
 
-HALPI2:n virtalähde on suunniteltu kestämään jännitepiikkejä, häiriöitä ja lyhyitä katkoja.
+## Järjestelmän kunnon tarkistus
 
-### Virransyöttöjärjestelmän yleiskuvaus
+Vihreä LED-palkki tarkoittaa, että järjestelmä voi hyvin. Tarkemmat tiedot — ohjaimen tilan, jännitteet, virran ja lämpötilat — näyttää `halpi`-komento:
 
-HALPI2:n virranhallinta koostuu näistä osista:
+```bash
+halpi status
+```
 
-- **Laajan jännitealueen virtalähde** (11–32 V DC, suojaus 100 V DC asti)
-- **Superkondensaattorivarmennus** hallittuun sammutukseen jännitteen katketessa
-- **Virranrajoitus** (valittavissa 0,9 A tai 2,5 A)
-- **Jännitteen menetyksen tunnistus** ja automaattinen sammutuksen käynnistys
-- **Syöttöjännitteen ja -virran valvonta**
+Jos jokin näyttää olevan vialla, katso [Vianetsintä](./troubleshooting.md) ja [Ohjelmisto-opas](./software.md#halpi-komentorivityokalu).
 
-Järjestelmä toimii kahdessa tilassa: solo-tilassa ja co-op-tilassa.
+## Käyttö ilman daemonia
 
-### Solo-tila
+Käyttöjärjestelmissä, joissa HALPI-daemonia ei ole, ohjain siirtyy perustason suojaustilaan: se havaitsee edelleen jännitteen menetyksen ja pyytää sammutusta, mutta simuloiduilla virtapainikkeen painalluksilla — mikä ei toimi, jos järjestelmä on jumissa — eivätkä valvonta ja asetukset ole käytettävissä. Jos käytät omaa käyttöjärjestelmää, asenna daemon; katso [Muut Debian-jakelut](../software-development/ubuntu-installation.md). Tilojen toiminta on kuvattu [Emolevyn ohjain](../technical-reference/controller.md#toimintatilat) -sivulla.
 
-Solo-tila tarjoaa perustason itsenäisen toiminnan silloin, kun HALPI-daemon ei ole käynnissä. Ohjain toimii omillaan ilman yhteyttä ohjelmistoon.
-
-#### Solo-tilan ominaisuudet
-
-- **Ei vaadi yhteyttä ohjelmistoon**
-- **Perustason suojaus jännitteen menetykseltä** — valvoo syöttöjännitettä ja reagoi katkoon
-- **Automaattinen sammutus simuloiduilla virtapainikkeen painalluksilla**
-- **Rajalliset valvonta- ja asetusmahdollisuudet**
-
-#### Jännitteen menetys ja sammutus solo-tilassa
-
-**Jännitteen menetyksen tunnistus:**
-Ohjain valvoo syöttöjännitettä ja havaitsee katkon. Katkoajastin (oletuksena 5 sekuntia) estää sammutuksen lyhyiden häiriöiden takia.
-
-**Automaattinen sammutusjärjestys:**
-
-1. **Ohjain havaitsee jännitteen menetyksen**
-2. **Katkoajastin käynnistyy** erottamaan häiriön todellisesta katkosta
-3. **Simuloidut virtapainikkeen painallukset** — ohjain lähettää kaksoispainalluksen Compute Modulelle
-4. **Käyttöjärjestelmä reagoi** ja aloittaa hallitun sammutuksen
-5. **Superkondensaattorit ylläpitävät virransyöttöä** (tyypillisesti 30–60 sekuntia)
-6. **60 sekunnin aikakatkaisusuojaus** — pakotettu virrankatkaisu, jos hallittu sammutus ei onnistu
-7. **Järjestelmä pysyy pois päältä**, kunnes virta palaa
-8. **Automaattinen uudelleenkäynnistys**, kun virta on palannut
-
-**Käsin tehtävä sammutus solo-tilassa:**
-
-- Käyttöjärjestelmä sammuu normaalisti
-- Järjestelmä käynnistyy automaattisesti uudelleen viiden sekunnin kuluttua, jos syöttöjännite on yhä käytettävissä
-- Pysyvää sammutusta varten katkaise syöttöjännite hallitun sammutuksen käynnistämisen jälkeen
-
-#### Milloin solo-tila on käytössä
-
-Solo-tila on käytössä näissä tilanteissa:
-
-- Käynnistyksen alkuvaiheessa ennen kuin HALPI-daemon on käynnistynyt
-- Jos HALPI-daemon ei käynnisty tai se on poistettu käytöstä
-- Käyttöjärjestelmissä, joissa daemonia ei ole
-- Kun daemon on kaatunut tai lakannut vastaamasta
-
-!!! tip "Solo-tilan luotettavuus"
-    Solo-tila tarjoaa välttämättömän suojauksen, mutta on co-op-tilaa epävarmempi. Ohjain pyytää sammutusta simuloiduilla painikkeen painalluksilla, mikä ei välttämättä toimi jos järjestelmä on jumissa.
-
-### Co-op-tila
-
-Co-op-tila tarjoaa täyden virranhallinnan silloin, kun HALPI-daemon on käynnissä ja keskustelee ohjaimen kanssa.
-
-#### Co-op-tilan ominaisuudet
-
-- **Suora yhteys ohjelmistoon** — ohjain ja daemon vaihtavat tietoa reaaliajassa
-- **Vahtikoirasuojaus** — 30 sekunnin aikakatkaisu varmistaa järjestelmän vakauden
-- **Muokattava sammutuskäyttäytyminen** — ajastukset ja komennot ovat säädettävissä
-- **Reaaliaikainen valvonta** — kattava virransyötön mittaustietojen seuranta
-- **Edistyneemmät asetusmahdollisuudet**
-
-#### Jännitteen menetys ja sammutus co-op-tilassa
-
-**Jännitteen menetyksen tunnistus:**
-Ohjain valvoo syöttöjännitettä ja välittää tapahtumat suoraan HALPI-daemonille. Säädettävä katkoajastin (oletuksena 5 sekuntia) sallii lyhyet katkot ilman sammutusta.
-
-**Automaattinen sammutusjärjestys:**
-
-1. **Ohjain havaitsee jännitteen menetyksen** ja ilmoittaa siitä HALPI-daemonille
-2. **Katkoajastimen arviointi** — daemon arvioi, ylittääkö katko raja-arvon
-3. **Sammutuskomennon suoritus** — daemon ajaa sammutuskomennon (oletuksena `/sbin/poweroff`)
-4. **Käyttöjärjestelmän hallittu sammutus** — sovellukset sulkeutuvat ja tiedostojärjestelmät irrotetaan turvallisesti
-5. **Superkondensaattorien varavirta** riittää koko sammutuksen ajaksi
-6. **Ohjain seuraa valmistumista** — se havaitsee, milloin Compute Modulen virta katkeaa
-7. **5 V:n jännite katkaistaan**, kun sammutus on valmis
-8. **Järjestelmä pysyy pois päältä**, kunnes syöttöjännite palaa
-9. **Uudelleenkäynnistyksen hallinta** — asetuksista riippuen järjestelmä käynnistyy automaattisesti tai jää pois päältä
-
-**Käsin tehtävä sammutus co-op-tilassa:**
-
-- Ohjelmistosta käynnistetty sammutus tapahtuu hallitusti
-- Järjestelmä käynnistyy automaattisesti uudelleen viiden sekunnin kuluttua, jos syöttöjännite on yhä käytettävissä
-- Automaattisen uudelleenkäynnistyksen estämiseksi katkaise virta tai aseta `auto_restart` arvoon `false`
-
-#### Vahtikoirasuojaus
-
-Co-op-tilaan kuuluu vahtikoira-ajastin (watchdog):
-
-- **30 sekunnin aikakatkaisu** — daemonin on oltava säännöllisesti yhteydessä ohjaimeen
-- **Automaattinen palautuminen** — järjestelmä käynnistyy uudelleen, jos yhteys katkeaa
-- **Suojaus ohjelmistovirheiltä** — varmistaa toipumisen daemonin kaatumisesta tai järjestelmän jumiutumisesta
-- **Vahtikoiran ruokkiminen** — daemon lähettää säännöllisiä tilatietoja, jotka nollaavat ajastimen
-
-#### Milloin co-op-tila on käytössä
-
-Co-op-tila on käytössä, kun:
-
-- HALPI-daemon on käynnissä ja toimii normaalisti
-- Daemonin ja ohjaimen välinen yhteys on muodostettu
-- Järjestelmä käyttää tuettua käyttöjärjestelmää
-- Kaikki valvonta- ja ohjaustoiminnot ovat käytettävissä
-
-!!! info "Co-op-tilan tarkistus"
-    Tarkista daemonin tila: `systemctl status halpid`
-
-    Katso ohjaimen tila: `halpi status`
-
-    Lisätietoa `halpi`-komennosta on [Ohjelmisto-oppaassa](./software.md#halpi-daemon-halpid).
-
-### Varavirta ja kondensaattorijärjestelmä
-
-Molemmat tilat nojaavat superkondensaattorien varavirtaan hallitun sammutuksen turvaamiseksi:
-
-**Varavirran kesto:**
-
-- Superkondensaattorit antavat varavirtaa 30–60 sekuntia
-- Kesto riippuu järjestelmän kuormasta ja kytketyistä oheislaitteista
-- Aika riittää tiedostojärjestelmän turvalliseen sulkemiseen ja prosessien lopettamiseen
-- Ei ole tarkoitettu käytön jatkamiseen pitkien katkojen aikana
-
-**Latautuminen:**
-
-- Latausaika 25 sekuntia, kun virranrajoitus on 0,9 A
-- Latausaika 9 sekuntia, kun virranrajoitus on 2,5 A
-- Latauksen eteneminen näkyy LEDien täyttymisenä (punainen täyttökuvio)
-
-!!! warning "Varavirran rajoitus"
-    Superkondensaattorijärjestelmä on tarkoitettu hallittuun sammutukseen, ei käytön jatkamiseen. Älä luota siihen pitkissä sähkökatkoissa.
-
-### Huomioita käsin tehtävästä sammutuksesta
-
-HALPI2 painottaa automaattista toimintaa ja toipumista, mikä vaikuttaa käsin tehtävän sammutuksen käyttäytymiseen.
-
-#### Automaattinen uudelleenkäynnistys
-
-Oletuksena HALPI2 käynnistyy uudelleen käsin tehdyn sammutuksen jälkeen, jos syöttöjännite on yhä käytettävissä:
-
-- Käsin tehty sammutus sammuttaa käyttöjärjestelmän normaalisti
-- Sammutuksen valmistumisen jälkeen on viiden sekunnin odotusaika
-- Järjestelmä käynnistyy automaattisesti uudelleen pysyäkseen käytettävissä
-- Tämä varmistaa toipumisen vahingossa tehdyistä sammutuksista
-
-#### Tavat sammuttaa laite pysyvästi
-
-Pysyvään sammutukseen on kaksi tapaa:
-
-**Virran katkaiseminen:**
-
-1. Käynnistä hallittu sammutus ohjelmistosta
-2. Odota että sammutus on valmis (LEDit sammuvat)
-3. Katkaise syöttöjännite estääksesi automaattisen uudelleenkäynnistyksen
-
-**Asetuksen muuttaminen:**
-
-1. Poista automaattinen uudelleenkäynnistys käytöstä: `halpi config set auto_restart false`
-2. Käynnistä sammutus ohjelmistosta
-3. Järjestelmä jää pois päältä sammutuksen jälkeen
-
-**Valmiustila (tulossa):**
-
-!!! info "Ominaisuuden tila"
-    Valmiustila on suunnitteilla tuleviin firmware-julkaisuihin. Se mahdollistaa Compute Modulen sammuttamisen niin, että HALPI2:n ohjain jää päälle odottamaan herätystapahtumia.
+!!! quote "Aiheeseen liittyvää"
+    - **Virranhallinnan sisäinen toiminta:** katso [Emolevyn ohjain](../technical-reference/controller.md)
+    - **Virransyöttöjärjestelmän tiedot:** katso [Virtalähde tarkemmin](../technical-reference/power-supply.md)
+    - **`halpi`-komento ja daemon:** katso [Ohjelmisto-opas](./software.md)
+    - **Ongelmatilanteet:** katso [Vianetsintä](./troubleshooting.md)

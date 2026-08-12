@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Référence matérielle
@@ -12,7 +12,7 @@ Cette page rassemble les spécifications électriques, mécaniques et environnem
 |:----------|:-------|
 | Module de calcul | Raspberry Pi CM5 (compatible CM4) |
 | Contrôleur de la carte porteuse | RP2040 (Arm Cortex-M0+, double cœur, 133 MHz) |
-| Tension d'entrée | 9–36 V CC (maximum absolu 38,6 V, protection transitoire jusqu'à 100 V) |
+| Tension d'entrée | 10–32 V CC (maximum absolu 38,6 V, protection transitoire jusqu'à 100 V) |
 | Consommation | de 250 mA au repos à 590 mA en charge (entrée 12 V, HaLOS sans écran) |
 | Réglages de limitation de courant | 0,9 A ou 2,5 A (au choix) |
 | Sauvegarde par supercondensateurs | 4× 25 F / 2,7 V en série (6,25 F effectifs à 10,8 V max) |
@@ -31,7 +31,7 @@ L'alimentation accepte une large plage de tension continue et fournit des lignes
 
 | Paramètre | Valeur |
 |:----------|:-------|
-| Tension d'entrée recommandée | 9–36 V CC |
+| Tension d'entrée recommandée | 10–32 V CC |
 | Tension d'entrée maximale absolue | 38,6 V (continu), 100 V (transitoire, limité par TVS) |
 | Courant d'entrée maximal | 0,9 A ou 2,5 A (limiteur de courant au choix) |
 | Fusible d'entrée | 7 A (protection contre les défauts uniquement) |
@@ -76,7 +76,7 @@ Type Phoenix MC, pas de 3,81 mm, 2 broches. Sur le panneau avant, le connecteur 
 | Broche | Fonction |
 |:-------|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V CC) |
+| 2 | VIN (10–32 V CC) |
 
 ### Connecteur CAN FD
 

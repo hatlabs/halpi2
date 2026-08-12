@@ -8,7 +8,7 @@ This page covers common issues you may encounter when operating HALPI2 and how t
 
 **Symptoms:** No LED activity, no signs of life after connecting power.
 
-1. Verify input voltage is within range (11–32 VDC) using a multimeter at the E7T connector.
+1. Verify input voltage is within range (10–32 VDC) using a multimeter at the E7T connector.
 2. Check the power cable connections — ensure the E7T connector is fully seated.
 3. If using NMEA 2000 bus power, verify that the current limiter is set to 0.9A and that the network can supply sufficient current.
 4. Open the enclosure and check for any visible damage or loose internal connections.
@@ -142,14 +142,14 @@ Use the LED patterns to quickly diagnose system state:
 | System won't start | No LEDs | No input power or hardware fault |
 | Stuck during startup | Red progressive fill | Super-capacitor still charging — wait |
 | Stuck during startup | Rainbow pattern | CM5 not detected — check module seating and disconnect displays |
-| Stays yellow | Solid yellow | OS not booting or daemon not installed |
-| Unexpected shutdown | Scrolling green/yellow | Power loss detected — check input power |
-| Overvoltage | LED 1 flashing red | Input voltage too high (>32V) |
-| Fault | All LEDs blinking red | Hardware fault — contact manufacturer |
+| Stays yellow | Yellow bar | OS not booting or daemon not installed |
+| Unexpected shutdown | Orange or dark green bar, then purple | Input power lost, shutdown on backup power — check input power |
+| System restarts by itself | All LEDs solid red before restart | Watchdog timeout — the OS stopped responding and the controller restarted it |
+| Fault | All LEDs flashing red | Super-capacitor overvoltage — contact support |
 
 !!! quote "Related Information"
     - **LED patterns:** See [Status LED Indicators](./operation.md#status-led-indicators)
-    - **Power management:** See [Power Management and Shutdown Procedures](./operation.md#power-management-and-shutdown-procedures)
+    - **Power loss behavior:** See [When Power Is Lost](./operation.md#when-power-is-lost)
     - **Daemon management:** See [Software Guide](./software.md#halpi-daemon-halpid)
     - **CAN interface details:** See [Interfaces and Connectivity](./interfaces.md#can-fd-nmea-2000)
     - **RS-485 interface details:** See [Interfaces and Connectivity](./interfaces.md#rs-485-nmea-0183)

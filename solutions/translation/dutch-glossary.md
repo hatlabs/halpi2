@@ -471,3 +471,13 @@ by each of them, because five agents share this file.
 | onboard (device, peripheral) | ingebouwd | What sits on the carrier board itself, as opposed to something the user attaches. Already the rendering of *built-in* on four pages (`ingebouwde interfaces`, `ingebouwde USB 3-hub`), so the two English words share one Dutch adjective. |
 | dedicated (pins, bus, UART) | speciaal | `speciale CM5-pinnen`, matching `een aparte, speciale debug-UART` in interfaces.md. Not *eigen*, which reads as ownership rather than reserved-for-one-purpose. |
 | resistor | weerstand | The bare noun; the glossary covers only the compound *afsluitweerstand*. Values follow the existing page pattern `afsluitweerstand van 120 Ω` → `weerstanden van 0 Ω`, never a `0 Ω-weerstand` compound. |
+| charge-level bar (LED pattern) | laadniveaubalk | The controller.md LED table; the bar height shows super-capacitor charge. Successor of *spanningsbalk*, which named the same pattern when the English source still called it a voltage bar. |
+| unattended operation | gebruik zonder toezicht | operation.md intro and faq.md; *onbeheerd* reads as abandoned rather than unattended. |
+| load dump | load dump | The alternator transient in power-supply.md. Dutch automotive trade keeps the English term. |
+| state machine | toestandsmachine | power-supply.md cross-reference to controller.md. |
+| power-on threshold | inschakeldrempel | The 8,0 V super-capacitor level (`power_on_threshold`) in power-supply.md; controller.md spells the parameter description out instead. |
+| fallback (mode, value) | terugvalmodus / terugvalwaarde | Solo mode as fallback mode; the firmware fallback for `auto_restart` in controller.md. Matches *valt terug op*, already used for the daemon-less case. |
+| input stage | ingangstrap | power-supply.md heading; standard Dutch electronics term. |
+| rainbow sweep | lopende regenboog | The SystemStartup LED animation in controller.md. |
+| solid color (LED) | effen kleur | The startup color cycle in controller.md; distinct from *continu*, which the LED tables use for steady-versus-blinking. |
+| residual charge | restlading | The PowerOff state in controller.md: the controller runs on what is left in the super-capacitors. |

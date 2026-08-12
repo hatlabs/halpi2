@@ -1,4 +1,4 @@
-# Interfaces and Connectivity
+# Interface Reference
 
 This page documents how the CM5's interfaces are exposed on the HALPI2 carrier
 board. For everyday use of the built-in CAN FD and RS-485 ports, see the

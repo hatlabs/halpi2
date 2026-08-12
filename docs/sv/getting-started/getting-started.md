@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Kom igång
@@ -93,7 +93,7 @@ HALPI2 levereras med [HaLOS](https://docs.halos.fi), en containerbaserad Linux-d
 Om du har en skärm ansluten ser du Raspberry Pi OS startbild och till sist ett grafiskt skrivbord.
 
 !!! tip "Tips"
-    Statuslysdiodernas mönster beskrivs i [Systemdrift](../user-guide/operation.md).
+    Statuslysdiodernas mönster beskrivs i [Daglig användning](../user-guide/operation.md#status-ledar).
 
 ### Åtkomst till HALPI2 utan skärm
 
@@ -163,11 +163,7 @@ Enklast kontrollerar du NMEA 2000-anslutningen genom att titta på Signal K-serv
 
 HALPI2 är konstruerad för att stänga av sig automatiskt när strömförsörjningen bryts. När du behöver stänga av enheten bryter du helt enkelt strömmen, antingen med en brytare på elpanelen eller genom att dra ur strömkontakten. Systemet påbörjar då automatiskt en avstängning i programvaran, så att alla program stängs korrekt och filsystemet avmonteras säkert.
 
-Om du väljer att stänga av systemet från skrivbordet eller med kommandoradsverktyg (som kommandot `shutdown`) startar enheten om automatiskt efter ungefär 5 sekunder. Det beror på att strömhanteringen märker att den externa strömmen fortfarande finns.
-
-Under avstängningen kan du följa systemets tillstånd på frontpanelens lysdioder. När strömmen först bryts dämpas de gröna lysdioderna för att visa ett spänningsbortfall. Efter 5 sekunder blir de violetta, vilket tydligt visar att enheten håller på att stängas av. När avstängningen är klar släcks alla lysdioder.
-
-Avstängningen tar normalt bara några sekunder. I vissa fall kan enskilda tjänster dock behöva mer tid för att stoppas ordentligt. Då kan enheten tömma superkondensatorerna nästan helt innan den stängs av. Den längre avstängningstiden är normal och betyder inte att något är fel.
+Under avstängningen dämpas lysdioderna först (spänningsbortfall upptäckt), lyser violett medan avstängningen pågår och släcks när den är klar. Avstängningens beteende — inklusive den valfria automatiska omstarten efter en avstängning via programvaran — beskrivs i [Daglig användning](../user-guide/operation.md#stanga-av-systemet).
 
 ## Felsökning vid uppstart
 
@@ -177,7 +173,7 @@ Avstängningen tar normalt bara några sekunder. I vissa fall kan enskilda tjän
 
 - Kontrollera strömanslutningarna och polariteten
 - Kontrollera säkringen
-- Se till att spänningen ligger inom 11–32 V
+- Se till att spänningen ligger inom 10–32 V
 
 ❌ **WiFi-accesspunkten syns inte:**
 
@@ -196,11 +192,11 @@ Avstängningen tar normalt bara några sekunder. I vissa fall kan enskilda tjän
 - Se till att skärmen är påslagen och står på rätt ingång
 - Prova en annan HDMI-kabel eller en annan port på skärmen
 - Kontrollera att HALPI2 är på (lysdioderna ska vara gula eller gröna)
-- Om lysdioderna blinkar i ett regnbågsmönster sitter Compute Module 5 inte ordentligt. Det kan bero på transportskada. Följ anvisningarna i [Användarguiden](../user-guide/operation.md) för att sätta tillbaka CM5, eller kontakta supporten.
+- Om lysdioderna blinkar i ett regnbågsmönster sitter Compute Module 5 inte ordentligt. Det kan bero på transportskada. Följ anvisningarna i [Hårdvaruguiden](../user-guide/hardware.md#byte-av-compute-module-5) för att sätta tillbaka CM5, eller kontakta supporten.
 
 ❌ **Den anslutna skärmen visar ett felmeddelande om ”nvme”:**
 
-- Det betyder att NVMe SSD-enheten inte hittas eller inte initieras korrekt. Det kan bero på transportskada. Följ anvisningarna i [Användarguiden](../user-guide/operation.md) för att sätta tillbaka SSD-enheten, eller kontakta supporten.
+- Det betyder att NVMe SSD-enheten inte hittas eller inte initieras korrekt. Det kan bero på transportskada. Följ anvisningarna i [Hårdvaruguiden](../user-guide/hardware.md#byte-av-nvme-ssd) för att sätta tillbaka SSD-enheten, eller kontakta supporten.
 
 ### Att få hjälp:
 
@@ -343,7 +339,7 @@ Hämta [HALPI2:s borrmall](./HALPI2_enclosure_1B_Drill_Template_v2.pdf) och skri
 
 HALPI2 har en inbyggd strömbegränsare på ingången som sköter den inledande laddningen av superkondensatorerna och skyddar installationen mot överström. Begränsningen kan ställas till antingen 0,9 A eller 2,5 A, beroende på strömkälla och tillämpningens krav. Standardinställningen 0,9 A passar de flesta tillämpningar.
 
-Om du vill att starten ska gå fortare, eller behöver mata strömtörstiga kringenheter, kan du byta till inställningen 2,5 A. Följ stegen i [Användarguiden](../user-guide/operation.md) för att ändra strömbegränsningen.
+Om du vill att starten ska gå fortare, eller behöver mata strömtörstiga kringenheter, kan du byta till inställningen 2,5 A. Följ stegen i [Hårdvaruguiden](../user-guide/hardware.md#konfiguration-av-strombegransningen) för att ändra strömbegränsningen.
 
 #### Egen strömanslutning
 
@@ -383,7 +379,7 @@ E7T-kontakten är färdigkopplad och kräver ingen montering på plats. Anslut d
 ##### Installationssteg
 
 1. **Stäng av** alla NMEA 2000-enheter
-2. **Öppna HALPI2:s kapsling** (se [Användarguiden](../user-guide/operation.md) för anvisningar)
+2. **Öppna HALPI2:s kapsling** (se [Hårdvaruguiden](../user-guide/hardware.md#atkomst-till-kapslingen) för anvisningar)
 3. **Leta upp bärkortets strömkontakt**
 4. **Dra ur den befintliga kopplingsplinten**
 5. **Anslut den interna NMEA 2000-kopplingsplinten för ström** till bärkortets strömkontakt
@@ -428,7 +424,7 @@ För nätverksanslutning:
 ❌ **Ingen strömindikering:**
 
 - Kontrollera säkringens skick och märkning
-- Kontrollera strömkällans spänning (11–32 V)
+- Kontrollera strömkällans spänning (10–32 V)
 - Bekräfta rätt polaritet
 - Mät genomgången i strömkablarna
 
@@ -491,7 +487,7 @@ För nätverksanslutning:
 
 När din HALPI2 är i gång:
 
-1. **Läs [Användarguiden](../user-guide/operation.md)** för utförliga driftanvisningar
-2. **Gå igenom vanliga användningsfall** för uppsättningar som passar din tillämpning
-3. **Titta i den tekniska referensen** för avancerade konfigurationsmöjligheter
+1. **Läs [Daglig användning](../user-guide/operation.md)** för att lära dig vad lysdioderna betyder och hur avstängningen fungerar
+2. **Utforska [Programvaruguiden](../user-guide/software.md)** för uppdateringar, fjärråtkomst och kommandot `halpi`
+3. **Titta i den tekniska referensen** för detaljerade specifikationer
 4. **Gå med i gemenskapen** för tips, knep och stöd

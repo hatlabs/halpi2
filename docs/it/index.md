@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Introduzione
@@ -105,7 +105,7 @@ Questa documentazione è strutturata per rispondere sia alle esigenze degli uten
 ### Per gli utenti finali
 
 - Iniziare dalla **Guida introduttiva** per la configurazione e l’installazione
-- Consultare i **Casi d’uso comuni** per indicazioni specifiche per applicazione
+- Leggere **Uso quotidiano** per l’uso di tutti i giorni: significato dei LED, spegnimento, comportamento in caso di mancanza di alimentazione
 - Fare riferimento alla **Risoluzione dei problemi** in caso di anomalie
 
 ### Per gli sviluppatori
@@ -113,7 +113,6 @@ Questa documentazione è strutturata per rispondere sia alle esigenze degli uten
 - Esaminare il **Riferimento tecnico** per le specifiche dettagliate
 - Studiare le sezioni **Sviluppo software** per le applicazioni personalizzate
 - Consultare i **File di progetto** per la pianificazione dell’integrazione
-- Fare riferimento alla **Configurazione avanzata** per l’ottimizzazione delle prestazioni
 
 ### Suggerimenti per la lettura
 

@@ -1,8 +1,8 @@
 ---
-translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+translated_from: e9e4f459212f6282e404954def18772911ead89c
 ---
 
-# Grænseflader og forbindelser
+# Grænsefladereference
 
 Denne side beskriver, hvordan CM5'ens grænseflader er ført ud på HALPI2's
 bærekort. Den daglige brug af de indbyggede CAN FD- og RS-485-porte er beskrevet

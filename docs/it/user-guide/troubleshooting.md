@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Risoluzione dei problemi
@@ -12,7 +12,7 @@ Questa pagina descrive i problemi più comuni che possono presentarsi durante il
 
 **Sintomi:** nessuna attività dei LED, nessun segno di funzionamento dopo il collegamento dell’alimentazione.
 
-1. Verificare con un multimetro, sul connettore E7T, che la tensione di ingresso rientri nell’intervallo previsto (11–32 V CC).
+1. Verificare con un multimetro, sul connettore E7T, che la tensione di ingresso rientri nell’intervallo previsto (10–32 V CC).
 2. Controllare i collegamenti del cavo di alimentazione: accertarsi che il connettore E7T sia inserito a fondo.
 3. Se si utilizza l’alimentazione dal bus NMEA 2000, verificare che il limitatore di corrente sia impostato su 0,9 A e che la rete sia in grado di fornire corrente sufficiente.
 4. Aprire la custodia e verificare l’assenza di danni visibili o di collegamenti interni allentati.
@@ -146,14 +146,14 @@ Le sequenze dei LED consentono di individuare rapidamente lo stato del sistema:
 | Il sistema non si avvia | Nessun LED acceso | Assenza di alimentazione di ingresso o guasto hardware |
 | Blocco durante l’avvio | Riempimento progressivo rosso | Supercondensatori ancora in carica: attendere |
 | Blocco durante l’avvio | Sequenza arcobaleno | CM5 non rilevato: verificare l’inserimento del modulo e scollegare i display |
-| Restano gialli | Giallo fisso | Il sistema operativo non si avvia oppure il demone non è installato |
-| Spegnimento imprevisto | Scorrimento verde/giallo | Rilevata mancanza di alimentazione: verificare l’alimentazione di ingresso |
-| Sovratensione | LED 1 rosso lampeggiante | Tensione di ingresso troppo elevata (> 32 V) |
-| Guasto | Tutti i LED lampeggianti in rosso | Guasto hardware: contattare il produttore |
+| Restano gialli | Barra gialla | Il sistema operativo non si avvia oppure il demone non è installato |
+| Spegnimento imprevisto | Barra arancione o verde scuro, poi viola | Mancanza di alimentazione di ingresso, spegnimento con l’alimentazione di riserva: verificare l’alimentazione di ingresso |
+| Il sistema si riavvia da solo | Tutti i LED rossi fissi prima del riavvio | Timeout del watchdog: il sistema operativo ha smesso di rispondere e il controller lo ha riavviato |
+| Guasto | Tutti i LED lampeggianti in rosso | Sovratensione dei supercondensatori: contattare l’assistenza |
 
 !!! quote "Informazioni correlate"
     - **Sequenze dei LED:** vedere [Indicatori LED di stato](./operation.md#indicatori-led-di-stato)
-    - **Gestione dell’alimentazione:** vedere [Gestione dell’alimentazione e procedure di spegnimento](./operation.md#gestione-dellalimentazione-e-procedure-di-spegnimento)
+    - **Comportamento in caso di mancanza di alimentazione:** vedere [In caso di mancanza di alimentazione](./operation.md#in-caso-di-mancanza-di-alimentazione)
     - **Gestione del demone:** vedere [Guida al software](./software.md#demone-halpi-halpid)
     - **Dettagli sull’interfaccia CAN:** vedere [Interfacce e connettività](./interfaces.md#can-fd-nmea-2000)
     - **Dettagli sull’interfaccia RS-485:** vedere [Interfacce e connettività](./interfaces.md#rs-485-nmea-0183)

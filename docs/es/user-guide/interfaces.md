@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Interfaces y conectividad
@@ -210,5 +210,5 @@ Al montar los botones en un panel de control remoto, elegir una ubicación adecu
 Todas las conexiones de los botones a la placa portadora deben emplear conectores hembra de paso de 2,54 mm. Comprobar la alineación correcta de los pines y la firmeza de la conexión para evitar problemas de contacto durante el funcionamiento.
 
 !!! quote "Información relacionada"
-    - **Gestión de la alimentación:** véase [Gestión de la alimentación y procedimientos de apagado](./operation.md#gestion-de-la-alimentacion-y-procedimientos-de-apagado)
+    - **Gestión de la alimentación:** véase [Controlador de la placa portadora](../technical-reference/controller.md)
     - **Acceso al hardware:** véase [Mantenimiento del hardware](./hardware.md)

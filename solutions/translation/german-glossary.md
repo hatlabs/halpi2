@@ -170,6 +170,9 @@ need that warning.
 | super-capacitor | Superkondensator | |
 | real-time clock | Echtzeituhr | |
 | backup battery | Pufferbatterie | |
+| uninterruptible power supply (UPS) | unterbrechungsfreie Stromversorgung (USV) | |
+| inrush current | Einschaltstrom | |
+| load dump | Lastabwurf (Load Dump) | Alternator load dump; keep the English term in parentheses on first mention |
 
 ### Connectors and interfaces
 
@@ -207,6 +210,11 @@ need that warning.
 | to unmount | aushängen | |
 | watchdog | Watchdog | |
 | standby | Standby | |
+| operating mode | Betriebsart | Solo/Co-op: `Solo-Modus`, `Co-op-Modus` |
+| state machine | Zustandsautomat | |
+| charge level | Ladezustand | |
+| power button | Ein-/Aus-Taste / Power-Taster | *Ein-/Aus-Taste* for the CM5's button input; *Power-Taster* for an external button wired to the header |
+| blackout timer | Ausfallzeitgeber | |
 
 ### Software and networking
 

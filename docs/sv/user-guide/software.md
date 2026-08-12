@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Programvaruguide
@@ -220,7 +220,7 @@ HALPI2:s programvarugränssnitt består av tjänsten `halpid` och kommandoradsve
 
 ### HALPI-daemon (`halpid`)
 
-HALPI-daemonen körs som en systemtjänst och sköter kommunikationen mellan operativsystemet och HALPI2:s styrkrets. Den möjliggör co-op-läget med full övervakning och strömhantering.
+HALPI-daemonen körs som en systemtjänst och sköter kommunikationen mellan operativsystemet och HALPI2:s styrkrets. Med daemonen i gång får styrkretsen full övervakning, konfiguration och samordning av den kontrollerade avstängningen — se referensen [Bärkortets styrkrets](../technical-reference/controller.md#driftlagen) för hur styrkretsen beter sig med och utan daemonen.
 
 #### Hantering av tjänsten
 
@@ -361,8 +361,9 @@ Exempel:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 Avstängningskommandot ser till att systemet stängs av säkert: operativsystemet hinner stänga program och avmontera filsystem innan styrkretsen bryter spänningen.

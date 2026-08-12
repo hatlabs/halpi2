@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Maskinvarereferanse
@@ -12,7 +12,7 @@ Denne siden gir de elektriske, mekaniske og miljømessige spesifikasjonene for H
 |:----------|:------|
 | Compute-modul | Raspberry Pi CM5 (kompatibel med CM4) |
 | Kontroller på bærekortet | RP2040 (Arm Cortex-M0+, to kjerner, 133 MHz) |
-| Inngangsspenning | 9–36 V DC (absolutt maks 38,6 V, transientbeskyttelse til 100 V) |
+| Inngangsspenning | 10–32 V DC (absolutt maks 38,6 V, transientbeskyttelse til 100 V) |
 | Strømforbruk | 250 mA i tomgang til 590 mA under belastning (12 V inn, HaLOS uten skjerm) |
 | Innstillinger for strømbegrensning | 0,9 A eller 2,5 A (valgbart) |
 | Reservestrøm fra superkondensatorer | 4× 25 F / 2,7 V i serie (6,25 F effektivt ved maks 10,8 V) |
@@ -31,7 +31,7 @@ Strømforsyningen tar imot et bredt DC-inngangsområde og leverer regulerte 5 V-
 
 | Parameter | Verdi |
 |:----------|:------|
-| Anbefalt inngangsspenning | 9–36 V DC |
+| Anbefalt inngangsspenning | 10–32 V DC |
 | Absolutt maksimal inngangsspenning | 38,6 V (kontinuerlig), 100 V (transient, TVS-begrenset) |
 | Maksimal inngangsstrøm | 0,9 A eller 2,5 A (valgbar strømbegrenser) |
 | Inngangssikring | 7 A (bare feilbeskyttelse) |
@@ -76,7 +76,7 @@ Phoenix MC-type, 3,81 mm senteravstand, 2 pinner. På frontpanelet er E7T-DC-plu
 | Pinne | Funksjon |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V DC) |
+| 2 | VIN (10–32 V DC) |
 
 ### CAN FD-kontakt
 

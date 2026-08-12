@@ -1,211 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Systemdrift
+# Daglig bruk
+
+HALPI2 er laget for drift uten tilsyn. På det forhåndsinstallerte HaLOS-systembildet – eller ethvert operativsystem med [HALPI-daemonen](./software.md#halpi-kommandolinjeverktyet) installert – er strømstyringen automatisk: enheten lader opp superkondensatorene som gir reservestrøm, rir av spenningsforstyrrelser, stenger operativsystemet trygt ned når strømmen blir borte, og starter opp igjen når strømmen kommer tilbake. Ingenting av dette krever at brukeren gjør noe.
+
+## Slå på
+
+HALPI2 har ingen strømknapp på kabinettet: den starter når inngangsstrøm kobles til. (En ekstern strømknapp kan kobles til bærekortet – se [Eksterne knapper](./interfaces.md#eksterne-knapper).) LED-raden fylles først opp med rødt mens superkondensatorene lades (fra noen sekunder til et halvt minutt, avhengig av [innstillingen for strømgrensen](./hardware.md#konfigurasjon-av-strmbegrensning)). Deretter spiller LED-ene en kort animasjon med regnbue og fargesyklus mens Compute Module starter, viser en gul søyle mens operativsystemet starter opp, og blir grønne når operativsystemet kjører og HALPI-daemonen har koblet seg til.
+
+## Slå av
+
+For å slå av HALPI2 kutter du inngangsstrømmen – for eksempel med en bryter på det elektriske panelet. Systemet oppdager strømbortfallet, stenger operativsystemet kontrollert ned på strøm fra superkondensatorene og forblir av. LED-ene viser en lilla søyle mens nedstengingen pågår, og slukker når den er fullført.
+
+Du kan også slå av gjennom programvaren – fra skrivebordsmenyen, med kommandoen `shutdown` eller med `halpi shutdown`. Systemet slår seg da av og forblir av til inngangsstrømmen kobles ut og inn igjen (eller til en [ekstern strømknapp](./interfaces.md#eksterne-knapper) trykkes, hvis en slik er montert).
+
+Som et tilvalg kan kontrolleren starte systemet automatisk igjen omtrent 5 sekunder etter en nedstenging fra programvaren så lenge inngangsstrømmen fortsatt er tilkoblet, slik at en utilsiktet nedstengingskommando aldri lar en installasjon som er vanskelig å nå fysisk, bli stående avslått. Aktiver det med `halpi config set auto_restart true`; innstillingen lagres varig i kontrolleren. Enheter produsert før tidlig i 2026 ble levert med denne oppførselen aktivert – sjekk din egen med `halpi config get auto_restart`.
+
+Systemet kan også settes i ventemodus, der det slår seg av og våkner igjen på et planlagt tidspunkt – se referansen [Bærekortets mikrokontroller](../technical-reference/controller.md#ventemodus).
 
 ## Status-LED-indikatorer
 
-HALPI2 har fem RGB-LED-er som gir visuell tilbakemelding om systemstatus og strømforhold.
+De fem LED-ene på frontpanelet viser hva systemet gjør:
 
-### Hurtigreferanse for LED-status
+| LED-mønster | Betydning |
+|:------------|:----------|
+| Rød søyle som fylles opp | Superkondensatorene lades før oppstart – vent |
+| Regnbue og skiftende farger | Compute Module starter opp. Hvis mønsteret gjentar seg uten framgang, startet ikke modulen – se [Feilsøking](./troubleshooting.md#regnbue-led-er) |
+| Gul søyle | Systemet kjører, HALPI-daemonen er ikke tilkoblet – normalt en kort stund under oppstart. Hvis det vedvarer, se [Feilsøking](./troubleshooting.md#led-ene-blir-staende-gule) |
+| Grønn søyle | Normal drift |
+| Oransje eller mørkegrønn søyle | Inngangsstrømmen er borte, systemet kjører på reservestrøm – nedstenging følger hvis ikke strømmen kommer tilbake i løpet av sekunder |
+| Lilla søyle | Nedstenging pågår |
+| Alle lyser fast rødt | Operativsystemet svarer ikke – kontrolleren starter det på nytt automatisk |
+| Alle blinker rødt | Feil på superkondensatorene – kontakt støtte |
+| Alle lyser fast blått | Går inn i ventemodus |
+| Alle lyser svakt rødt | Ventemodus |
+| Alle av | Slått av |
 
-| LED-mønster | Farge | Betydning |
-|-------------|-------|---------|
-| LED 5 lyser fast | Rød | Strøm på, venter på lading |
-| Gradvis fylling | Rød | Superkondensatorene lades |
-| Regnbue + fargesyklus | Flerfarget | CM5 startet ikke |
-| Spenningssøyle | Gul | Drift i solomodus |
-| Spenningssøyle | Grønn | Drift i samspillsmodus |
-| Spenningssøyle | Oransje | Reservestrøm aktiv (solo) |
-| Spenningssøyle | Mørkegrønn | Reservestrøm aktiv (samspill) |
-| Alle blinker | Rød | Overspenning i superkondensatorene |
-| Alle lyser fast | Rød | Watchdog-tidsavbrudd |
-| Spenningssøyle | Lilla | Nedstenging pågår |
-| Alle lyser fast | Blå | Nedstenging til ventemodus pågår |
-| Alle lyser fast | Svak rød | Ventemodus |
-| Alle av | — | Systemet av |
+I søylemønstrene viser antallet tente LED-er ladenivået i superkondensatorene. De nøyaktige spenningsintervallene og den fullstendige tilordningen av tilstander finner du i referansen [Bærekortets mikrokontroller](../technical-reference/controller.md#status-led-referanse).
 
-### Spenningsindikering for superkondensatorene
+LED-lysstyrken kan justeres – se [LED-styring](./software.md#led-styring). LED-ene kan også brukes som visning for systemmålinger og maritime data (nettverksaktivitet, tanknivåer, NMEA 2000- og Signal K-verdier) med tillegget [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights).
 
-Under drift fungerer LED-ene som en spenningsindikator som viser ladenivået i superkondensatorene:
+## Ved strømbortfall
 
-- **LED 1**: 5,0–6,0 V
-- **LED 2**: 6,0–7,0 V
-- **LED 3**: 7,0–8,0 V
-- **LED 4**: 8,0–9,0 V
-- **LED 5**: 9,0–10,0 V
+Ingenting trenger å gjøres. Korte fall og forstyrrelser – opptil 5 sekunder som standard – dekkes av superkondensatorene, og driften fortsetter uforstyrret. Ved et lengre strømbrudd stenger systemet seg selv kontrollert ned på de 30–60 sekundene med reservestrøm som superkondensatorene holder. Når inngangsstrømmen kommer tilbake, starter systemet opp igjen automatisk.
 
-## Strømstyring og nedstengingsprosedyrer
+!!! warning "Ikke en UPS"
+    Superkondensatorene finnes for å dekke forstyrrelser og gi strøm til en trygg nedstenging. For fortsatt drift gjennom lengre strømbrudd kreves en ekstern avbruddsfri strømforsyning (UPS).
 
-HALPI2 har en strømforsyning som er laget for å tåle spenningstopper, forstyrrelser og kortvarige avbrudd.
+## Kontrollere systemtilstanden
 
-### Oversikt over strømsystemet
+En grønn LED-søyle betyr at systemet er i orden. For detaljer viser `halpi`-kommandoen kontrollerens tilstand, spenninger, strøm og temperaturer:
 
-Strømstyringssystemet i HALPI2 består av:
+```bash
+halpi status
+```
 
-- **Strømforsyning med bredt inngangsområde** (11–32 VDC inngang med beskyttelse opp til 100 VDC)
-- **Reservesystem med superkondensatorer** for kontrollert nedstenging ved strømbortfall
-- **Strømbegrensning** (0,9 A eller 2,5 A, valgbart)
-- **Deteksjon av strømbortfall** og automatisk start av nedstenging
-- **Overvåking av inngangsspenning og -strøm**
+Hvis noe ser galt ut, se [Feilsøking](./troubleshooting.md) og [programvareveiledningen](./software.md#halpi-kommandolinjeverktyet).
 
-Systemet virker i to moduser: solomodus (solo mode) og samspillsmodus (co-op mode).
+## Drift uten daemonen
 
-### Drift i solomodus
+På operativsystemer uten HALPI-daemonen faller kontrolleren tilbake til en grunnleggende beskyttelsesmodus: den oppdager fortsatt strømbortfall og ber om nedstenging, men gjør det ved å simulere trykk på strømknappen – noe som mislykkes hvis systemet har låst seg – og overvåking og konfigurasjon er utilgjengelige. Hvis du kjører et eget operativsystem, bør du installere daemonen; se [Andre Debian-distribusjoner](../software-development/ubuntu-installation.md). Hvordan de to modusene virker, er beskrevet i referansen [Bærekortets mikrokontroller](../technical-reference/controller.md#driftsmoduser).
 
-Solomodus gir grunnleggende selvstendig drift når HALPI-daemonen ikke kjører. Kontrolleren virker på egen hånd, uten kommunikasjon med programvaren.
-
-#### Egenskaper ved solomodus
-
-- **Krever ingen kommunikasjon med programvaren**
-- **Grunnleggende beskyttelse mot strømbortfall** – overvåker inngangsspenningen og reagerer på strømbortfall
-- **Automatisk nedstenging via simulerte trykk på strømknappen**
-- **Begrensede muligheter for overvåking og konfigurasjon**
-
-#### Strømbortfall og nedstenging i solomodus
-
-**Deteksjon av strømbortfall:**
-Kontrolleren overvåker inngangsspenningen og oppdager strømbortfall. En strømbruddstimer (standard 5 sekunder) hindrer nedstenging ved korte avbrudd.
-
-**Automatisk nedstengingssekvens:**
-
-1. **Kontrolleren oppdager strømbortfall**
-2. **Strømbruddstimeren starter** for å skille forstyrrelser fra virkelig strømbortfall
-3. **Simulerte trykk på strømknappen** – kontrolleren sender dobbelttrykk på strømknappen til Compute Module
-4. **Operativsystemet reagerer** og starter kontrollert nedstenging
-5. **Superkondensatorene opprettholder strømmen** (vanligvis 30–60 sekunder tilgjengelig)
-6. **Tidsavbruddsbeskyttelse på 60 sekunder** – tvungen utkobling hvis kontrollert nedstenging mislykkes
-7. **Systemet forblir av** til strømmen kommer tilbake
-8. **Automatisk omstart** når strømmen er gjenopprettet
-
-**Manuell nedstenging i solomodus:**
-
-- Vanlig nedstenging av operativsystemet skjer
-- Systemet starter automatisk igjen etter 5 sekunder hvis inngangsstrømmen fortsatt er tilgjengelig
-- For varig nedstenging kobler du fra inngangsstrømmen etter at kontrollert nedstenging er startet
-
-#### Når solomodus er aktiv
-
-Solomodus inntreffer:
-
-- Under første oppstart før HALPI-daemonen starter
-- Hvis HALPI-daemonen ikke klarer å starte eller er deaktivert
-- På operativsystemer som ikke støttes og mangler daemonen
-- Når daemonen har krasjet eller ikke lenger svarer
-
-!!! tip "Pålitelighet i solomodus"
-    Solomodus gir nødvendig grunnbeskyttelse, men er mindre pålitelig enn samspillsmodus. Kontrolleren er avhengig av simulerte knappetrykk for å be om nedstenging, og det virker kanskje ikke hvis systemet har låst seg.
-
-### Drift i samspillsmodus
-
-Samspillsmodus gir full strømstyringsfunksjonalitet når HALPI-daemonen kjører og kommuniserer med kontrolleren.
-
-#### Funksjoner i samspillsmodus
-
-- **Direkte kommunikasjon med programvaren** – sanntids datautveksling mellom kontrolleren og daemonen
-- **Beskyttelse med watchdog-timer** – tidsavbrudd på 30 sekunder sikrer stabil drift
-- **Konfigurerbar nedstengingsatferd** – tidsforløp og kommandoer kan tilpasses
-- **Overvåking i sanntid** – omfattende overvåking av strømparametrene
-- **Avanserte konfigurasjonsmuligheter**
-
-#### Strømbortfall og nedstenging i samspillsmodus
-
-**Deteksjon av strømbortfall:**
-Kontrolleren overvåker inngangsstrømmen og melder hendelser direkte til HALPI-daemonen. Den konfigurerbare strømbruddstimeren (standard 5 sekunder) gjør at korte strømavbrudd ikke starter nedstenging.
-
-**Automatisk nedstengingssekvens:**
-
-1. **Kontrolleren oppdager strømbortfall** og melder fra til HALPI-daemonen
-2. **Vurdering av strømbruddstimeren** – daemonen vurderer om strømbortfallet overskrider grensen
-3. **Utføring av nedstengingskommando** – daemonen kjører nedstengingskommandoen (standard: `/sbin/poweroff`)
-4. **Kontrollert nedstenging av operativsystemet** – programmer avsluttes og filsystemene avmonteres trygt
-5. **Reservestrøm fra superkondensatorene** gir energi gjennom hele nedstengingen
-6. **Kontrolleren følger med på fullføringen** – den registrerer når Compute Module slås av
-7. **5 V-skinnen deaktiveres** når nedstengingen er fullført
-8. **Systemet forblir av** til inngangsstrømmen kommer tilbake
-9. **Styring av omstart** – avhengig av konfigurasjonen starter systemet automatisk igjen eller forblir av
-
-**Manuell nedstenging i samspillsmodus:**
-
-- Vanlig kontrollert nedstenging skjer når den startes fra programvaren
-- Systemet starter automatisk igjen etter 5 sekunder hvis inngangsstrømmen fortsatt er tilgjengelig
-- For å hindre automatisk omstart kobler du fra strømmen eller setter `auto_restart` til `false`
-
-#### Watchdog-beskyttelse
-
-Samspillsmodus omfatter beskyttelse med watchdog-timer:
-
-- **Kommunikasjonstidsavbrudd på 30 sekunder** – daemonen må kommunisere jevnlig med kontrolleren
-- **Automatisk gjenoppretting** – systemet starter på nytt hvis kommunikasjonen stopper
-- **Beskyttelse mot programvarefeil** – sikrer gjenoppretting etter krasj i daemonen eller hengt system
-- **«Mating av watchdogen»** – daemonen sender jevnlige statusoppdateringer som nullstiller timeren
-
-#### Når samspillsmodus er aktiv
-
-Samspillsmodus inntreffer når:
-
-- HALPI-daemonen kjører og er i orden
-- Kommunikasjonen mellom daemonen og kontrolleren er opprettet
-- Systemet kjører på et operativsystem som støttes
-- Full overvåking og styring av systemet er tilgjengelig
-
-!!! info "Kontrollere samspillsmodus"
-    Sjekk statusen til daemonen: `systemctl status halpid`
-
-    Vis kontrollerens tilstand: `halpi status`
-
-    Mer informasjon om `halpi`-kommandoen finner du i [programvareveiledningen](./software.md#halpi-daemonen-halpid).
-
-### Reservestrøm og kondensatorsystem
-
-Begge modusene er avhengige av reservesystemet med superkondensatorer for å sikre kontrollert nedstenging:
-
-**Varighet på reservestrømmen:**
-
-- Superkondensatorene gir 30–60 sekunder med reservestrøm
-- Varigheten avhenger av systembelastningen og tilkoblede eksterne enheter
-- Tilstrekkelig tid til trygg lukking av filsystemet og avslutning av prosesser
-- Ikke laget for fortsatt drift under lange strømavbrudd
-
-**Ladeegenskaper:**
-
-- Ladetid: 25 sekunder med strømgrensen 0,9 A
-- Ladetid: 9 sekunder med strømgrensen 2,5 A
-- Ladeforløpet vises visuelt gjennom LED-progresjonen (rødt fyllemønster)
-
-!!! warning "Begrensning i beskyttelsen mot strømbortfall"
-    Superkondensatorsystemet er laget for kontrollert nedstenging, ikke for fortsatt drift. Ikke stol på det ved lengre strømavbrudd.
-
-### Hensyn ved manuell nedstenging
-
-HALPI2 prioriterer automatisk drift og gjenoppretting, og det påvirker hvordan manuell nedstenging virker.
-
-#### Automatisk omstart
-
-Som standard starter HALPI2 igjen etter manuell nedstenging så lenge inngangsstrømmen er tilgjengelig:
-
-- Manuell nedstenging gir vanlig nedstenging av operativsystemet
-- En venteperiode på 5 sekunder følger etter at nedstengingen er fullført
-- Systemet starter automatisk igjen for å opprettholde driftstilgjengeligheten
-- Dette sikrer gjenoppretting etter utilsiktede nedstenginger
-
-#### Metoder for tilsiktet nedstenging
-
-For varig nedstenging bruker du en av disse fremgangsmåtene:
-
-**Frakobling av strømmen:**
-
-1. Start kontrollert nedstenging fra programvaren
-2. Vent til nedstengingen er fullført (LED-ene slukker)
-3. Koble fra inngangsstrømmen for å hindre automatisk omstart
-
-**Konfigurasjonsmetoden:**
-
-1. Deaktiver automatisk omstart: `halpi config set auto_restart false`
-2. Start nedstengingen fra programvaren
-3. Systemet forblir av etter at nedstengingen er fullført
-
-**Ventemodus (fremtidig):**
-!!! info "Funksjonsstatus"
-    Ventemodus er planlagt for kommende firmwareutgivelser. Den vil gjøre det mulig å slå av Compute Module mens HALPI2-kontrolleren forblir aktiv og venter på oppvekkingshendelser.
+!!! quote "Relatert informasjon"
+    - **Hvordan strømstyringen virker internt:** Se [Bærekortets mikrokontroller](../technical-reference/controller.md)
+    - **Detaljer om strømsystemet:** Se [Strømforsyningen i detalj](../technical-reference/power-supply.md)
+    - **`halpi`-kommandoen og daemonen:** Se [Programvareveiledning](./software.md)
+    - **Problemer:** Se [Feilsøking](./troubleshooting.md)

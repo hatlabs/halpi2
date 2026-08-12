@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Hardwarereferentie
@@ -12,7 +12,7 @@ Deze pagina bevat de elektrische, mechanische en omgevingsspecificaties van de H
 |:----------|:------|
 | Computemodule | Raspberry Pi CM5 (CM4-compatibel) |
 | Controller van het carrierboard | RP2040 (Arm Cortex-M0+, dualcore, 133 MHz) |
-| Ingangsspanning | 9–36 V DC (absoluut maximum 38,6 V, transiëntbeveiliging tot 100 V) |
+| Ingangsspanning | 10–32 V DC (absoluut maximum 38,6 V, transiëntbeveiliging tot 100 V) |
 | Stroomverbruik | 250 mA in rust tot 590 mA onder belasting (12 V ingang, HaLOS zonder beeldscherm) |
 | Instellingen stroombegrenzing | 0,9 A of 2,5 A (instelbaar) |
 | Backup met supercondensatoren | 4× 25 F / 2,7 V in serie (6,25 F effectief bij max. 10,8 V) |
@@ -31,7 +31,7 @@ De voeding accepteert een breed DC-ingangsbereik en levert gestabiliseerde rails
 
 | Parameter | Waarde |
 |:----------|:------|
-| Aanbevolen ingangsspanning | 9–36 V DC |
+| Aanbevolen ingangsspanning | 10–32 V DC |
 | Absolute maximale ingangsspanning | 38,6 V (continu), 100 V (transiënt, begrensd door TVS) |
 | Maximale ingangsstroom | 0,9 A of 2,5 A (instelbare stroombegrenzer) |
 | Ingangszekering | 7 A (alleen als storingsbeveiliging) |
@@ -76,7 +76,7 @@ Type Phoenix MC, 3,81 mm steek, 2-polig. Op het frontpaneel sluit de E7T-connect
 | Pin | Functie |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V DC) |
+| 2 | VIN (10–32 V DC) |
 
 ### CAN FD-connector
 

@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Aan de slag
@@ -94,7 +94,7 @@ loopt de ledbalk vol met rode lichtjes, wat aangeeft dat de supercondensatoren w
 Als er een beeldscherm is aangesloten, ziet u het opstartscherm van Raspberry Pi OS en verschijnt ten slotte een grafische werkomgeving.
 
 !!! tip "Tip"
-    De patronen van de status-leds zijn beschreven in de [bedieningshandleiding](../user-guide/operation.md).
+    De patronen van de status-leds zijn beschreven in [Dagelijks gebruik](../user-guide/operation.md#statusleds).
 
 ### De HALPI2 gebruiken zonder beeldscherm
 
@@ -164,11 +164,7 @@ Open de webinterface van Signal K en bekijk de activiteit van de verbinding `can
 
 De HALPI2 is ontworpen om automatisch af te sluiten wanneer de voeding wordt losgekoppeld. Wilt u het apparaat afsluiten, schakel dan simpelweg de spanning uit, met een schakelaar op het elektrisch paneel of door de voedingsconnector los te nemen. Het systeem start dan automatisch een gecontroleerde afsluitprocedure, zodat alle applicaties netjes worden gesloten en het bestandssysteem veilig wordt ontkoppeld.
 
-Sluit u het systeem af via de grafische werkomgeving of met opdrachtregelgereedschap (zoals de opdracht `shutdown`), dan start het apparaat na ongeveer 5 seconden automatisch opnieuw op. Dat komt doordat het energiebeheer vaststelt dat er nog externe voeding aanwezig is.
-
-Tijdens het afsluiten kunt u de systeemstatus volgen aan de leds op het frontpaneel. Zodra de spanning wegvalt, dimmen de groene leds om een stroomuitval aan te geven. Na 5 seconden worden de leds violet; dat is een duidelijk teken dat het apparaat bezig is met afsluiten. Zodra het afsluiten voltooid is, gaan alle leds uit.
-
-Onder normale omstandigheden duurt het afsluiten meestal maar enkele seconden. Soms hebben bepaalde diensten echter meer tijd nodig om netjes te stoppen. In dat geval kan het apparaat de supercondensatoren bijna volledig leegtrekken voordat het afsluit. Deze langere afsluittijd is normaal en duidt niet op een storing in het systeem.
+Tijdens het afsluiten dimmen de leds eerst (stroomuitval gedetecteerd), worden ze paars zolang het afsluiten loopt en gaan ze uit zodra het voltooid is. Het afsluitgedrag — inclusief de optionele automatische herstart na een afsluiting via software — staat beschreven in [Dagelijks gebruik](../user-guide/operation.md#afsluiten).
 
 ## Problemen oplossen bij de eerste ingebruikname
 
@@ -178,7 +174,7 @@ Onder normale omstandigheden duurt het afsluiten meestal maar enkele seconden. S
 
 - Controleer de voedingsaansluitingen en de polariteit
 - Controleer de toestand van de zekering
-- Zorg dat de spanning binnen het bereik 11–32 V ligt
+- Zorg dat de spanning binnen het bereik 10–32 V ligt
 
 ❌ **Wifi-accesspoint niet zichtbaar:**
 
@@ -197,11 +193,11 @@ Onder normale omstandigheden duurt het afsluiten meestal maar enkele seconden. S
 - Zorg dat het beeldscherm aanstaat en op de juiste ingang is ingesteld
 - Probeer een andere HDMI-kabel of een andere poort op het beeldscherm
 - Controleer of de HALPI2 aanstaat (de leds moeten geel of groen zijn)
-- Knipperen de leds in een regenboogpatroon, dan zit de Compute Module 5 niet goed op zijn plaats. Dit kan door transportschade komen. Volg de instructies in de [gebruikershandleiding](../user-guide/operation.md) om de CM5 opnieuw te plaatsen, of neem contact op met de ondersteuning.
+- Knipperen de leds in een regenboogpatroon, dan zit de Compute Module 5 niet goed op zijn plaats. Dit kan door transportschade komen. Volg de instructies in de [Hardwarehandleiding](../user-guide/hardware.md#de-compute-module-5-vervangen) om de CM5 opnieuw te plaatsen, of neem contact op met de ondersteuning.
 
 ❌ **Het aangesloten beeldscherm toont een foutmelding over ‘nvme’:**
 
-- Dit betekent dat de NVMe SSD niet wordt gedetecteerd of niet goed is geïnitialiseerd. Dit kan door transportschade komen. Volg de instructies in de [gebruikershandleiding](../user-guide/operation.md) om de NVMe SSD opnieuw te plaatsen, of neem contact op met de ondersteuning.
+- Dit betekent dat de NVMe SSD niet wordt gedetecteerd of niet goed is geïnitialiseerd. Dit kan door transportschade komen. Volg de instructies in de [Hardwarehandleiding](../user-guide/hardware.md#de-nvme-ssd-vervangen) om de NVMe SSD opnieuw te plaatsen, of neem contact op met de ondersteuning.
 
 ### Hulp krijgen:
 
@@ -344,7 +340,7 @@ Download de [HALPI2-boormal](./HALPI2_enclosure_1B_Drill_Template_v2.pdf) en dru
 
 De HALPI2 heeft een ingebouwde stroombegrenzer aan de ingang die het eerste opladen van de supercondensatoren regelt en de installatie beschermt tegen overstroom. De stroombegrenzing kan op 0,9 A of op 2,5 A worden ingesteld, afhankelijk van uw voedingsbron en uw toepassing. De standaardinstelling van 0,9 A voldoet voor de meeste toepassingen.
 
-Wilt u sneller opstarten of moet u randapparatuur met een hoge stroomafname voeden, dan kunt u overschakelen naar de instelling van 2,5 A. Volg de stappen in de [gebruikershandleiding](../user-guide/operation.md) om de stroombegrenzing te wijzigen.
+Wilt u sneller opstarten of moet u randapparatuur met een hoge stroomafname voeden, dan kunt u overschakelen naar de instelling van 2,5 A. Volg de stappen in de [Hardwarehandleiding](../user-guide/hardware.md#instelling-van-de-stroombegrenzing) om de stroombegrenzing te wijzigen.
 
 #### Aparte voedingsaansluiting
 
@@ -384,7 +380,7 @@ De E7T-connector is voorbedraad en hoeft ter plaatse niet te worden afgemonteerd
 ##### Installatiestappen
 
 1. **Schakel** alle NMEA 2000-apparaten **uit**
-2. **Open de behuizing van de HALPI2** (zie de [gebruikershandleiding](../user-guide/operation.md) voor instructies)
+2. **Open de behuizing van de HALPI2** (zie de [Hardwarehandleiding](../user-guide/hardware.md#toegang-tot-de-behuizing) voor instructies)
 3. **Zoek de voedingsconnector op het carrierboard**
 4. **Neem het aanwezige klemmenblok los**
 5. **Sluit het interne NMEA 2000-voedingsklemmenblok** aan op de voedingsconnector van het carrierboard
@@ -429,7 +425,7 @@ Voor een netwerkverbinding:
 ❌ **Geen indicatie van voeding:**
 
 - Controleer de toestand en de waarde van de zekering
-- Controleer de spanning van de voedingsbron (11–32 V)
+- Controleer de spanning van de voedingsbron (10–32 V)
 - Controleer of de polariteit klopt
 - Voer een doorbelmeting uit op de voedingskabels
 
@@ -492,7 +488,7 @@ Voor een netwerkverbinding:
 
 Zodra uw HALPI2 draait:
 
-1. **Verken de [gebruikershandleiding](../user-guide/operation.md)** voor uitgebreide bedieningsinstructies
-2. **Bekijk de veelvoorkomende toepassingen** voor een op uw toepassing afgestemde inrichting
-3. **Raadpleeg de technische referentie** voor geavanceerde configuratiemogelijkheden
+1. **Lees [Dagelijks gebruik](../user-guide/operation.md)** om te leren wat de leds betekenen en hoe het afsluiten werkt
+2. **Verken de [Softwarehandleiding](../user-guide/software.md)** voor updates, toegang op afstand en de opdracht `halpi`
+3. **Raadpleeg de technische referentie** voor gedetailleerde specificaties
 4. **Sluit u aan bij de community** voor tips, trucs en ondersteuning

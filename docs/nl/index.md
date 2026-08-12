@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Inleiding
@@ -105,7 +105,7 @@ Deze documentatie is zo opgezet dat zij zowel eindgebruikers bedient die praktis
 ### Voor eindgebruikers
 
 - Begin met de handleiding **Aan de slag** voor installatie en ingebruikname
-- Bekijk **Veelvoorkomende toepassingen** voor aanwijzingen per toepassing
+- Lees **Dagelijks gebruik** voor het dagelijkse gebruik: de betekenis van de leds, het afsluiten en het gedrag bij spanningsuitval
 - Raadpleeg **Probleemoplossing** wanneer er iets misgaat
 
 ### Voor ontwikkelaars
@@ -113,7 +113,6 @@ Deze documentatie is zo opgezet dat zij zowel eindgebruikers bedient die praktis
 - Neem de **Technische referentie** door voor gedetailleerde specificaties
 - Bestudeer de hoofdstukken over **Softwareontwikkeling** voor eigen toepassingen
 - Bekijk de **Ontwerpbestanden** voor het plannen van integratie
-- Raadpleeg **Geavanceerde configuratie** voor het optimaliseren van prestaties
 
 ### Tips voor het gebruik van de documentatie
 

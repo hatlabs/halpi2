@@ -1,211 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Funzionamento del sistema
+# Uso quotidiano
+
+L’HALPI2 è progettato per il funzionamento non presidiato. Con l’immagine HaLOS preinstallata — o con qualsiasi sistema operativo in cui sia installato il [demone HALPI](./software.md#strumento-da-riga-di-comando-halpi) — la gestione dell’alimentazione è automatica: il dispositivo carica i supercondensatori di riserva, supera senza interruzioni i disturbi di tensione, spegne in sicurezza il sistema operativo quando l’alimentazione viene a mancare e si riavvia quando l’alimentazione ritorna. Nulla di tutto ciò richiede l’intervento dell’utente.
+
+## Accensione
+
+L’HALPI2 non ha un pulsante di accensione sulla custodia: si avvia non appena viene collegata l’alimentazione di ingresso. (È possibile collegare un pulsante di accensione esterno alla scheda portante — vedere [Pulsanti esterni](./interfaces.md#pulsanti-esterni).) La barra dei LED si riempie dapprima di rosso mentre i supercondensatori si caricano (da alcuni secondi a mezzo minuto, a seconda dell’[impostazione del limite di corrente](./hardware.md#configurazione-della-limitazione-di-corrente)). I LED riproducono quindi una breve animazione arcobaleno con ciclo di colori mentre il Compute Module si avvia, mostrano una barra gialla durante l’avvio del sistema operativo e diventano verdi quando il sistema operativo è in esecuzione e il demone HALPI si è connesso.
+
+## Spegnimento
+
+Per spegnere l’HALPI2, togliere l’alimentazione di ingresso — ad esempio con un interruttore del quadro elettrico. Il sistema rileva la mancanza di alimentazione, spegne il sistema operativo in modo controllato alimentandosi dai supercondensatori e resta spento. I LED mostrano una barra viola durante lo spegnimento e si spengono al termine.
+
+È anche possibile spegnere il sistema da software — tramite il menu del desktop, il comando `shutdown` o `halpi shutdown`. Il sistema si spegne e resta spento finché l’alimentazione di ingresso non viene tolta e ridata (oppure finché non viene premuto un [pulsante di accensione esterno](./interfaces.md#pulsanti-esterni), se presente).
+
+In via opzionale, il controller può riavviare automaticamente il sistema circa 5 secondi dopo uno spegnimento da software se l’alimentazione di ingresso resta collegata, in modo che un comando di spegnimento accidentale non lasci mai fuori uso un’installazione difficile da raggiungere fisicamente. La funzione si abilita con `halpi config set auto_restart true`; l’impostazione viene conservata nel controller. Le unità prodotte prima dell’inizio del 2026 venivano fornite con questo comportamento abilitato — per verificare la propria unità, eseguire `halpi config get auto_restart`.
+
+Il sistema può anche essere messo in standby, in cui si spegne e si riattiva a un orario programmato — vedere il riferimento [Controller della scheda portante](../technical-reference/controller.md#standby).
 
 ## Indicatori LED di stato
 
-HALPI2 è dotato di cinque LED RGB che forniscono un riscontro visivo sullo stato del sistema e sulle condizioni di alimentazione.
+I cinque LED del pannello frontale mostrano che cosa sta facendo il sistema:
 
-### Riferimento rapido degli stati dei LED
+| Sequenza dei LED | Significato |
+|:-----------------|:------------|
+| Barra rossa che si riempie | Supercondensatori in carica prima dell’avvio — attendere |
+| Arcobaleno e ciclo di colori | Compute Module in avvio. Se la sequenza si ripete senza progressi, l’avvio del modulo non è riuscito — vedere [Risoluzione dei problemi](./troubleshooting.md#led-con-sequenza-arcobaleno) |
+| Barra gialla | Sistema in esecuzione, demone HALPI non connesso — normale per un breve periodo durante l’avvio. Se persiste, vedere [Risoluzione dei problemi](./troubleshooting.md#i-led-restano-gialli) |
+| Barra verde | Funzionamento normale |
+| Barra arancione o verde scuro | Alimentazione di ingresso assente, funzionamento con l’alimentazione di riserva — segue lo spegnimento, a meno che l’alimentazione non ritorni entro pochi secondi |
+| Barra viola | Spegnimento in corso |
+| Tutti rossi fissi | Sistema operativo che non risponde — il controller lo riavvierà automaticamente |
+| Tutti rossi lampeggianti | Guasto dei supercondensatori — contattare l’assistenza |
+| Tutti blu fissi | Passaggio allo standby in corso |
+| Tutti rossi attenuati | Standby |
+| Tutti spenti | Sistema spento |
 
-| Sequenza dei LED | Colore | Significato |
-|-------------|-------|---------|
-| LED 5 acceso fisso | Rosso | Alimentazione presente, in attesa di carica |
-| Riempimento progressivo | Rosso | Carica dei supercondensatori |
-| Arcobaleno + ciclo di colori | Multicolore | Avvio del CM5 non riuscito |
-| Barra di tensione | Giallo | Funzionamento in modalità Solo |
-| Barra di tensione | Verde | Funzionamento in modalità Co-op |
-| Barra di tensione | Arancione | Alimentazione di riserva attiva (Solo) |
-| Barra di tensione | Verde scuro | Alimentazione di riserva attiva (Co-op) |
-| Tutti lampeggianti | Rosso | Sovratensione dei supercondensatori |
-| Tutti accesi fissi | Rosso | Timeout del watchdog |
-| Barra di tensione | Viola | Spegnimento in corso |
-| Tutti accesi fissi | Blu | Spegnimento verso lo standby in corso |
-| Tutti accesi fissi | Rosso attenuato | Standby |
-| Tutti spenti | — | Sistema spento |
+Nelle sequenze a barra, il numero di LED accesi indica il livello di carica dei supercondensatori. Le finestre di tensione esatte e la mappatura completa degli stati si trovano nel riferimento [Controller della scheda portante](../technical-reference/controller.md#riferimento-dei-led-di-stato).
 
-### Indicazione della tensione dei supercondensatori
+La luminosità dei LED è regolabile — vedere [Controllo dei LED](./software.md#controllo-dei-led). Con il componente aggiuntivo [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights) i LED possono anche essere riutilizzati come display per metriche di sistema e dati nautici (attività di rete, livelli dei serbatoi, valori NMEA 2000 e Signal K).
 
-Durante il funzionamento i LED fungono da indicatore di tensione e mostrano il livello di carica dei supercondensatori:
+## In caso di mancanza di alimentazione
 
-- **LED 1**: 5,0–6,0 V
-- **LED 2**: 6,0–7,0 V
-- **LED 3**: 7,0–8,0 V
-- **LED 4**: 8,0–9,0 V
-- **LED 5**: 9,0–10,0 V
+Non occorre fare nulla. I cali e i disturbi brevi — fino a 5 secondi per impostazione predefinita — vengono coperti dai supercondensatori e il funzionamento prosegue senza interruzioni. In caso di interruzione più lunga, il sistema si spegne da solo in modo controllato sfruttando i 30–60 secondi di alimentazione di riserva immagazzinata nei supercondensatori. Quando l’alimentazione di ingresso ritorna, il sistema si riavvia automaticamente.
 
-## Gestione dell’alimentazione e procedure di spegnimento
+!!! warning "Non è un UPS"
+    I supercondensatori servono a coprire i disturbi brevi e ad alimentare uno spegnimento sicuro. Per continuare a funzionare durante interruzioni prolungate è necessario un gruppo di continuità (UPS) esterno.
 
-HALPI2 è dotato di un alimentatore progettato per resistere a picchi di tensione, disturbi e brevi interruzioni.
+## Verifica dello stato del sistema
 
-### Panoramica del sistema di alimentazione
+Una barra LED verde indica che il sistema è in buono stato. Per i dettagli, il comando `halpi` mostra lo stato del controller, le tensioni, la corrente e le temperature:
 
-Il sistema di gestione dell’alimentazione dell’HALPI2 è costituito da:
+```bash
+halpi status
+```
 
-- **Alimentatore ad ampio intervallo** (ingresso 11–32 V CC con protezione fino a 100 V CC)
-- **Sistema di riserva a supercondensatori** per spegnimenti controllati in caso di mancanza di alimentazione
-- **Limitazione di corrente** (selezionabile 0,9 A o 2,5 A)
-- **Rilevamento della mancanza di alimentazione** e avvio automatico dello spegnimento
-- **Monitoraggio della tensione e della corrente di ingresso**
+Se qualcosa non sembra corretto, vedere [Risoluzione dei problemi](./troubleshooting.md) e la [Guida al software](./software.md#strumento-da-riga-di-comando-halpi).
 
-Il sistema funziona in due modalità: modalità Solo e modalità Co-op.
+## Funzionamento senza il demone
 
-### Funzionamento in modalità Solo
+Sui sistemi operativi privi del demone HALPI, il controller ricorre a una modalità di protezione di base: rileva comunque la mancanza di alimentazione e richiede lo spegnimento, ma simulando pressioni del pulsante di accensione — il che non funziona se il sistema è bloccato — e il monitoraggio e la configurazione non sono disponibili. Se si utilizza un sistema operativo personalizzato, installare il demone; vedere [Altre distribuzioni Debian](../software-development/ubuntu-installation.md). Il funzionamento delle due modalità è descritto nel riferimento [Controller della scheda portante](../technical-reference/controller.md#modalita-di-funzionamento).
 
-La modalità Solo garantisce un funzionamento autonomo di base quando il demone HALPI non è in esecuzione. Il controller opera in modo indipendente, senza comunicazione con il software.
-
-#### Caratteristiche della modalità Solo
-
-- **Nessuna comunicazione software necessaria**
-- **Protezione di base dalla mancanza di alimentazione**: monitora la tensione di ingresso e reagisce alla mancanza di alimentazione
-- **Spegnimento automatico tramite pressioni simulate del pulsante di accensione**
-- **Opzioni di monitoraggio e configurazione limitate**
-
-#### Mancanza di alimentazione e spegnimento in modalità Solo
-
-**Rilevamento della mancanza di alimentazione:**
-Il controller monitora la tensione di ingresso e rileva la mancanza di alimentazione. Un timer di interruzione di corrente (valore predefinito 5 secondi) impedisce lo spegnimento in caso di brevi interruzioni.
-
-**Sequenza di spegnimento automatico:**
-
-1. **Il controller rileva la mancanza di alimentazione**
-2. **Si attiva il timer di interruzione di corrente**, che distingue i disturbi da un’effettiva mancanza di alimentazione
-3. **Pressioni simulate del pulsante di accensione**: il controller invia al Compute Module una doppia pressione del pulsante di accensione
-4. **Il sistema operativo reagisce** e avvia lo spegnimento controllato
-5. **I supercondensatori mantengono l’alimentazione** (in genere 30–60 secondi disponibili)
-6. **Protezione con timeout di 60 secondi**: spegnimento forzato se lo spegnimento controllato non riesce
-7. **Il sistema resta spento** finché l’alimentazione non torna
-8. **Riavvio automatico** al ritorno dell’alimentazione
-
-**Spegnimento manuale in modalità Solo:**
-
-- Avviene il normale spegnimento del sistema operativo
-- Il sistema si riavvia automaticamente dopo 5 secondi se l’alimentazione di ingresso è ancora presente
-- Per uno spegnimento definitivo, scollegare l’alimentazione di ingresso dopo aver avviato lo spegnimento controllato
-
-#### Quando la modalità Solo è attiva
-
-La modalità Solo si attiva:
-
-- Durante l’avvio iniziale, prima che parta il demone HALPI
-- Se il demone HALPI non si avvia o è disabilitato
-- Su sistemi operativi non supportati, privi del demone
-- Quando il demone si è bloccato o non risponde più
-
-!!! tip "Affidabilità della modalità Solo"
-    La modalità Solo offre una protezione essenziale, ma è meno affidabile della modalità Co-op. Il controller si affida a pressioni simulate del pulsante per richiedere lo spegnimento, che potrebbero non funzionare se il sistema è bloccato.
-
-### Funzionamento in modalità Co-op
-
-La modalità Co-op offre tutte le funzioni di gestione dell’alimentazione quando il demone HALPI è in esecuzione e comunica con il controller.
-
-#### Funzioni della modalità Co-op
-
-- **Comunicazione diretta con il software**: scambio di dati in tempo reale tra controller e demone
-- **Protezione con timer watchdog**: un timeout di 30 secondi garantisce la stabilità del sistema
-- **Comportamento di spegnimento configurabile**: tempi e comandi personalizzabili
-- **Monitoraggio in tempo reale**: monitoraggio completo dei parametri di alimentazione
-- **Opzioni di configurazione avanzate**
-
-#### Mancanza di alimentazione e spegnimento in modalità Co-op
-
-**Rilevamento della mancanza di alimentazione:**
-Il controller monitora l’alimentazione di ingresso e comunica gli eventi direttamente al demone HALPI. Il timer di interruzione di corrente configurabile (valore predefinito 5 secondi) consente brevi interruzioni dell’alimentazione senza avviare lo spegnimento.
-
-**Sequenza di spegnimento automatico:**
-
-1. **Il controller rileva la mancanza di alimentazione** e lo comunica al demone HALPI
-2. **Valutazione del timer di interruzione di corrente**: il demone valuta se la mancanza di alimentazione supera la soglia
-3. **Esecuzione del comando di spegnimento**: il demone esegue il comando di spegnimento (predefinito: `/sbin/poweroff`)
-4. **Spegnimento controllato del sistema operativo**: le applicazioni si chiudono e i file system vengono smontati in sicurezza
-5. **L’alimentazione di riserva dei supercondensatori** fornisce energia per tutta la durata dello spegnimento
-6. **Il controller monitora il completamento**: rileva quando il Compute Module si spegne
-7. **La linea da 5 V viene disattivata** al termine dello spegnimento
-8. **Il sistema resta spento** finché non torna l’alimentazione di ingresso
-9. **Gestione del riavvio**: in base alla configurazione, il sistema si riavvia automaticamente oppure resta spento
-
-**Spegnimento manuale in modalità Co-op:**
-
-- Quando viene avviato dal software, avviene un normale spegnimento controllato
-- Il sistema si riavvia automaticamente dopo 5 secondi se l’alimentazione di ingresso è ancora presente
-- Per impedire il riavvio automatico, scollegare l’alimentazione oppure impostare `auto_restart` su `false`
-
-#### Protezione watchdog
-
-La modalità Co-op include la protezione con timer watchdog:
-
-- **Timeout di comunicazione di 30 secondi**: il demone deve comunicare regolarmente con il controller
-- **Ripristino automatico**: il sistema si riavvia se la comunicazione si interrompe
-- **Protezione dai guasti software**: garantisce il ripristino in caso di blocco del demone o del sistema
-- **“Alimentare il watchdog”**: il demone invia aggiornamenti di stato regolari per azzerare il timer
-
-#### Quando la modalità Co-op è attiva
-
-La modalità Co-op si attiva quando:
-
-- Il demone HALPI è in esecuzione e funziona correttamente
-- La comunicazione tra demone e controller è stabilita
-- Il sistema funziona su un sistema operativo supportato
-- Sono disponibili tutte le funzioni di monitoraggio e controllo del sistema
-
-!!! info "Verifica della modalità Co-op"
-    Controllare lo stato del demone: `systemctl status halpid`
-
-    Visualizzare lo stato del controller: `halpi status`
-
-    Per ulteriori informazioni sul comando `halpi`, vedere la [Guida al software](./software.md#demone-halpi-halpid).
-
-### Alimentazione di riserva e sistema di condensatori
-
-Entrambe le modalità si affidano al sistema di riserva a supercondensatori per la protezione tramite spegnimento controllato:
-
-**Durata dell’alimentazione di riserva:**
-
-- I supercondensatori forniscono 30–60 secondi di alimentazione di riserva
-- La durata dipende dal carico del sistema e dalle periferiche collegate
-- È un tempo sufficiente per chiudere in sicurezza il file system e terminare i processi
-- Non è pensata per proseguire il funzionamento durante interruzioni prolungate
-
-**Caratteristiche di carica:**
-
-- Tempo di carica: 25 secondi con limite di corrente di 0,9 A
-- Tempo di carica: 9 secondi con limite di corrente di 2,5 A
-- L’avanzamento della carica è indicato visivamente dalla progressione dei LED (riempimento rosso)
-
-!!! warning "Limiti della protezione dalla mancanza di alimentazione"
-    Il sistema a supercondensatori è progettato per lo spegnimento controllato, non per la continuità di funzionamento. Non farvi affidamento in caso di interruzioni di corrente prolungate.
-
-### Considerazioni sullo spegnimento manuale
-
-HALPI2 privilegia il funzionamento e il ripristino automatici, il che influisce sul comportamento dello spegnimento manuale.
-
-#### Comportamento di riavvio automatico
-
-Per impostazione predefinita, HALPI2 si riavvia dopo uno spegnimento manuale se l’alimentazione di ingresso è ancora presente:
-
-- Lo spegnimento manuale comporta un normale spegnimento del sistema operativo
-- Al completamento dello spegnimento segue un periodo di attesa di 5 secondi
-- Il sistema si riavvia automaticamente per mantenere la disponibilità operativa
-- Questo garantisce il ripristino dopo spegnimenti accidentali
-
-#### Metodi di spegnimento intenzionale
-
-Per uno spegnimento definitivo, utilizzare uno dei metodi seguenti:
-
-**Metodo con scollegamento dell’alimentazione:**
-
-1. Avviare lo spegnimento controllato dal software
-2. Attendere il completamento dello spegnimento (i LED si spengono)
-3. Scollegare l’alimentazione di ingresso per impedire il riavvio automatico
-
-**Metodo con configurazione:**
-
-1. Disattivare il riavvio automatico: `halpi config set auto_restart false`
-2. Avviare lo spegnimento dal software
-3. Il sistema resta spento al termine dello spegnimento
-
-**Modalità standby (in futuro):**
-!!! info "Stato della funzione"
-    La modalità standby è prevista per versioni future del firmware. Consentirà di spegnere il Compute Module mantenendo attivo il controller dell’HALPI2, in attesa di eventi di riattivazione.
+!!! quote "Informazioni correlate"
+    - **Funzionamento interno della gestione dell’alimentazione:** vedere [Controller della scheda portante](../technical-reference/controller.md)
+    - **Dettagli sul sistema di alimentazione:** vedere [Alimentazione in dettaglio](../technical-reference/power-supply.md)
+    - **Il comando `halpi` e il demone:** vedere [Guida al software](./software.md)
+    - **Problemi:** vedere [Risoluzione dei problemi](./troubleshooting.md)

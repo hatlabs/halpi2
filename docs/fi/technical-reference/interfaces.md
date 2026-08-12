@@ -1,8 +1,8 @@
 ---
-translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+translated_from: e9e4f459212f6282e404954def18772911ead89c
 ---
 
-# Liitännät ja tiedonsiirto
+# Liitäntöjen tekniset tiedot
 
 Tällä sivulla kuvataan, miten CM5:n liitännät on tuotu HALPI2:n emolevylle.
 Kortin CAN FD- ja RS-485-porttien päivittäisestä käytöstä kerrotaan

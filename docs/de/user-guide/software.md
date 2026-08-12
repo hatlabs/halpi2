@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Software-Handbuch
@@ -220,7 +220,7 @@ Die Softwareschnittstelle des HALPI2 besteht aus dem Dienst `halpid` und dem Kom
 
 ### HALPI-Daemon (`halpid`)
 
-Der HALPI-Daemon läuft als Systemdienst und stellt die Verbindung zwischen Betriebssystem und HALPI2-Controller her. Er ermöglicht den Co-op-Modus mit vollem Umfang an Überwachung und Energieverwaltung.
+Der HALPI-Daemon läuft als Systemdienst und stellt die Verbindung zwischen Betriebssystem und HALPI2-Controller her. Mit laufendem Daemon stehen dem Controller Überwachung, Konfiguration und die Koordination des geordneten Herunterfahrens in vollem Umfang zur Verfügung — wie sich der Controller mit und ohne Daemon verhält, beschreibt die Referenz [Controller der Trägerplatine](../technical-reference/controller.md#betriebsarten).
 
 #### Verwaltung des Dienstes
 
@@ -361,8 +361,9 @@ Beispiele:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 Der Abschaltbefehl sorgt für ein sicheres Herunterfahren: Das Betriebssystem schließt die Anwendungen und hängt die Dateisysteme ordnungsgemäß aus, bevor der Controller die Spannung abschaltet.

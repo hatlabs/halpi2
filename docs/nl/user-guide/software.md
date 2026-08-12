@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Softwarehandleiding
@@ -226,7 +226,7 @@ De software-interface van de HALPI2 bestaat uit de daemon `halpid` en het opdrac
 
 ### HALPI-daemon (`halpid`)
 
-De HALPI-daemon draait als systeemdienst en verzorgt de communicatie tussen het besturingssysteem en de HALPI2-controller. Hij maakt werking in de co-opmodus mogelijk, met volledige bewaking en energiebeheer.
+De HALPI-daemon draait als systeemdienst en verzorgt de communicatie tussen het besturingssysteem en de HALPI2-controller. Met een draaiende daemon krijgt de controller volledige bewaking, configuratie en coördinatie van het gecontroleerd afsluiten — zie de referentie [Controller van het carrierboard](../technical-reference/controller.md#bedrijfsmodi) voor hoe de controller zich met en zonder daemon gedraagt.
 
 #### Dienstbeheer
 
@@ -363,8 +363,9 @@ Voorbeelden van opdrachten voor energiebeheer:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 De shutdown-opdracht zorgt ervoor dat het systeem veilig wordt uitgeschakeld, zodat het besturingssysteem applicaties kan sluiten en bestandssystemen correct kan ontkoppelen voordat de controller de spanning wegneemt.

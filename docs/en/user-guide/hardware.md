@@ -158,7 +158,7 @@ The status LEDs provide information about the system's power and activity states
 | **9** | Green | CAN TX/RX LEDs. These LEDs flash when data is either received (RX) or transmitted (TX) on the CAN interface. |
 | **10** | Green | RS-485 TX/RX LEDs. These LEDs flash when data is either received (RX) or transmitted (TX) on the RS-485 interface. |
 
-The RGB LED patterns are documented in the [Operation Guide](./operation.md#status-led-indicators).
+The RGB LED patterns are documented in [Daily Operation](./operation.md#status-led-indicators).
 
 ## Current Limiting Configuration
 
@@ -245,7 +245,7 @@ After hardware installation, the HAT may require software configuration to funct
 
 !!! quote "Related Information"
     - **GPIO pinout reference:** See [Hardware Reference](../technical-reference/hardware.md)
-    - **Software configuration:** See [Advanced Configuration](../software-development/advanced-config.md)
+    - **Software configuration:** See [Software Guide](./software.md)
     - **Enclosure modifications:** See [Custom Connector Options](#custom-connector-options)
 
 ## Replacing the NVMe SSD
@@ -289,7 +289,7 @@ For any software configuration or troubleshooting, refer to the [Software Guide]
 
 !!! quote "Related Information"
     - **System images:** See [Software Guide](./software.md)
-    - **Boot procedures:** See [System Operation](./operation.md)
+    - **Boot procedures:** See [Daily Operation](./operation.md#powering-on)
     - **Hardware access:** See [Enclosure Access](#enclosure-access)
 
 ## Replacing the Compute Module 5

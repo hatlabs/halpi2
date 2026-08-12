@@ -475,7 +475,6 @@ by each of them, because five agents share this file.
 | security hardening | refuerzo de la seguridad | advanced-config.md. |
 | backup and recovery (data, not power) | copia de seguridad y recuperación | advanced-config.md. Deliberately not `respaldo`, which the glossary assigns to the super-capacitor and RTC battery senses (`pila de respaldo`, `respal |
 | performance tuning | ajuste del rendimiento | advanced-config.md. |
-| power-on/off sequencing | secuenciación de encendido y apagado | power-supply.md. |
 | brownout | caída de tensión | power-supply.md. Reuses the glossary's `voltage drop` → caída de tensión; kept distinct from `corte de corriente` (blackout), which the glossary alrea |
 | load management | gestión de la carga | power-supply.md. |
 | status reporting | notificación del estado | controller.md. Paired with the glossary's `monitoring` → supervisión in the same bullet. |
@@ -492,3 +491,11 @@ by each of them, because five agents share this file.
 | power connector / power socket | conector de alimentación | The English source alternates the two words for the same E7T port; Spanish uses one. `toma` is reserved for nothing here — see `receptacle / socket` above for the connector-opening senses. |
 | pull-up resistor | resistencia de pull-up | technical-reference/hardware.md, I2C section. The English term is kept, as with `firmware` and `watchdog`: `resistencia de polarización` names a different function and `resistencia elevadora` is a calque no datasheet uses. |
 | to serve (a bus feeding a connector) | dar servicio a | technical-reference/hardware.md, I2C section, where one bus serves MIPI0 and another MIPI1. Neutral and impersonal per rule 1; `alojar` is already used for the devices sitting on a bus, so a second verb is needed for the bus reaching a connector. |
+| UPS (uninterruptible power supply) | SAI (sistema de alimentación ininterrumpida) | operation.md, power-supply.md and faq.md, including the admonition title «No es un SAI». Standard Spanish acronym; glossed once on first mention per page where it appears in prose. |
+| unattended operation | funcionamiento desatendido | operation.md and faq.md. Recurs as the design premise of the power management chapter. |
+| fallback mode | modo de respaldo | controller.md, Solo mode. Reuses the glossary's `respaldo` (backup) sense: the mode the controller falls back on. |
+| state machine | máquina de estados | power-supply.md, twice. Established Spanish CS term. |
+| load dump (alternator) | desconexión brusca de carga (load dump) | power-supply.md, input stage. The English term is what automotive EMC datasheets use, so it is glossed in parentheses on the single mention. |
+| power budget | presupuesto de potencia | power-supply.md, current limiting section. |
+| watchdog feed (noun) | señal de alimentación del watchdog | controller.md. The verb phrase «alimentar el watchdog» was already established; this is the noun the daemon sends. |
+| add-on | complemento | operation.md, the HALPI2 blinkenlights add-on. |

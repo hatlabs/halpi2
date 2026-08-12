@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Hardwarevejledning
@@ -162,7 +162,7 @@ Status-LED'erne giver oplysninger om systemets strøm- og aktivitetstilstand. Ne
 | **9** | Grøn | CAN TX/RX-LED'er. Disse LED'er blinker, når der modtages (RX) eller sendes (TX) data på CAN-grænsefladen. |
 | **10** | Grøn | RS-485 TX/RX-LED'er. Disse LED'er blinker, når der modtages (RX) eller sendes (TX) data på RS-485-grænsefladen. |
 
-RGB-LED'ernes mønstre er beskrevet under [Systemdrift](./operation.md#status-led-indikatorer).
+RGB-LED'ernes mønstre er beskrevet under [Daglig brug](./operation.md#status-led-indikatorer).
 
 ## Konfiguration af strømbegrænsning
 
@@ -249,7 +249,7 @@ Efter hardwareinstallationen kan HAT'en kræve softwarekonfiguration for at fung
 
 !!! quote "Relaterede oplysninger"
     - **Reference for GPIO-benforbindelser:** Se [Hardwarereference](../technical-reference/hardware.md)
-    - **Softwarekonfiguration:** Se [Avanceret konfiguration](../software-development/advanced-config.md)
+    - **Softwarekonfiguration:** Se [Softwarevejledningen](./software.md)
     - **Ændringer af kabinettet:** Se [Alternative stikmuligheder](#alternative-stikmuligheder)
 
 ## Udskiftning af NVMe SSD'en
@@ -293,7 +293,7 @@ Hvis du har brug for softwarekonfiguration eller fejlfinding, kan du læse mere 
 
 !!! quote "Relaterede oplysninger"
     - **Systemimages:** Se [Softwarevejledning](./software.md)
-    - **Opstartsprocedurer:** Se [Systemdrift](./operation.md)
+    - **Opstartsprocedurer:** Se [Daglig brug](./operation.md#opstart)
     - **Adgang til hardwaren:** Se [Adgang til kabinettet](#adgang-til-kabinettet)
 
 ## Udskiftning af Compute Module 5

@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Maskinvareveiledning
@@ -162,7 +162,7 @@ Status-LED-ene gir informasjon om strøm- og aktivitetstilstanden til systemet. 
 | **9** | Grønn | CAN TX/RX-LED-er. Disse LED-ene blinker når data enten mottas (RX) eller sendes (TX) på CAN-grensesnittet. |
 | **10** | Grønn | RS-485 TX/RX-LED-er. Disse LED-ene blinker når data enten mottas (RX) eller sendes (TX) på RS-485-grensesnittet. |
 
-Mønstrene for RGB-LED-ene er dokumentert i [driftsveiledningen](./operation.md#status-led-indikatorer).
+Mønstrene for RGB-LED-ene er dokumentert i [Daglig bruk](./operation.md#status-led-indikatorer).
 
 ## Konfigurasjon av strømbegrensning
 
@@ -249,7 +249,7 @@ Etter maskinvaremonteringen kan HAT-en trenge programvarekonfigurasjon for å vi
 
 !!! quote "Relatert informasjon"
     - **Referanse for GPIO-pinneoppsett:** Se [Maskinvarereferanse](../technical-reference/hardware.md)
-    - **Programvarekonfigurasjon:** Se [Avansert konfigurasjon](../software-development/advanced-config.md)
+    - **Programvarekonfigurasjon:** Se [Programvareveiledning](./software.md)
     - **Endringer på kabinettet:** Se [Tilpassede kontaktvalg](#tilpassede-kontaktvalg)
 
 ## Bytte NVMe SSD-en
@@ -293,7 +293,7 @@ For programvarekonfigurasjon og feilsøking, se [programvareveiledningen](./soft
 
 !!! quote "Relatert informasjon"
     - **Systembilder:** Se [Programvareveiledning](./software.md)
-    - **Oppstartsprosedyrer:** Se [Systemdrift](./operation.md)
+    - **Oppstartsprosedyrer:** Se [Daglig bruk](./operation.md#sla-pa)
     - **Tilgang til maskinvaren:** Se [Tilgang til kabinettet](#tilgang-til-kabinettet)
 
 ## Bytte Compute Module 5

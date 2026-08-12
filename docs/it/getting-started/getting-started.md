@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Guida introduttiva
@@ -94,7 +94,7 @@ la barra LED dovrebbe iniziare a riempirsi di luci rosse, a indicare che i super
 Se è collegato un display, dovrebbe comparire la schermata iniziale di Raspberry Pi OS e infine il desktop grafico.
 
 !!! tip "Suggerimento"
-    Le sequenze dei LED di stato sono documentate nella [Guida al funzionamento](../user-guide/operation.md).
+    Le sequenze dei LED di stato sono documentate in [Uso quotidiano](../user-guide/operation.md#indicatori-led-di-stato).
 
 ### Accedere all’HALPI2 senza display
 
@@ -164,11 +164,7 @@ Aprire l’interfaccia web di Signal K e osservare l’attività della connessio
 
 L’HALPI2 è progettato per spegnersi automaticamente quando viene scollegato dall’alimentazione. Per spegnere il dispositivo è sufficiente togliere l’alimentazione, tramite un interruttore del quadro elettrico oppure scollegando il connettore di alimentazione. Il sistema avvia automaticamente una sequenza di spegnimento software, garantendo che tutte le applicazioni si chiudano correttamente e che il file system venga smontato in sicurezza.
 
-Se si sceglie di spegnere il sistema tramite l’interfaccia desktop o strumenti da riga di comando (come il comando `shutdown`), il dispositivo si riavvia automaticamente dopo circa 5 secondi. Questo comportamento è dovuto al sistema di gestione dell’alimentazione, che rileva la presenza di alimentazione esterna.
-
-Durante lo spegnimento è possibile monitorare lo stato del sistema tramite i LED sul pannello frontale. Quando l’alimentazione viene interrotta, i LED verdi si attenuano per segnalare una condizione di interruzione di corrente. Dopo 5 secondi i LED diventano viola, a indicare chiaramente che il dispositivo si sta spegnendo. Al termine del processo di spegnimento tutti i LED si spengono.
-
-In condizioni normali lo spegnimento richiede in genere solo pochi secondi. In alcuni casi, tuttavia, determinati servizi possono richiedere più tempo per arrestarsi correttamente. In tal caso il dispositivo può scaricare quasi completamente i supercondensatori prima di spegnersi. Questo tempo di spegnimento prolungato è normale e non indica un guasto del sistema.
+Durante lo spegnimento i LED prima si attenuano (rilevata l’interruzione di corrente), poi diventano viola mentre lo spegnimento è in corso e infine si spengono al termine. Il comportamento di spegnimento — compreso il riavvio automatico opzionale dopo uno spegnimento da software — è descritto in [Uso quotidiano](../user-guide/operation.md#spegnimento).
 
 ## Risoluzione dei problemi di configurazione iniziale
 
@@ -178,7 +174,7 @@ In condizioni normali lo spegnimento richiede in genere solo pochi secondi. In a
 
 - Verificare i collegamenti di alimentazione e la polarità
 - Controllare lo stato del fusibile
-- Assicurarsi che la tensione rientri nell’intervallo 11–32 V
+- Assicurarsi che la tensione rientri nell’intervallo 10–32 V
 
 ❌ **Access point WiFi non visibile:**
 
@@ -197,11 +193,11 @@ In condizioni normali lo spegnimento richiede in genere solo pochi secondi. In a
 - Assicurarsi che il display sia acceso e impostato sull’ingresso corretto
 - Provare un altro cavo HDMI o un’altra porta del display
 - Assicurarsi che l’HALPI2 sia acceso (i LED devono essere gialli o verdi)
-- Se i LED lampeggiano con una sequenza arcobaleno, il Compute Module 5 non è inserito correttamente. La causa può essere un danno durante il trasporto. Seguire le istruzioni nella [Guida utente](../user-guide/operation.md) per reinserire il CM5 oppure contattare l’assistenza.
+- Se i LED lampeggiano con una sequenza arcobaleno, il Compute Module 5 non è inserito correttamente. La causa può essere un danno durante il trasporto. Seguire le istruzioni nella [Guida all’hardware](../user-guide/hardware.md#sostituzione-del-compute-module-5) per reinserire il CM5 oppure contattare l’assistenza.
 
 ❌ **Il display collegato mostra un messaggio di errore relativo a “nvme”:**
 
-- Ciò indica che l’unità SSD NVMe non viene rilevata o non è inizializzata correttamente. La causa può essere un danno durante il trasporto. Seguire le istruzioni nella [Guida utente](../user-guide/operation.md) per reinserire l’unità SSD NVMe oppure contattare l’assistenza.
+- Ciò indica che l’unità SSD NVMe non viene rilevata o non è inizializzata correttamente. La causa può essere un danno durante il trasporto. Seguire le istruzioni nella [Guida all’hardware](../user-guide/hardware.md#sostituzione-dellunita-ssd-nvme) per reinserire l’unità SSD NVMe oppure contattare l’assistenza.
 
 ### Come ottenere assistenza:
 
@@ -344,7 +340,7 @@ Scaricare la [dima di foratura HALPI2](./HALPI2_enclosure_1B_Drill_Template_v2.p
 
 HALPI2 integra un limitatore di corrente in ingresso che gestisce la carica iniziale dei supercondensatori e protegge l’installazione da condizioni di sovracorrente. Il limite di corrente può essere impostato su 0,9 A oppure su 2,5 A, a seconda della sorgente di alimentazione e dei requisiti dell’applicazione. L’impostazione predefinita di 0,9 A è adatta alla maggior parte delle applicazioni.
 
-Per aumentare la velocità di avvio iniziale o per alimentare periferiche ad alto assorbimento, è possibile passare all’impostazione da 2,5 A. Seguire i passaggi descritti nella [Guida utente](../user-guide/operation.md) per modificare l’impostazione del limite di corrente.
+Per aumentare la velocità di avvio iniziale o per alimentare periferiche ad alto assorbimento, è possibile passare all’impostazione da 2,5 A. Seguire i passaggi descritti nella [Guida all’hardware](../user-guide/hardware.md#configurazione-della-limitazione-di-corrente) per modificare l’impostazione del limite di corrente.
 
 #### Collegamento di alimentazione dedicato
 
@@ -384,7 +380,7 @@ Il connettore E7T è precablato e non richiede alcuna terminazione in campo. È 
 ##### Fasi di installazione
 
 1. **Spegnere** tutti i dispositivi NMEA 2000
-2. **Aprire la custodia di HALPI2** (per le istruzioni vedere la [Guida utente](../user-guide/operation.md))
+2. **Aprire la custodia di HALPI2** (per le istruzioni vedere la [Guida all’hardware](../user-guide/hardware.md#accesso-alla-custodia))
 3. **Individuare il connettore di alimentazione della scheda portante (carrier board)**
 4. **Scollegare la morsettiera esistente**
 5. **Collegare la morsettiera interna di alimentazione NMEA 2000** al connettore di alimentazione della scheda portante
@@ -429,7 +425,7 @@ Per la connettività di rete:
 ❌ **Nessuna indicazione di alimentazione:**
 
 - Controllare lo stato e la portata del fusibile
-- Verificare la tensione della sorgente di alimentazione (11–32 V)
+- Verificare la tensione della sorgente di alimentazione (10–32 V)
 - Confermare la corretta polarità
 - Verificare la continuità dei cavi di alimentazione
 
@@ -492,7 +488,7 @@ Per la connettività di rete:
 
 Una volta che l’HALPI2 è in funzione:
 
-1. **Consultare la [Guida utente](../user-guide/operation.md)** per istruzioni dettagliate sul funzionamento
-2. **Esaminare i casi d’uso più comuni** per le configurazioni specifiche per applicazione
-3. **Consultare il Riferimento tecnico** per le opzioni di configurazione avanzate
+1. **Leggere [Uso quotidiano](../user-guide/operation.md)** per conoscere il significato dei LED e il funzionamento dello spegnimento
+2. **Consultare la [Guida al software](../user-guide/software.md)** per gli aggiornamenti, l’accesso remoto e il comando `halpi`
+3. **Consultare il Riferimento tecnico** per le specifiche dettagliate
 4. **Partecipare alla comunità** per consigli, suggerimenti e assistenza

@@ -1,8 +1,8 @@
 ---
-translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+translated_from: e9e4f459212f6282e404954def18772911ead89c
 ---
 
-# Interfaces en connectiviteit
+# Interfacereferentie
 
 Deze pagina beschrijft hoe de interfaces van de CM5 op het HALPI2-carrierboard
 beschikbaar zijn gemaakt. Zie voor het dagelijks gebruik van de ingebouwde

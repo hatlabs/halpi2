@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Felsökning
@@ -12,7 +12,7 @@ Den här sidan tar upp vanliga problem du kan stöta på när du använder HALPI
 
 **Symtom:** ingen aktivitet i lysdioderna, inga livstecken efter att strömmen anslutits.
 
-1. Kontrollera med en multimeter vid E7T-kontakten att inspänningen ligger inom området (11–32 V DC).
+1. Kontrollera med en multimeter vid E7T-kontakten att inspänningen ligger inom området (10–32 V DC).
 2. Kontrollera strömkabelns anslutningar — se till att E7T-kontakten är helt intryckt.
 3. Om du matar enheten från NMEA 2000-bussen, kontrollera att strömbegränsningen är inställd på 0,9 A och att nätverket kan leverera tillräckligt med ström.
 4. Öppna kapslingen och leta efter synliga skador eller lösa interna anslutningar.
@@ -146,14 +146,14 @@ Lysdiodernas mönster gör det snabbt att avgöra systemets tillstånd:
 | Systemet startar inte | Inga lysdioder | Ingen inspänning eller hårdvarufel |
 | Fastnar under start | Röd successiv fyllning | Superkondensatorerna laddas fortfarande — vänta |
 | Fastnar under start | Regnbågsmönster | CM5 hittas inte — kontrollera modulens montering och koppla bort skärmar |
-| Förblir gul | Fast gul | Operativsystemet startar inte, eller daemonen är inte installerad |
-| Oväntad avstängning | Rullande grönt/gult | Spänningsbortfall upptäckt — kontrollera inspänningen |
-| Överspänning | LED 1 blinkar rött | Inspänningen för hög (över 32 V) |
-| Fel | Alla lysdioder blinkar rött | Hårdvarufel — kontakta tillverkaren |
+| Förblir gul | Gul stapel | Operativsystemet startar inte, eller daemonen är inte installerad |
+| Oväntad avstängning | Orange eller mörkgrön stapel, sedan violett | Inspänningen borta, avstängning på backupström — kontrollera inspänningen |
+| Systemet startar om av sig självt | Alla lysdioder lyser fast rött före omstarten | Watchdog-timeout — operativsystemet slutade svara och styrkretsen startade om det |
+| Fel | Alla lysdioder blinkar rött | Överspänning i superkondensatorerna — kontakta supporten |
 
 !!! quote "Relaterad information"
     - **LED-mönster:** se [Status-LED:ar](./operation.md#status-ledar)
-    - **Strömhantering:** se [Strömhantering och avstängning](./operation.md#stromhantering-och-avstangning)
+    - **Beteende vid spänningsbortfall:** se [Vid spänningsbortfall](./operation.md#vid-spanningsbortfall)
     - **Hantering av daemonen:** se [Programvaruguiden](./software.md#halpi-daemon-halpid)
     - **Detaljer om CAN-gränssnittet:** se [Gränssnitt och anslutningar](./interfaces.md#can-fd-nmea-2000)
     - **Detaljer om RS-485-gränssnittet:** se [Gränssnitt och anslutningar](./interfaces.md#rs-485-nmea-0183)

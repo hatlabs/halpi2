@@ -184,6 +184,11 @@ them.
 | power supply | virtalähde | |
 | power source | virransyöttö | |
 | input voltage range | syöttöjännitealue | |
+| input stage | tuloaste | |
+| inrush current | kytkentävirtasysäys | |
+| load dump | kuormanpudotus (load dump) | Keep the English term in parentheses on first mention |
+| uninterruptible power supply (UPS) | UPS-laite (keskeytymätön virransyöttö) | Expand in parentheses on first mention |
+| power-on threshold | käynnistysraja | Super-capacitor voltage required before the CM5 powers on |
 | polarity | napaisuus | |
 | positive (+) / negative (−) | plus (+) / miinus (−) | |
 | fuse | sulake | |
@@ -243,8 +248,20 @@ them.
 | glitch immunity | häiriönsieto | |
 | power management | virranhallinta | |
 | status LED | tila-LED | |
-| LED bar | LED-rivi | |
+| LED bar | LED-rivi | The physical row of LEDs on the front panel |
+| bar (LED pattern) | palkki | The lit pattern: *keltainen palkki*, *varaustasopalkki* |
+| charge level | varaustaso | |
 | monitoring | valvonta | |
+| carrier board controller | emolevyn ohjain | Plain *ohjain* after first mention |
+| operating mode | toimintatila | Solo mode → *solo-tila*, Co-op mode → *co-op-tila*; lowercase in running text |
+| state machine | tilakone | |
+| watchdog (timer) | vahtikoira-ajastin | First mention: `vahtikoira-ajastin (watchdog)`; *vahtikoiran aikakatkaisu* for the timeout |
+| watchdog feed | vahtikoiraviesti | |
+| blackout timer | katkoajastin | |
+| software shutdown | ohjelmallinen sammutus | Shutdown initiated from the OS, as opposed to cutting power |
+| standby | valmiustila | |
+| unattended operation | valvomaton käyttö | Also *toimia ilman valvontaa* |
+| host (the CM5/OS, from the controller's view) | isäntäjärjestelmä | |
 | passive cooling | passiivinen jäähdytys | |
 | filesystem | tiedostojärjestelmä | |
 | unmount (filesystem) | irrottaa | *tiedostojärjestelmä irrotetaan turvallisesti* |

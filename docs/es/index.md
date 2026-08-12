@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Introducción
@@ -105,7 +105,7 @@ Esta documentación está estructurada para atender tanto a los usuarios finales
 ### Para usuarios finales
 
 - Empezar por la guía **Primeros pasos** para la puesta en marcha y la instalación
-- Consultar **Casos de uso habituales** para obtener orientación específica de cada aplicación
+- Leer **Uso diario** para el uso cotidiano: significado de los LED, apagado y comportamiento ante la pérdida de alimentación
 - Recurrir a **Resolución de problemas** cuando surja alguna incidencia
 
 ### Para desarrolladores
@@ -113,7 +113,6 @@ Esta documentación está estructurada para atender tanto a los usuarios finales
 - Revisar la **Referencia técnica** para conocer las especificaciones detalladas
 - Estudiar las secciones de **Desarrollo de software** para las aplicaciones personalizadas
 - Examinar los **Archivos de diseño** para planificar la integración
-- Consultar la **Configuración avanzada** para optimizar el rendimiento
 
 ### Sugerencias sobre la documentación
 

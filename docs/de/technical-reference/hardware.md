@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Hardware-Referenz
@@ -12,7 +12,7 @@ Diese Seite enthält die elektrischen, mechanischen und umweltbezogenen Spezifik
 |:----------|:-----|
 | Rechenmodul | Raspberry Pi CM5 (CM4-kompatibel) |
 | Controller der Trägerplatine | RP2040 (Arm Cortex-M0+, zwei Kerne, 133 MHz) |
-| Eingangsspannung | 9–36 V DC (absolutes Maximum 38,6 V, Transientenschutz bis 100 V) |
+| Eingangsspannung | 10–32 V DC (absolutes Maximum 38,6 V, Transientenschutz bis 100 V) |
 | Leistungsaufnahme | 250 mA im Leerlauf bis 590 mA unter Last (12 V Eingang, HaLOS ohne Bildschirm) |
 | Einstellungen der Strombegrenzung | 0,9 A oder 2,5 A (wählbar) |
 | Pufferung durch Superkondensatoren | 4× 25 F / 2,7 V in Reihe (effektiv 6,25 F bei maximal 10,8 V) |
@@ -31,7 +31,7 @@ Die Stromversorgung nimmt einen weiten Gleichspannungsbereich auf und stellt ger
 
 | Parameter | Wert |
 |:----------|:-----|
-| Empfohlene Eingangsspannung | 9–36 V DC |
+| Empfohlene Eingangsspannung | 10–32 V DC |
 | Absolute maximale Eingangsspannung | 38,6 V (dauerhaft), 100 V (transient, TVS-begrenzt) |
 | Maximaler Eingangsstrom | 0,9 A oder 2,5 A (wählbare Strombegrenzung) |
 | Eingangssicherung | 7 A (nur Fehlerschutz) |
@@ -76,7 +76,7 @@ Typ Phoenix MC, Raster 3,81 mm, 2-polig. An der Frontplatte wird der E7T-Hohlste
 | Pin | Funktion |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V DC) |
+| 2 | VIN (10–32 V DC) |
 
 ### CAN-FD-Anschluss
 

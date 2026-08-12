@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Dépannage
@@ -12,7 +12,7 @@ Cette page présente les problèmes courants que vous pouvez rencontrer en utili
 
 **Symptômes :** aucune activité des LED, aucun signe de vie après le raccordement de l'alimentation.
 
-1. Vérifiez au multimètre, sur le connecteur E7T, que la tension d'entrée est dans la plage admise (11–32 V CC).
+1. Vérifiez au multimètre, sur le connecteur E7T, que la tension d'entrée est dans la plage admise (10–32 V CC).
 2. Contrôlez les raccordements du câble d'alimentation — assurez-vous que le connecteur E7T est bien enfoncé.
 3. Si vous alimentez l'appareil par le bus NMEA 2000, vérifiez que le limiteur de courant est réglé sur 0,9 A et que le réseau peut fournir un courant suffisant.
 4. Ouvrez le boîtier et recherchez des dommages visibles ou des connexions internes desserrées.
@@ -146,14 +146,14 @@ Les motifs des LED permettent d'identifier rapidement l'état du système :
 | Le système ne démarre pas | Aucune LED | Pas d'alimentation d'entrée ou défaut matériel |
 | Bloqué au démarrage | Remplissage rouge progressif | Supercondensateurs encore en charge — patientez |
 | Bloqué au démarrage | Motif arc-en-ciel | CM5 non détecté — vérifiez la mise en place du module et débranchez les écrans |
-| Reste au jaune | Jaune fixe | Le système ne démarre pas ou le démon n'est pas installé |
-| Arrêt inattendu | Vert/jaune défilant | Perte d'alimentation détectée — vérifiez l'alimentation d'entrée |
-| Surtension | LED 1 clignotant en rouge | Tension d'entrée trop élevée (plus de 32 V) |
-| Défaut | Toutes les LED clignotant en rouge | Défaut matériel — contactez le fabricant |
+| Reste au jaune | Barre jaune | Le système ne démarre pas ou le démon n'est pas installé |
+| Arrêt inattendu | Barre orange ou vert foncé, puis violette | Alimentation d'entrée perdue, arrêt sur l'alimentation de secours — vérifiez l'alimentation d'entrée |
+| Le système redémarre tout seul | Toutes les LED rouges fixes avant le redémarrage | Expiration du chien de garde — le système d'exploitation ne répondait plus et le contrôleur l'a redémarré |
+| Défaut | Toutes les LED clignotant en rouge | Surtension des supercondensateurs — contactez l'assistance |
 
 !!! quote "Voir aussi"
     - **Motifs des LED :** voir [LED d'état](./operation.md#led-detat)
-    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#gestion-de-lalimentation-et-procedures-darret)
+    - **Comportement en cas de perte d'alimentation :** voir [En cas de perte d'alimentation](./operation.md#en-cas-de-perte-dalimentation)
     - **Gestion du démon :** voir le [Guide logiciel](./software.md#demon-halpi-halpid)
     - **Détails de l'interface CAN :** voir [Interfaces et connectivité](./interfaces.md#can-fd-nmea-2000)
     - **Détails de l'interface RS-485 :** voir [Interfaces et connectivité](./interfaces.md#rs-485-nmea-0183)

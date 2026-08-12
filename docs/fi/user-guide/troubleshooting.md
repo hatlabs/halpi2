@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Vianetsintä
@@ -12,7 +12,7 @@ Tällä sivulla käydään läpi tavallisia HALPI2:n käytössä vastaan tulevia
 
 **Oireet:** LEDit eivät reagoi, eikä laitteessa näy elonmerkkejä virran kytkemisen jälkeen.
 
-1. Varmista yleismittarilla E7T-liittimestä, että syöttöjännite on sallitulla alueella (11–32 V DC).
+1. Varmista yleismittarilla E7T-liittimestä, että syöttöjännite on sallitulla alueella (10–32 V DC).
 2. Tarkista virtakaapelin kytkennät — varmista että E7T-liitin on kunnolla pohjassa.
 3. Jos käytät virransyöttöä NMEA 2000 -väylästä, varmista että virranrajoitus on 0,9 A ja että verkko pystyy syöttämään riittävästi virtaa.
 4. Avaa kotelo ja tarkista, näkyykö vaurioita tai löysiä sisäisiä liitoksia.
@@ -146,14 +146,14 @@ LED-kuvioista näkee järjestelmän tilan nopeasti:
 | Järjestelmä ei käynnisty | Ei LEDejä | Ei syöttöjännitettä tai laitevika |
 | Jumissa käynnistyksessä | Punainen täyttyvä rivi | Superkondensaattorit latautuvat vielä — odota |
 | Jumissa käynnistyksessä | Sateenkaarikuvio | CM5:tä ei havaita — tarkista moduulin paikallaanolo ja irrota näytöt |
-| Jää keltaiseksi | Tasainen keltainen | Käyttöjärjestelmä ei käynnisty tai daemonia ei ole asennettu |
-| Odottamaton sammutus | Vierivä vihreä/keltainen | Jännitteen menetys havaittu — tarkista syöttöjännite |
-| Ylijännite | LED 1 vilkkuu punaisena | Syöttöjännite liian korkea (yli 32 V) |
-| Vika | Kaikki LEDit vilkkuvat punaisina | Laitevika — ota yhteyttä valmistajaan |
+| Jää keltaiseksi | Keltainen palkki | Käyttöjärjestelmä ei käynnisty tai daemonia ei ole asennettu |
+| Odottamaton sammutus | Oranssi tai tummanvihreä palkki, sitten violetti | Syöttöjännite menetetty, sammutus varavirralla — tarkista syöttöjännite |
+| Järjestelmä käynnistyy itsestään uudelleen | Kaikki LEDit palavat punaisina ennen uudelleenkäynnistystä | Vahtikoiran aikakatkaisu — käyttöjärjestelmä lakkasi vastaamasta ja ohjain käynnisti sen uudelleen |
+| Vika | Kaikki LEDit vilkkuvat punaisina | Superkondensaattorien ylijännite — ota yhteyttä tukeen |
 
 !!! quote "Aiheeseen liittyvää"
     - **LED-kuviot:** katso [Tila-LEDit](./operation.md#tila-ledit)
-    - **Virranhallinta:** katso [Virranhallinta ja sammutus](./operation.md#virranhallinta-ja-sammutus)
+    - **Toiminta sähkökatkoissa:** katso [Kun virransyöttö katkeaa](./operation.md#kun-virransyotto-katkeaa)
     - **Daemonin hallinta:** katso [Ohjelmisto-opas](./software.md#halpi-daemon-halpid)
     - **CAN-liitännän tiedot:** katso [Liitännät ja tiedonsiirto](./interfaces.md#can-fd-nmea-2000)
     - **RS-485-liitännän tiedot:** katso [Liitännät ja tiedonsiirto](./interfaces.md#rs-485-nmea-0183)

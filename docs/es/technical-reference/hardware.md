@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Referencia de hardware
@@ -12,7 +12,7 @@ Esta página recoge las especificaciones eléctricas, mecánicas y ambientales d
 |:----------|:------|
 | Módulo de cómputo | Raspberry Pi CM5 (compatible con CM4) |
 | Controlador de la placa portadora | RP2040 (Arm Cortex-M0+, doble núcleo, 133 MHz) |
-| Tensión de entrada | 9–36 V CC (máximo absoluto 38,6 V, protección contra transitorios hasta 100 V) |
+| Tensión de entrada | 10–32 V CC (máximo absoluto 38,6 V, protección contra transitorios hasta 100 V) |
 | Consumo | de 250 mA en reposo a 590 mA con carga (entrada de 12 V, HaLOS sin pantalla) |
 | Ajustes del límite de corriente | 0,9 A o 2,5 A (seleccionable) |
 | Respaldo por supercondensadores | 4× 25 F / 2,7 V en serie (6,25 F efectivos a 10,8 V máx.) |
@@ -31,7 +31,7 @@ La alimentación admite un amplio rango de entrada en corriente continua y propo
 
 | Parámetro | Valor |
 |:----------|:------|
-| Tensión de entrada recomendada | 9–36 V CC |
+| Tensión de entrada recomendada | 10–32 V CC |
 | Tensión de entrada máxima absoluta | 38,6 V (continua), 100 V (transitoria, limitada por TVS) |
 | Corriente de entrada máxima | 0,9 A o 2,5 A (limitador de corriente seleccionable) |
 | Fusible de entrada | 7 A (solo protección frente a fallos) |
@@ -76,7 +76,7 @@ Tipo Phoenix MC, paso de 3,81 mm, 2 pines. En el panel frontal, el conector cil�
 | Pin | Función |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V CC) |
+| 2 | VIN (10–32 V CC) |
 
 ### Conector CAN FD
 

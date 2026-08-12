@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Hardwarereference
@@ -12,7 +12,7 @@ Denne side indeholder de elektriske, mekaniske og miljømæssige specifikationer
 |:----------|:------|
 | Compute Module | Raspberry Pi CM5 (CM4-kompatibel) |
 | Bærekortets controller | RP2040 (Arm Cortex-M0+, to kerner, 133 MHz) |
-| Indgangsspænding | 9–36 V DC (absolut maks. 38,6 V, transientbeskyttelse op til 100 V) |
+| Indgangsspænding | 10–32 V DC (absolut maks. 38,6 V, transientbeskyttelse op til 100 V) |
 | Strømforbrug | 250 mA i tomgang til 590 mA under belastning (12 V indgang, HaLOS uden skærm) |
 | Indstillinger for strømbegrænsning | 0,9 A eller 2,5 A (kan vælges) |
 | Superkondensatorbackup | 4× 25 F / 2,7 V i serie (6,25 F effektivt ved maks. 10,8 V) |
@@ -31,7 +31,7 @@ Strømforsyningen accepterer et bredt DC-indgangsområde og leverer regulerede 5
 
 | Parameter | Værdi |
 |:----------|:------|
-| Anbefalet indgangsspænding | 9–36 V DC |
+| Anbefalet indgangsspænding | 10–32 V DC |
 | Absolut maksimal indgangsspænding | 38,6 V (kontinuerligt), 100 V (transient, begrænset af TVS) |
 | Maksimal indgangsstrøm | 0,9 A eller 2,5 A (valgbar strømbegrænser) |
 | Indgangssikring | 7 A (kun fejlbeskyttelse) |
@@ -76,7 +76,7 @@ Phoenix MC-type, 3,81 mm benafstand, 2 ben. E7T-stikket på frontpanelet er forb
 | Ben | Funktion |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V DC) |
+| 2 | VIN (10–32 V DC) |
 
 ### CAN FD-stik
 

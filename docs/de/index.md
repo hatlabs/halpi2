@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Einführung
@@ -105,7 +105,7 @@ Diese Dokumentation richtet sich sowohl an Endanwender, die praktische Anleitung
 ### Für Endanwender
 
 - Beginnen Sie mit **Erste Schritte** für Inbetriebnahme und Installation
-- Sehen Sie sich die **typischen Anwendungsfälle** für anwendungsspezifische Hinweise an
+- Lesen Sie **Täglicher Betrieb** für den Alltag: Bedeutung der LEDs, Herunterfahren, Verhalten bei Spannungsausfall
 - Ziehen Sie die **Fehlersuche** heran, wenn Probleme auftreten
 
 ### Für Entwickler
@@ -113,7 +113,6 @@ Diese Dokumentation richtet sich sowohl an Endanwender, die praktische Anleitung
 - Lesen Sie die **Technische Referenz** für ausführliche Spezifikationen
 - Studieren Sie die Abschnitte zur **Softwareentwicklung** für eigene Anwendungen
 - Sehen Sie sich die **Konstruktionsdateien** für die Integrationsplanung an
-- Ziehen Sie die **Erweiterte Konfiguration** zur Leistungsoptimierung heran
 
 ### Konventionen dieser Dokumentation
 

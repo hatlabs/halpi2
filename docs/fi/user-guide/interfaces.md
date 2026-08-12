@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Liitännät ja tiedonsiirto
@@ -210,5 +210,5 @@ Kun painikkeet asennetaan erilliseen ohjauspaneeliin, valitse paikka, johon pä�
 Kaikissa painikekytkennöissä emolevylle tulisi käyttää naaraspuolisia liittimiä, joiden jako on 2,54 mm. Varmista nastojen oikea kohdistus ja tukeva kytkentä, jotta kontaktiongelmia ei synny käytön aikana.
 
 !!! quote "Aiheeseen liittyvää"
-    - **Virranhallinta:** katso [Virranhallinta ja sammutus](./operation.md#virranhallinta-ja-sammutus)
+    - **Virranhallinta:** katso [Emolevyn ohjain](../technical-reference/controller.md)
     - **Laitteiston käsittely:** katso [Laitteisto-opas](./hardware.md)

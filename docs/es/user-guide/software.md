@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Guía del software
@@ -226,7 +226,7 @@ La interfaz de software del HALPI2 se compone del servicio demonio `halpid` y de
 
 ### Demonio HALPI (`halpid`)
 
-El demonio HALPI se ejecuta como servicio del sistema y proporciona la comunicación entre el sistema operativo y el controlador del HALPI2. Permite el funcionamiento en modo Co-op con todas las funciones de supervisión y gestión de la alimentación.
+El demonio HALPI se ejecuta como servicio del sistema y proporciona la comunicación entre el sistema operativo y el controlador del HALPI2. Con el demonio en ejecución, el controlador dispone de supervisión completa, configuración y coordinación del apagado controlado; véase la referencia del [Controlador de la placa portadora](../technical-reference/controller.md#modos-de-funcionamiento) para saber cómo se comporta el controlador con y sin él.
 
 #### Gestión del servicio
 
@@ -363,8 +363,9 @@ Ejemplos de comandos de gestión de la alimentación:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 El comando de apagado garantiza que el sistema se apague de forma segura, permitiendo que el sistema operativo cierre las aplicaciones y desmonte correctamente los sistemas de archivos antes de que el controlador corte la alimentación.

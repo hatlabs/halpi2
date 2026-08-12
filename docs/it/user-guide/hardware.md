@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Guida all’hardware
@@ -162,7 +162,7 @@ I LED di stato forniscono informazioni sullo stato di alimentazione e di attivit
 | **9** | Verde | LED TX/RX del CAN. Lampeggiano quando i dati vengono ricevuti (RX) o trasmessi (TX) sull’interfaccia CAN. |
 | **10** | Verde | LED TX/RX dell’RS-485. Lampeggiano quando i dati vengono ricevuti (RX) o trasmessi (TX) sull’interfaccia RS-485. |
 
-Gli schemi di illuminazione dei LED RGB sono documentati nella [Guida al funzionamento](./operation.md#indicatori-led-di-stato).
+Le sequenze dei LED RGB sono documentate in [Uso quotidiano](./operation.md#indicatori-led-di-stato).
 
 ## Configurazione della limitazione di corrente
 
@@ -249,7 +249,7 @@ Dopo l’installazione hardware, l’HAT può richiedere una configurazione soft
 
 !!! quote "Informazioni correlate"
     - **Riferimento della piedinatura GPIO:** vedere [Riferimento hardware](../technical-reference/hardware.md)
-    - **Configurazione software:** vedere [Configurazione avanzata](../software-development/advanced-config.md)
+    - **Configurazione software:** vedere [Guida al software](./software.md)
     - **Modifiche alla custodia:** vedere [Opzioni di connettori personalizzate](#opzioni-di-connettori-personalizzate)
 
 ## Sostituzione dell’unità SSD NVMe
@@ -293,7 +293,7 @@ Per la configurazione software o la risoluzione dei problemi, fare riferimento a
 
 !!! quote "Informazioni correlate"
     - **Immagini di sistema:** vedere [Guida al software](./software.md)
-    - **Procedure di avvio:** vedere [Funzionamento del sistema](./operation.md)
+    - **Procedure di avvio:** vedere [Uso quotidiano](./operation.md#accensione)
     - **Accesso all’hardware:** vedere [Accesso alla custodia](#accesso-alla-custodia)
 
 ## Sostituzione del Compute Module 5

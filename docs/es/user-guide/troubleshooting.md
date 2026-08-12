@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Resolución de problemas
@@ -12,7 +12,7 @@ Esta página recoge los problemas más habituales que pueden surgir durante el f
 
 **Síntomas:** ninguna actividad de los LED, ninguna señal de vida tras conectar la alimentación.
 
-1. Comprobar con un multímetro en el conector E7T que la tensión de entrada está dentro del rango (11–32 V CC).
+1. Comprobar con un multímetro en el conector E7T que la tensión de entrada está dentro del rango (10–32 V CC).
 2. Revisar las conexiones del cable de alimentación: el conector E7T debe estar completamente insertado.
 3. Verificar el limitador de corriente si se utiliza la alimentación desde el bus NMEA 2000: debe estar ajustado a 0,9 A y la red debe poder suministrar corriente suficiente.
 4. Abrir la carcasa y buscar daños visibles o conexiones internas sueltas.
@@ -146,14 +146,14 @@ Los patrones de los LED permiten diagnosticar rápidamente el estado del sistema
 | El sistema no arranca | Sin LED | Sin alimentación de entrada o fallo de hardware |
 | Bloqueo durante el arranque | Relleno progresivo en rojo | Los supercondensadores aún se están cargando: esperar |
 | Bloqueo durante el arranque | Patrón de arcoíris | CM5 no detectado: comprobar el asentamiento del módulo y desconectar las pantallas |
-| Se queda en amarillo | Amarillo fijo | El sistema operativo no arranca o el demonio no está instalado |
-| Apagado inesperado | Verde/amarillo en desplazamiento | Pérdida de alimentación detectada: comprobar la alimentación de entrada |
-| Sobretensión | LED 1 parpadeando en rojo | Tensión de entrada demasiado alta (>32 V) |
-| Fallo | Todos los LED parpadeando en rojo | Fallo de hardware: contactar con el fabricante |
+| Se queda en amarillo | Barra amarilla | El sistema operativo no arranca o el demonio no está instalado |
+| Apagado inesperado | Barra naranja o verde oscuro y, después, morada | Alimentación de entrada perdida, apagado con la energía de respaldo: comprobar la alimentación de entrada |
+| El sistema se reinicia por sí solo | Todos los LED en rojo fijo antes del reinicio | Tiempo de espera del watchdog agotado: el sistema operativo dejó de responder y el controlador lo reinició |
+| Fallo | Todos los LED parpadeando en rojo | Sobretensión en los supercondensadores: contactar con el soporte |
 
 !!! quote "Información relacionada"
     - **Patrones de LED:** véase [Indicadores LED de estado](./operation.md#indicadores-led-de-estado)
-    - **Gestión de la alimentación:** véase [Gestión de la alimentación y procedimientos de apagado](./operation.md#gestion-de-la-alimentacion-y-procedimientos-de-apagado)
+    - **Comportamiento ante la pérdida de alimentación:** véase [Cuando se pierde la alimentación](./operation.md#cuando-se-pierde-la-alimentacion)
     - **Gestión del demonio:** véase [Guía del software](./software.md#demonio-halpi-halpid)
     - **Detalles de la interfaz CAN:** véase [Interfaces y conectividad](./interfaces.md#can-fd-nmea-2000)
     - **Detalles de la interfaz RS-485:** véase [Interfaces y conectividad](./interfaces.md#rs-485-nmea-0183)

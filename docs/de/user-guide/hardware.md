@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Hardware-Handbuch
@@ -162,7 +162,7 @@ Die Status-LEDs geben Auskunft über Stromversorgung und Aktivität des Systems.
 | **9** | Grün | CAN-TX/RX-LEDs. Sie blinken beim Empfangen (RX) oder Senden (TX) von Daten auf der CAN-Schnittstelle. |
 | **10** | Grün | RS-485-TX/RX-LEDs. Sie blinken beim Empfangen (RX) oder Senden (TX) von Daten auf der RS-485-Schnittstelle. |
 
-Die Muster der RGB-LEDs sind unter [Systembetrieb](./operation.md#status-leds) beschrieben.
+Die Muster der RGB-LEDs sind unter [Täglicher Betrieb](./operation.md#status-leds) beschrieben.
 
 ## Einstellung der Strombegrenzung
 
@@ -249,7 +249,7 @@ Nach dem Einbau kann der HAT eine Softwarekonfiguration benötigen. Viele HATs b
 
 !!! quote "Weiterführende Informationen"
     - **GPIO-Belegung:** siehe [Hardware-Referenz](../technical-reference/hardware.md)
-    - **Softwarekonfiguration:** siehe [Erweiterte Konfiguration](../software-development/advanced-config.md)
+    - **Softwarekonfiguration:** siehe [Software-Handbuch](./software.md)
     - **Änderungen am Gehäuse:** siehe [Andere Anschlussvarianten](#andere-anschlussvarianten)
 
 ## NVMe-SSD austauschen
@@ -292,7 +292,7 @@ Bauen Sie das Gehäuse wie im Abschnitt Zugang zum Gehäuse beschrieben wieder z
 
 !!! quote "Weiterführende Informationen"
     - **Systemabbilder:** siehe [Software-Handbuch](./software.md)
-    - **Startvorgänge:** siehe [Systembetrieb](./operation.md)
+    - **Startvorgänge:** siehe [Täglicher Betrieb](./operation.md#einschalten)
     - **Zugang zur Hardware:** siehe [Zugang zum Gehäuse](#zugang-zum-gehause)
 
 ## Compute Module 5 austauschen
