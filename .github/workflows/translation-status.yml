@@ -58,6 +58,20 @@ jobs:
           # shellcheck disable=SC2086
           uv run python scripts/translation_status.py \
             --format markdown --diff --only-pages $pages > comment.md
+
+          # GitHub rejects comment bodies over 65536 characters (HTTP 422).
+          # Wide PRs produce reports far beyond that; fall back to the
+          # summary without diffs and point at the job summary instead.
+          if [ "$(wc -c < comment.md)" -gt 60000 ]; then
+            # shellcheck disable=SC2086
+            uv run python scripts/translation_status.py \
+              --format markdown --only-pages $pages > comment.md
+            {
+              echo ""
+              echo "_Diffs omitted: the full report exceeds GitHub's comment size limit._"
+              echo "_See the workflow run's job summary for the complete report._"
+            } >> comment.md
+          fi
           printf '\n<!-- translation-status -->\n' >> comment.md
 
           existing=$(gh api "repos/${{ github.repository }}/issues/$PR/comments" \
