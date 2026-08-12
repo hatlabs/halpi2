@@ -8,7 +8,7 @@ This page provides the electrical, mechanical and environmental specifications f
 |:----------|:------|
 | Compute module | Raspberry Pi CM5 (CM4 compatible) |
 | Carrier board controller | RP2040 (Arm Cortex-M0+, dual core, 133 MHz) |
-| Input voltage | 9–36 VDC (absolute max 38.6V, transient protection to 100V) |
+| Input voltage | 10–32 VDC (absolute max 38.6V, transient protection to 100V) |
 | Power consumption | 250 mA idle to 590 mA under load (12V input, HaLOS headless) |
 | Current limit settings | 0.9A or 2.5A (selectable) |
 | Supercapacitor backup | 4× 25F / 2.7V in series (6.25F effective at 10.8V max) |
@@ -27,7 +27,7 @@ The power supply accepts a wide DC input range and provides regulated 5V and 3.3
 
 | Parameter | Value |
 |:----------|:------|
-| Recommended input voltage | 9–36 VDC |
+| Recommended input voltage | 10–32 VDC |
 | Absolute maximum input voltage | 38.6V (continuous), 100V (transient, TVS-limited) |
 | Maximum input current | 0.9A or 2.5A (selectable current limiter) |
 | Input fuse | 7A (fault protection only) |
@@ -72,7 +72,7 @@ Phoenix MC type, 3.81 mm pitch, 2-pin. On the front panel, the E7T barrel connec
 | Pin | Function |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 VDC) |
+| 2 | VIN (10–32 VDC) |
 
 ### CAN FD Connector
 

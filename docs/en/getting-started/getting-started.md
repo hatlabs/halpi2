@@ -90,7 +90,7 @@ the LED bar should start filling up with red lights, indicating that the super-c
 If you have a display connected, you should see the Raspberry Pi OS splash screen, and finally, a graphical desktop will appear.
 
 !!! tip "Tip"
-    The status LED patterns are documented in the [Operation Guide](../user-guide/operation.md).
+    The status LED patterns are documented in [Daily Operation](../user-guide/operation.md#status-led-indicators).
 
 ### Accessing the HALPI2 without a Display
 
@@ -160,11 +160,7 @@ Open the Signal K web interface and observe the `can0` connection activity: you 
 
 The HALPI2 is designed to shut down automatically when disconnected from the power supply. When you need to shut down the device, simply cut the power, either using an electrical panel switch or disconnecting the power connector. The system will automatically initiate a software shutdown sequence, ensuring that all applications close properly and the filesystem is safely unmounted.
 
-If you choose to shut down the system using the desktop interface or command-line tools (such as the `shutdown` command), the device will automatically restart after approximately 5 seconds. This behavior is due to the power management system detecting that external power is still available.
-
-During the shutdown process, you can monitor the system status through the LED indicators on the front panel. When power is initially cut, the green LEDs will dim to indicate a blackout condition. After 5 seconds, the LEDs will change to violet, providing a clear visual indication that the device is actively shutting down. Once the shutdown process is complete, all LEDs will turn off.
-
-The shutdown process typically takes only a few seconds under normal conditions. However, in some cases, certain services may require additional time to stop properly. If this occurs, the device may deplete the super-capacitors almost completely before shutting down. This extended shutdown time is normal behavior and does not indicate a fault with the system.
+During shutdown, the LEDs first dim (blackout detected), turn purple while the shutdown runs, and switch off when it completes. Shutdown behavior — including the optional automatic restart after a software shutdown — is described in [Daily Operation](../user-guide/operation.md#shutting-down).
 
 ## Troubleshooting Quick Start Issues
 
@@ -174,7 +170,7 @@ The shutdown process typically takes only a few seconds under normal conditions.
 
 - Verify power connections and polarity
 - Check fuse condition
-- Ensure voltage is within 11-32V range
+- Ensure voltage is within 10-32V range
 
 ❌ **WiFi Access Point not visible:**
 
@@ -193,11 +189,11 @@ The shutdown process typically takes only a few seconds under normal conditions.
 - Ensure the display is powered on and set to the correct input
 - Try a different HDMI cable or port on the display
 - Make sure the HALPI2 is on (LEDs should be yellow or green)
-- If the LEDs are flashing in a rainbow pattern, the Compute Module 5 is not properly seated. This may be due to transportation damage. Follow the instructions in the [User Guide](../user-guide/operation.md) to reseat the CM5 or contact support for assistance.
+- If the LEDs are flashing in a rainbow pattern, the Compute Module 5 is not properly seated. This may be due to transportation damage. Follow the instructions in the [Hardware Guide](../user-guide/hardware.md#replacing-the-compute-module-5) to reseat the CM5 or contact support for assistance.
 
 ❌ **Connected display is showing an error message about 'nvme':**
 
-- This indicates the NVMe SSD is not detected or not properly initialized. This can be due to transportation damage. Follow the instructions in the [User Guide](../user-guide/operation.md) to reseat the NVMe SSD or contact support for assistance.
+- This indicates the NVMe SSD is not detected or not properly initialized. This can be due to transportation damage. Follow the instructions in the [Hardware Guide](../user-guide/hardware.md#replacing-the-nvme-ssd) to reseat the NVMe SSD or contact support for assistance.
 
 ### Getting Help:
 
@@ -340,7 +336,7 @@ Download the [HALPI2 Mounting Template](./HALPI2_enclosure_1B_Drill_Template_v2.
 
 HALPI2 includes a built-in input current limiter that manages the initial super-capacitor charging and protects the installation from overcurrent conditions. The current limit can be set to either 0.9A or 2.5A, depending on your power source and application requirements. The default setting of 0.9A is suitable for most applications.
 
-If you want to increase the initial start-up speed or need to power high-current peripherals, you can switch to the 2.5A setting. Follow the steps outlined in the [User Guide](../user-guide/operation.md) to change the current limit setting.
+If you want to increase the initial start-up speed or need to power high-current peripherals, you can switch to the 2.5A setting. Follow the steps outlined in the [Hardware Guide](../user-guide/hardware.md#current-limiting-configuration) to change the current limit setting.
 
 #### Dedicated Power Connection
 
@@ -380,7 +376,7 @@ The E7T connector is pre-wired and requires no field termination. Simply plug in
 ##### Installation Steps
 
 1. **Power down** all NMEA 2000 devices
-2. **Open HALPI2 enclosure** (see [User Guide](../user-guide/operation.md) for instructions)
+2. **Open HALPI2 enclosure** (see [Hardware Guide](../user-guide/hardware.md#enclosure-access) for instructions)
 3. **Locate the carrier board power connector**
 4. **Unplug existing terminal block**
 5. **Connect the internal NMEA 2000 power terminal block** to the carrier board power connector
@@ -425,7 +421,7 @@ For network connectivity:
 ❌ **No power indication:**
 
 - Check fuse condition and rating
-- Verify power source voltage (11-32V)
+- Verify power source voltage (10-32V)
 - Confirm correct polarity
 - Test continuity of power cables
 
@@ -488,7 +484,7 @@ For network connectivity:
 
 Once your HALPI2 is running:
 
-1. **Explore the [User Guide](../user-guide/operation.md)** for detailed operation instructions
-2. **Review Common Use Cases** for application-specific setup
-3. **Check out the Technical Reference** for advanced configuration options
+1. **Read [Daily Operation](../user-guide/operation.md)** to learn what the LEDs mean and how shutdown works
+2. **Explore the [Software Guide](../user-guide/software.md)** for updates, remote access, and the `halpi` command
+3. **Check out the Technical Reference** for detailed specifications
 4. **Join the community** for tips, tricks, and support

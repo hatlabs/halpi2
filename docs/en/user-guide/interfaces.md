@@ -206,5 +206,5 @@ When mounting buttons on a remote control panel, select a suitable location that
 All button connections to the carrier board should use 2.54mm pitch female header connectors. Ensure proper pin alignment and secure connection to prevent contact issues during operation.
 
 !!! quote "Related Information"
-    - **Power management:** See [Power Management and Shutdown Procedures](./operation.md#power-management-and-shutdown-procedures)
+    - **Power management:** See [Carrier Board Controller](../technical-reference/controller.md)
     - **Hardware access:** See [Hardware Maintenance](./hardware.md)

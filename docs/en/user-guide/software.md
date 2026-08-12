@@ -222,7 +222,7 @@ HALPI2's software interface consists of the `halpid` daemon service and the `hal
 
 ### HALPI Daemon (`halpid`)
 
-The HALPI daemon runs as a system service, providing communication between the operating system and the HALPI2 controller. It enables Co-op mode operation with full monitoring and power management features.
+The HALPI daemon runs as a system service, providing communication between the operating system and the HALPI2 controller. With the daemon running, the controller gets full monitoring, configuration, and graceful shutdown coordination — see the [Carrier Board Controller](../technical-reference/controller.md#operating-modes) reference for how the controller behaves with and without it.
 
 #### Service Management
 
@@ -359,8 +359,9 @@ Power management command examples:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 The shutdown command ensures that the system powers down safely, allowing the operating system to close applications and unmount filesystems properly before the controller cuts power.
