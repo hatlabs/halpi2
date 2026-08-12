@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Kom i gang
@@ -94,7 +94,7 @@ begynner LED-raden å fylles med røde lys, som viser at superkondensatorene lad
 Hvis du har en skjerm tilkoblet, skal du se oppstartsbildet til Raspberry Pi OS, og til slutt kommer et grafisk skrivebord fram.
 
 !!! tip "Tips"
-    Mønstrene for status-LED-ene er dokumentert i [driftsveiledningen](../user-guide/operation.md).
+    Mønstrene for status-LED-ene er dokumentert i [Daglig bruk](../user-guide/operation.md#status-led-indikatorer).
 
 ### Tilgang til HALPI2 uten skjerm
 
@@ -164,11 +164,7 @@ NMEA 2000-tilkoblingen kontrolleres enklest ved å se på statusen til Signal K-
 
 HALPI2 er laget for å slå seg av automatisk når den kobles fra strømforsyningen. Når du trenger å slå av enheten, kutter du rett og slett strømmen, enten med en bryter på det elektriske panelet eller ved å koble fra strømkontakten. Systemet starter da automatisk en programvarestyrt nedstengingssekvens, som sørger for at alle applikasjoner avsluttes på riktig måte og at filsystemet avmonteres trygt.
 
-Hvis du velger å slå av systemet fra skrivebordsgrensesnittet eller med kommandolinjeverktøy (for eksempel kommandoen `shutdown`), starter enheten automatisk igjen etter omtrent 5 sekunder. Denne oppførselen skyldes at strømstyringssystemet oppdager at ekstern strøm fortsatt er tilgjengelig.
-
-Under nedstengingen kan du følge systemstatusen med LED-indikatorene på frontpanelet. Når strømmen først kuttes, dempes de grønne LED-ene for å vise at det er et strømbrudd. Etter 5 sekunder skifter LED-ene til lilla, som gir en tydelig visuell bekreftelse på at enheten holder på å slå seg av. Når nedstengingen er fullført, slukker alle LED-ene.
-
-Nedstengingen tar vanligvis bare noen få sekunder under normale forhold. I noen tilfeller kan enkelte tjenester likevel trenge ekstra tid for å stoppe på riktig måte. Skjer det, kan enheten tømme superkondensatorene nesten helt før den slår seg av. Denne forlengede nedstengingstiden er normal oppførsel og betyr ikke at det er noe galt med systemet.
+Under nedstengingen dempes LED-ene først (strømbrudd oppdaget), lyser lilla mens nedstengingen pågår, og slukker når den er fullført. Hvordan nedstengingen fungerer – inkludert den valgfrie automatiske omstarten etter en nedstenging fra programvaren – er beskrevet i [Daglig bruk](../user-guide/operation.md#sla-av).
 
 ## Feilsøking av problemer ved oppstart
 
@@ -178,7 +174,7 @@ Nedstengingen tar vanligvis bare noen få sekunder under normale forhold. I noen
 
 - Kontroller strømtilkoblingene og polariteten
 - Sjekk tilstanden til sikringen
-- Kontroller at spenningen er innenfor området 11–32 V
+- Kontroller at spenningen er innenfor området 10–32 V
 
 ❌ **WiFi-aksesspunktet er ikke synlig:**
 
@@ -197,11 +193,11 @@ Nedstengingen tar vanligvis bare noen få sekunder under normale forhold. I noen
 - Kontroller at skjermen er slått på og satt til riktig inngang
 - Prøv en annen HDMI-kabel eller en annen port på skjermen
 - Kontroller at HALPI2 er på (LED-ene skal være gule eller grønne)
-- Hvis LED-ene blinker i et regnbuemønster, sitter ikke Compute Module 5 riktig. Det kan skyldes transportskade. Følg instruksjonene i [brukerveiledningen](../user-guide/operation.md) for å montere CM5-en på nytt, eller kontakt støtte for hjelp.
+- Hvis LED-ene blinker i et regnbuemønster, sitter ikke Compute Module 5 riktig. Det kan skyldes transportskade. Følg instruksjonene i [maskinvareveiledningen](../user-guide/hardware.md#bytte-compute-module-5) for å montere CM5-en på nytt, eller kontakt støtte for hjelp.
 
 ❌ **Tilkoblet skjerm viser en feilmelding om «nvme»:**
 
-- Dette betyr at NVMe SSD-en ikke blir oppdaget eller ikke er riktig initialisert. Det kan skyldes transportskade. Følg instruksjonene i [brukerveiledningen](../user-guide/operation.md) for å montere NVMe SSD-en på nytt, eller kontakt støtte for hjelp.
+- Dette betyr at NVMe SSD-en ikke blir oppdaget eller ikke er riktig initialisert. Det kan skyldes transportskade. Følg instruksjonene i [maskinvareveiledningen](../user-guide/hardware.md#bytte-nvme-ssd-en) for å montere NVMe SSD-en på nytt, eller kontakt støtte for hjelp.
 
 ### Slik får du hjelp:
 
@@ -344,7 +340,7 @@ Last ned [boremalen for HALPI2](./HALPI2_enclosure_1B_Drill_Template_v2.pdf) og 
 
 HALPI2 har en innebygd strømbegrenser på inngangen som styrer den første oppladingen av superkondensatorene og beskytter installasjonen mot overstrøm. Strømgrensen kan settes til enten 0,9 A eller 2,5 A, avhengig av strømkilden din og kravene i bruken. Standardinnstillingen på 0,9 A passer til de fleste bruksområder.
 
-Hvis du vil øke oppstartshastigheten i begynnelsen eller trenger å forsyne utstyr med høyt strømforbruk, kan du bytte til innstillingen 2,5 A. Følg trinnene i [brukerveiledningen](../user-guide/operation.md) for å endre innstillingen for strømgrensen.
+Hvis du vil øke oppstartshastigheten i begynnelsen eller trenger å forsyne utstyr med høyt strømforbruk, kan du bytte til innstillingen 2,5 A. Følg trinnene i [maskinvareveiledningen](../user-guide/hardware.md#konfigurasjon-av-strmbegrensning) for å endre innstillingen for strømgrensen.
 
 #### Egen strømtilkobling
 
@@ -384,7 +380,7 @@ E7T-kontakten er ferdig kablet og krever ingen terminering på stedet. Bare kobl
 ##### Installasjonstrinn
 
 1. **Slå av strømmen** til alle NMEA 2000-enheter
-2. **Åpne HALPI2-kabinettet** (se [brukerveiledningen](../user-guide/operation.md) for instruksjoner)
+2. **Åpne HALPI2-kabinettet** (se [maskinvareveiledningen](../user-guide/hardware.md#tilgang-til-kabinettet) for instruksjoner)
 3. **Finn strømkontakten på bærekortet**
 4. **Koble fra den eksisterende koblingsklemmen**
 5. **Koble den interne koblingsklemmen for NMEA 2000-strøm** til strømkontakten på bærekortet
@@ -429,7 +425,7 @@ For nettverkstilkobling:
 ❌ **Ingen indikasjon på strøm:**
 
 - Sjekk tilstanden til sikringen og merkestrømmen
-- Kontroller spenningen fra strømkilden (11–32 V)
+- Kontroller spenningen fra strømkilden (10–32 V)
 - Bekreft at polariteten er riktig
 - Test gjennomgangen i strømkablene
 
@@ -492,7 +488,7 @@ For nettverkstilkobling:
 
 Når HALPI2-en din er i gang:
 
-1. **Utforsk [brukerveiledningen](../user-guide/operation.md)** for detaljerte driftsinstruksjoner
-2. **Se gjennom vanlige bruksområder** for oppsett tilpasset bruken
-3. **Ta en titt på den tekniske referansen** for avanserte konfigurasjonsmuligheter
+1. **Les [Daglig bruk](../user-guide/operation.md)** for å lære hva LED-ene betyr og hvordan nedstenging fungerer
+2. **Utforsk [programvareveiledningen](../user-guide/software.md)** for oppdateringer, fjerntilgang og `halpi`-kommandoen
+3. **Ta en titt på den tekniske referansen** for detaljerte spesifikasjoner
 4. **Bli med i fellesskapet** for tips, triks og støtte

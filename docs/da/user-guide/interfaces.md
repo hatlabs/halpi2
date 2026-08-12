@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Grænseflader og forbindelser
@@ -210,5 +210,5 @@ Når knapperne monteres i et fjernbetjeningspanel, skal du vælge et sted, der b
 Alle knaptilslutninger til bærekortet bør bruge hunstik med 2,54 mm benafstand. Sørg for, at benene flugter, og at forbindelsen sidder fast, så der ikke opstår kontaktproblemer under drift.
 
 !!! quote "Relaterede oplysninger"
-    - **Strømstyring:** Se [Strømstyring og nedlukningsprocedurer](./operation.md#strmstyring-og-nedlukningsprocedurer)
+    - **Strømstyring:** Se [Bærekortets controller](../technical-reference/controller.md)
     - **Adgang til hardwaren:** Se [Vedligeholdelse af hardwaren](./hardware.md)

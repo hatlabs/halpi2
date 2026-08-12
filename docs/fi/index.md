@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Johdanto
@@ -105,7 +105,7 @@ Dokumentaatio on jäsennelty palvelemaan sekä käytännön ohjeita etsiviä lop
 ### Loppukäyttäjälle
 
 - Aloita **Aloitusoppaasta**, joka käy läpi käyttöönoton ja asennuksen
-- Tutustu **yleisiin käyttötapauksiin** sovelluskohtaisia ohjeita varten
+- Lue **Päivittäinen käyttö** -sivulta päivittäisen käytön perusteet: LEDien merkitykset, sammutus ja toiminta sähkökatkoissa
 - Katso **Vianetsintä**, jos ongelmia ilmenee
 
 ### Kehittäjälle
@@ -113,7 +113,6 @@ Dokumentaatio on jäsennelty palvelemaan sekä käytännön ohjeita etsiviä lop
 - Tutustu **Teknisiin tietoihin** yksityiskohtaisten määritysten osalta
 - Perehdy **Ohjelmistokehitys**-osioihin räätälöityjä sovelluksia varten
 - Tarkastele **Suunnittelutiedostoja** integraation suunnittelussa
-- Katso **Lisäasetukset** suorituskyvyn optimointia varten
 
 ### Dokumentaation merkinnät
 

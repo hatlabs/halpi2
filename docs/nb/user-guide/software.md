@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Programvareveiledning
@@ -225,7 +225,7 @@ Programvaregrensesnittet til HALPI2 består av daemon-tjenesten `halpid` og komm
 
 ### HALPI-daemonen (`halpid`)
 
-HALPI-daemonen kjører som en systemtjeneste og sørger for kommunikasjonen mellom operativsystemet og HALPI2-kontrolleren. Den gjør drift i samspillsmodus (co-op mode) mulig, med full overvåking og strømstyring.
+HALPI-daemonen kjører som en systemtjeneste og sørger for kommunikasjonen mellom operativsystemet og HALPI2-kontrolleren. Med daemonen i gang får kontrolleren full overvåking, konfigurasjon og koordinering av kontrollert nedstenging – se referansen [Bærekortets mikrokontroller](../technical-reference/controller.md#driftsmoduser) for hvordan kontrolleren oppfører seg med og uten den.
 
 #### Tjenestestyring
 
@@ -362,8 +362,9 @@ Eksempler på strømstyringskommandoer:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 Kommandoen for nedstenging sørger for at systemet slås av trygt, slik at operativsystemet rekker å lukke applikasjoner og avmontere filsystemene på riktig måte før kontrolleren kutter strømmen.

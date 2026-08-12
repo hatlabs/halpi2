@@ -1,212 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Systemdrift
+# Daglig användning
+
+HALPI2 är konstruerad för drift utan tillsyn. Med den förinstallerade HaLOS-avbilden — eller vilket operativsystem som helst med [HALPI-daemonen](./software.md#kommandoradsverktyget-halpi) installerad — är strömhanteringen automatisk: enheten laddar sina superkondensatorer för backup, rider ut korta spänningsstörningar, stänger av operativsystemet säkert när strömmen försvinner och startar igen när strömmen kommer tillbaka. Inget av detta kräver någon åtgärd från användaren.
+
+## Slå på systemet
+
+HALPI2 har ingen strömknapp på kapslingen: den startar så snart inspänning ansluts. (En extern strömknapp kan anslutas till bärkortet — se [Externa knappar](./interfaces.md#externa-knappar).) LED-raden fylls först med rött medan superkondensatorerna laddas (några sekunder till en halv minut, beroende på [inställningen av strömbegränsningen](./hardware.md#konfiguration-av-strombegransningen)). Därefter spelar lysdioderna upp en kort regnbågs- och färgväxlingsanimation medan Compute Module startar, visar en gul stapel medan operativsystemet startar och blir gröna när operativsystemet är i gång och HALPI-daemonen har anslutit.
+
+## Stänga av systemet
+
+Stäng av HALPI2 genom att bryta inspänningen — till exempel med en brytare på elpanelen. Systemet upptäcker spänningsbortfallet, stänger av operativsystemet kontrollerat på superkondensatorernas ström och förblir avstängt. Lysdioderna visar en violett stapel medan avstängningen pågår och släcks när den är klar.
+
+Du kan också stänga av via programvaran — skrivbordsmenyn, kommandot `shutdown` eller `halpi shutdown`. Systemet stängs då av och förblir avstängt tills inspänningen bryts och återansluts (eller tills en [extern strömknapp](./interfaces.md#externa-knappar), om en sådan finns, trycks in).
+
+Som tillval kan styrkretsen starta om systemet automatiskt ungefär 5 sekunder efter en avstängning via programvaran medan inspänningen fortfarande är ansluten, så att ett avstängningskommando av misstag aldrig lämnar en fysiskt svåråtkomlig installation strandad. Aktivera funktionen med `halpi config set auto_restart true`; inställningen sparas i styrkretsen. Enheter tillverkade före början av 2026 levererades med beteendet aktiverat — kontrollera din enhet med `halpi config get auto_restart`.
+
+Systemet kan också försättas i vänteläge, där det stänger av sig och vaknar igen vid en schemalagd tidpunkt — se referensen [Bärkortets styrkrets](../technical-reference/controller.md#vantelage).
 
 ## Status-LED:ar
 
-HALPI2 har fem RGB-lysdioder som visar systemets och strömförsörjningens tillstånd.
+De fem lysdioderna på frontpanelen visar vad systemet gör:
 
-### Snabbguide till lysdioderna
+| LED-mönster | Betydelse |
+|:------------|:----------|
+| Röd stapel som fylls | Superkondensatorerna laddas före start — vänta |
+| Regnbåge och växlande färger | Compute Module startar. Om mönstret upprepas utan att något händer startade modulen inte — se [Felsökning](./troubleshooting.md#regnbagsfargade-lysdioder) |
+| Gul stapel | Systemet kör, HALPI-daemonen har inte anslutit — normalt en kort stund under starten. Om det består, se [Felsökning](./troubleshooting.md#lysdioderna-forblir-gula) |
+| Grön stapel | Normal drift |
+| Orange eller mörkgrön stapel | Inspänningen borta, drift på backupström — avstängning följer om inte strömmen kommer tillbaka inom några sekunder |
+| Violett stapel | Avstängning pågår |
+| Alla lyser fast rött | Operativsystemet svarar inte — styrkretsen startar om det automatiskt |
+| Alla blinkar rött | Fel på superkondensatorerna — kontakta supporten |
+| Alla lyser fast blått | Övergång till vänteläge |
+| Alla lyser dämpat rött | Vänteläge |
+| Alla släckta | Avstängt |
 
-| LED-mönster | Färg | Betydelse |
-|-------------|------|-----------|
-| LED 5 lyser fast | Röd | Spänning på, väntar på laddning |
-| Successiv fyllning | Röd | Superkondensatorerna laddas |
-| Regnbåge med färgväxling | Flerfärgad | CM5 startade inte |
-| Spänningsstapel | Gul | Drift i sololäge |
-| Spänningsstapel | Grön | Drift i co-op-läge |
-| Spänningsstapel | Orange | Backupström aktiv (solo) |
-| Spänningsstapel | Mörkgrön | Backupström aktiv (co-op) |
-| Alla blinkar | Röd | Överspänning i superkondensatorerna |
-| Alla lyser fast | Röd | Watchdog löste ut |
-| Spänningsstapel | Violett | Avstängning pågår |
-| Alla lyser fast | Blå | Övergång till vänteläge pågår |
-| Alla lyser fast | Dämpad röd | Vänteläge |
-| Alla släckta | — | Systemet avstängt |
+I stapelmönstren visar antalet tända lysdioder superkondensatorernas laddningsnivå. De exakta spänningsfönstren och den fullständiga tillståndstabellen finns i referensen [Bärkortets styrkrets](../technical-reference/controller.md#status-led-referens).
 
-### Spänningsindikering för superkondensatorerna
+Lysdiodernas ljusstyrka kan justeras — se [Styrning av lysdioderna](./software.md#styrning-av-lysdioderna). Lysdioderna kan också användas som display för systemmätvärden och marina data (nätverksaktivitet, tanknivåer, NMEA 2000- och Signal K-värden) med tillägget [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights).
 
-Under drift fungerar lysdioderna som spänningsmätare och visar superkondensatorernas laddningsnivå:
+## Vid spänningsbortfall
 
-- **LED 1**: 5,0–6,0 V
-- **LED 2**: 6,0–7,0 V
-- **LED 3**: 7,0–8,0 V
-- **LED 4**: 8,0–9,0 V
-- **LED 5**: 9,0–10,0 V
+Ingenting behöver göras. Korta dippar och störningar — upp till 5 sekunder som standard — överbryggas av superkondensatorerna, och driften fortsätter ostörd. Vid ett längre avbrott stänger systemet av sig självt kontrollerat på de 30–60 sekunder av backupström som superkondensatorerna rymmer. När inspänningen kommer tillbaka startar systemet igen automatiskt.
 
-## Strömhantering och avstängning
+!!! warning "Inte en UPS"
+    Superkondensatorerna finns för att överbrygga korta störningar och driva en säker avstängning. För fortsatt drift under längre avbrott krävs en extern avbrottsfri strömförsörjning (UPS).
 
-HALPI2 har en strömförsörjning som är konstruerad för att klara spänningstoppar, störningar och korta avbrott.
+## Kontrollera systemets tillstånd
 
-### Översikt över strömförsörjningen
+En grön LED-stapel betyder att systemet mår bra. För detaljer visar kommandot `halpi` styrkretsens tillstånd, spänningar, ström och temperaturer:
 
-HALPI2:s strömhantering består av:
+```bash
+halpi status
+```
 
-- **En strömförsörjning med brett område** (ingång 11–32 V DC, skydd upp till 100 V DC)
-- **Backup med superkondensatorer** för kontrollerad avstängning vid spänningsbortfall
-- **Strömbegränsning** (0,9 A eller 2,5 A, valbart)
-- **Detektering av spänningsbortfall** och automatisk start av avstängningen
-- **Övervakning av inspänning och inström**
+Om något ser fel ut, se [Felsökning](./troubleshooting.md) och [Programvaruguiden](./software.md#kommandoradsverktyget-halpi).
 
-Systemet arbetar i två lägen: sololäge och co-op-läge.
+## Drift utan daemonen
 
-### Sololäge
+På operativsystem utan HALPI-daemonen faller styrkretsen tillbaka till ett grundläggande skyddsläge: den upptäcker fortfarande spänningsbortfall och begär en avstängning, men genom att simulera tryck på strömknappen — vilket misslyckas om systemet har hängt sig — och övervakning och konfiguration är inte tillgängliga. Om du kör ett eget operativsystem, installera daemonen; se [Andra Debian-distributioner](../software-development/ubuntu-installation.md). Hur de två lägena fungerar beskrivs i referensen [Bärkortets styrkrets](../technical-reference/controller.md#driftlagen).
 
-Sololäget ger en grundläggande självständig drift när HALPI-daemonen inte körs. Styrkretsen arbetar på egen hand, utan kontakt med programvaran.
-
-#### Sololägets egenskaper
-
-- **Kräver ingen kommunikation med programvaran**
-- **Grundläggande skydd mot spänningsbortfall** — övervakar inspänningen och reagerar på avbrott
-- **Automatisk avstängning via simulerade tryck på strömknappen**
-- **Begränsade möjligheter till övervakning och konfiguration**
-
-#### Spänningsbortfall och avstängning i sololäge
-
-**Detektering av spänningsbortfall:**
-Styrkretsen övervakar inspänningen och upptäcker avbrott. En avbrottstimer (5 sekunder som standard) hindrar avstängning vid korta störningar.
-
-**Automatisk avstängningssekvens:**
-
-1. **Styrkretsen upptäcker spänningsbortfallet**
-2. **Avbrottstimern startar**, för att skilja en kort störning från ett verkligt bortfall
-3. **Simulerade tryck på strömknappen** — styrkretsen skickar ett dubbeltryck till Compute Module
-4. **Operativsystemet reagerar** och påbörjar en kontrollerad avstängning
-5. **Superkondensatorerna håller uppe spänningen** (normalt 30 till 60 sekunder)
-6. **Skydd med 60 sekunders tidsgräns** — framtvingad avstängning om den kontrollerade avstängningen misslyckas
-7. **Systemet förblir avstängt** tills spänningen återvänder
-8. **Automatisk omstart** när spänningen är tillbaka
-
-**Manuell avstängning i sololäge:**
-
-- Operativsystemet stängs av på vanligt sätt
-- Systemet startar om automatiskt efter 5 sekunder om inspänningen fortfarande finns
-- För permanent avstängning kopplar du bort inspänningen efter att ha startat den kontrollerade avstängningen
-
-#### När sololäget är aktivt
-
-Sololäget gäller:
-
-- allra först vid start, innan HALPI-daemonen har startat;
-- om HALPI-daemonen inte startar eller är avstängd;
-- på operativsystem som saknar daemonen;
-- när daemonen har kraschat eller slutat svara.
-
-!!! tip "Sololägets tillförlitlighet"
-    Sololäget ger ett nödvändigt skydd men är mindre tillförlitligt än co-op-läget. Styrkretsen begär avstängning med simulerade knapptryck, vilket kanske inte fungerar om systemet har hängt sig.
-
-### Co-op-läge
-
-Co-op-läget ger full strömhantering när HALPI-daemonen körs och kommunicerar med styrkretsen.
-
-#### Co-op-lägets funktioner
-
-- **Direkt kommunikation med programvaran** — utbyte av data i realtid mellan styrkrets och daemon
-- **Skydd med watchdog** — en tidsgräns på 30 sekunder säkerställer systemets stabilitet
-- **Konfigurerbart avstängningsbeteende** — tider och kommandon går att justera
-- **Övervakning i realtid** — omfattande uppföljning av strömförsörjningens värden
-- **Avancerade konfigurationsmöjligheter**
-
-#### Spänningsbortfall och avstängning i co-op-läge
-
-**Detektering av spänningsbortfall:**
-Styrkretsen övervakar inspänningen och rapporterar händelser direkt till HALPI-daemonen. Den konfigurerbara avbrottstimern (5 sekunder som standard) tillåter korta avbrott utan att avstängningen startar.
-
-**Automatisk avstängningssekvens:**
-
-1. **Styrkretsen upptäcker spänningsbortfallet** och meddelar HALPI-daemonen
-2. **Bedömning av avbrottstimern** — daemonen avgör om avbrottet överskrider tröskeln
-3. **Avstängningskommandot körs** — daemonen kör det inställda kommandot (som standard `/sbin/poweroff`)
-4. **Kontrollerad avstängning av operativsystemet** — program avslutas och filsystem avmonteras säkert
-5. **Backupströmmen från superkondensatorerna** räcker under hela avstängningen
-6. **Styrkretsen följer förloppet** — den märker när Compute Module stängs av
-7. **5 V-skenan stängs av** när avstängningen är klar
-8. **Systemet förblir avstängt** tills inspänningen återvänder
-9. **Hantering av omstart** — beroende på konfigurationen startar systemet om automatiskt eller förblir avstängt
-
-**Manuell avstängning i co-op-läge:**
-
-- En avstängning som startas från programvaran sker kontrollerat
-- Systemet startar om automatiskt efter 5 sekunder om inspänningen fortfarande finns
-- För att förhindra automatisk omstart kopplar du bort spänningen eller sätter `auto_restart` till `false`
-
-#### Skydd med watchdog
-
-Co-op-läget innehåller en watchdog:
-
-- **Kommunikationsgräns på 30 sekunder** — daemonen måste höra av sig till styrkretsen regelbundet
-- **Automatisk återhämtning** — systemet startar om om kommunikationen upphör
-- **Skydd mot programvarufel** — säkerställer återhämtning efter att daemonen kraschat eller systemet hängt sig
-- **”Mata watchdogen”** — daemonen skickar regelbundna statusmeddelanden som nollställer timern
-
-#### När co-op-läget är aktivt
-
-Co-op-läget gäller när:
-
-- HALPI-daemonen körs och fungerar normalt;
-- kommunikationen mellan daemon och styrkrets är upprättad;
-- systemet kör ett operativsystem som stöds;
-- alla övervaknings- och styrfunktioner är tillgängliga.
-
-!!! info "Kontrollera co-op-läget"
-    Daemonens status: `systemctl status halpid`
-
-    Styrkretsens tillstånd: `halpi status`
-
-    Mer om kommandot `halpi` finns i [Programvaruguiden](./software.md#halpi-daemon-halpid).
-
-### Backupström och kondensatorsystem
-
-Båda lägena bygger på superkondensatorerna för att säkra en kontrollerad avstängning:
-
-**Backupströmmens varaktighet:**
-
-- Superkondensatorerna ger 30 till 60 sekunders backuptid
-- Tiden beror på systemets belastning och anslutna kringenheter
-- Den räcker för att stänga filsystemet och avsluta processer säkert
-- Den är inte avsedd för fortsatt drift under längre avbrott
-
-**Laddningsegenskaper:**
-
-- Laddningstid: 25 sekunder vid strömbegränsning 0,9 A
-- Laddningstid: 9 sekunder vid strömbegränsning 2,5 A
-- Laddningsförloppet syns genom att lysdioderna fylls (rött fyllningsmönster)
-
-!!! warning "Begränsning i skyddet mot spänningsbortfall"
-    Systemet med superkondensatorer är avsett för kontrollerad avstängning, inte för fortsatt drift. Lita inte på det vid längre strömavbrott.
-
-### Att tänka på vid manuell avstängning
-
-HALPI2 prioriterar automatisk drift och återhämtning, vilket påverkar hur en manuell avstängning beter sig.
-
-#### Automatisk omstart
-
-Som standard startar HALPI2 om efter en manuell avstängning om inspänningen fortfarande finns:
-
-- En manuell avstängning stänger av operativsystemet på vanligt sätt
-- Efter avslutad avstängning följer en väntetid på 5 sekunder
-- Systemet startar om automatiskt för att förbli tillgängligt
-- Det säkerställer återhämtning efter en avstängning av misstag
-
-#### Så stänger du av enheten permanent
-
-Det finns två sätt:
-
-**Koppla bort spänningen:**
-
-1. Starta en kontrollerad avstängning från programvaran
-2. Vänta tills avstängningen är klar (lysdioderna släcks)
-3. Koppla bort inspänningen för att förhindra automatisk omstart
-
-**Ändra konfigurationen:**
-
-1. Stäng av automatisk omstart: `halpi config set auto_restart false`
-2. Starta avstängningen från programvaran
-3. Systemet förblir avstängt efter avslutad avstängning
-
-**Vänteläge (kommande):**
-
-!!! info "Funktionens status"
-    Vänteläget planeras till kommande firmwareversioner. Det kommer att göra det möjligt att stänga av Compute Module medan HALPI2:s styrkrets förblir aktiv och väntar på väckningshändelser.
+!!! quote "Relaterad information"
+    - **Hur strömhanteringen fungerar internt:** se [Bärkortets styrkrets](../technical-reference/controller.md)
+    - **Strömförsörjningens detaljer:** se [Strömförsörjningen i detalj](../technical-reference/power-supply.md)
+    - **Kommandot `halpi` och daemonen:** se [Programvaruguiden](./software.md)
+    - **Problem:** se [Felsökning](./troubleshooting.md)

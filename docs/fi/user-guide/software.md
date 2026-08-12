@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Ohjelmisto-opas
@@ -220,7 +220,7 @@ HALPI2:n ohjelmistorajapinta koostuu `halpid`-daemonpalvelusta ja `halpi`-koment
 
 ### HALPI-daemon (`halpid`)
 
-HALPI-daemon toimii järjestelmäpalveluna ja välittää tietoa käyttöjärjestelmän ja HALPI2:n ohjaimen välillä. Se mahdollistaa co-op-tilan, jossa valvonta ja virranhallinta ovat täysimääräisesti käytössä.
+HALPI-daemon toimii järjestelmäpalveluna ja välittää tietoa käyttöjärjestelmän ja HALPI2:n ohjaimen välillä. Kun daemon on käynnissä, käytettävissä ovat täysi valvonta, asetusten hallinta ja hallitun sammutuksen koordinointi — ohjaimen toiminta daemonin kanssa ja ilman sitä on kuvattu [Emolevyn ohjain](../technical-reference/controller.md#toimintatilat) -sivulla.
 
 #### Palvelun hallinta
 
@@ -361,8 +361,9 @@ Esimerkkejä virranhallinnan komennoista:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 Sammutuskomento varmistaa, että järjestelmä sammuu turvallisesti: käyttöjärjestelmä ehtii sulkea sovellukset ja irrottaa tiedostojärjestelmät ennen kuin ohjain katkaisee virran.

@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Primeros pasos
@@ -94,7 +94,7 @@ la barra de LED empieza a llenarse de luces rojas, lo que indica que los superco
 Si hay una pantalla conectada, aparece la pantalla de inicio de Raspberry Pi OS y, finalmente, el escritorio gráfico.
 
 !!! tip "Consejo"
-    Los patrones de los LED de estado están documentados en la [Guía de funcionamiento](../user-guide/operation.md).
+    Los patrones de los LED de estado están documentados en [Uso diario](../user-guide/operation.md#indicadores-led-de-estado).
 
 ### Acceso al HALPI2 sin pantalla
 
@@ -164,11 +164,7 @@ Abrir la interfaz web de Signal K y observar la actividad de la conexión `can0`
 
 El HALPI2 está diseñado para apagarse automáticamente al desconectarse de la alimentación. Para apagar el dispositivo basta con cortar la corriente, ya sea con un interruptor del cuadro eléctrico o desconectando el conector de alimentación. El sistema inicia automáticamente una secuencia de apagado por software, de modo que todas las aplicaciones se cierran correctamente y el sistema de archivos se desmonta de forma segura.
 
-Si el sistema se apaga desde la interfaz de escritorio o con herramientas de línea de comandos (como el comando `shutdown`), el dispositivo se reinicia automáticamente al cabo de unos 5 segundos. Este comportamiento se debe a que el sistema de gestión de la alimentación detecta que la alimentación externa sigue disponible.
-
-Durante el proceso de apagado, el estado del sistema puede supervisarse mediante los indicadores LED del panel frontal. Al cortarse la corriente, los LED verdes se atenúan para señalar una situación de corte de corriente. Transcurridos 5 segundos, los LED cambian a violeta, lo que indica con claridad que el dispositivo se está apagando. Una vez completado el proceso de apagado, todos los LED se apagan.
-
-En condiciones normales, el proceso de apagado suele durar solo unos segundos. Sin embargo, en algunos casos ciertos servicios necesitan más tiempo para detenerse correctamente. Cuando esto ocurre, el dispositivo puede agotar casi por completo los supercondensadores antes de apagarse. Esta prolongación del apagado es un comportamiento normal y no indica ningún fallo del sistema.
+Durante el apagado, los LED primero se atenúan (corte de corriente detectado), pasan a morado mientras se ejecuta el apagado y se apagan cuando este termina. El comportamiento del apagado —incluido el reinicio automático opcional tras un apagado por software— se describe en [Uso diario](../user-guide/operation.md#apagado).
 
 ## Resolución de problemas en la puesta en marcha
 
@@ -178,7 +174,7 @@ En condiciones normales, el proceso de apagado suele durar solo unos segundos. S
 
 - Comprobar las conexiones de alimentación y la polaridad
 - Comprobar el estado del fusible
-- Asegurarse de que la tensión está dentro del rango de 11–32 V
+- Asegurarse de que la tensión está dentro del rango de 10–32 V
 
 ❌ **El punto de acceso WiFi no aparece:**
 
@@ -197,11 +193,11 @@ En condiciones normales, el proceso de apagado suele durar solo unos segundos. S
 - Asegurarse de que la pantalla está encendida y con la entrada correcta seleccionada
 - Probar con otro cable HDMI u otro puerto de la pantalla
 - Asegurarse de que el HALPI2 está encendido (los LED deben estar amarillos o verdes)
-- Si los LED parpadean con un patrón de arcoíris, el Compute Module 5 no está bien asentado. Puede deberse a daños durante el transporte. Seguir las instrucciones de la [Guía del usuario](../user-guide/operation.md) para volver a asentar el CM5, o contactar con el servicio de soporte.
+- Si los LED parpadean con un patrón de arcoíris, el Compute Module 5 no está bien asentado. Puede deberse a daños durante el transporte. Seguir las instrucciones de la [Guía del hardware](../user-guide/hardware.md#sustitucion-del-compute-module-5) para volver a asentar el CM5, o contactar con el servicio de soporte.
 
 ❌ **La pantalla conectada muestra un mensaje de error sobre «nvme»:**
 
-- Esto indica que el NVMe SSD no se detecta o no se ha inicializado correctamente. Puede deberse a daños durante el transporte. Seguir las instrucciones de la [Guía del usuario](../user-guide/operation.md) para volver a asentar el NVMe SSD, o contactar con el servicio de soporte.
+- Esto indica que el NVMe SSD no se detecta o no se ha inicializado correctamente. Puede deberse a daños durante el transporte. Seguir las instrucciones de la [Guía del hardware](../user-guide/hardware.md#sustitucion-del-ssd-nvme) para volver a asentar el NVMe SSD, o contactar con el servicio de soporte.
 
 ### Cómo obtener ayuda:
 
@@ -344,7 +340,7 @@ Descargar la [plantilla de taladrado del HALPI2](./HALPI2_enclosure_1B_Drill_Tem
 
 El HALPI2 incorpora un limitador de corriente de entrada que gestiona la carga inicial de los supercondensadores y protege la instalación frente a situaciones de sobrecorriente. El límite de corriente puede fijarse en 0,9 A o en 2,5 A, según la fuente de alimentación y los requisitos de la aplicación. El valor predeterminado de 0,9 A es adecuado para la mayoría de las aplicaciones.
 
-Para acelerar el arranque inicial o alimentar periféricos de alto consumo, puede pasarse al ajuste de 2,5 A. Seguir los pasos descritos en la [Guía del usuario](../user-guide/operation.md) para modificar el límite de corriente.
+Para acelerar el arranque inicial o alimentar periféricos de alto consumo, puede pasarse al ajuste de 2,5 A. Seguir los pasos descritos en la [Guía del hardware](../user-guide/hardware.md#configuracion-de-la-limitacion-de-corriente) para modificar el límite de corriente.
 
 #### Conexión de alimentación dedicada
 
@@ -384,7 +380,7 @@ El conector E7T viene precableado y no requiere ninguna terminación en campo. B
 ##### Pasos de instalación
 
 1. **Apagar** todos los dispositivos NMEA 2000
-2. **Abrir la carcasa del HALPI2** (véanse las instrucciones en la [Guía del usuario](../user-guide/operation.md))
+2. **Abrir la carcasa del HALPI2** (véanse las instrucciones en la [Guía del hardware](../user-guide/hardware.md#acceso-a-la-carcasa))
 3. **Localizar el conector de alimentación de la placa portadora**
 4. **Desconectar el bloque de terminales existente**
 5. **Conectar el bloque de terminales interno de alimentación NMEA 2000** al conector de alimentación de la placa portadora
@@ -429,7 +425,7 @@ Para la conectividad de red:
 ❌ **No hay indicación de alimentación:**
 
 - Comprobar el estado y el valor nominal del fusible
-- Comprobar la tensión de la fuente de alimentación (11–32 V)
+- Comprobar la tensión de la fuente de alimentación (10–32 V)
 - Confirmar que la polaridad es correcta
 - Comprobar la continuidad de los cables de alimentación
 
@@ -492,7 +488,7 @@ Para la conectividad de red:
 
 Una vez que el HALPI2 está en funcionamiento:
 
-1. **Explorar la [Guía del usuario](../user-guide/operation.md)** para conocer las instrucciones de funcionamiento detalladas
-2. **Revisar los casos de uso habituales** para la configuración específica de cada aplicación
-3. **Consultar la referencia técnica** para conocer las opciones de configuración avanzadas
+1. **Leer [Uso diario](../user-guide/operation.md)** para saber qué significan los LED y cómo funciona el apagado
+2. **Explorar la [Guía del software](../user-guide/software.md)** para las actualizaciones, el acceso remoto y el comando `halpi`
+3. **Consultar la referencia técnica** para conocer las especificaciones detalladas
 4. **Unirse a la comunidad** para obtener consejos, trucos y soporte

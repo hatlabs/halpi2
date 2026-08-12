@@ -146,6 +146,10 @@ explanation. Only the Finnish glossary needs that warning.
 | terminal block | kopplingsplint | |
 | strain relief | dragavlastning | |
 | super-capacitor | superkondensator | |
+| inrush current | inkopplingsström | |
+| load dump | load dump-puls | Kept in English; established automotive term |
+| reverse polarity | omkastad polaritet | |
+| uninterruptible power supply (UPS) | avbrottsfri strömförsörjning (UPS) | |
 | real-time clock | realtidsklocka | |
 | backup battery | backupbatteri | |
 | resistor | motstånd | Not the loanword *resistor*; compounds as in *termineringsmotstånd*, `0 Ω-motstånd` |
@@ -173,6 +177,12 @@ explanation. Only the Finnish glossary needs that warning.
 | English | Swedish | Note |
 |:--------|:--------|:-----|
 | boat computer | båtdator | |
+| carrier board controller | (bärkortets) styrkrets | Never the loanword *kontroller* |
+| power button | strömknapp | |
+| unattended operation | drift utan tillsyn | |
+| charge-level bar (LEDs) | laddningsstapel | The charging animation: *stapel som fylls* |
+| to power cycle | bryta och återansluta strömmen | |
+| glitch (voltage) | kort störning | |
 | to boot | starta | |
 | first boot | första start | |
 | shutdown | avstängning | |

@@ -1,211 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Funcionamiento del sistema
+# Uso diario
+
+El HALPI2 está diseñado para el funcionamiento desatendido. Con la imagen HaLOS preinstalada —o con cualquier sistema operativo que tenga instalado el [demonio HALPI](./software.md#herramienta-de-linea-de-comandos-halpi)—, la gestión de la alimentación es automática: el dispositivo carga sus supercondensadores de respaldo, supera los microcortes de tensión, apaga el sistema operativo de forma segura cuando se pierde la alimentación y vuelve a arrancar cuando esta se restablece. Nada de esto requiere la intervención del usuario.
+
+## Encendido
+
+El HALPI2 no tiene botón de encendido en la carcasa: arranca en cuanto se conecta la alimentación de entrada. (Puede cablearse un botón de encendido externo a la placa portadora; véase [Botones externos](./interfaces.md#botones-externos).) La barra de LED se llena primero de rojo mientras se cargan los supercondensadores (entre unos segundos y medio minuto, según el [ajuste del límite de corriente](./hardware.md#configuracion-de-la-limitacion-de-corriente)). A continuación, los LED muestran una breve animación de arcoíris y ciclo de colores mientras arranca el Compute Module, presentan una barra amarilla mientras arranca el sistema operativo y se ponen verdes cuando el sistema operativo está en marcha y el demonio HALPI se ha conectado.
+
+## Apagado
+
+Para apagar el HALPI2, cortar la alimentación de entrada, por ejemplo con un interruptor del cuadro eléctrico. El sistema detecta la pérdida de alimentación, apaga el sistema operativo de forma controlada con la energía de los supercondensadores y permanece apagado. Los LED muestran una barra morada mientras se ejecuta el apagado y se apagan cuando este termina.
+
+También puede apagarse el sistema desde el software: el menú del escritorio, el comando `shutdown` o `halpi shutdown`. El sistema se apaga entonces y permanece apagado hasta que se realiza un ciclo de la alimentación de entrada (o se pulsa un [botón de encendido externo](./interfaces.md#botones-externos), si está instalado).
+
+De forma opcional, el controlador puede reiniciar el sistema automáticamente unos 5 segundos después de un apagado por software mientras la alimentación de entrada siga conectada, de modo que un comando de apagado accidental nunca deje fuera de servicio una instalación de difícil acceso físico. Se activa con `halpi config set auto_restart true`; el ajuste se conserva en el controlador. Las unidades producidas antes de principios de 2026 se entregaron con este comportamiento activado; puede comprobarse con `halpi config get auto_restart`.
+
+El sistema también puede ponerse en modo de reposo, en el que se apaga y vuelve a activarse a una hora programada; véase la referencia del [Controlador de la placa portadora](../technical-reference/controller.md#modo-de-reposo).
 
 ## Indicadores LED de estado
 
-HALPI2 incorpora cinco LED RGB que ofrecen información visual sobre el estado del sistema y las condiciones de alimentación.
+Los cinco LED del panel frontal muestran lo que está haciendo el sistema:
 
-### Referencia rápida de los estados de los LED
+| Patrón de LED | Significado |
+|:--------------|:------------|
+| Barra roja llenándose | Los supercondensadores se cargan antes del arranque: esperar |
+| Arcoíris y ciclo de colores | El Compute Module está arrancando. Si el patrón se repite sin avanzar, el módulo no ha conseguido arrancar; véase [Resolución de problemas](./troubleshooting.md#led-en-arcoiris) |
+| Barra amarilla | En funcionamiento, demonio HALPI no conectado: normal durante unos instantes en el arranque. Si persiste, véase [Resolución de problemas](./troubleshooting.md#los-led-se-quedan-en-amarillo) |
+| Barra verde | Funcionamiento normal |
+| Barra naranja o verde oscuro | Alimentación de entrada perdida, funcionamiento con la energía de respaldo: sigue un apagado salvo que la alimentación vuelva en unos segundos |
+| Barra morada | Apagado en curso |
+| Todos en rojo fijo | El sistema operativo no responde: el controlador lo reiniciará automáticamente |
+| Todos parpadeando en rojo | Fallo de los supercondensadores: contactar con el soporte |
+| Todos en azul fijo | Entrando en modo de reposo |
+| Todos en rojo tenue | Modo de reposo |
+| Todos apagados | Sistema apagado |
 
-| Patrón de LED | Color | Significado |
-|-------------|-------|---------|
-| LED 5 fijo | Rojo | Alimentación conectada, esperando la carga |
-| Llenado progresivo | Rojo | Carga de los supercondensadores |
-| Arcoíris + ciclo de colores | Varios | El CM5 no ha arrancado |
-| Barra de tensión | Amarillo | Funcionamiento en modo solo |
-| Barra de tensión | Verde | Funcionamiento en modo cooperativo |
-| Barra de tensión | Naranja | Alimentación de respaldo activa (modo solo) |
-| Barra de tensión | Verde oscuro | Alimentación de respaldo activa (modo cooperativo) |
-| Todos parpadeando | Rojo | Sobretensión en los supercondensadores |
-| Todos fijos | Rojo | Tiempo de espera del watchdog agotado |
-| Barra de tensión | Morado | Apagado en curso |
-| Todos fijos | Azul | Apagado al modo de reposo en curso |
-| Todos fijos | Rojo tenue | Modo de reposo |
-| Todos apagados | — | Sistema apagado |
+En los patrones de barra, el número de LED encendidos indica el nivel de carga de los supercondensadores. Los rangos de tensión exactos y la correspondencia completa de estados figuran en la referencia del [Controlador de la placa portadora](../technical-reference/controller.md#referencia-de-los-led-de-estado).
 
-### Indicación de la tensión de los supercondensadores
+El brillo de los LED puede ajustarse; véase [Control de los LED](./software.md#control-de-los-led). Los LED también pueden reutilizarse como pantalla de métricas del sistema y datos náuticos (actividad de red, niveles de los tanques, valores NMEA 2000 y Signal K) con el complemento [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights).
 
-Durante el funcionamiento, los LED actúan como indicador de tensión y muestran el nivel de carga de los supercondensadores:
+## Cuando se pierde la alimentación
 
-- **LED 1**: 5,0–6,0 V
-- **LED 2**: 6,0–7,0 V
-- **LED 3**: 7,0–8,0 V
-- **LED 4**: 8,0–9,0 V
-- **LED 5**: 9,0–10,0 V
+No es necesario hacer nada. Las caídas breves y los microcortes —de hasta 5 segundos de forma predeterminada— los cubren los supercondensadores, y el funcionamiento continúa sin alteraciones. En un corte más largo, el sistema se apaga por sí mismo de forma controlada con los 30–60 segundos de alimentación de respaldo que almacenan los supercondensadores. Cuando vuelve la alimentación de entrada, el sistema arranca de nuevo automáticamente.
 
-## Gestión de la alimentación y procedimientos de apagado
+!!! warning "No es un SAI"
+    Los supercondensadores existen para cubrir los microcortes y alimentar un apagado seguro. Para mantener el funcionamiento durante cortes de corriente prolongados se necesita un sistema de alimentación ininterrumpida (SAI) externo.
 
-HALPI2 incorpora una fuente de alimentación diseñada para soportar picos de tensión, microcortes e interrupciones breves.
+## Comprobación del estado del sistema
 
-### Descripción general del sistema de alimentación
+Una barra de LED verde significa que el sistema funciona correctamente. Para más detalles, el comando `halpi` muestra el estado del controlador, las tensiones, la corriente y las temperaturas:
 
-El sistema de gestión de la alimentación de HALPI2 consta de:
+```bash
+halpi status
+```
 
-- **Fuente de alimentación de rango amplio** (entrada de 11–32 V CC con protección hasta 100 V CC)
-- **Sistema de respaldo con supercondensadores** para apagados controlados durante una pérdida de alimentación
-- **Limitación de corriente** (0,9 A o 2,5 A seleccionables)
-- **Detección de la pérdida de alimentación** e inicio automático del apagado
-- **Supervisión de la tensión y la corriente de entrada**
+Si algo no parece correcto, véanse [Resolución de problemas](./troubleshooting.md) y la [Guía del software](./software.md#herramienta-de-linea-de-comandos-halpi).
 
-El sistema funciona en dos modos: modo solo y modo cooperativo (co-op).
+## Funcionamiento sin el demonio
 
-### Funcionamiento en modo solo
+En los sistemas operativos sin el demonio HALPI, el controlador recurre a un modo de protección básico: sigue detectando la pérdida de alimentación y solicita el apagado, pero mediante pulsaciones simuladas del botón de encendido —lo que falla si el sistema está bloqueado—, y la supervisión y la configuración no están disponibles. Si se utiliza un sistema operativo personalizado, conviene instalar el demonio; véase [Otras distribuciones Debian](../software-development/ubuntu-installation.md). El funcionamiento de los dos modos se describe en la referencia del [Controlador de la placa portadora](../technical-reference/controller.md#modos-de-funcionamiento).
 
-El modo solo ofrece un funcionamiento autónomo básico cuando el demonio HALPI no está en ejecución. El controlador funciona de forma independiente, sin comunicación con el software.
-
-#### Características del modo solo
-
-- **No requiere comunicación con el software**
-- **Protección básica ante la pérdida de alimentación**: supervisa la tensión de entrada y reacciona ante la pérdida de alimentación
-- **Apagado automático mediante pulsaciones simuladas del botón de encendido**
-- **Opciones limitadas de supervisión y configuración**
-
-#### Pérdida de alimentación y apagado en modo solo
-
-**Detección de la pérdida de alimentación:**
-El controlador supervisa la tensión de entrada y detecta la pérdida de alimentación. Un temporizador de corte de corriente (5 segundos de forma predeterminada) evita apagados durante interrupciones breves.
-
-**Secuencia de apagado automático:**
-
-1. **El controlador detecta la pérdida de alimentación**
-2. **Se activa el temporizador de corte de corriente** para distinguir los microcortes de una pérdida real de alimentación
-3. **Pulsaciones simuladas del botón de encendido**: el controlador envía una doble pulsación del botón de encendido al Compute Module
-4. **El sistema operativo responde** e inicia un apagado controlado
-5. **Los supercondensadores mantienen la alimentación** (normalmente 30–60 segundos disponibles)
-6. **Protección con tiempo de espera de 60 segundos**: apagado forzado si el apagado controlado falla
-7. **El sistema permanece apagado** hasta que vuelve la alimentación
-8. **Reinicio automático** cuando se restablece la alimentación
-
-**Apagado manual en modo solo:**
-
-- Se produce un apagado normal del sistema operativo
-- El sistema se reinicia automáticamente después de 5 segundos si sigue disponible la alimentación de entrada
-- Para un apagado permanente, desconectar la alimentación de entrada tras iniciar el apagado controlado
-
-#### Cuándo está activo el modo solo
-
-El modo solo se activa:
-
-- Durante el arranque inicial, antes de que se inicie el demonio HALPI
-- Si el demonio HALPI no consigue iniciarse o está desactivado
-- En sistemas operativos no compatibles que carecen del demonio
-- Cuando el demonio se ha bloqueado o ha dejado de responder
-
-!!! tip "Fiabilidad del modo solo"
-    El modo solo ofrece una protección esencial, pero es menos fiable que el modo cooperativo. El controlador depende de pulsaciones simuladas de botón para solicitar el apagado, lo que puede no funcionar si el sistema está bloqueado.
-
-### Funcionamiento en modo cooperativo
-
-El modo cooperativo ofrece la funcionalidad completa de gestión de la alimentación cuando el demonio HALPI está en ejecución y se comunica con el controlador.
-
-#### Características del modo cooperativo
-
-- **Comunicación directa con el software**: intercambio de datos en tiempo real entre el controlador y el demonio
-- **Protección mediante temporizador watchdog** (temporizador de vigilancia): un tiempo de espera de 30 segundos garantiza la estabilidad del sistema
-- **Comportamiento de apagado configurable**: tiempos y comandos personalizables
-- **Supervisión en tiempo real**: supervisión completa de los parámetros de alimentación
-- **Opciones de configuración avanzadas**
-
-#### Pérdida de alimentación y apagado en modo cooperativo
-
-**Detección de la pérdida de alimentación:**
-El controlador supervisa la alimentación de entrada y comunica los eventos directamente al demonio HALPI. El temporizador de corte de corriente configurable (5 segundos de forma predeterminada) permite interrupciones breves de la alimentación sin iniciar el apagado.
-
-**Secuencia de apagado automático:**
-
-1. **El controlador detecta la pérdida de alimentación** y lo comunica al demonio HALPI
-2. **Evaluación del temporizador de corte de corriente**: el demonio determina si la pérdida de alimentación supera el umbral
-3. **Ejecución del comando de apagado**: el demonio ejecuta el comando de apagado (predeterminado: `/sbin/poweroff`)
-4. **Apagado controlado del sistema operativo**: las aplicaciones se cierran y los sistemas de archivos se desmontan de forma segura
-5. **La alimentación de respaldo de los supercondensadores** aporta energía durante todo el apagado
-6. **El controlador supervisa la finalización**: detecta cuándo se apaga el Compute Module
-7. **La línea de 5 V se desactiva** cuando el apagado ha terminado
-8. **El sistema permanece apagado** hasta que vuelve la alimentación de entrada
-9. **Gestión del reinicio**: según la configuración, el sistema se reinicia automáticamente o permanece apagado
-
-**Apagado manual en modo cooperativo:**
-
-- Se produce un apagado controlado estándar cuando se inicia desde el software
-- El sistema se reinicia automáticamente después de 5 segundos si sigue disponible la alimentación de entrada
-- Para impedir el reinicio automático, desconectar la alimentación o configurar `auto_restart` como `false`
-
-#### Protección mediante watchdog
-
-El modo cooperativo incluye protección mediante temporizador watchdog:
-
-- **Tiempo de espera de comunicación de 30 segundos**: el demonio debe comunicarse con el controlador con regularidad
-- **Recuperación automática**: el sistema se reinicia si la comunicación se interrumpe
-- **Protección ante fallos del software**: garantiza la recuperación tras bloqueos del demonio o del sistema
-- **«Alimentar el watchdog»**: el demonio envía actualizaciones de estado periódicas para reiniciar el temporizador
-
-#### Cuándo está activo el modo cooperativo
-
-El modo cooperativo se activa cuando:
-
-- El demonio HALPI está en ejecución y funciona correctamente
-- Se ha establecido la comunicación entre el demonio y el controlador
-- El sistema funciona sobre un sistema operativo compatible
-- Están disponibles todas las funciones de supervisión y control del sistema
-
-!!! info "Comprobación del modo cooperativo"
-    Consultar el estado del demonio: `systemctl status halpid`
-
-    Ver el estado del controlador: `halpi status`
-
-    Para más información sobre el comando `halpi`, consultar la [Guía del software](./software.md#demonio-halpi-halpid).
-
-### Alimentación de respaldo y sistema de condensadores
-
-Ambos modos dependen del sistema de respaldo con supercondensadores para la protección mediante apagado controlado:
-
-**Duración de la alimentación de respaldo:**
-
-- Los supercondensadores proporcionan 30–60 segundos de alimentación de respaldo
-- La duración depende de la carga del sistema y de los periféricos conectados
-- Tiempo suficiente para cerrar de forma segura el sistema de archivos y terminar los procesos
-- No está diseñado para mantener el funcionamiento durante cortes prolongados
-
-**Características de la carga:**
-
-- Tiempo de carga: 25 segundos con el límite de corriente de 0,9 A
-- Tiempo de carga: 9 segundos con el límite de corriente de 2,5 A
-- El progreso de la carga se muestra visualmente mediante la progresión de los LED (patrón de llenado en rojo)
-
-!!! warning "Limitación de la protección ante la pérdida de alimentación"
-    El sistema de supercondensadores está diseñado para el apagado controlado, no para mantener el funcionamiento. No se debe confiar en él para cortes de corriente prolongados.
-
-### Consideraciones sobre el apagado manual
-
-HALPI2 da prioridad al funcionamiento y la recuperación automáticos, lo que afecta al comportamiento del apagado manual.
-
-#### Comportamiento del reinicio automático
-
-De forma predeterminada, HALPI2 se reinicia tras un apagado manual si la alimentación de entrada sigue disponible:
-
-- Los apagados manuales producen un apagado normal del sistema operativo
-- Tras completarse el apagado transcurre un periodo de gracia de 5 segundos
-- El sistema se reinicia automáticamente para mantener la disponibilidad operativa
-- Así se garantiza la recuperación ante apagados accidentales
-
-#### Métodos de apagado intencionado
-
-Para un apagado permanente, se puede seguir uno de estos métodos:
-
-**Método de desconexión de la alimentación:**
-
-1. Iniciar el apagado controlado desde el software
-2. Esperar a que finalice el apagado (los LED se apagan)
-3. Desconectar la alimentación de entrada para impedir el reinicio automático
-
-**Método de configuración:**
-
-1. Desactivar el reinicio automático: `halpi config set auto_restart false`
-2. Iniciar el apagado desde el software
-3. El sistema permanece apagado una vez completado el apagado
-
-**Modo de reposo (futuro):**
-!!! info "Estado de la función"
-    La funcionalidad del modo de reposo está prevista para futuras versiones del firmware. Permitirá apagar el Compute Module mientras el controlador de HALPI2 permanece activo, a la espera de eventos de reactivación.
+!!! quote "Información relacionada"
+    - **Funcionamiento interno de la gestión de la alimentación:** véase [Controlador de la placa portadora](../technical-reference/controller.md)
+    - **Detalles del sistema de alimentación:** véase [La alimentación en detalle](../technical-reference/power-supply.md)
+    - **El comando `halpi` y el demonio:** véase la [Guía del software](./software.md)
+    - **Problemas:** véase [Resolución de problemas](./troubleshooting.md)

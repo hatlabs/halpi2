@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Introduction
@@ -105,7 +105,7 @@ Cette documentation s'adresse aussi bien aux utilisateurs finaux à la recherche
 ### Pour les utilisateurs finaux
 
 - Commencez par le guide **Prise en main** pour l'installation et la mise en service
-- Parcourez les **cas d'usage courants** pour des conseils adaptés à votre application
+- Lisez **Utilisation quotidienne** pour l'usage courant : signification des LED, arrêt, comportement en cas de perte d'alimentation
 - Consultez le **Dépannage** en cas de problème
 
 ### Pour les développeurs
@@ -113,7 +113,6 @@ Cette documentation s'adresse aussi bien aux utilisateurs finaux à la recherche
 - Consultez la **Référence technique** pour les spécifications détaillées
 - Étudiez les sections **Développement logiciel** pour vos applications sur mesure
 - Examinez les **Fichiers de conception** pour préparer votre intégration
-- Reportez-vous à la **Configuration avancée** pour optimiser les performances
 
 ### Conventions de la documentation
 

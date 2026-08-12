@@ -170,6 +170,9 @@ does not have to.
 | super-capacitor | supercondensateur | |
 | real-time clock | horloge temps réel | |
 | backup battery | pile de sauvegarde | |
+| UPS (uninterruptible power supply) | onduleur | |
+| inrush current | courant d'appel | |
+| load dump | délestage d'alternateur (load dump) | Keep the English in parentheses once |
 
 ### Connectors and interfaces
 
@@ -198,7 +201,7 @@ does not have to.
 | shutdown | arrêt | |
 | graceful shutdown | arrêt propre | |
 | power loss | perte d'alimentation | |
-| blackout | coupure de courant | |
+| blackout | coupure | « perte d'alimentation » pour *power loss* ; « temporisation de coupure » pour *blackout timer* |
 | power management | gestion de l'alimentation | |
 | status LED | LED d'état | |
 | monitoring | surveillance | |
@@ -207,6 +210,11 @@ does not have to.
 | to unmount | démonter | |
 | watchdog | chien de garde (watchdog) | Keep the English in parentheses once |
 | standby | veille | |
+| unattended operation | fonctionnement sans surveillance | |
+| state machine | machine à états | |
+| power cycle | cycle de l'alimentation | Spelled out where clearer: couper puis rétablir l'alimentation |
+| Solo mode / Co-op mode | mode solo / mode coopératif | |
+| tank level | niveau de cuve | |
 
 ### Software and networking
 

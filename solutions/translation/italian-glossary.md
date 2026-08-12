@@ -549,3 +549,17 @@ by each of them, because five agents share this file.
 | support (help from Hat Labs or the community) | assistenza | Rival-term resolution. Distinct from `supporto`, which stays for the capability sense — *external antenna support* is `supporto per antenne esterne`, *HALPI2 support* is `supporto per HALPI2`. |
 | onboard device | dispositivo integrato | technical-reference/hardware.md. Matches `interfacce integrate` / `periferiche integrate` already used on the page for *built-in*. `a bordo` is a trap in this corpus: it reads as aboard the vessel. |
 | resistor (bare component, e.g. a 0 Ω series resistor) | resistenza | technical-reference/hardware.md. The glossary only fixes the compound `terminator -> resistenza di terminazione`. `resistore` exists but Italian electronics documentation and datasheets say `resistenza`. |
+| Daily Operation (page title) | Uso quotidiano | H1 of user-guide/operation.md and every link text to it; matches the `nav_translations` value in mkdocs.yml. Replaces the former page title 'Funzionamento del sistema'. |
+| Interface Reference (page title) | Riferimento interfacce | H1 of technical-reference/interfaces.md; matches `nav_translations`. Distinct from the user-guide page, which keeps 'Interfacce e connettività'. |
+| Power Supply Deep Dive (page title) | Alimentazione in dettaglio | H1 of technical-reference/power-supply.md and link texts to it; matches `nav_translations`. Supersedes the earlier stub H1 'Approfondimento sull'alimentazione'. |
+| FAQ (page title) | Domande frequenti | H1 of faq.md; matches `nav_translations`, like the sibling locales (Preguntas frecuentes, Veelgestelde vragen). |
+| unattended operation | funzionamento non presidiato | operation.md, faq.md, controller.md. Standard Italian industrial term; 'incustodito' reads as an abandoned object. |
+| power button | pulsante di accensione | Already established in user-guide/interfaces.md but never recorded. Used for the CM5 power button, external buttons, and the controller's simulated presses. Not 'pulsante di alimentazione'. |
+| watchdog feed | feed del watchdog | controller.md. 'feed' kept English like the glossary's jumper/watchdog; 'alimentazione del watchdog' would collide with power vocabulary. |
+| charge-level bar (LED pattern) | barra del livello di carica | controller.md LED table. The English source renamed the former 'voltage bar' (barra di tensione) in the rewritten pages; both rows stay valid for their own source text. |
+| UPS / uninterruptible power supply | UPS / gruppo di continuità (UPS) | operation.md, power-supply.md, faq.md. Admonition title 'Not a UPS' -> 'Non è un UPS'. Spell out 'gruppo di continuità (UPS)' when the source spells out 'uninterruptible power supply'. |
+| state machine | macchina a stati | power-supply.md. Standard Italian CS term. |
+| wake-up (scheduled, from standby) | riattivazione | controller.md, operation.md. The verb is 'riattivarsi'; 'risveglio' reads as human sleep. |
+| fallback (mode, firmware default) | di ripiego | controller.md: 'modalità di ripiego' (Solo mode), 'valore di ripiego del firmware' (auto_restart). 'di riserva' is avoided because 'riserva' is taken by backup power. |
+| alternator load dump | load dump dell'alternatore | power-supply.md. 'load dump' is the trade term in Italian electronics documentation; no translation exists in common use. |
+| power budget | bilancio di potenza | power-supply.md. Standard Italian electrotechnical term. |

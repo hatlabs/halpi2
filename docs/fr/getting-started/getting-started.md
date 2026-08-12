@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Prise en main
@@ -93,7 +93,7 @@ Le HALPI2 est livré avec [HaLOS](https://docs.halos.fi), une distribution Linux
 Si un écran est raccordé, vous devriez voir l'écran d'accueil de Raspberry Pi OS, puis un bureau graphique.
 
 !!! tip "Astuce"
-    Les motifs des LED d'état sont décrits dans le [Fonctionnement du système](../user-guide/operation.md).
+    Les motifs des LED d'état sont décrits dans [Utilisation quotidienne](../user-guide/operation.md#led-detat).
 
 ### Accéder au HALPI2 sans écran
 
@@ -163,11 +163,7 @@ Ouvrez l'interface web de Signal K et observez l'activité de la connexion `can0
 
 Le HALPI2 est conçu pour s'éteindre automatiquement lorsqu'on le débranche de son alimentation. Pour l'arrêter, coupez simplement le courant, au tableau électrique ou en débranchant le connecteur d'alimentation. Le système lance alors de lui-même une séquence d'arrêt logiciel, qui garantit la fermeture correcte des applications et le démontage sûr du système de fichiers.
 
-Si vous choisissez d'arrêter le système depuis le bureau ou en ligne de commande (avec la commande `shutdown`, par exemple), l'appareil redémarrera automatiquement au bout d'environ 5 secondes. Ce comportement vient du système de gestion de l'alimentation, qui constate que l'alimentation externe est toujours présente.
-
-Pendant l'arrêt, vous pouvez suivre l'état du système sur les LED du panneau avant. À la coupure du courant, les LED vertes s'atténuent pour signaler la perte d'alimentation. Au bout de 5 secondes, elles passent au violet, indiquant clairement que l'appareil est en cours d'arrêt. Une fois l'arrêt terminé, toutes les LED s'éteignent.
-
-L'arrêt ne prend normalement que quelques secondes. Il arrive cependant que certains services demandent plus de temps pour s'arrêter proprement. L'appareil peut alors épuiser presque entièrement les supercondensateurs avant de s'éteindre. Cet arrêt prolongé est normal et ne traduit aucun défaut.
+Pendant l'arrêt, les LED s'atténuent d'abord (coupure détectée), passent au violet pendant le déroulement de l'arrêt, puis s'éteignent une fois celui-ci terminé. Le comportement à l'arrêt — y compris le redémarrage automatique optionnel après un arrêt logiciel — est décrit dans [Utilisation quotidienne](../user-guide/operation.md#arret).
 
 ## Dépannage de la mise en route
 
@@ -177,7 +173,7 @@ L'arrêt ne prend normalement que quelques secondes. Il arrive cependant que cer
 
 - Vérifiez les raccordements d'alimentation et la polarité
 - Contrôlez l'état du fusible
-- Assurez-vous que la tension est comprise entre 11 et 32 V
+- Assurez-vous que la tension est comprise entre 10 et 32 V
 
 ❌ **Le point d'accès WiFi n'apparaît pas :**
 
@@ -196,11 +192,11 @@ L'arrêt ne prend normalement que quelques secondes. Il arrive cependant que cer
 - Vérifiez que l'écran est allumé et réglé sur la bonne entrée
 - Essayez un autre câble HDMI ou un autre port de l'écran
 - Assurez-vous que le HALPI2 est allumé (les LED doivent être jaunes ou vertes)
-- Si les LED clignotent en arc-en-ciel, le Compute Module 5 n'est pas correctement enfoncé sur la carte porteuse. Cela peut résulter d'un dommage lors du transport. Suivez les instructions du [Guide de l'utilisateur](../user-guide/operation.md) pour le remettre en place, ou contactez l'assistance.
+- Si les LED clignotent en arc-en-ciel, le Compute Module 5 n'est pas correctement enfoncé sur la carte porteuse. Cela peut résulter d'un dommage lors du transport. Suivez les instructions du [Guide du matériel](../user-guide/hardware.md#remplacer-le-compute-module-5) pour le remettre en place, ou contactez l'assistance.
 
 ❌ **L'écran raccordé affiche un message d'erreur mentionnant « nvme » :**
 
-- Cela signifie que le SSD NVMe n'est pas détecté ou n'est pas correctement initialisé. Cela peut résulter d'un dommage lors du transport. Suivez les instructions du [Guide de l'utilisateur](../user-guide/operation.md) pour le remettre en place, ou contactez l'assistance.
+- Cela signifie que le SSD NVMe n'est pas détecté ou n'est pas correctement initialisé. Cela peut résulter d'un dommage lors du transport. Suivez les instructions du [Guide du matériel](../user-guide/hardware.md#remplacer-le-ssd-nvme) pour le remettre en place, ou contactez l'assistance.
 
 ### Où trouver de l'aide
 
@@ -343,7 +339,7 @@ Téléchargez le [gabarit de perçage du HALPI2](./HALPI2_enclosure_1B_Drill_Tem
 
 Le HALPI2 intègre un limiteur de courant d'entrée qui gère la charge initiale des supercondensateurs et protège l'installation des surintensités. La limite se règle sur 0,9 A ou 2,5 A, selon la source d'alimentation et les besoins de l'application. Le réglage par défaut de 0,9 A convient à la plupart des usages.
 
-Pour accélérer le démarrage initial ou alimenter des périphériques gourmands, vous pouvez passer à 2,5 A. Suivez la procédure du [Guide de l'utilisateur](../user-guide/operation.md) pour modifier ce réglage.
+Pour accélérer le démarrage initial ou alimenter des périphériques gourmands, vous pouvez passer à 2,5 A. Suivez la procédure du [Guide du matériel](../user-guide/hardware.md#reglage-de-la-limitation-de-courant) pour modifier ce réglage.
 
 #### Raccordement à une alimentation dédiée
 
@@ -383,7 +379,7 @@ Le connecteur E7T est précâblé et ne demande aucun raccordement sur site. Il 
 ##### Étapes d'installation
 
 1. **Mettez hors tension** tous les appareils NMEA 2000
-2. **Ouvrez le boîtier du HALPI2** (voir le [Guide de l'utilisateur](../user-guide/operation.md) pour la procédure)
+2. **Ouvrez le boîtier du HALPI2** (voir le [Guide du matériel](../user-guide/hardware.md#ouverture-du-boitier) pour la procédure)
 3. **Repérez le connecteur d'alimentation de la carte porteuse**
 4. **Débranchez le bornier en place**
 5. **Raccordez le bornier d'alimentation NMEA 2000 interne** au connecteur d'alimentation de la carte porteuse
@@ -428,7 +424,7 @@ Pour la connectivité réseau :
 ❌ **Aucune indication d'alimentation :**
 
 - Contrôlez l'état et le calibre du fusible
-- Vérifiez la tension de la source (11–32 V)
+- Vérifiez la tension de la source (10–32 V)
 - Confirmez la polarité
 - Testez la continuité des câbles d'alimentation
 
@@ -491,7 +487,7 @@ Pour la connectivité réseau :
 
 Une fois votre HALPI2 en service :
 
-1. **Explorez le [Guide de l'utilisateur](../user-guide/operation.md)** pour des instructions d'utilisation détaillées
-2. **Parcourez les cas d'usage courants** pour une mise en service adaptée à votre application
-3. **Consultez la Référence technique** pour les options de configuration avancées
+1. **Lisez [Utilisation quotidienne](../user-guide/operation.md)** pour comprendre la signification des LED et le fonctionnement de l'arrêt
+2. **Explorez le [Guide logiciel](../user-guide/software.md)** pour les mises à jour, l'accès à distance et la commande `halpi`
+3. **Consultez la Référence technique** pour les spécifications détaillées
 4. **Rejoignez la communauté** pour des conseils, des astuces et de l'aide

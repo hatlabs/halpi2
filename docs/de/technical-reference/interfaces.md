@@ -1,8 +1,8 @@
 ---
-translated_from: 9497de10027831b20a1e2278a32df0c12d9a4a39
+translated_from: e9e4f459212f6282e404954def18772911ead89c
 ---
 
-# Schnittstellen und Konnektivität
+# Schnittstellen-Referenz
 
 Diese Seite beschreibt, wie die Schnittstellen des CM5 auf der Trägerplatine des
 HALPI2 herausgeführt sind. Zur alltäglichen Nutzung der integrierten CAN-FD- und

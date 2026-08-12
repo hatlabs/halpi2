@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Guida al software
@@ -226,7 +226,7 @@ L’interfaccia software di HALPI2 è costituita dal servizio demone `halpid` e 
 
 ### Demone HALPI (`halpid`)
 
-Il demone HALPI viene eseguito come servizio di sistema e assicura la comunicazione tra il sistema operativo e il controller HALPI2. Consente il funzionamento in modalità Co-op con tutte le funzioni di monitoraggio e di gestione dell’alimentazione.
+Il demone HALPI viene eseguito come servizio di sistema e assicura la comunicazione tra il sistema operativo e il controller HALPI2. Con il demone in esecuzione, il controller dispone di monitoraggio completo, configurazione e coordinamento dello spegnimento controllato — per il comportamento del controller con e senza demone, vedere il riferimento [Controller della scheda portante](../technical-reference/controller.md#modalita-di-funzionamento).
 
 #### Gestione del servizio
 
@@ -363,8 +363,9 @@ Esempi di comandi per la gestione dell’alimentazione:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 Il comando di spegnimento garantisce che il sistema si spenga in sicurezza, consentendo al sistema operativo di chiudere le applicazioni e di smontare correttamente i file system prima che il controller interrompa l’alimentazione.

@@ -58,7 +58,8 @@ plugins:
             Introduction: Johdanto
             Getting Started: Aloitusopas
             User Guide: Käyttöopas
-            System Operation: Järjestelmän käyttö
+            Daily Operation: Päivittäinen käyttö
+            Interface Reference: Liitäntöjen tekniset tiedot
             Hardware Guide: Laitteisto-opas
             Interfaces and Connectivity: Liitännät ja tiedonsiirto
             Software Guide: Ohjelmisto-opas
@@ -69,14 +70,10 @@ plugins:
             Carrier Board Controller: Emolevyn ohjain
             Software Development: Ohjelmistokehitys
             HALPI2 Daemon: HALPI2-daemon
-            System Integration: Järjestelmäintegraatio
-            Advanced Configuration: Lisäasetukset
             Other Debian Distributions: Muut Debian-jakelut
             Appendices: Liitteet
             Design Files and Schematics: Suunnittelutiedostot ja kytkentäkaaviot
-            Compliance and Certifications: Vaatimustenmukaisuus ja sertifioinnit
             Errata: Tunnetut virheet
-            Resources: Lisätietoja
             FAQ: UKK
         - locale: fr
           name: Français
@@ -94,7 +91,8 @@ plugins:
             Introduction: Introduction
             Getting Started: Prise en main
             User Guide: Guide de l'utilisateur
-            System Operation: Fonctionnement du système
+            Daily Operation: Utilisation quotidienne
+            Interface Reference: Référence des interfaces
             Hardware Guide: Guide du matériel
             Interfaces and Connectivity: Interfaces et connectivité
             Software Guide: Guide logiciel
@@ -105,14 +103,10 @@ plugins:
             Carrier Board Controller: Contrôleur de la carte porteuse
             Software Development: Développement logiciel
             HALPI2 Daemon: Démon HALPI2
-            System Integration: Intégration système
-            Advanced Configuration: Configuration avancée
             Other Debian Distributions: Autres distributions Debian
             Appendices: Annexes
             Design Files and Schematics: Fichiers de conception et schémas
-            Compliance and Certifications: Conformité et certifications
             Errata: Problèmes connus
-            Resources: Ressources
             FAQ: FAQ
         - locale: de
           name: Deutsch
@@ -130,7 +124,8 @@ plugins:
             Introduction: Einführung
             Getting Started: Erste Schritte
             User Guide: Benutzerhandbuch
-            System Operation: Systembetrieb
+            Daily Operation: Täglicher Betrieb
+            Interface Reference: Schnittstellen-Referenz
             Hardware Guide: Hardware-Handbuch
             Interfaces and Connectivity: Schnittstellen und Konnektivität
             Software Guide: Software-Handbuch
@@ -141,14 +136,10 @@ plugins:
             Carrier Board Controller: Controller der Trägerplatine
             Software Development: Softwareentwicklung
             HALPI2 Daemon: HALPI2-Daemon
-            System Integration: Systemintegration
-            Advanced Configuration: Erweiterte Konfiguration
             Other Debian Distributions: Andere Debian-Distributionen
             Appendices: Anhänge
             Design Files and Schematics: Konstruktionsdateien und Schaltpläne
-            Compliance and Certifications: Konformität und Zertifizierungen
             Errata: Bekannte Fehler
-            Resources: Ressourcen
             FAQ: FAQ
         - locale: sv
           name: Svenska
@@ -166,7 +157,8 @@ plugins:
             Introduction: Introduktion
             Getting Started: Kom igång
             User Guide: Användarhandbok
-            System Operation: Systemdrift
+            Daily Operation: Daglig användning
+            Interface Reference: Gränssnittsreferens
             Hardware Guide: Hårdvaruguide
             Interfaces and Connectivity: Gränssnitt och anslutningar
             Software Guide: Programvaruguide
@@ -177,14 +169,10 @@ plugins:
             Carrier Board Controller: Bärkortets styrkrets
             Software Development: Programvaruutveckling
             HALPI2 Daemon: HALPI2-daemon
-            System Integration: Systemintegration
-            Advanced Configuration: Avancerad konfiguration
             Other Debian Distributions: Andra Debian-distributioner
             Appendices: Bilagor
             Design Files and Schematics: Konstruktionsfiler och kopplingsscheman
-            Compliance and Certifications: Överensstämmelse och certifieringar
             Errata: Kända fel
-            Resources: Resurser
             FAQ: Vanliga frågor
         - locale: es
           name: "Español"
@@ -202,7 +190,8 @@ plugins:
             "Introduction": "Introducción"
             "Getting Started": "Primeros pasos"
             "User Guide": "Guía del usuario"
-            "System Operation": "Funcionamiento del sistema"
+            "Daily Operation": "Uso diario"
+            "Interface Reference": "Referencia de interfaces"
             "Hardware Guide": "Guía del hardware"
             "Interfaces and Connectivity": "Interfaces y conectividad"
             "Software Guide": "Guía del software"
@@ -213,14 +202,10 @@ plugins:
             "Carrier Board Controller": "Controlador de la placa portadora"
             "Software Development": "Desarrollo de software"
             "HALPI2 Daemon": "Demonio HALPI2"
-            "System Integration": "Integración del sistema"
-            "Advanced Configuration": "Configuración avanzada"
             "Other Debian Distributions": "Otras distribuciones Debian"
             "Appendices": "Apéndices"
             "Design Files and Schematics": "Archivos de diseño y esquemas"
-            "Compliance and Certifications": "Conformidad y certificaciones"
             "Errata": "Errores conocidos"
-            "Resources": "Recursos"
             "FAQ": "Preguntas frecuentes"
         - locale: it
           name: "Italiano"
@@ -238,7 +223,8 @@ plugins:
             "Introduction": "Introduzione"
             "Getting Started": "Primi passi"
             "User Guide": "Guida utente"
-            "System Operation": "Funzionamento del sistema"
+            "Daily Operation": "Uso quotidiano"
+            "Interface Reference": "Riferimento interfacce"
             "Hardware Guide": "Guida all'hardware"
             "Interfaces and Connectivity": "Interfacce e connettività"
             "Software Guide": "Guida al software"
@@ -249,14 +235,10 @@ plugins:
             "Carrier Board Controller": "Controller della scheda portante"
             "Software Development": "Sviluppo software"
             "HALPI2 Daemon": "Demone HALPI2"
-            "System Integration": "Integrazione di sistema"
-            "Advanced Configuration": "Configurazione avanzata"
             "Other Debian Distributions": "Altre distribuzioni Debian"
             "Appendices": "Appendici"
             "Design Files and Schematics": "File di progetto e schemi elettrici"
-            "Compliance and Certifications": "Conformità e certificazioni"
             "Errata": "Problemi noti"
-            "Resources": "Risorse"
             "FAQ": "Domande frequenti"
         - locale: nl
           name: "Nederlands"
@@ -274,7 +256,8 @@ plugins:
             "Introduction": "Inleiding"
             "Getting Started": "Aan de slag"
             "User Guide": "Gebruikershandleiding"
-            "System Operation": "Systeemwerking"
+            "Daily Operation": "Dagelijks gebruik"
+            "Interface Reference": "Interfacereferentie"
             "Hardware Guide": "Hardwarehandleiding"
             "Interfaces and Connectivity": "Interfaces en connectiviteit"
             "Software Guide": "Softwarehandleiding"
@@ -285,14 +268,10 @@ plugins:
             "Carrier Board Controller": "Controller van het carrierboard"
             "Software Development": "Softwareontwikkeling"
             "HALPI2 Daemon": "HALPI2-daemon"
-            "System Integration": "Systeemintegratie"
-            "Advanced Configuration": "Geavanceerde configuratie"
             "Other Debian Distributions": "Andere Debian-distributies"
             "Appendices": "Bijlagen"
             "Design Files and Schematics": "Ontwerpbestanden en schema's"
-            "Compliance and Certifications": "Conformiteit en certificeringen"
             "Errata": "Bekende fouten"
-            "Resources": "Bronnen"
             "FAQ": "Veelgestelde vragen"
         - locale: nb
           name: "Norsk bokmål"
@@ -310,7 +289,8 @@ plugins:
             "Introduction": "Innledning"
             "Getting Started": "Kom i gang"
             "User Guide": "Brukerveiledning"
-            "System Operation": "Systemdrift"
+            "Daily Operation": "Daglig bruk"
+            "Interface Reference": "Grensesnittreferanse"
             "Hardware Guide": "Maskinvareveiledning"
             "Interfaces and Connectivity": "Grensesnitt og tilkobling"
             "Software Guide": "Programvareveiledning"
@@ -321,14 +301,10 @@ plugins:
             "Carrier Board Controller": "Bærekortets mikrokontroller"
             "Software Development": "Programvareutvikling"
             "HALPI2 Daemon": "HALPI2-daemon"
-            "System Integration": "Systemintegrasjon"
-            "Advanced Configuration": "Avansert konfigurasjon"
             "Other Debian Distributions": "Andre Debian-distribusjoner"
             "Appendices": "Vedlegg"
             "Design Files and Schematics": "Konstruksjonsfiler og koblingsskjemaer"
-            "Compliance and Certifications": "Samsvar og sertifiseringer"
             "Errata": "Kjente feil"
-            "Resources": "Ressurser"
             "FAQ": "Ofte stilte spørsmål"
         - locale: da
           name: "Dansk"
@@ -346,7 +322,8 @@ plugins:
             "Introduction": "Introduktion"
             "Getting Started": "Kom godt i gang"
             "User Guide": "Brugervejledning"
-            "System Operation": "Systemdrift"
+            "Daily Operation": "Daglig brug"
+            "Interface Reference": "Grænsefladereference"
             "Hardware Guide": "Hardwarevejledning"
             "Interfaces and Connectivity": "Grænseflader og forbindelser"
             "Software Guide": "Softwarevejledning"
@@ -357,14 +334,10 @@ plugins:
             "Carrier Board Controller": "Bærekortets controller"
             "Software Development": "Softwareudvikling"
             "HALPI2 Daemon": "HALPI2-dæmonen"
-            "System Integration": "Systemintegration"
-            "Advanced Configuration": "Avanceret konfiguration"
             "Other Debian Distributions": "Andre Debian-distributioner"
             "Appendices": "Bilag"
             "Design Files and Schematics": "Designfiler og kredsløbsdiagrammer"
-            "Compliance and Certifications": "Overensstemmelse og certificeringer"
             "Errata": "Kendte fejl"
-            "Resources": "Ressourcer"
             "FAQ": "Ofte stillede spørgsmål"
 markdown_extensions:
   - admonition

@@ -1,211 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Bediening van het systeem
+# Dagelijks gebruik
+
+De HALPI2 is ontworpen voor gebruik zonder toezicht. Op het voorgeïnstalleerde HaLOS-image — of op elk besturingssysteem waarop de [HALPI-daemon](./software.md#halpi-opdrachtregelgereedschap) is geïnstalleerd — verloopt het energiebeheer automatisch: het apparaat laadt de supercondensatoren van de backupvoeding op, overbrugt korte spanningsdips, sluit het besturingssysteem veilig af wanneer de spanning wegvalt en start weer op zodra de spanning terugkeert. Voor dit alles is geen handeling van de gebruiker nodig.
+
+## Inschakelen
+
+De HALPI2 heeft geen aan/uit-knop op de behuizing: hij start zodra er ingangsspanning wordt aangesloten. (Op het carrierboard kan een externe aan/uit-knop worden aangesloten — zie [Externe knoppen](./interfaces.md#externe-knoppen).) De ledbalk loopt eerst vol met rood terwijl de supercondensatoren opladen (enkele seconden tot een halve minuut, afhankelijk van de [instelling van de stroombegrenzing](./hardware.md#instelling-van-de-stroombegrenzing)). Daarna tonen de leds een korte regenboog- en kleurencyclusanimatie terwijl de Compute Module start, tonen ze een gele balk terwijl het besturingssysteem opstart, en worden ze groen zodra het besturingssysteem draait en de HALPI-daemon verbinding heeft.
+
+## Afsluiten
+
+Om de HALPI2 af te sluiten schakelt u de ingangsspanning uit — bijvoorbeeld met een schakelaar op het elektrisch paneel. Het systeem detecteert de spanningsuitval, sluit het besturingssysteem gecontroleerd af op de spanning van de supercondensatoren en blijft daarna uit. De leds tonen een paarse balk zolang het afsluiten loopt en gaan uit zodra het voltooid is.
+
+U kunt ook via software afsluiten — via het menu van de grafische werkomgeving, de opdracht `shutdown` of `halpi shutdown`. Het systeem schakelt dan uit en blijft uit tot de ingangsspanning uit en weer aan wordt gezet (of tot er, indien aanwezig, op een [externe aan/uit-knop](./interfaces.md#externe-knoppen) wordt gedrukt).
+
+Optioneel kan de controller het systeem ongeveer 5 seconden na een afsluiting via software automatisch opnieuw starten zolang de ingangsspanning aangesloten blijft, zodat een per ongeluk gegeven afsluitopdracht een fysiek moeilijk bereikbare installatie nooit onbereikbaar maakt. Schakel dit in met `halpi config set auto_restart true`; de instelling blijft in de controller bewaard. Apparaten die vóór begin 2026 zijn geproduceerd, werden met dit gedrag ingeschakeld geleverd — controleer uw apparaat met `halpi config get auto_restart`.
+
+Het systeem kan ook in standby worden gezet, waarbij het uitschakelt en op een gepland tijdstip weer ontwaakt — zie de referentie [Controller van het carrierboard](../technical-reference/controller.md#standby).
 
 ## Statusleds
 
-De HALPI2 heeft vijf RGB-leds die visuele terugkoppeling geven over de systeemstatus en de toestand van de voeding.
+De vijf leds op het frontpaneel tonen wat het systeem doet:
 
-### Ledstatussen in het kort
+| Ledpatroon | Betekenis |
+|:-----------|:----------|
+| Rode balk die vol loopt | Supercondensatoren laden op vóór het starten — wachten |
+| Regenboog en wisselende kleuren | Compute Module start op. Herhaalt het patroon zich zonder voortgang, dan is de module niet gestart — zie [Probleemoplossing](./troubleshooting.md#regenboogkleurige-leds) |
+| Gele balk | Systeem draait, HALPI-daemon niet verbonden — kort tijdens het opstarten is dat normaal. Houdt het aan, zie [Probleemoplossing](./troubleshooting.md#leds-blijven-geel) |
+| Groene balk | Normale werking |
+| Oranje of donkergroene balk | Ingangsspanning weggevallen, systeem draait op de backupvoeding — het afsluiten volgt, tenzij de spanning binnen enkele seconden terugkeert |
+| Paarse balk | Bezig met afsluiten |
+| Alle continu rood | Besturingssysteem reageert niet — de controller start het automatisch opnieuw |
+| Alle knipperen rood | Storing in de supercondensatoren — neem contact op met de ondersteuning |
+| Alle continu blauw | Bezig met overgaan naar standby |
+| Alle gedempt rood | Standby |
+| Alle uit | Uitgeschakeld |
 
-| Ledpatroon | Kleur | Betekenis |
-|-------------|-------|---------|
-| Led 5 continu | Rood | Spanning aanwezig, wacht op lading |
-| Oplopende vulling | Rood | Supercondensatoren laden op |
-| Regenboog + kleurencyclus | Meerkleurig | CM5 is niet gestart |
-| Spanningsbalk | Geel | Werking in de solomodus |
-| Spanningsbalk | Groen | Werking in de co-opmodus |
-| Spanningsbalk | Oranje | Backupvoeding actief (solo) |
-| Spanningsbalk | Donkergroen | Backupvoeding actief (co-op) |
-| Alle knipperen | Rood | Overspanning op de supercondensatoren |
-| Alle continu | Rood | Watchdog-time-out |
-| Spanningsbalk | Paars | Bezig met afsluiten |
-| Alle continu | Blauw | Bezig met afsluiten naar standby |
-| Alle continu | Gedempt rood | Standby |
-| Alle uit | — | Systeem uit |
+Bij de balkpatronen toont het aantal brandende leds het laadniveau van de supercondensatoren. De exacte spanningsvensters en de volledige toewijzing van toestanden staan in de referentie [Controller van het carrierboard](../technical-reference/controller.md#referentie-van-de-statusleds).
 
-### Spanningsindicatie van de supercondensatoren
+De helderheid van de leds is instelbaar — zie [Ledbesturing](./software.md#ledbesturing). Met de uitbreiding [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights) kunnen de leds ook worden ingezet als weergave voor systeemwaarden en maritieme gegevens (netwerkactiviteit, tankniveaus, NMEA 2000- en Signal K-waarden).
 
-Tijdens bedrijf werken de leds als spanningsindicator en tonen ze het laadniveau van de supercondensatoren:
+## Bij spanningsuitval
 
-- **Led 1**: 5,0–6,0 V
-- **Led 2**: 6,0–7,0 V
-- **Led 3**: 7,0–8,0 V
-- **Led 4**: 8,0–9,0 V
-- **Led 5**: 9,0–10,0 V
+Er hoeft niets te gebeuren. Korte dips en storingen — standaard tot 5 seconden — worden overbrugd door de supercondensatoren en de werking gaat ongestoord verder. Bij een langere stroomuitval sluit het systeem zichzelf gecontroleerd af op de 30–60 seconden backupvoeding die de supercondensatoren vasthouden. Zodra de ingangsspanning terugkeert, start het systeem automatisch weer op.
 
-## Energiebeheer en afsluitprocedures
+!!! warning "Geen UPS"
+    De supercondensatoren zijn er om storingen te overbruggen en een veilige afsluiting van spanning te voorzien. Voor doorwerken tijdens langdurige stroomuitval is een externe noodstroomvoorziening (UPS) vereist.
 
-De HALPI2 heeft een voeding die bestand is tegen spanningspieken, storingen en kortdurende uitval.
+## De systeemstatus controleren
 
-### Overzicht van het voedingssysteem
+Een groene ledbalk betekent dat het systeem in orde is. Voor details toont de opdracht `halpi` de toestand van de controller, de spanningen, de stroom en de temperaturen:
 
-Het energiebeheersysteem van de HALPI2 bestaat uit:
+```bash
+halpi status
+```
 
-- **Voeding met een breed ingangsbereik** (ingang 11–32 V DC, beveiligd tot 100 V DC)
-- **Backupsysteem met supercondensatoren** voor gecontroleerd afsluiten bij spanningsuitval
-- **Stroombegrenzing** (instelbaar op 0,9 A of 2,5 A)
-- **Detectie van spanningsuitval** en automatisch starten van het afsluiten
-- **Bewaking van ingangsspanning en -stroom**
+Ziet iets er niet goed uit, zie dan [Probleemoplossing](./troubleshooting.md) en de [Softwarehandleiding](./software.md#halpi-opdrachtregelgereedschap).
 
-Het systeem werkt in twee modi: de solomodus en de co-opmodus.
+## Werken zonder de daemon
 
-### Werking in de solomodus
+Op besturingssystemen zonder de HALPI-daemon valt de controller terug op een basisbeveiligingsmodus: hij detecteert nog steeds spanningsuitval en vraagt het afsluiten aan, maar doet dat met gesimuleerde drukken op de aan/uit-knop — wat mislukt als het systeem is vastgelopen — en bewaking en configuratie zijn niet beschikbaar. Draait u een eigen besturingssysteem, installeer dan de daemon; zie [Andere Debian-distributies](../software-development/ubuntu-installation.md). Hoe de twee modi werken staat beschreven in de referentie [Controller van het carrierboard](../technical-reference/controller.md#bedrijfsmodi).
 
-De solomodus biedt eenvoudige, zelfstandige werking wanneer de HALPI-daemon niet draait. De controller werkt dan onafhankelijk, zonder communicatie met de software.
-
-#### Kenmerken van de solomodus
-
-- **Geen communicatie met software nodig**
-- **Basisbeveiliging tegen spanningsuitval** — bewaakt de ingangsspanning en reageert op spanningsuitval
-- **Automatisch afsluiten via gesimuleerde drukken op de aan/uit-knop**
-- **Beperkte mogelijkheden voor bewaking en configuratie**
-
-#### Spanningsuitval en afsluiten in de solomodus
-
-**Detectie van spanningsuitval:**
-De controller bewaakt de ingangsspanning en detecteert spanningsuitval. Een blackouttimer (standaard 5 seconden) voorkomt dat het systeem bij korte onderbrekingen afsluit.
-
-**Automatische afsluitprocedure:**
-
-1. **De controller detecteert spanningsuitval**
-2. **De blackouttimer start** om storingen van echte spanningsuitval te onderscheiden
-3. **Gesimuleerde drukken op de aan/uit-knop** — de controller stuurt een dubbele druk op de aan/uit-knop naar de Compute Module
-4. **Het besturingssysteem reageert** en begint met gecontroleerd afsluiten
-5. **De supercondensatoren houden de spanning in stand** (doorgaans 30–60 seconden beschikbaar)
-6. **Time-outbeveiliging van 60 seconden** — de spanning wordt geforceerd uitgeschakeld als het gecontroleerd afsluiten mislukt
-7. **Het systeem blijft uit** tot de spanning terugkeert
-8. **Automatische herstart** zodra de spanning is hersteld
-
-**Handmatig afsluiten in de solomodus:**
-
-- Het besturingssysteem sluit normaal af
-- Het systeem start na 5 seconden automatisch opnieuw op als er ingangsspanning aanwezig blijft
-- Wilt u het systeem definitief uitschakelen, koppel dan de ingangsspanning los nadat u het gecontroleerd afsluiten hebt gestart
-
-#### Wanneer de solomodus actief is
-
-De solomodus treedt op:
-
-- Tijdens de eerste fase van de start, voordat de HALPI-daemon draait
-- Als de HALPI-daemon niet start of is uitgeschakeld
-- Op niet-ondersteunde besturingssystemen zonder de daemon
-- Wanneer de daemon is vastgelopen of niet meer reageert
-
-!!! tip "Betrouwbaarheid van de solomodus"
-    De solomodus biedt essentiële bescherming, maar is minder betrouwbaar dan de co-opmodus. De controller vraagt het afsluiten aan met gesimuleerde drukken op de knop, wat mogelijk niet werkt als het systeem is vastgelopen.
-
-### Werking in de co-opmodus
-
-De co-opmodus biedt volledig energiebeheer wanneer de HALPI-daemon draait en met de controller communiceert.
-
-#### Mogelijkheden van de co-opmodus
-
-- **Rechtstreekse communicatie met de software** — gegevensuitwisseling in realtime tussen controller en daemon
-- **Beveiliging met een watchdogtimer** — een time-out van 30 seconden waarborgt de stabiliteit van het systeem
-- **Instelbaar afsluitgedrag** — tijden en opdrachten zijn aan te passen
-- **Bewaking in realtime** — uitgebreide bewaking van de voedingsparameters
-- **Uitgebreide configuratiemogelijkheden**
-
-#### Spanningsuitval en afsluiten in de co-opmodus
-
-**Detectie van spanningsuitval:**
-De controller bewaakt de ingangsspanning en meldt gebeurtenissen rechtstreeks aan de HALPI-daemon. Dankzij de instelbare blackouttimer (standaard 5 seconden) leiden korte spanningsonderbrekingen niet tot afsluiten.
-
-**Automatische afsluitprocedure:**
-
-1. **De controller detecteert spanningsuitval** en meldt dit aan de HALPI-daemon
-2. **Beoordeling door de blackouttimer** — de daemon bepaalt of de spanningsuitval de drempelwaarde overschrijdt
-3. **Uitvoeren van de afsluitopdracht** — de daemon voert de afsluitopdracht uit (standaard: `/sbin/poweroff`)
-4. **Gecontroleerd afsluiten van het besturingssysteem** — applicaties worden gesloten en bestandssystemen veilig ontkoppeld
-5. **Backupvoeding uit de supercondensatoren** levert energie gedurende het hele afsluiten
-6. **De controller bewaakt de voltooiing** — hij volgt wanneer de Compute Module uitschakelt
-7. **De 5 V-rail wordt uitgeschakeld** zodra het afsluiten voltooid is
-8. **Het systeem blijft uit** tot de ingangsspanning terugkeert
-9. **Beheer van de herstart** — afhankelijk van de configuratie start het systeem automatisch opnieuw op of blijft het uit
-
-**Handmatig afsluiten in de co-opmodus:**
-
-- Wordt het afsluiten via software gestart, dan verloopt het gecontroleerd volgens de standaardprocedure
-- Het systeem start na 5 seconden automatisch opnieuw op als er ingangsspanning aanwezig blijft
-- Wilt u de automatische herstart voorkomen, koppel dan de voeding los of zet `auto_restart` op `false`
-
-#### Beveiliging met de watchdog
-
-De co-opmodus omvat een beveiliging met een watchdogtimer:
-
-- **Communicatietime-out van 30 seconden** — de daemon moet regelmatig met de controller communiceren
-- **Automatisch herstel** — het systeem start opnieuw op als de communicatie stopt
-- **Bescherming tegen softwarestoringen** — waarborgt herstel na het vastlopen van de daemon of van het systeem
-- **“De watchdog voeden”** — de daemon stuurt regelmatig statusupdates om de timer terug te zetten
-
-#### Wanneer de co-opmodus actief is
-
-De co-opmodus treedt op wanneer:
-
-- De HALPI-daemon draait en goed functioneert
-- De communicatie tussen daemon en controller tot stand is gekomen
-- Het systeem op een ondersteund besturingssysteem draait
-- Alle mogelijkheden voor systeembewaking en -besturing beschikbaar zijn
-
-!!! info "De co-opmodus controleren"
-    Status van de daemon opvragen: `systemctl status halpid`
-
-    Toestand van de controller bekijken: `halpi status`
-
-    Meer informatie over de opdracht `halpi` vindt u in de [Softwarehandleiding](./software.md#halpi-daemon-halpid).
-
-### Backupvoeding en het condensatorsysteem
-
-In beide modi zorgt het backupsysteem met supercondensatoren voor bescherming bij gecontroleerd afsluiten:
-
-**Duur van de backupvoeding:**
-
-- De supercondensatoren leveren 30–60 seconden backupvoeding
-- De duur hangt af van de systeembelasting en de aangesloten randapparatuur
-- Voldoende tijd om het bestandssysteem veilig te ontkoppelen en processen te beëindigen
-- Niet bedoeld om de werking bij langdurige uitval voort te zetten
-
-**Laadeigenschappen:**
-
-- Laadtijd: 25 seconden bij een stroombegrenzing van 0,9 A
-- Laadtijd: 9 seconden bij een stroombegrenzing van 2,5 A
-- De laadvoortgang is zichtbaar aan de oplopende leds (rood vulpatroon)
-
-!!! warning "Beperking van de beveiliging tegen spanningsuitval"
-    Het systeem met supercondensatoren is bedoeld voor gecontroleerd afsluiten, niet om de werking voort te zetten. Vertrouw er niet op bij langdurige stroomuitval.
-
-### Aandachtspunten bij handmatig afsluiten
-
-De HALPI2 is gericht op geautomatiseerde werking en automatisch herstel, wat gevolgen heeft voor het handmatig afsluiten.
-
-#### Gedrag bij automatische herstart
-
-Standaard start de HALPI2 na handmatig afsluiten opnieuw op zolang er ingangsspanning aanwezig blijft:
-
-- Handmatig afsluiten verloopt als een normale afsluiting van het besturingssysteem
-- Na het voltooide afsluiten volgt een wachttijd van 5 seconden
-- Het systeem start automatisch opnieuw op om beschikbaar te blijven
-- Zo herstelt het systeem zich na een onbedoelde afsluiting
-
-#### Methoden om bewust af te sluiten
-
-Gebruik voor een definitieve afsluiting een van deze methoden:
-
-**Methode met loskoppelen van de voeding:**
-
-1. Start het gecontroleerd afsluiten via de software
-2. Wacht tot het afsluiten voltooid is (de leds gaan uit)
-3. Koppel de ingangsspanning los om automatische herstart te voorkomen
-
-**Methode via de configuratie:**
-
-1. Schakel de automatische herstart uit: `halpi config set auto_restart false`
-2. Start het afsluiten via de software
-3. Het systeem blijft uit nadat het afsluiten voltooid is
-
-**Standbymodus (toekomstig):**
-!!! info "Status van de functie"
-    De standbymodus is gepland voor toekomstige firmwareversies. Daarmee kan de Compute Module worden uitgeschakeld terwijl de HALPI2-controller actief blijft en op wekgebeurtenissen wacht.
+!!! quote "Gerelateerde informatie"
+    - **Hoe het energiebeheer intern werkt:** zie [Controller van het carrierboard](../technical-reference/controller.md)
+    - **Details van het voedingssysteem:** zie [De voeding in detail](../technical-reference/power-supply.md)
+    - **De opdracht `halpi` en de daemon:** zie [Softwarehandleiding](./software.md)
+    - **Problemen:** zie [Probleemoplossing](./troubleshooting.md)

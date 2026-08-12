@@ -459,3 +459,12 @@ by each of them, because five agents share this file.
 | repository (Git/GitHub) | repositorium (bestemt form: repositoriet) | Consistency pass. 'GitHub-arkivet' had appeared in design-files.md. 'arkiv' is reserved for the apt sense ('pakkearkiv'), so the source-code repository takes 'repositorium' — what Danish developers say. |
 | diagnostics / diagnostic | diagnostik | Consistency pass. 'diagnose' had appeared once in index.md. In Danish 'diagnose' is the result, 'diagnostik' the activity — the latter is what the source means. |
 | resistor (pull-up, 0 Ω series) | modstand ('pull-up-modstand', '0 Ω-modstand') | technical-reference/hardware.md I2C section. The glossary only had the compound 'termineringsmodstand', not the bare head word; the junction hyphen against the value follows rule 4, as in '3,3 V-skinnen'. |
+| load dump | load dump | technical-reference/power-supply.md input stage. Kept English as the automotive trade term; 'belastningsdump' is not used in Danish practice. |
+| power budget | effektbudget | technical-reference/power-supply.md current-limiting section. Solid compound. |
+| input stage | indgangstrin | technical-reference/power-supply.md H2. Definite form 'indgangstrinnet'. |
+| state machine | tilstandsmaskine | technical-reference/power-supply.md intro. Standard Danish CS term; matches 'tilstand' already in the glossary. |
+| fallback (mode / setting) | reservetilstand / reserveindstilling | technical-reference/controller.md: Solo mode as 'the fallback mode' and 'the firmware fallback' for auto_restart. 'fallback' untranslated would read as jargon; 'reserve-' carries both uses. |
+| uninterruptible power supply (UPS) | UPS (nødstrømsforsyning) | operation.md and power-supply.md 'Not a UPS' admonitions. First mention glosses the abbreviation; later mentions are bare 'UPS'. |
+| charge-level bar (LED pattern) | ladeniveausøjle | technical-reference/controller.md LED table. Built on 'spændingssøjle' already in the glossary; 'ladeniveau' was already in use in operation.md. |
+| to feed the watchdog / watchdog feed | fodre watchdoggen / fodring | controller.md watchdog section. Continues the phrase the old operation.md established ('Fodring af watchdoggen'). |
+| residual charge | restladning | technical-reference/controller.md, PowerOff state row. Solid compound. |

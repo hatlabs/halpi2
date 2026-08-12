@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Innledning
@@ -105,7 +105,7 @@ Denne dokumentasjonen er bygd opp for å tjene både sluttbrukere som trenger pr
 ### For sluttbrukere
 
 - Begynn med veiledningen **Kom i gang** for oppsett og installasjon
-- Utforsk **Vanlige bruksområder** for veiledning om bestemte anvendelser
+- Les **Daglig bruk** for den daglige bruken: hva LED-ene betyr, nedstenging og oppførsel ved strømbortfall
 - Slå opp i **Feilsøking** når det oppstår problemer
 
 ### For utviklere
@@ -113,7 +113,6 @@ Denne dokumentasjonen er bygd opp for å tjene både sluttbrukere som trenger pr
 - Se gjennom **Teknisk referanse** for detaljerte spesifikasjoner
 - Studer avsnittene under **Programvareutvikling** for egne applikasjoner
 - Gå gjennom **Konstruksjonsfiler** for planlegging av integrasjon
-- Slå opp i **Avansert konfigurasjon** for optimalisering av ytelsen
 
 ### Tips til dokumentasjonen
 

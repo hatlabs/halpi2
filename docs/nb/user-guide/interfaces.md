@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Grensesnitt og tilkoblingsmuligheter
@@ -210,5 +210,5 @@ Når knappene monteres i et eksternt betjeningspanel, velger du et sted som er l
 Alle knappetilkoblinger til bærekortet bør bruke hunkontakter med 2,54 mm senteravstand. Kontroller at pinnene står riktig, og at forbindelsen sitter godt, for å unngå kontaktproblemer under drift.
 
 !!! quote "Relatert informasjon"
-    - **Strømstyring:** Se [Strømstyring og nedstengingsprosedyrer](./operation.md#strmstyring-og-nedstengingsprosedyrer)
+    - **Strømstyring:** Se [Bærekortets mikrokontroller](../technical-reference/controller.md)
     - **Tilgang til maskinvaren:** Se [Vedlikehold av maskinvaren](./hardware.md)

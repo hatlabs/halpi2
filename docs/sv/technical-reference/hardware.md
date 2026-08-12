@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Hårdvarureferens
@@ -12,7 +12,7 @@ Den här sidan innehåller HALPI2:s elektriska, mekaniska och miljörelaterade s
 |:----------|:------|
 | Beräkningsmodul | Raspberry Pi CM5 (kompatibel med CM4) |
 | Bärkortets styrkrets | RP2040 (Arm Cortex-M0+, två kärnor, 133 MHz) |
-| Inspänning | 9–36 V DC (absolut max 38,6 V, transientskydd upp till 100 V) |
+| Inspänning | 10–32 V DC (absolut max 38,6 V, transientskydd upp till 100 V) |
 | Effektförbrukning | 250 mA i vila till 590 mA under belastning (12 V ingång, HaLOS utan skärm) |
 | Inställningar för strömbegränsning | 0,9 A eller 2,5 A (valbart) |
 | Backup med superkondensatorer | 4× 25 F / 2,7 V i serie (effektivt 6,25 F vid högst 10,8 V) |
@@ -31,7 +31,7 @@ Strömförsörjningen tar emot ett brett likspänningsområde och ger reglerade 
 
 | Parameter | Värde |
 |:----------|:------|
-| Rekommenderad inspänning | 9–36 V DC |
+| Rekommenderad inspänning | 10–32 V DC |
 | Absolut högsta inspänning | 38,6 V (kontinuerligt), 100 V (transient, TVS-begränsad) |
 | Högsta inström | 0,9 A eller 2,5 A (valbar strömbegränsare) |
 | Ingångssäkring | 7 A (endast felskydd) |
@@ -76,7 +76,7 @@ Typ Phoenix MC, delning 3,81 mm, 2-polig. På frontpanelen ansluts E7T-hålkonta
 | Stift | Funktion |
 |:------|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V DC) |
+| 2 | VIN (10–32 V DC) |
 
 ### CAN FD-kontakt
 

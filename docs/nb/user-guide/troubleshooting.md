@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Feilsøking
@@ -12,7 +12,7 @@ Denne siden tar for seg vanlige problemer du kan møte når du bruker HALPI2, og
 
 **Symptomer:** Ingen LED-aktivitet, ingen tegn til liv etter at strømmen er koblet til.
 
-1. Kontroller med et multimeter ved E7T-kontakten at inngangsspenningen er innenfor området (11–32 VDC).
+1. Kontroller med et multimeter ved E7T-kontakten at inngangsspenningen er innenfor området (10–32 VDC).
 2. Sjekk tilkoblingene til strømkabelen – pass på at E7T-kontakten er skjøvet helt inn.
 3. Hvis du bruker strøm fra NMEA 2000-bussen, kontroller at strømbegrensningen er satt til 0,9 A, og at nettverket kan levere nok strøm.
 4. Åpne kabinettet og se etter synlige skader eller løse interne forbindelser.
@@ -146,14 +146,14 @@ Bruk LED-mønstrene til å stille rask diagnose på systemtilstanden:
 | Systemet starter ikke | Ingen LED-er | Ingen inngangsstrøm eller maskinvarefeil |
 | Henger under oppstart | Gradvis rød fylling | Superkondensatorene lades fortsatt – vent |
 | Henger under oppstart | Regnbuemønster | CM5 ikke funnet – kontroller at modulen sitter riktig, og koble fra skjermer |
-| Blir stående gul | Lyser fast gult | Operativsystemet starter ikke, eller daemonen er ikke installert |
-| Uventet nedstenging | Rullende grønt/gult | Strømbortfall oppdaget – kontroller inngangsstrømmen |
-| Overspenning | LED 1 blinker rødt | Inngangsspenningen er for høy (>32 V) |
-| Feil | Alle LED-er blinker rødt | Maskinvarefeil – kontakt produsenten |
+| Blir stående gul | Gul søyle | Operativsystemet starter ikke, eller daemonen er ikke installert |
+| Uventet nedstenging | Oransje eller mørkegrønn søyle, deretter lilla | Inngangsstrømmen er borte, nedstenging på reservestrøm – kontroller inngangsstrømmen |
+| Systemet starter på nytt av seg selv | Alle LED-er lyser fast rødt før omstart | Watchdog-tidsavbrudd – operativsystemet sluttet å svare, og kontrolleren startet det på nytt |
+| Feil | Alle LED-er blinker rødt | Overspenning i superkondensatorene – kontakt støtte |
 
 !!! quote "Relatert informasjon"
     - **LED-mønstre:** Se [Status-LED-indikatorer](./operation.md#status-led-indikatorer)
-    - **Strømstyring:** Se [Strømstyring og nedstengingsprosedyrer](./operation.md#strmstyring-og-nedstengingsprosedyrer)
+    - **Oppførsel ved strømbortfall:** Se [Ved strømbortfall](./operation.md#ved-strmbortfall)
     - **Styring av daemonen:** Se [Programvareveiledning](./software.md#halpi-daemonen-halpid)
     - **Detaljer om CAN-grensesnittet:** Se [Grensesnitt og tilkoblingsmuligheter](./interfaces.md#can-fd-nmea-2000)
     - **Detaljer om RS-485-grensesnittet:** Se [Grensesnitt og tilkoblingsmuligheter](./interfaces.md#rs-485-nmea-0183)

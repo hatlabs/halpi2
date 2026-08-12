@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Fehlersuche
@@ -12,7 +12,7 @@ Diese Seite behandelt häufige Probleme beim Betrieb des HALPI2 und deren Behebu
 
 **Symptome:** keine LED-Aktivität, keine Reaktion nach dem Anschließen der Stromversorgung.
 
-1. Prüfen Sie mit einem Multimeter am E7T-Anschluss, ob die Eingangsspannung im zulässigen Bereich liegt (11–32 V DC).
+1. Prüfen Sie mit einem Multimeter am E7T-Anschluss, ob die Eingangsspannung im zulässigen Bereich liegt (10–32 V DC).
 2. Kontrollieren Sie die Anschlüsse des Stromkabels — der E7T-Stecker muss vollständig eingesteckt sein.
 3. Bei Versorgung über den NMEA-2000-Bus: prüfen Sie, ob die Strombegrenzung auf 0,9 A eingestellt ist und das Netzwerk genügend Strom liefern kann.
 4. Öffnen Sie das Gehäuse und suchen Sie nach sichtbaren Schäden oder losen internen Verbindungen.
@@ -146,14 +146,14 @@ An den LED-Mustern lässt sich der Systemzustand rasch ablesen:
 | System startet nicht | Keine LEDs | Keine Eingangsspannung oder Hardwarefehler |
 | Hängt beim Start | Rotes fortschreitendes Füllen | Superkondensatoren laden noch — abwarten |
 | Hängt beim Start | Regenbogenmuster | CM5 nicht erkannt — Sitz des Moduls prüfen und Bildschirme trennen |
-| Bleibt gelb | Dauerhaft gelb | Betriebssystem startet nicht oder Daemon nicht installiert |
-| Unerwartetes Abschalten | Laufendes Grün/Gelb | Spannungsausfall erkannt — Eingangsspannung prüfen |
-| Überspannung | LED 1 blinkt rot | Eingangsspannung zu hoch (über 32 V) |
-| Fehler | Alle LEDs blinken rot | Hardwarefehler — Hersteller kontaktieren |
+| Bleibt gelb | Gelber Balken | Betriebssystem startet nicht oder Daemon nicht installiert |
+| Unerwartetes Abschalten | Oranger oder dunkelgrüner Balken, dann violett | Eingangsspannung ausgefallen, Herunterfahren auf Pufferenergie — Eingangsspannung prüfen |
+| System startet von selbst neu | Alle LEDs dauerhaft rot vor dem Neustart | Watchdog-Zeitüberschreitung — das Betriebssystem reagierte nicht mehr, und der Controller hat es neu gestartet |
+| Fehler | Alle LEDs blinken rot | Überspannung der Superkondensatoren — wenden Sie sich an den Support |
 
 !!! quote "Weiterführende Informationen"
     - **LED-Muster:** siehe [Status-LEDs](./operation.md#status-leds)
-    - **Energieverwaltung:** siehe [Energieverwaltung und Herunterfahren](./operation.md#energieverwaltung-und-herunterfahren)
+    - **Verhalten bei Spannungsausfall:** siehe [Bei Spannungsausfall](./operation.md#bei-spannungsausfall)
     - **Verwaltung des Daemons:** siehe [Software-Handbuch](./software.md#halpi-daemon-halpid)
     - **Einzelheiten zur CAN-Schnittstelle:** siehe [Schnittstellen und Konnektivität](./interfaces.md#can-fd-nmea-2000)
     - **Einzelheiten zur RS-485-Schnittstelle:** siehe [Schnittstellen und Konnektivität](./interfaces.md#rs-485-nmea-0183)

@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Guía de hardware
@@ -162,7 +162,7 @@ Los LED de estado ofrecen información sobre los estados de alimentación y acti
 | **9** | Verde | LED TX/RX de CAN. Estos LED parpadean cuando se reciben (RX) o se transmiten (TX) datos por la interfaz CAN. |
 | **10** | Verde | LED TX/RX de RS-485. Estos LED parpadean cuando se reciben (RX) o se transmiten (TX) datos por la interfaz RS-485. |
 
-Los patrones de los LED RGB se documentan en la [Guía de funcionamiento](./operation.md#indicadores-led-de-estado).
+Los patrones de los LED RGB se documentan en [Uso diario](./operation.md#indicadores-led-de-estado).
 
 ## Configuración de la limitación de corriente
 
@@ -249,7 +249,7 @@ Tras la instalación del hardware, el HAT puede requerir configuración de softw
 
 !!! quote "Información relacionada"
     - **Referencia de la asignación de pines GPIO:** ver [Referencia de hardware](../technical-reference/hardware.md)
-    - **Configuración del software:** ver [Configuración avanzada](../software-development/advanced-config.md)
+    - **Configuración del software:** ver [Guía del software](./software.md)
     - **Modificaciones de la carcasa:** ver [Opciones de conectores personalizados](#opciones-de-conectores-personalizados)
 
 ## Sustitución del SSD NVMe
@@ -293,7 +293,7 @@ Para cualquier configuración de software o resolución de problemas, consultar 
 
 !!! quote "Información relacionada"
     - **Imágenes del sistema:** ver [Guía del software](./software.md)
-    - **Procedimientos de arranque:** ver [Funcionamiento del sistema](./operation.md)
+    - **Procedimientos de arranque:** ver [Uso diario](./operation.md#encendido)
     - **Acceso al hardware:** ver [Acceso a la carcasa](#acceso-a-la-carcasa)
 
 ## Sustitución del Compute Module 5

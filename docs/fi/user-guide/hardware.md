@@ -1,5 +1,5 @@
 ---
-translated_from: 9741366021074655d667fcf3a93a634f86f3519a
+translated_from: 9b11eb34bb5624df50aa731a000eca6df6dcbc8a
 ---
 
 # Laitteisto-opas
@@ -162,7 +162,7 @@ Tila-LEDit kertovat järjestelmän virransyötön ja toiminnan tilasta. Alla on 
 | **9** | Vihreä | CAN TX/RX -LEDit. Vilkkuvat, kun CAN-liitännässä vastaanotetaan (RX) tai lähetetään (TX) dataa. |
 | **10** | Vihreä | RS-485 TX/RX -LEDit. Vilkkuvat, kun RS-485-liitännässä vastaanotetaan (RX) tai lähetetään (TX) dataa. |
 
-RGB-LEDien kuviot on kuvattu [Järjestelmän käyttö](./operation.md#tila-ledit) -sivulla.
+RGB-LEDien kuviot on kuvattu [Päivittäinen käyttö](./operation.md#tila-ledit) -sivulla.
 
 ## Virranrajoituksen asetus
 
@@ -249,7 +249,7 @@ Laitteistoasennuksen jälkeen HAT voi vaatia ohjelmistoasetuksia toimiakseen. Mo
 
 !!! quote "Aiheeseen liittyvää"
     - **GPIO-nastajärjestys:** katso [Laitteiston tekniset tiedot](../technical-reference/hardware.md)
-    - **Ohjelmiston asetukset:** katso [Lisäasetukset](../software-development/advanced-config.md)
+    - **Ohjelmiston asetukset:** katso [Ohjelmisto-opas](./software.md)
     - **Kotelon muutokset:** katso [Muut liitinvaihtoehdot](#muut-liitinvaihtoehdot)
 
 ## NVMe SSD:n vaihtaminen
@@ -292,7 +292,7 @@ Kokoa kotelo Kotelon käsittely -osion ohjeen mukaan. Ohjelmiston asetuksista ja
 
 !!! quote "Aiheeseen liittyvää"
     - **Käyttöjärjestelmän levykuvat:** katso [Ohjelmisto-opas](./software.md)
-    - **Käynnistys:** katso [Järjestelmän käyttö](./operation.md)
+    - **Käynnistys:** katso [Päivittäinen käyttö](./operation.md#kaynnistaminen)
     - **Kotelon avaaminen:** katso [Kotelon käsittely](#kotelon-kasittely)
 
 ## Compute Module 5:n vaihtaminen

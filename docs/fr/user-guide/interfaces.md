@@ -1,5 +1,5 @@
 ---
-translated_from: da8aa35c462e57bc7c0b00d50046a1df518e97dd
+translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
 ---
 
 # Interfaces et connectivité
@@ -210,5 +210,5 @@ Pour installer les boutons sur un pupitre de commande déporté, choisissez un e
 Tous les raccordements de boutons à la carte porteuse doivent utiliser des connecteurs femelles au pas de 2,54 mm. Veillez à l'alignement correct des broches et à la fermeté du raccordement, afin d'éviter les problèmes de contact en service.
 
 !!! quote "Voir aussi"
-    - **Gestion de l'alimentation :** voir [Gestion de l'alimentation et procédures d'arrêt](./operation.md#gestion-de-lalimentation-et-procedures-darret)
+    - **Gestion de l'alimentation :** voir [Contrôleur de la carte porteuse](../technical-reference/controller.md)
     - **Accès au matériel :** voir le [Guide du matériel](./hardware.md)

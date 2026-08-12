@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Fejlfinding
@@ -12,7 +12,7 @@ Denne side gennemgår almindelige problemer, du kan støde på, når du bruger H
 
 **Symptomer:** Ingen LED-aktivitet, ingen livstegn efter tilslutning af strøm.
 
-1. Kontrollér med et multimeter ved E7T-stikket, at indgangsspændingen ligger inden for området (11–32 V DC).
+1. Kontrollér med et multimeter ved E7T-stikket, at indgangsspændingen ligger inden for området (10–32 V DC).
 2. Kontrollér strømkablets tilslutninger — sørg for, at E7T-stikket sidder helt i bund.
 3. Hvis du bruger busforsyning fra NMEA 2000, skal du kontrollere, at strømbegrænseren er indstillet til 0,9 A, og at netværket kan levere strøm nok.
 4. Åbn kabinettet, og se efter synlige skader eller løse interne forbindelser.
@@ -146,14 +146,14 @@ Brug LED-mønstrene til hurtigt at fastslå systemets tilstand:
 | Systemet starter ikke | Ingen LED'er | Ingen indgangsstrøm eller hardwarefejl |
 | Hænger under opstart | Rød, gradvis udfyldning | Superkondensatoren oplader stadig — vent |
 | Hænger under opstart | Regnbuemønster | CM5 ikke registreret — kontrollér modulets montering, og frakobl skærme |
-| Bliver ved med at være gul | Konstant gul | Styresystemet starter ikke, eller dæmonen er ikke installeret |
-| Uventet nedlukning | Rullende grøn/gul | Strømsvigt registreret — kontrollér den tilførte strøm |
-| Overspænding | LED 1 blinker rødt | Indgangsspændingen er for høj (>32 V) |
-| Fejl | Alle LED'er blinker rødt | Hardwarefejl — kontakt producenten |
+| Bliver ved med at være gul | Gul søjle | Styresystemet starter ikke, eller dæmonen er ikke installeret |
+| Uventet nedlukning | Orange eller mørkegrøn søjle, derefter lilla | Indgangsstrømmen er væk, nedlukning på backupstrøm — kontrollér den tilførte strøm |
+| Systemet genstarter af sig selv | Alle LED'er lyser konstant rødt før genstarten | Watchdog-timeout — styresystemet holdt op med at svare, og controlleren genstartede det |
+| Fejl | Alle LED'er blinker rødt | Overspænding på superkondensatorerne — kontakt support |
 
 !!! quote "Relaterede oplysninger"
     - **LED-mønstre:** Se [Status-LED-indikatorer](./operation.md#status-led-indikatorer)
-    - **Strømstyring:** Se [Strømstyring og nedlukningsprocedurer](./operation.md#strmstyring-og-nedlukningsprocedurer)
+    - **Adfærd ved strømsvigt:** Se [Ved strømsvigt](./operation.md#ved-strmsvigt)
     - **Håndtering af dæmonen:** Se [Softwarevejledning](./software.md#halpi-dmonen-halpid)
     - **Detaljer om CAN-grænsefladen:** Se [Grænseflader og forbindelser](./interfaces.md#can-fd-nmea-2000)
     - **Detaljer om RS-485-grænsefladen:** Se [Grænseflader og forbindelser](./interfaces.md#rs-485-nmea-0183)

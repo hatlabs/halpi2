@@ -1,5 +1,5 @@
 ---
-translated_from: a51e1cfe53d070c073a563641f9301fd3383a418
+translated_from: 6e5802b5be19c03e5a1ca6cf292d8785a9f37601
 ---
 
 # Erste Schritte
@@ -93,7 +93,7 @@ Der HALPI2 wird mit [HaLOS](https://docs.halos.fi) ausgeliefert, einer container
 Ist ein Bildschirm angeschlossen, sehen Sie den Startbildschirm von Raspberry Pi OS und anschließend eine grafische Oberfläche.
 
 !!! tip "Tipp"
-    Die Muster der Status-LEDs sind unter [Systembetrieb](../user-guide/operation.md) beschrieben.
+    Die Muster der Status-LEDs sind unter [Täglicher Betrieb](../user-guide/operation.md#status-leds) beschrieben.
 
 ### Zugriff auf den HALPI2 ohne Bildschirm
 
@@ -163,11 +163,7 @@ Am einfachsten prüfen Sie die NMEA-2000-Anbindung über den Status des Signal-K
 
 Der HALPI2 ist so ausgelegt, dass er sich beim Trennen von der Stromversorgung automatisch abschaltet. Wenn Sie das Gerät ausschalten möchten, trennen Sie einfach die Spannung — entweder über einen Schalter am Schaltpaneel oder durch Abziehen des Stromsteckers. Das System leitet dann selbstständig ein geordnetes Herunterfahren ein, sodass alle Anwendungen ordnungsgemäß geschlossen und das Dateisystem sicher ausgehängt wird.
 
-Fahren Sie das System stattdessen über die Desktop-Oberfläche oder Kommandozeilenwerkzeuge herunter (etwa mit dem Befehl `shutdown`), startet das Gerät nach etwa 5 Sekunden automatisch neu. Das liegt daran, dass die Energieverwaltung erkennt, dass die externe Spannung weiterhin anliegt.
-
-Während des Herunterfahrens können Sie den Systemzustand an den LEDs der Frontplatte verfolgen. Wird die Spannung getrennt, dimmen die grünen LEDs und zeigen damit den Spannungsausfall an. Nach 5 Sekunden wechseln sie zu Violett und machen so deutlich sichtbar, dass das Gerät gerade herunterfährt. Ist der Vorgang abgeschlossen, erlöschen alle LEDs.
-
-Das Herunterfahren dauert normalerweise nur wenige Sekunden. In manchen Fällen benötigen einzelne Dienste jedoch länger, um sauber zu stoppen. Dann kann das Gerät die Superkondensatoren vor dem Abschalten nahezu vollständig entladen. Diese verlängerte Abschaltzeit ist normal und deutet nicht auf einen Fehler hin.
+Während des Herunterfahrens dimmen die LEDs zunächst (Spannungsausfall erkannt), leuchten violett, solange das Herunterfahren läuft, und erlöschen, wenn es abgeschlossen ist. Das Verhalten beim Herunterfahren — einschließlich des optionalen automatischen Neustarts nach einem Herunterfahren per Software — beschreibt [Täglicher Betrieb](../user-guide/operation.md#herunterfahren).
 
 ## Fehlersuche bei der Inbetriebnahme
 
@@ -177,7 +173,7 @@ Das Herunterfahren dauert normalerweise nur wenige Sekunden. In manchen Fällen 
 
 - Prüfen Sie die Stromanschlüsse und die Polarität
 - Kontrollieren Sie den Zustand der Sicherung
-- Stellen Sie sicher, dass die Spannung zwischen 11 und 32 V liegt
+- Stellen Sie sicher, dass die Spannung zwischen 10 und 32 V liegt
 
 ❌ **Der WLAN-Access-Point ist nicht sichtbar:**
 
@@ -196,11 +192,11 @@ Das Herunterfahren dauert normalerweise nur wenige Sekunden. In manchen Fällen 
 - Prüfen Sie, ob der Bildschirm eingeschaltet und auf den richtigen Eingang gestellt ist
 - Versuchen Sie ein anderes HDMI-Kabel oder einen anderen Anschluss am Bildschirm
 - Vergewissern Sie sich, dass der HALPI2 eingeschaltet ist (die LEDs sollten gelb oder grün leuchten)
-- Blinken die LEDs in einem Regenbogenmuster, sitzt das Compute Module 5 nicht richtig auf der Trägerplatine. Ursache kann ein Transportschaden sein. Setzen Sie das CM5 nach der Anleitung im [Benutzerhandbuch](../user-guide/operation.md) neu ein oder wenden Sie sich an den Support.
+- Blinken die LEDs in einem Regenbogenmuster, sitzt das Compute Module 5 nicht richtig auf der Trägerplatine. Ursache kann ein Transportschaden sein. Setzen Sie das CM5 nach der Anleitung im [Hardware-Handbuch](../user-guide/hardware.md#compute-module-5-austauschen) neu ein oder wenden Sie sich an den Support.
 
 ❌ **Der angeschlossene Bildschirm zeigt eine Fehlermeldung mit „nvme“:**
 
-- Das bedeutet, dass die NVMe-SSD nicht erkannt oder nicht richtig initialisiert wird. Ursache kann ein Transportschaden sein. Setzen Sie die NVMe-SSD nach der Anleitung im [Benutzerhandbuch](../user-guide/operation.md) neu ein oder wenden Sie sich an den Support.
+- Das bedeutet, dass die NVMe-SSD nicht erkannt oder nicht richtig initialisiert wird. Ursache kann ein Transportschaden sein. Setzen Sie die NVMe-SSD nach der Anleitung im [Hardware-Handbuch](../user-guide/hardware.md#nvme-ssd-austauschen) neu ein oder wenden Sie sich an den Support.
 
 ### Wo Sie Hilfe finden
 
@@ -343,7 +339,7 @@ Laden Sie die [HALPI2-Bohrschablone](./HALPI2_enclosure_1B_Drill_Template_v2.pdf
 
 Der HALPI2 besitzt eine eingebaute Eingangsstrombegrenzung, die das anfängliche Laden der Superkondensatoren steuert und die Installation vor Überstrom schützt. Die Begrenzung lässt sich je nach Stromquelle und Anwendung auf 0,9 A oder 2,5 A einstellen. Die Standardeinstellung von 0,9 A passt für die meisten Anwendungen.
 
-Um den Startvorgang zu beschleunigen oder Peripheriegeräte mit hohem Strombedarf zu versorgen, können Sie auf 2,5 A umstellen. Gehen Sie dabei nach der Anleitung im [Benutzerhandbuch](../user-guide/operation.md) vor.
+Um den Startvorgang zu beschleunigen oder Peripheriegeräte mit hohem Strombedarf zu versorgen, können Sie auf 2,5 A umstellen. Gehen Sie dabei nach der Anleitung im [Hardware-Handbuch](../user-guide/hardware.md#einstellung-der-strombegrenzung) vor.
 
 #### Eigener Stromanschluss
 
@@ -383,7 +379,7 @@ Der E7T-Stecker ist vorkonfektioniert und muss vor Ort nicht angeschlossen werde
 ##### Einbauschritte
 
 1. **Schalten Sie** alle NMEA-2000-Geräte **spannungsfrei**
-2. **Öffnen Sie das Gehäuse des HALPI2** (Anleitung im [Benutzerhandbuch](../user-guide/operation.md))
+2. **Öffnen Sie das Gehäuse des HALPI2** (Anleitung im [Hardware-Handbuch](../user-guide/hardware.md#zugang-zum-gehause))
 3. **Suchen Sie den Stromanschluss der Trägerplatine**
 4. **Ziehen Sie den vorhandenen Klemmenblock ab**
 5. **Schließen Sie den internen NMEA-2000-Stromklemmenblock** an den Stromanschluss der Trägerplatine an
@@ -428,7 +424,7 @@ Für die Netzwerkanbindung:
 ❌ **Keine Betriebsanzeige:**
 
 - Prüfen Sie Zustand und Nennwert der Sicherung
-- Prüfen Sie die Spannung der Stromquelle (11–32 V)
+- Prüfen Sie die Spannung der Stromquelle (10–32 V)
 - Bestätigen Sie die richtige Polarität
 - Prüfen Sie die Durchgängigkeit der Stromkabel
 
@@ -491,7 +487,7 @@ Für die Netzwerkanbindung:
 
 Sobald Ihr HALPI2 läuft:
 
-1. **Sehen Sie sich das [Benutzerhandbuch](../user-guide/operation.md) an** für ausführliche Bedienhinweise
-2. **Gehen Sie die typischen Anwendungsfälle durch** für eine anwendungsgerechte Einrichtung
-3. **Werfen Sie einen Blick in die Technische Referenz** für erweiterte Konfigurationsmöglichkeiten
+1. **Lesen Sie [Täglicher Betrieb](../user-guide/operation.md)**, um zu erfahren, was die LEDs bedeuten und wie das Herunterfahren funktioniert
+2. **Erkunden Sie das [Software-Handbuch](../user-guide/software.md)** für Aktualisierungen, Fernzugriff und den Befehl `halpi`
+3. **Werfen Sie einen Blick in die Technische Referenz** für ausführliche Spezifikationen
 4. **Treten Sie der Community bei** für Tipps, Kniffe und Unterstützung

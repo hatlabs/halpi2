@@ -1,211 +1,70 @@
 ---
-translated_from: 3ad6bd291105f72d9e440ca46e96fe9fa085e02c
+translated_from: a79f6f20e3cbe488309469e1f6730f929d29c362
 ---
 
-# Systemdrift
+# Daglig brug
+
+HALPI2 er designet til drift uden opsyn. På det forudinstallerede HaLOS-image — eller på ethvert styresystem med [HALPI-dæmonen](./software.md#halpi-kommandolinjevrktjet) installeret — er strømstyringen automatisk: Enheden oplader superkondensatorerne, der fungerer som backup, klarer korte spændingsudfald, lukker styresystemet sikkert ned ved strømsvigt og starter op igen, når strømmen vender tilbage. Intet af dette kræver, at du foretager dig noget.
+
+## Opstart
+
+HALPI2 har ingen tænd/sluk-knap på kabinettet: Den starter, så snart der tilsluttes indgangsstrøm. (En ekstern tænd/sluk-knap kan tilsluttes bærekortet — se [Eksterne knapper](./interfaces.md#eksterne-knapper).) LED-søjlen fyldes først op med rødt, mens superkondensatorerne oplader (fra få sekunder til et halvt minut afhængigt af [indstillingen af strømgrænsen](./hardware.md#konfiguration-af-strmbegrnsning)). Derefter viser LED'erne en kort animation med regnbue og skiftende farver, mens Compute Module starter, en gul søjle, mens styresystemet starter op, og de bliver grønne, når styresystemet kører, og HALPI-dæmonen har forbundet sig.
+
+## Nedlukning
+
+Du lukker HALPI2 ned ved at afbryde indgangsstrømmen — for eksempel med en afbryder på eltavlen. Systemet registrerer strømsvigtet, lukker styresystemet kontrolleret ned på strøm fra superkondensatorerne og forbliver slukket. LED'erne viser en lilla søjle, mens nedlukningen kører, og slukker, når den er gennemført.
+
+Du kan også lukke ned via software — skrivebordsmenuen, kommandoen `shutdown` eller `halpi shutdown`. Systemet slukker derefter og forbliver slukket, indtil indgangsstrømmen har været afbrudt og tilsluttet igen (eller der trykkes på en [ekstern tænd/sluk-knap](./interfaces.md#eksterne-knapper), hvis en sådan er monteret).
+
+Controlleren kan desuden genstarte systemet automatisk cirka 5 sekunder efter en softwarenedlukning, mens indgangsstrømmen stadig er tilsluttet, så en utilsigtet nedlukningskommando aldrig efterlader en fysisk svært tilgængelig installation slukket. Slå det til med `halpi config set auto_restart true`; indstillingen gemmes i controlleren. Enheder produceret før starten af 2026 blev leveret med denne adfærd slået til — kontrollér din med `halpi config get auto_restart`.
+
+Systemet kan også sættes i standby, hvor det slukker og vågner igen på et planlagt tidspunkt — se referencen [Bærekortets controller](../technical-reference/controller.md#standby).
 
 ## Status-LED-indikatorer
 
-HALPI2 har fem RGB-LED'er, der giver visuel tilbagemelding om systemets status og strømforhold.
+De fem LED'er på frontpanelet viser, hvad systemet er i gang med:
 
-### Hurtig oversigt over LED-status
+| LED-mønster | Betydning |
+|:------------|:----------|
+| Rød søjle, der fyldes op | Superkondensatorerne oplader før opstart — vent |
+| Regnbue og skiftende farver | Compute Module starter. Hvis mønsteret gentager sig uden fremskridt, kunne modulet ikke starte — se [Fejlfinding](./troubleshooting.md#regnbue-leder) |
+| Gul søjle | Systemet kører, HALPI-dæmonen er ikke forbundet — normalt i kort tid under opstart. Hvis det varer ved, se [Fejlfinding](./troubleshooting.md#lederne-bliver-ved-med-at-vre-gule) |
+| Grøn søjle | Normal drift |
+| Orange eller mørkegrøn søjle | Indgangsstrømmen er væk, systemet kører på backup — nedlukning følger, medmindre strømmen vender tilbage inden for få sekunder |
+| Lilla søjle | Nedlukning i gang |
+| Alle lyser konstant rødt | Styresystemet svarer ikke — controlleren genstarter det automatisk |
+| Alle blinker rødt | Fejl i superkondensatorerne — kontakt support |
+| Alle lyser konstant blåt | På vej i standby |
+| Alle lyser svagt rødt | Standby |
+| Alle slukket | Slukket |
 
-| LED-mønster | Farve | Betydning |
-|-------------|-------|---------|
-| LED 5 lyser konstant | Rød | Strøm tilsluttet, venter på opladning |
-| Gradvis udfyldning | Rød | Superkondensatorerne oplader |
-| Regnbue + farvecyklus | Flere | CM5 kunne ikke starte |
-| Spændingssøjle | Gul | Drift i Solo-tilstand |
-| Spændingssøjle | Grøn | Drift i Co-op-tilstand |
-| Spændingssøjle | Orange | Backupstrøm aktiv (solo) |
-| Spændingssøjle | Mørkegrøn | Backupstrøm aktiv (co-op) |
-| Alle blinker | Rød | Overspænding på superkondensatorerne |
-| Alle lyser konstant | Rød | Watchdog-timeout |
-| Spændingssøjle | Lilla | Nedlukning i gang |
-| Alle lyser konstant | Blå | Nedlukning til standby i gang |
-| Alle lyser konstant | Svagt rød | Standby |
-| Alle slukket | — | Systemet er slukket |
+I søjlemønstrene viser antallet af tændte LED'er superkondensatorernes ladeniveau. De præcise spændingsintervaller og den fulde tilstandsoversigt findes i referencen [Bærekortets controller](../technical-reference/controller.md#status-led-reference).
 
-### Spændingsvisning for superkondensatorerne
+LED'ernes lysstyrke kan justeres — se [LED-styring](./software.md#led-styring). LED'erne kan også bruges som display for systemmålinger og marinedata (netværksaktivitet, tankniveauer, NMEA 2000- og Signal K-værdier) med tilføjelsen [HALPI2 blinkenlights](https://github.com/hatlabs/HALPI2-blinkenlights).
 
-Under drift fungerer LED'erne som en spændingsindikator, der viser superkondensatorernes ladeniveau:
+## Ved strømsvigt
 
-- **LED 1**: 5,0–6,0 V
-- **LED 2**: 6,0–7,0 V
-- **LED 3**: 7,0–8,0 V
-- **LED 4**: 8,0–9,0 V
-- **LED 5**: 9,0–10,0 V
+Du behøver ikke at foretage dig noget. Korte dyk og udfald — som standard op til 5 sekunder — dækkes af superkondensatorerne, og driften fortsætter uforstyrret. Ved en længere afbrydelse lukker systemet sig selv kontrolleret ned på de 30–60 sekunders backupstrøm, som superkondensatorerne rummer. Når indgangsstrømmen vender tilbage, starter systemet automatisk op igen.
 
-## Strømstyring og nedlukningsprocedurer
+!!! warning "Ikke en UPS"
+    Superkondensatorerne er der for at dække korte udfald og levere strøm til en sikker nedlukning. Fortsat drift under længerevarende strømafbrydelser kræver en ekstern UPS (nødstrømsforsyning).
 
-HALPI2 har en strømforsyning, der er konstrueret til at klare spændingsspidser, korte spændingsudfald og kortvarige afbrydelser.
+## Kontrol af systemets tilstand
 
-### Oversigt over strømsystemet
+En grøn LED-søjle betyder, at systemet har det godt. Vil du have detaljer, viser kommandoen `halpi` controllerens tilstand, spændinger, strøm og temperaturer:
 
-HALPI2's strømstyringssystem består af:
+```bash
+halpi status
+```
 
-- **Strømforsyning med bredt indgangsområde** (11–32 V DC indgang med beskyttelse op til 100 V DC)
-- **Backupsystem med superkondensatorer** til kontrolleret nedlukning ved strømsvigt
-- **Strømbegrænsning** (0,9 A eller 2,5 A, som du selv vælger)
-- **Registrering af strømsvigt** og automatisk igangsætning af nedlukning
-- **Overvågning af indgangsspænding og -strøm**
+Hvis noget ser forkert ud, se [Fejlfinding](./troubleshooting.md) og [Softwarevejledningen](./software.md#halpi-kommandolinjevrktjet).
 
-Systemet kører i to tilstande: Solo-tilstand og Co-op-tilstand.
+## Drift uden dæmonen
 
-### Drift i Solo-tilstand
+På styresystemer uden HALPI-dæmonen falder controlleren tilbage til en grundlæggende beskyttelsestilstand: Den registrerer stadig strømsvigt og beder om nedlukning, men ved at simulere tryk på tænd/sluk-knappen — hvilket ikke virker, hvis systemet er frosset — og overvågning og konfiguration er ikke til rådighed. Hvis du kører dit eget styresystem, skal du installere dæmonen; se [Andre Debian-distributioner](../software-development/ubuntu-installation.md). Hvordan de to tilstande fungerer, er beskrevet i referencen [Bærekortets controller](../technical-reference/controller.md#driftstilstande).
 
-Solo-tilstand giver grundlæggende selvstændig drift, når HALPI-dæmonen ikke kører. Controlleren arbejder uafhængigt uden kommunikation med softwaren.
-
-#### Kendetegn ved Solo-tilstand
-
-- **Ingen kommunikation med software er nødvendig**
-- **Grundlæggende beskyttelse mod strømsvigt** – overvåger indgangsspændingen og reagerer på strømsvigt
-- **Automatisk nedlukning via simulerede tryk på tænd/sluk-knappen**
-- **Begrænsede muligheder for overvågning og konfiguration**
-
-#### Strømsvigt og nedlukning i Solo-tilstand
-
-**Registrering af strømsvigt:**
-Controlleren overvåger indgangsspændingen og registrerer strømsvigt. En strømafbrydelsestimer (standard 5 sekunder) forhindrer nedlukning ved korte afbrydelser.
-
-**Automatisk nedlukningsforløb:**
-
-1. **Controlleren registrerer strømsvigt**
-2. **Strømafbrydelsestimeren aktiveres** for at skelne korte udfald fra reelt strømsvigt
-3. **Simulerede tryk på tænd/sluk-knappen** – controlleren sender et dobbelttryk på tænd/sluk-knappen til Compute Module
-4. **Styresystemet reagerer** og påbegynder en kontrolleret nedlukning
-5. **Superkondensatorerne opretholder forsyningen** (typisk 30–60 sekunder til rådighed)
-6. **Timeoutbeskyttelse på 60 sekunder** – tvungen slukning, hvis den kontrollerede nedlukning mislykkes
-7. **Systemet forbliver slukket**, indtil strømmen vender tilbage
-8. **Automatisk genstart**, når strømmen er retableret
-
-**Manuel nedlukning i Solo-tilstand:**
-
-- Der sker en normal nedlukning af styresystemet
-- Systemet genstarter automatisk efter 5 sekunder, hvis der stadig er strøm på indgangen
-- Hvis systemet skal forblive slukket, skal du frakoble indgangsstrømmen, efter at den kontrollerede nedlukning er sat i gang
-
-#### Hvornår Solo-tilstand er aktiv
-
-Solo-tilstand optræder:
-
-- Under den første opstart, før HALPI-dæmonen starter
-- Hvis HALPI-dæmonen ikke kan starte eller er deaktiveret
-- På styresystemer uden understøttelse, hvor dæmonen ikke findes
-- Når dæmonen er gået ned eller ikke svarer
-
-!!! tip "Driftssikkerhed i Solo-tilstand"
-    Solo-tilstand giver den nødvendige grundbeskyttelse, men er mindre driftssikker end Co-op-tilstand. Controlleren er afhængig af simulerede knaptryk for at bede om nedlukning, og det virker måske ikke, hvis systemet er frosset.
-
-### Drift i Co-op-tilstand
-
-Co-op-tilstand giver fuld funktionalitet til strømstyring, når HALPI-dæmonen kører og kommunikerer med controlleren.
-
-#### Funktioner i Co-op-tilstand
-
-- **Direkte kommunikation med softwaren** – udveksling af data i realtid mellem controller og dæmon
-- **Beskyttelse med watchdog-timer** – et timeout på 30 sekunder sikrer systemets stabilitet
-- **Konfigurerbar nedlukningsadfærd** – tidsforløb og kommandoer kan tilpasses
-- **Overvågning i realtid** – omfattende overvågning af strømparametre
-- **Avancerede konfigurationsmuligheder**
-
-#### Strømsvigt og nedlukning i Co-op-tilstand
-
-**Registrering af strømsvigt:**
-Controlleren overvåger den tilførte strøm og melder hændelser direkte til HALPI-dæmonen. Den konfigurerbare strømafbrydelsestimer (standard 5 sekunder) tillader korte strømafbrydelser, uden at nedlukningen sættes i gang.
-
-**Automatisk nedlukningsforløb:**
-
-1. **Controlleren registrerer strømsvigt** og melder det til HALPI-dæmonen
-2. **Vurdering med strømafbrydelsestimeren** – dæmonen vurderer, om strømsvigtet overstiger tærsklen
-3. **Udførelse af nedlukningskommandoen** – dæmonen kører nedlukningskommandoen (standard: `/sbin/poweroff`)
-4. **Kontrolleret nedlukning af styresystemet** – programmer lukkes, og filsystemer afmonteres sikkert
-5. **Backupstrøm fra superkondensatorerne** leverer energi under hele nedlukningen
-6. **Controlleren følger forløbet** – den holder øje med, hvornår Compute Module slukker
-7. **5 V-skinnen deaktiveres**, når nedlukningen er gennemført
-8. **Systemet forbliver slukket**, indtil den tilførte strøm vender tilbage
-9. **Styring af genstart** – afhængigt af konfigurationen genstarter systemet automatisk eller forbliver slukket
-
-**Manuel nedlukning i Co-op-tilstand:**
-
-- Der sker en normal kontrolleret nedlukning, når den sættes i gang via softwaren
-- Systemet genstarter automatisk efter 5 sekunder, hvis der stadig er strøm på indgangen
-- Hvis du vil forhindre automatisk genstart, skal du frakoble strømmen eller sætte `auto_restart` til `false`
-
-#### Watchdog-beskyttelse
-
-Co-op-tilstand omfatter beskyttelse med en watchdog-timer:
-
-- **Kommunikationstimeout på 30 sekunder** – dæmonen skal kommunikere regelmæssigt med controlleren
-- **Automatisk genopretning** – systemet genstarter, hvis kommunikationen ophører
-- **Beskyttelse mod softwarefejl** – sikrer genopretning, hvis dæmonen går ned, eller systemet hænger
-- **»Fodring af watchdoggen«** – dæmonen sender regelmæssige statusopdateringer, der nulstiller timeren
-
-#### Hvornår Co-op-tilstand er aktiv
-
-Co-op-tilstand optræder, når:
-
-- HALPI-dæmonen kører og fungerer korrekt
-- Der er etableret kommunikation mellem dæmonen og controlleren
-- Systemet kører på et understøttet styresystem
-- Alle funktioner til overvågning og styring af systemet er til rådighed
-
-!!! info "Sådan kontrollerer du Co-op-tilstand"
-    Kontrollér dæmonens status: `systemctl status halpid`
-
-    Se controllerens tilstand: `halpi status`
-
-    Du kan læse mere om kommandoen `halpi` i [Softwarevejledningen](./software.md#halpi-dmonen-halpid).
-
-### Backupstrøm og kondensatorsystem
-
-Begge tilstande er afhængige af backupsystemet med superkondensatorer for at kunne lukke kontrolleret ned:
-
-**Backupstrømmens varighed:**
-
-- Superkondensatorerne leverer 30–60 sekunders backupstrøm
-- Varigheden afhænger af systemets belastning og de tilsluttede perifere enheder
-- Tilstrækkelig tid til at lukke filsystemet sikkert og afslutte processerne
-- Ikke beregnet til fortsat drift under længerevarende afbrydelser
-
-**Opladningsegenskaber:**
-
-- Opladningstid: 25 sekunder ved en strømgrænse på 0,9 A
-- Opladningstid: 9 sekunder ved en strømgrænse på 2,5 A
-- Opladningens forløb vises visuelt gennem LED-forløbet (rødt udfyldningsmønster)
-
-!!! warning "Begrænsning i beskyttelsen mod strømsvigt"
-    Systemet med superkondensatorer er beregnet til kontrolleret nedlukning, ikke til fortsat drift. Stol ikke på det ved længerevarende strømafbrydelser.
-
-### Overvejelser ved manuel nedlukning
-
-HALPI2 prioriterer automatisk drift og genopretning, og det påvirker adfærden ved manuel nedlukning.
-
-#### Adfærd ved automatisk genstart
-
-Som standard genstarter HALPI2 efter en manuel nedlukning, hvis der stadig er strøm på indgangen:
-
-- En manuel nedlukning giver en normal nedlukning af styresystemet
-- Der følger en henstandsperiode på 5 sekunder, når nedlukningen er gennemført
-- Systemet genstarter automatisk for at opretholde driften
-- Det sikrer genopretning efter utilsigtede nedlukninger
-
-#### Metoder til bevidst nedlukning
-
-Hvis systemet skal forblive slukket, kan du bruge en af disse fremgangsmåder:
-
-**Metode med frakobling af strømmen:**
-
-1. Sæt en kontrolleret nedlukning i gang via softwaren
-2. Vent, til nedlukningen er gennemført (LED'erne slukker)
-3. Frakobl indgangsstrømmen for at forhindre automatisk genstart
-
-**Metode med konfiguration:**
-
-1. Deaktivér automatisk genstart: `halpi config set auto_restart false`
-2. Sæt nedlukningen i gang via softwaren
-3. Systemet forbliver slukket, når nedlukningen er gennemført
-
-**Standby-tilstand (kommende):**
-!!! info "Funktionens status"
-    Standby-tilstand er planlagt til kommende firmwareudgivelser. Den vil gøre det muligt at slukke Compute Module, mens HALPI2-controlleren forbliver aktiv og venter på opvækningshændelser.
+!!! quote "Relaterede oplysninger"
+    - **Sådan fungerer strømstyringen internt:** Se [Bærekortets controller](../technical-reference/controller.md)
+    - **Detaljer om strømsystemet:** Se [Strømforsyningen i detaljer](../technical-reference/power-supply.md)
+    - **Kommandoen `halpi` og dæmonen:** Se [Softwarevejledningen](./software.md)
+    - **Problemer:** Se [Fejlfinding](./troubleshooting.md)

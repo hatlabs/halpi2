@@ -1,5 +1,5 @@
 ---
-translated_from: 35a84e7f96c0891201c8a8248bf146139684b772
+translated_from: 232aac811fb62f4cc46a1955e832ea282dc92332
 ---
 
 # Probleemoplossing
@@ -12,7 +12,7 @@ Deze pagina behandelt veelvoorkomende problemen bij het gebruik van de HALPI2 en
 
 **Symptomen:** geen ledactiviteit, geen enkel teken van leven nadat de voeding is aangesloten.
 
-1. Controleer met een multimeter aan de E7T-connector of de ingangsspanning binnen het bereik ligt (11–32 V DC).
+1. Controleer met een multimeter aan de E7T-connector of de ingangsspanning binnen het bereik ligt (10–32 V DC).
 2. Controleer de aansluitingen van de voedingskabel — zorg dat de E7T-connector volledig is ingestoken.
 3. Gebruikt u busvoeding via NMEA 2000, controleer dan of de stroombegrenzer op 0,9 A staat en of het netwerk voldoende stroom kan leveren.
 4. Open de behuizing en kijk of er zichtbare schade of losse interne verbindingen zijn.
@@ -146,14 +146,14 @@ Aan de hand van de ledpatronen stelt u de systeemtoestand snel vast:
 | Systeem start niet | Geen leds | Geen ingangsspanning of hardwarefout |
 | Blijft hangen tijdens het opstarten | Rode balk die vol loopt | Supercondensator laadt nog op — wachten |
 | Blijft hangen tijdens het opstarten | Regenboogpatroon | CM5 niet gedetecteerd — controleer de plaatsing van de module en koppel beeldschermen los |
-| Blijft geel | Continu geel | Besturingssysteem start niet op of daemon niet geïnstalleerd |
-| Onverwacht afsluiten | Lopend groen/geel | Spanningsuitval gedetecteerd — controleer de ingangsspanning |
-| Overspanning | Led 1 knippert rood | Ingangsspanning te hoog (> 32 V) |
-| Storing | Alle leds knipperen rood | Hardwarefout — neem contact op met de fabrikant |
+| Blijft geel | Gele balk | Besturingssysteem start niet op of daemon niet geïnstalleerd |
+| Onverwacht afsluiten | Oranje of donkergroene balk, daarna paars | Ingangsspanning weggevallen, afsluiten op backupvoeding — controleer de ingangsspanning |
+| Systeem herstart uit zichzelf | Alle leds continu rood vóór de herstart | Watchdog-time-out — het besturingssysteem reageerde niet meer en de controller heeft het opnieuw gestart |
+| Storing | Alle leds knipperen rood | Overspanning op de supercondensatoren — neem contact op met de ondersteuning |
 
 !!! quote "Gerelateerde informatie"
     - **Ledpatronen:** zie [Statusleds](./operation.md#statusleds)
-    - **Energiebeheer:** zie [Energiebeheer en afsluitprocedures](./operation.md#energiebeheer-en-afsluitprocedures)
+    - **Gedrag bij spanningsuitval:** zie [Bij spanningsuitval](./operation.md#bij-spanningsuitval)
     - **Beheer van de daemon:** zie [Softwarehandleiding](./software.md#halpi-daemon-halpid)
     - **Details over de CAN-interface:** zie [Interfaces en connectiviteit](./interfaces.md#can-fd-nmea-2000)
     - **Details over de RS-485-interface:** zie [Interfaces en connectiviteit](./interfaces.md#rs-485-nmea-0183)

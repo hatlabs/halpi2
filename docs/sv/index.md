@@ -1,5 +1,5 @@
 ---
-translated_from: e4d4a4c5108676be9c19bdd2a82a321b24b14191
+translated_from: 14cb3c2c516710194d6d97569111c8626e6fc6ea
 ---
 
 # Introduktion
@@ -105,7 +105,7 @@ Dokumentationen vänder sig både till slutanvändare som söker praktisk vägle
 ### För slutanvändare
 
 - Börja med guiden **Kom igång** för installation och driftsättning
-- Läs om **vanliga användningsfall** för råd som passar din tillämpning
+- Läs **Daglig användning** om det vardagliga: vad lysdioderna betyder, avstängning och beteendet vid spänningsbortfall
 - Gå till **Felsökning** när problem uppstår
 
 ### För utvecklare
@@ -113,7 +113,6 @@ Dokumentationen vänder sig både till slutanvändare som söker praktisk vägle
 - Läs **Teknisk referens** för detaljerade specifikationer
 - Studera avsnitten om **Programvaruutveckling** för egna tillämpningar
 - Titta på **Konstruktionsfilerna** när du planerar en integration
-- Se **Avancerad konfiguration** för prestandaoptimering
 
 ### Konventioner i dokumentationen
 

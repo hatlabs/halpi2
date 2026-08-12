@@ -1,5 +1,5 @@
 ---
-translated_from: 818f6b152336b46cdc5084af312fd71f5f930197
+translated_from: 20e29f3f3d0abb0b55c899b0dec2e915f0574e19
 ---
 
 # Riferimento hardware
@@ -12,7 +12,7 @@ Questa pagina riporta le specifiche elettriche, meccaniche e ambientali dell’H
 |:----------|:------|
 | Modulo di calcolo | Raspberry Pi CM5 (compatibile con CM4) |
 | Controller della scheda portante (carrier board) | RP2040 (Arm Cortex-M0+, dual core, 133 MHz) |
-| Tensione di ingresso | 9–36 V CC (massimo assoluto 38,6 V, protezione dai transitori fino a 100 V) |
+| Tensione di ingresso | 10–32 V CC (massimo assoluto 38,6 V, protezione dai transitori fino a 100 V) |
 | Consumo di potenza | da 250 mA a riposo a 590 mA sotto carico (ingresso da 12 V, HaLOS senza monitor) |
 | Impostazioni del limite di corrente | 0,9 A o 2,5 A (selezionabili) |
 | Riserva a supercondensatori | 4× 25 F / 2,7 V in serie (6,25 F effettivi a 10,8 V max) |
@@ -31,7 +31,7 @@ L’alimentazione accetta un ampio intervallo di tensione di ingresso in corrent
 
 | Parametro | Valore |
 |:----------|:------|
-| Tensione di ingresso consigliata | 9–36 V CC |
+| Tensione di ingresso consigliata | 10–32 V CC |
 | Tensione di ingresso massima assoluta | 38,6 V (continua), 100 V (transitoria, limitata dal TVS) |
 | Corrente di ingresso massima | 0,9 A o 2,5 A (limitatore di corrente selezionabile) |
 | Fusibile di ingresso | 7 A (solo protezione da guasto) |
@@ -76,7 +76,7 @@ Tipo Phoenix MC, passo 3,81 mm, 2 pin. Sul pannello frontale, il connettore cil
 | Pin | Funzione |
 |:----|:---------|
 | 1 | GND |
-| 2 | VIN (9–36 V CC) |
+| 2 | VIN (10–32 V CC) |
 
 ### Connettore CAN FD
 
@@ -245,7 +245,7 @@ La custodia standard offre un raffreddamento passivo senza ventola. È disponibi
 
 !!! quote "Informazioni correlate"
     - **Schemi elettrici e file di progetto:** consultare [File di progetto e schemi elettrici](../appendices/design-files.md)
-    - **Comportamento della gestione dell’alimentazione:** consultare [Approfondimento sull’alimentazione](./power-supply.md)
+    - **Comportamento della gestione dell’alimentazione:** consultare [Alimentazione in dettaglio](./power-supply.md)
     - **Protocolli delle interfacce:** consultare [Interfacce e connettività](./interfaces.md)
     - **Controller e protocollo I2C:** consultare [Controller della scheda portante](./controller.md)
     - **Installazione fisica:** consultare [Guida all’hardware](../user-guide/hardware.md)

@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Guide logiciel
@@ -220,7 +220,7 @@ L'interface logicielle du HALPI2 se compose du service démon `halpid` et de l'o
 
 ### Démon HALPI (`halpid`)
 
-Le démon HALPI s'exécute comme service système et assure la communication entre le système d'exploitation et le contrôleur du HALPI2. C'est lui qui rend possible le mode coopératif, avec toutes les fonctions de surveillance et de gestion de l'alimentation.
+Le démon HALPI s'exécute comme service système et assure la communication entre le système d'exploitation et le contrôleur du HALPI2. Avec le démon en marche, le contrôleur offre la totalité de la surveillance, de la configuration et de la coordination des arrêts propres — voir la référence [Contrôleur de la carte porteuse](../technical-reference/controller.md#modes-de-fonctionnement) pour son comportement avec et sans le démon.
 
 #### Gestion du service
 
@@ -361,8 +361,9 @@ Exemples de commandes :
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 La commande d'arrêt garantit une mise hors tension en sécurité : le système d'exploitation ferme les applications et démonte correctement les systèmes de fichiers avant que le contrôleur ne coupe l'alimentation.

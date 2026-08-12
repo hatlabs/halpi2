@@ -1,5 +1,5 @@
 ---
-translated_from: a428b6a7e1ca303e0571592a86d0cc6a3db97a83
+translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
 ---
 
 # Softwarevejledning
@@ -225,7 +225,7 @@ HALPI2's softwaregrænseflade består af dæmontjenesten `halpid` (baggrundstjen
 
 ### HALPI-dæmonen (`halpid`)
 
-HALPI-dæmonen kører som en systemtjeneste og står for kommunikationen mellem styresystemet og HALPI2's controller. Den gør drift i Co-op-tilstand mulig med fuld overvågning og strømstyring.
+HALPI-dæmonen kører som en systemtjeneste og står for kommunikationen mellem styresystemet og HALPI2's controller. Med dæmonen kørende får controlleren fuld overvågning, konfiguration og koordinering af kontrolleret nedlukning — se referencen [Bærekortets controller](../technical-reference/controller.md#driftstilstande) for, hvordan controlleren opfører sig med og uden den.
 
 #### Håndtering af tjenesten
 
@@ -362,8 +362,9 @@ Eksempler på kommandoer til strømstyring:
 # Initiate graceful shutdown
 halpi shutdown
 
-# Enter standby mode (when available)
-halpi standby
+# Enter standby mode, waking up after a delay (seconds) or at a given time
+halpi shutdown --standby --time 3600
+halpi shutdown --standby --time "2026-08-13 06:00:00"
 ```
 
 Nedlukningskommandoen sikrer, at systemet lukker sikkert ned, så styresystemet kan afslutte programmer og afmontere filsystemer ordentligt, før controlleren afbryder strømmen.
