@@ -258,8 +258,9 @@ A translated page is not done until:
 1. `uv run mkdocs build --strict` passes.
 2. `uv run check-anchors site` passes.
 3. `uv run translation-status` shows the page as current.
-4. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
-5. Every term used on the page that appears in this glossary matches it.
+4. `uv run check-glossary de` passes.
+5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+6. Every term used on the page that appears in this glossary matches it.
 
 ## Related
 
