@@ -341,9 +341,9 @@ Two consequences worth stating:
 A translated page is not done until:
 
 1. `uv run mkdocs build --strict` passes.
-2. `uv run python scripts/check_anchors.py site` passes.
-3. `uv run python scripts/translation_status.py` shows the page as current.
-4. `uv run python scripts/check_glossary.py nl` passes.
+2. `uv run check-anchors site` passes.
+3. `uv run translation-status` shows the page as current.
+4. `uv run check-glossary nl` passes.
 5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
 6. **The seven rules at the top are counted against the pages, not re-read.**
 

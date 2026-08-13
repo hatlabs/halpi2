@@ -15,15 +15,31 @@ This repository contains the HALPI2 User Guide documentation, built with MkDocs 
 - `uv run mkdocs serve` - Start local dev server (http://127.0.0.1:8000)
 - `uv run mkdocs build --strict` - Build the documentation (output goes to `./site`)
 
+**Translation checkers**, from the `halos-docs-tools` package pinned in
+`pyproject.toml`.
+
+CI runs three of them — `mkdocs build --strict`, `check-anchors site` and
+`translation-status --check`. The rest are local-only; nothing enforces them.
+The gate judges the whole repository as merged with `main`, so a branch that is
+clean locally can still go red after `main` moves.
+
+- `uv run translation-status` - Which translations are current, stale, missing, unstamped or orphaned. Always exits 0
+- `uv run translation-status --check` - The same, exiting non-zero when any is behind. This is the gate
+- `uv run stamp-translation <path>` - Record the English blob a translation was written against
+- `uv run check-anchors site` - Internal links whose target anchor does not exist
+- `uv run check-glossary <locale>` / `uv run check-typography <locale>` - Per-language conventions
+- `uv run map-anchors site <locale>` - Report English fragments that should become translated ids; `--apply` rewrites them
+
 ## Documentation Structure
 
 - `mkdocs.yml` - MkDocs configuration and navigation structure
-- `docs/` - All markdown content organized by section:
+- `docs/en/` - English content, the source every translation is written from:
   - `getting-started/` - Quick start and installation guides
   - `user-guide/` - System operation, hardware, interfaces, software
   - `technical-reference/` - Detailed hardware specs and technical docs
   - `software-development/` - Daemon, integration, Ubuntu installation
   - `appendices/` - Design files, schematics, errata
+- `docs/<locale>/` - Translations, one directory per locale, mirroring `docs/en/`
 - `docs/stylesheets/extra.css` - Custom CSS (Hat Labs branding)
 - `docs/assets/` - Logo and shared assets
 - `docs/overrides/` - MkDocs Material theme overrides
