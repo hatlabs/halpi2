@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=https://storage.googleapis.com/coderabbit_public_assets/schema.v2.json
+
+language: en-GB
+
+reviews:
+  profile: assertive
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+
+  path_filters:
+    - "!uv.lock"
+    - "!**/*.afdesign"
+    - "!**/*.afphoto"
+    - "!**/*.jpg"
+    - "!**/*.png"
+    - "!**/*.svg"
+    - "!**/*.pdf"
+    - "!**/*.step"
+
+  path_instructions:
+    - path: "docs/en/**/*.md"
+      instructions: |
+        This is the English source every translation is written from. Content
+        changes belong here first; a fix applied only to a translated page
+        leaves the English page wrong and the translation unstampable.
+
+        Review the prose against CLAUDE.md's content guidelines. Lists need a
+        blank line before the first item and four-space indents under a
+        numbered step, because Python-Markdown otherwise folds them into the
+        preceding paragraph. Flag those; they are silent on GitHub's preview
+        and in `mkdocs build --strict`.
+
+        Do not ask for a "why we did not do X" rationale, a rejected-alternative
+        section, or a summary of what changed. Published pages describe current
+        behaviour only.
+    - path: "docs/{da,de,es,fi,fr,it,nb,nl,sv}/**/*.md"
+      instructions: |
+        These are translations of the mirrored page under `docs/en/`. Each
+        locale has an authoritative glossary in `solutions/translation/` that
+        fixes terminology, address form, quotation marks, spacing before
+        punctuation and number formatting. Read that glossary before commenting
+        on wording, and cite it when you do.
+
+        Deliberate per-locale conventions that are correct and must not be
+        flagged as typos:
+
+        - French puts a no-break space (U+00A0) before `;` `:` `!` `?`. Every
+          other locale writes no space there at all.
+        - Quotation marks differ by locale and are not interchangeable: Danish
+          `»…«`, Norwegian `«…»`, Swedish `”…”`, German `„…“`, Dutch `“…”`,
+          Italian `“…”`, French and Spanish `« … »` / `«…»`.
+        - Italian uses the typographic apostrophe U+2019, not `'`.
+        - Translations use a decimal comma and a space before the unit:
+          `0,9 A`, `5,5 × 2,1 mm`, `−20 °C`. The English source writes `0.9A`,
+          and converting it is required, not optional.
+        - Register is set per language: Finnish, Swedish, Danish and Norwegian
+          address the reader directly, German uses Sie, French uses vous, Dutch
+          uses u, and Italian and Spanish are impersonal with infinitives.
+
+        A translation must mirror its English source structurally: same
+        headings, list items, table rows, admonitions, code fences and numbers,
+        in the same order. Flag a structural divergence or a number that drifted.
+        Do not propose restructuring one locale on its own.
+
+        The `translated_from` value in the frontmatter is a git blob hash
+        written by `uv run stamp-translation`. Never suggest editing it by hand,
+        and never suggest adding one to a page that was not translated.
+    - path: "solutions/**/*.md"
+      instructions: |
+        Internal engineering notes and translation glossaries. These do not ship
+        to the published site, and they deliberately record history, evidence
+        and rejected approaches — that is what they are for. Do not apply the
+        published-docs rule against development history here.
+    - path: "hooks/**/*.py"
+      instructions: |
+        MkDocs build hooks. `i18n_search.py` manipulates Material for MkDocs'
+        `__config.base` and depends on the i18n plugin's post-build event
+        priority. That coupling is deliberate and documented in CLAUDE.md;
+        flagging it as fragile repeats what the code already says. Review the
+        logic instead: locale detection, path arithmetic, and whether a
+        malformed or missing index fails loudly rather than silently.
+
+  tools:
+    markdownlint:
+      enabled: false
+    languagetool:
+      enabled: false
+    yamllint:
+      enabled: true
+    actionlint:
+      enabled: true
+    ruff:
+      enabled: true
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - CLAUDE.md
+      - solutions/**/*.md
