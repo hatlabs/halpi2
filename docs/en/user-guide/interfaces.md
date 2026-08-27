@@ -148,6 +148,46 @@ Edit `/etc/default/gpsd` to set `DEVICES="/dev/ttyAMA0"` and restart the service
 
 HALPI2 includes a Gigabit Ethernet interface that provides high-speed network connectivity for data transfer, remote access, and integration with onboard networks. The ethernet port on the carrier board is a standard RJ45 connector. It is broken out to a panel connector that can be connected to an external Ethernet cable.
 
+## WiFi
+
+The Compute Module 5 carries its own WiFi and Bluetooth radio, a Cypress CYW43455. The antenna connects to the U.FL connector on the CM5 and is broken out to the RP-SMA connector on the front panel. See the [Hardware Guide](./hardware.md) for the connector location.
+
+### Access Point Firmware Variants
+
+Raspberry Pi OS ships two firmware variants for this radio and chooses between them with `update-alternatives`. The `minimal` variant is tuned for access point use, at the cost of features the `standard` variant has.
+
+| Variant | Access point clients | Firmware version |
+|:--------|:---------------------|:-----------------|
+| `standard` (default) | about 7 | 7.45.265 (2023) |
+| `minimal` | about 19 | 7.45.241 (2021) |
+
+Use the `minimal` variant on any HALPI2 whose access point is in real use. The client count is the smaller reason: in practice the `standard` variant seizes up with only a few clients connected, and then admits none at all.
+
+Switch the variant:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Select the `cyfmac43455-sdio-minimal.bin` entry, then reboot. `update-alternatives` records the choice, so later firmware package updates keep it.
+
+The `minimal` variant frees the chip memory for those extra client slots by dropping features:
+
+- Automatic channel selection.
+- DFS radar detection, so the 5 GHz channels that require it become unavailable.
+- 802.11k/v/r roaming assistance and antenna diversity.
+
+If the access point does not come up after the switch, set a fixed channel on it, because the `minimal` variant cannot pick one on its own. On HaLOS the default access point profile is named `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+To go back to the default firmware, run the same command and select the `standard` entry, or run `sudo update-alternatives --auto cyfmac43455-sdio.bin`.
+
+!!! quote "Related Information"
+    - **Access point setup on HaLOS:** See [HaLOS networking documentation](https://docs.halos.fi/user-guide/networking/)
+
 ## USB
 
 HALPI2 features a total of four onboard USB 3.0 Type A ports, providing high-speed connectivity for a variety of peripherals and devices. One port is routed directly to the CM5 USB 3.0 interface, while the other three are connected via an onboard USB 3 hub. In the standard configuration, two of the ports are broken out to the front panel, while two are available on the carrier board for internal connections.

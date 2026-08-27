@@ -1,5 +1,5 @@
 ---
-translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
+translated_from: 3cd9ceed5d700bf85ebce22f50f5e15a3f08013e
 ---
 
 # Interfaces en connectiviteit
@@ -151,6 +151,46 @@ Bewerk `/etc/default/gpsd` om `DEVICES="/dev/ttyAMA0"` in te stellen en start de
 ## Ethernet
 
 De HALPI2 heeft een gigabit-ethernetinterface die snelle netwerkverbindingen biedt voor gegevensoverdracht, toegang op afstand en integratie met netwerken aan boord. De ethernetaansluiting op het carrierboard is een standaard RJ45-connector. Die is doorverbonden naar een paneelconnector waarop een externe ethernetkabel kan worden aangesloten.
+
+## Wifi
+
+De Compute Module 5 heeft een eigen wifi- en Bluetooth-radio, een Cypress CYW43455. De antenne wordt aangesloten op de U.FL-connector op de CM5 en is doorverbonden naar de RP-SMA-connector op het frontpaneel. De plaats van de connector staat in de [Hardwarehandleiding](./hardware.md).
+
+### Firmwarevarianten voor het accesspoint
+
+Raspberry Pi OS levert twee firmwarevarianten voor deze radio en kiest ertussen met `update-alternatives`. De variant `minimal` is afgestemd op gebruik als accesspoint, maar mist functies die `standard` wel heeft.
+
+| Variant | Clients op het accesspoint | Firmwareversie |
+|:--------|:---------------------------|:---------------|
+| `standard` (standaard) | ongeveer 7 | 7.45.265 (2023) |
+| `minimal` | ongeveer 19 | 7.45.241 (2021) |
+
+Gebruik de variant `minimal` op elke HALPI2 waarvan het accesspoint echt in gebruik is. Het aantal clients is de kleinste reden: in de praktijk loopt de variant `standard` al met een paar verbonden clients vast en laat daarna helemaal geen client meer toe.
+
+Schakel de variant om:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Kies de regel `cyfmac43455-sdio-minimal.bin` en start het apparaat daarna opnieuw op. `update-alternatives` legt de keuze vast, zodat latere updates van het firmwarepakket die behouden.
+
+De variant `minimal` maakt geheugen in de chip vrij voor die extra clientplaatsen door functies weg te laten:
+
+- Automatische kanaalkeuze.
+- DFS-radardetectie, waardoor de 5 GHz-kanalen die dat vereisen niet beschikbaar zijn.
+- Roamingondersteuning volgens 802.11k/v/r en antennediversiteit.
+
+Als het accesspoint na de omschakeling niet start, stel er dan een vast kanaal voor in, want de variant `minimal` kan er zelf geen kiezen. Op HaLOS heet het standaardprofiel van het accesspoint `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+Om terug te gaan naar de standaardfirmware voert u dezelfde opdracht uit en kiest u de regel `standard`, of voert u `sudo update-alternatives --auto cyfmac43455-sdio.bin` uit.
+
+!!! quote "Gerelateerde informatie"
+    - **Accesspoint instellen op HaLOS:** zie [HaLOS-netwerkdocumentatie](https://docs.halos.fi/user-guide/networking/)
 
 ## USB
 

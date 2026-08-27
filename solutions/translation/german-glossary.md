@@ -237,6 +237,9 @@ need that warning.
 | Certificate Authority (CA) | Zertifizierungsstelle (CA) | |
 | web interface | Weboberfläche | |
 | browser | Browser | |
+| firmware variant | Firmware-Variante | Die `update-alternatives`-Auswahl im WLAN-Abschnitt von user-guide/interfaces.md |
+| WiFi channel | Kanal | `Kanalwahl` für die automatische Auswahl, `fester Kanal` für einen festgelegten |
+| access point client | Client | Am Access Point angemeldetes Gerät; nicht *Kunde* |
 
 ### Applications and use cases
 

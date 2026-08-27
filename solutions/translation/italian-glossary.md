@@ -563,3 +563,6 @@ by each of them, because five agents share this file.
 | fallback (mode, firmware default) | di ripiego | controller.md: 'modalità di ripiego' (Solo mode), 'valore di ripiego del firmware' (auto_restart). 'di riserva' is avoided because 'riserva' is taken by backup power. |
 | alternator load dump | load dump dell'alternatore | power-supply.md. 'load dump' is the trade term in Italian electronics documentation; no translation exists in common use. |
 | power budget | bilancio di potenza | power-supply.md. Standard Italian electrotechnical term. |
+| firmware variant | variante di firmware | user-guide/interfaces.md, sezione WiFi; la scelta `update-alternatives` fra `standard` e `minimal` |
+| WiFi channel | canale | Stessa sezione: `selezione del canale` per la scelta automatica, `canale fisso` per uno impostato |
+| access point client | client | Dispositivo collegato all’access point; maschile e invariabile (il client / i client), distinto dal programma client (client SSH) in software.md |

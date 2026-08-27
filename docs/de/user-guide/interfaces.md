@@ -1,5 +1,5 @@
 ---
-translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
+translated_from: 3cd9ceed5d700bf85ebce22f50f5e15a3f08013e
 ---
 
 # Schnittstellen und Konnektivität
@@ -151,6 +151,46 @@ Setzen Sie in `/etc/default/gpsd` den Eintrag `DEVICES="/dev/ttyAMA0"` und start
 ## Ethernet
 
 Der HALPI2 besitzt eine Gigabit-Ethernet-Schnittstelle für eine schnelle Netzwerkanbindung zur Datenübertragung, für den Fernzugriff und zur Einbindung in Bordnetzwerke. Der Ethernet-Anschluss auf der Trägerplatine ist eine gewöhnliche RJ45-Buchse. Sie ist auf einen Frontplattenanschluss herausgeführt, an den ein externes Ethernet-Kabel angeschlossen wird.
+
+## WLAN
+
+Das Compute Module 5 besitzt einen eigenen WLAN- und Bluetooth-Funkbaustein, einen Cypress CYW43455. Die Antenne wird an den U.FL-Anschluss auf dem CM5 angeschlossen und ist auf den RP-SMA-Anschluss der Frontplatte herausgeführt. Die Lage des Anschlusses zeigt das [Hardware-Handbuch](./hardware.md).
+
+### Firmware-Varianten für den Access Point
+
+Raspberry Pi OS liefert zwei Firmware-Varianten für diesen Funkbaustein mit und wählt mit `update-alternatives` zwischen ihnen aus. Die Variante `minimal` ist auf den Betrieb als Access Point abgestimmt, verzichtet dafür aber auf Funktionen, die `standard` bietet.
+
+| Variante | Clients am Access Point | Firmware-Version |
+|:---------|:------------------------|:-----------------|
+| `standard` (Vorgabe) | etwa 7 | 7.45.265 (2023) |
+| `minimal` | etwa 19 | 7.45.241 (2021) |
+
+Setzen Sie die Variante `minimal` auf jedem HALPI2 ein, dessen Access Point wirklich genutzt wird. Die Anzahl der Clients ist dabei der geringere Grund: In der Praxis blockiert die Variante `standard` schon bei wenigen verbundenen Clients und lässt danach überhaupt keinen mehr zu.
+
+Wechseln Sie die Variante:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Wählen Sie den Eintrag `cyfmac43455-sdio-minimal.bin` und starten Sie das Gerät anschließend neu. `update-alternatives` merkt sich die Auswahl, sodass spätere Aktualisierungen des Firmware-Pakets sie beibehalten.
+
+Die Variante `minimal` gibt den Speicher im Funkbaustein für diese zusätzlichen Client-Plätze frei, indem sie auf Funktionen verzichtet:
+
+- Automatische Kanalwahl.
+- DFS-Radarerkennung, wodurch die 5-GHz-Kanäle, die sie voraussetzen, nicht verfügbar sind.
+- Roaming-Unterstützung nach 802.11k/v/r und Antennendiversität.
+
+Wenn der Access Point nach dem Wechsel nicht startet, legen Sie einen festen Kanal für ihn fest, denn die Variante `minimal` kann keinen eigenständig wählen. Unter HaLOS heißt das Standardprofil des Access Points `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+Um zur Standard-Firmware zurückzukehren, führen Sie denselben Befehl aus und wählen den Eintrag `standard`, oder führen Sie `sudo update-alternatives --auto cyfmac43455-sdio.bin` aus.
+
+!!! quote "Weiterführende Informationen"
+    - **Einrichtung des Access Points unter HaLOS:** siehe [HaLOS-Netzwerkdokumentation](https://docs.halos.fi/user-guide/networking/)
 
 ## USB
 

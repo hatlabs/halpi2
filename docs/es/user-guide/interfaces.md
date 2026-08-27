@@ -1,5 +1,5 @@
 ---
-translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
+translated_from: 3cd9ceed5d700bf85ebce22f50f5e15a3f08013e
 ---
 
 # Interfaces y conectividad
@@ -151,6 +151,46 @@ Editar `/etc/default/gpsd` para establecer `DEVICES="/dev/ttyAMA0"` y reiniciar 
 ## Ethernet
 
 El HALPI2 incluye una interfaz Gigabit Ethernet que proporciona conectividad de red de alta velocidad para la transferencia de datos, el acceso remoto y la integración con las redes de a bordo. El puerto Ethernet de la placa portadora es un conector RJ45 estándar. Se lleva a un conector de panel al que puede conectarse un cable Ethernet externo.
+
+## WiFi
+
+El Compute Module 5 incorpora su propia radio WiFi y Bluetooth, un Cypress CYW43455. La antena se conecta al conector U.FL del CM5 y se lleva al conector RP-SMA del panel frontal. La ubicación del conector se indica en la [Guía de hardware](./hardware.md).
+
+### Variantes de firmware del punto de acceso
+
+Raspberry Pi OS incluye dos variantes de firmware para esta radio y elige entre ellas con `update-alternatives`. La variante `minimal` está ajustada para el funcionamiento como punto de acceso, a costa de funciones que sí tiene la variante `standard`.
+
+| Variante | Clientes del punto de acceso | Versión del firmware |
+|:---------|:-----------------------------|:---------------------|
+| `standard` (predeterminada) | unos 7 | 7.45.265 (2023) |
+| `minimal` | unos 19 | 7.45.241 (2021) |
+
+Usar la variante `minimal` en cualquier HALPI2 cuyo punto de acceso esté realmente en uso. El número de clientes es la razón menor: en la práctica, la variante `standard` se bloquea con solo unos pocos clientes conectados y después no admite ninguno.
+
+Cambiar de variante:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Seleccionar la entrada `cyfmac43455-sdio-minimal.bin` y reiniciar el equipo a continuación. `update-alternatives` guarda la elección, de modo que las actualizaciones posteriores del paquete de firmware la conservan.
+
+La variante `minimal` libera memoria del chip para esas plazas de cliente adicionales prescindiendo de funciones:
+
+- La selección automática de canal.
+- La detección de radar DFS, por lo que los canales de 5 GHz que la requieren dejan de estar disponibles.
+- La asistencia de itinerancia 802.11k/v/r y la diversidad de antena.
+
+Si el punto de acceso no arranca tras el cambio, fijarle un canal, ya que la variante `minimal` no puede elegirlo por sí sola. En HaLOS, el perfil predeterminado del punto de acceso se llama `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+Para volver al firmware predeterminado, ejecutar la misma orden y seleccionar la entrada `standard`, o ejecutar `sudo update-alternatives --auto cyfmac43455-sdio.bin`.
+
+!!! quote "Información relacionada"
+    - **Configuración del punto de acceso en HaLOS:** véase la [documentación de red de HaLOS](https://docs.halos.fi/user-guide/networking/)
 
 ## USB
 

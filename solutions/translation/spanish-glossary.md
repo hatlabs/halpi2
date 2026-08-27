@@ -499,3 +499,6 @@ by each of them, because five agents share this file.
 | power budget | presupuesto de potencia | power-supply.md, current limiting section. |
 | watchdog feed (noun) | señal de alimentación del watchdog | controller.md. The verb phrase «alimentar el watchdog» was already established; this is the noun the daemon sends. |
 | add-on | complemento | operation.md, the HALPI2 blinkenlights add-on. |
+| firmware variant | variante de firmware | user-guide/interfaces.md, sección WiFi; la elección de `update-alternatives` entre `standard` y `minimal` |
+| WiFi channel | canal | Misma sección: `selección de canal` para la elección automática, `canal fijo` para uno fijado |
+| access point client | cliente | Dispositivo conectado al punto de acceso; distinto del programa cliente (cliente SSH) en software.md |

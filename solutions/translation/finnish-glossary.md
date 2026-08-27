@@ -292,6 +292,9 @@ them.
 | web interface | verkkokäyttöliittymä | |
 | browser | selain | |
 | system administration | järjestelmänhallinta | |
+| firmware variant | firmware-vaihtoehto | `update-alternatives`-vaihtoehdot user-guide/interfaces.md:n WiFi-osiossa. Ei *käännös*, joka sekoittuisi kielikäännökseen |
+| WiFi channel | kanava | `kanavanvalinta` automaattiselle valinnalle, `kiinteä kanava` kiinnitetylle |
+| access point client | asiakaslaite | Tukiasemaan liittynyt laite; erotettava `asiakasohjelmasta` (SSH client) |
 
 ### Applications and use cases
 

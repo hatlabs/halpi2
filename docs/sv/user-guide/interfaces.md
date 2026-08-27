@@ -1,5 +1,5 @@
 ---
-translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
+translated_from: 3cd9ceed5d700bf85ebce22f50f5e15a3f08013e
 ---
 
 # Gränssnitt och anslutningar
@@ -151,6 +151,46 @@ Redigera `/etc/default/gpsd` och sätt `DEVICES="/dev/ttyAMA0"`, och starta seda
 ## Ethernet
 
 HALPI2 har ett gigabit-ethernetgränssnitt som ger snabb nätverksanslutning för dataöverföring, fjärråtkomst och anslutning till nätverk ombord. Ethernetporten på bärkortet är en vanlig RJ45-kontakt. Den är utförd till en panelkontakt dit en extern ethernetkabel kan anslutas.
+
+## WiFi
+
+Compute Module 5 har en egen WiFi- och Bluetooth-radio, en Cypress CYW43455. Antennen ansluts till U.FL-kontakten på CM5 och är utförd till RP-SMA-kontakten på frontpanelen. Kontaktens placering visas i [Hårdvaruguiden](./hardware.md).
+
+### Firmwarevarianter för accesspunkten
+
+Raspberry Pi OS levererar två firmwarevarianter för radion och väljer mellan dem med `update-alternatives`. Varianten `minimal` är anpassad för drift som accesspunkt, men saknar funktioner som `standard` har.
+
+| Variant | Klienter på accesspunkten | Firmwareversion |
+|:--------|:--------------------------|:----------------|
+| `standard` (förval) | omkring 7 | 7.45.265 (2023) |
+| `minimal` | omkring 19 | 7.45.241 (2021) |
+
+Använd varianten `minimal` på varje HALPI2 vars accesspunkt är i verklig användning. Antalet klienter är det mindre skälet: i praktiken låser sig varianten `standard` redan med ett fåtal anslutna klienter och släpper därefter inte in någon alls.
+
+Byt variant:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Välj posten `cyfmac43455-sdio-minimal.bin` och starta sedan om enheten. `update-alternatives` sparar valet, så senare uppdateringar av firmwarepaketet behåller det.
+
+Varianten `minimal` frigör minne i kretsen till de extra klientplatserna genom att utelämna funktioner:
+
+- Automatiskt kanalval.
+- DFS-radardetektering, vilket gör att de 5 GHz-kanaler som kräver den inte är tillgängliga.
+- Roamingstöd enligt 802.11k/v/r och antenndiversitet.
+
+Om accesspunkten inte kommer igång efter bytet ska du ange en fast kanal för den, eftersom varianten `minimal` inte kan välja någon på egen hand. På HaLOS heter accesspunktens standardprofil `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+Du återgår till standardfirmware genom att köra samma kommando och välja posten `standard`, eller genom att köra `sudo update-alternatives --auto cyfmac43455-sdio.bin`.
+
+!!! quote "Relaterad information"
+    - **Uppsättning av accesspunkten på HaLOS:** se [HaLOS nätverksdokumentation](https://docs.halos.fi/user-guide/networking/)
 
 ## USB
 
