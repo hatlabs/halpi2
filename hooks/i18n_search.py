@@ -28,13 +28,14 @@ CONFIG_SCRIPT = re.compile(
 
 @event_priority(-200)
 def on_post_build(config):
+    """Split the merged search index into one index per language edition."""
     i18n = config["plugins"].get("i18n")
     if i18n is None or i18n.building:
         return
 
     index_path = Path(config["site_dir"]) / "search" / "search_index.json"
     if not index_path.exists():
-        return
+        raise PluginError(f"i18n_search: no merged search index at {index_path}")
 
     languages = i18n.config.languages
     default = next(lang.locale for lang in languages if lang.default)
@@ -94,5 +95,6 @@ def _repoint_base(edition_dir):
 
         text = page.read_text(encoding="utf-8")
         patched, count = CONFIG_SCRIPT.subn(rewrite, text, count=1)
-        if count:
-            page.write_text(patched, encoding="utf-8")
+        if not count:
+            raise PluginError(f"i18n_search: no __config script in {page}")
+        page.write_text(patched, encoding="utf-8")
