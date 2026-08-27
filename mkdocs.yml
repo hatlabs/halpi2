@@ -339,6 +339,10 @@ plugins:
             "Design Files and Schematics": "Designfiler og kredsløbsdiagrammer"
             "Errata": "Kendte fejl"
             "FAQ": "Ofte stillede spørgsmål"
+
+hooks:
+  - hooks/i18n_search.py
+
 markdown_extensions:
   - admonition
   - pymdownx.details
