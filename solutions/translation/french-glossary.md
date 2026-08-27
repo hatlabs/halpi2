@@ -237,6 +237,9 @@ does not have to.
 | Certificate Authority (CA) | autorité de certification (CA) | |
 | web interface | interface web | |
 | browser | navigateur | |
+| firmware variant | variante de firmware | Le choix `update-alternatives` dans la section WiFi de user-guide/interfaces.md |
+| WiFi channel | canal | `sélection de canal` pour le choix automatique, `canal fixe` pour un canal imposé |
+| access point client | client | Appareil connecté au point d'accès ; à distinguer du logiciel client (client SSH) |
 
 ### Applications and use cases
 

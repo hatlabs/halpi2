@@ -468,3 +468,6 @@ by each of them, because five agents share this file.
 | charge-level bar (LED pattern) | ladeniveausøjle | technical-reference/controller.md LED table. Built on 'spændingssøjle' already in the glossary; 'ladeniveau' was already in use in operation.md. |
 | to feed the watchdog / watchdog feed | fodre watchdoggen / fodring | controller.md watchdog section. Continues the phrase the old operation.md established ('Fodring af watchdoggen'). |
 | residual charge | restladning | technical-reference/controller.md, PowerOff state row. Solid compound. |
+| firmware variant | firmwarevariant | user-guide/interfaces.md WiFi-afsnit; `update-alternatives`-valget mellem `standard` og `minimal`. Solid sammensætning efter regel 4 |
+| WiFi channel | kanal | Samme afsnit: `kanalvalg` for det automatiske valg, `fast kanal` for et fastlagt |
+| access point client | klient | Enhed tilsluttet adgangspunktet; adskilt fra klientprogrammet (SSH-klient) i software.md |

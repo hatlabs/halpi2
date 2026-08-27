@@ -481,3 +481,6 @@ by each of them, because five agents share this file.
 | rainbow sweep | lopende regenboog | The SystemStartup LED animation in controller.md. |
 | solid color (LED) | effen kleur | The startup color cycle in controller.md; distinct from *continu*, which the LED tables use for steady-versus-blinking. |
 | residual charge | restlading | The PowerOff state in controller.md: the controller runs on what is left in the super-capacitors. |
+| firmware variant | firmwarevariant | user-guide/interfaces.md, wifi-paragraaf; de `update-alternatives`-keuze tussen `standard` en `minimal`. Solide samenstelling per regel 4 |
+| WiFi channel | kanaal | Zelfde paragraaf: `kanaalkeuze` voor de automatische keuze, `vast kanaal` voor een vastgelegd kanaal |
+| access point client | client | Apparaat dat op het accesspoint is aangesloten; gescheiden gehouden van het clientprogramma (SSH-client) in software.md |

@@ -432,3 +432,6 @@ by each of them, because five agents share this file.
 | charge-level bar (LED pattern) | ladenivåsøyle | The controller.md LED table names four of them (gul/grønn/oransje/mørkegrønn ladenivåsøyle). Bar patterns generally are søyle, per the existing spenningssøyle entry; the physical row of five LEDs is LED-raden. |
 | input stage | inngangstrinn | Section heading in power-supply.md. Standard electronics term. |
 | unattended operation | drift uten tilsyn | The design goal stated in operation.md and faq.md. Chosen over ubemannet drift, which suggests crewless vessels rather than a computer left alone. |
+| firmware variant | firmwarevariant | user-guide/interfaces.md WiFi-avsnitt; `update-alternatives`-valget mellom `standard` og `minimal`. Solid sammensetning etter regel 4 |
+| WiFi channel | kanal | Samme avsnitt: `kanalvalg` for det automatiske valget, `fast kanal` for et fastsatt |
+| access point client | klient | Enhet som er koblet til aksesspunktet; holdt atskilt fra klientprogrammet (SSH-klient) i software.md |

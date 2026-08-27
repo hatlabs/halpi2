@@ -1,5 +1,5 @@
 ---
-translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
+translated_from: 3cd9ceed5d700bf85ebce22f50f5e15a3f08013e
 ---
 
 # Liitännät ja tiedonsiirto
@@ -151,6 +151,46 @@ Muokkaa tiedostoa `/etc/default/gpsd` niin, että `DEVICES="/dev/ttyAMA0"`, ja k
 ## Ethernet
 
 HALPI2:ssa on gigabit-ethernet-liitäntä, joka tarjoaa nopean verkkoyhteyden tiedonsiirtoon, etäkäyttöön ja veneen verkkoihin liittymiseen. Emolevyn ethernet-portti on tavallinen RJ45-liitin. Se on tuotu paneeliliittimeen, johon voi kytkeä ulkoisen ethernet-kaapelin.
+
+## WiFi
+
+Compute Module 5 -moduulissa on oma WiFi- ja Bluetooth-radionsa, Cypress CYW43455. Antenni kytketään CM5:n U.FL-liittimeen, ja se on tuotu etupaneelin RP-SMA-liittimeen. Liittimen sijainti näkyy [Laitteisto-oppaassa](./hardware.md).
+
+### Tukiaseman firmware-vaihtoehdot
+
+Raspberry Pi OS sisältää radiolle kaksi firmware-vaihtoehtoa ja valitsee niiden välillä `update-alternatives`-työkalulla. `minimal`-vaihtoehto on viritetty tukiasemakäyttöön, mutta siitä puuttuu ominaisuuksia, joita `standard`-vaihtoehdossa on.
+
+| Vaihtoehto | Tukiaseman asiakaslaitteita | Firmware-versio |
+|:-----------|:----------------------------|:----------------|
+| `standard` (oletus) | noin 7 | 7.45.265 (2023) |
+| `minimal` | noin 19 | 7.45.241 (2021) |
+
+Käytä `minimal`-vaihtoehtoa jokaisessa HALPI2:ssa, jonka tukiasema on todellisessa käytössä. Asiakaslaitteiden määrä on pienempi syy: käytännössä `standard`-vaihtoehto jumittuu jo muutamalla liittyneellä asiakaslaitteella eikä päästä sen jälkeen yhtään laitetta verkkoon.
+
+Vaihda vaihtoehto:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Valitse rivi `cyfmac43455-sdio-minimal.bin` ja käynnistä laite sen jälkeen uudelleen. `update-alternatives` tallentaa valinnan, joten myöhemmät firmware-paketin päivitykset säilyttävät sen.
+
+`minimal`-vaihtoehto vapauttaa piirin muistia näille ylimääräisille asiakaspaikoille jättämällä ominaisuuksia pois:
+
+- Automaattinen kanavanvalinta.
+- DFS-tutkatunnistus, joten sitä vaativat 5 GHz:n kanavat eivät ole käytettävissä.
+- 802.11k/v/r-verkkovierailun tuki ja antennidiversiteetti.
+
+Jos tukiasema ei käynnisty vaihdon jälkeen, aseta sille kiinteä kanava, koska `minimal`-vaihtoehto ei osaa valita kanavaa itse. HaLOSissa tukiaseman oletusprofiilin nimi on `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+Palaa oletusfirmwareen suorittamalla sama komento ja valitsemalla rivi `standard` tai suorittamalla komento `sudo update-alternatives --auto cyfmac43455-sdio.bin`.
+
+!!! quote "Aiheeseen liittyvää"
+    - **Tukiaseman käyttöönotto HaLOSissa:** katso [HaLOSin verkkodokumentaatio](https://docs.halos.fi/user-guide/networking/)
 
 ## USB
 

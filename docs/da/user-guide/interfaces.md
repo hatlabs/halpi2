@@ -1,5 +1,5 @@
 ---
-translated_from: 288cabc5149b6610fd3f280bfce455d945b6a356
+translated_from: 3cd9ceed5d700bf85ebce22f50f5e15a3f08013e
 ---
 
 # Grænseflader og forbindelser
@@ -151,6 +151,46 @@ Rediger `/etc/default/gpsd`, så `DEVICES="/dev/ttyAMA0"` er sat, og genstart tj
 ## Ethernet
 
 HALPI2 har en gigabit-ethernetgrænseflade, der giver hurtig netværksforbindelse til dataoverførsel, fjernadgang og integration med netværk om bord. Ethernetporten på bærekortet er et almindeligt RJ45-stik. Den er ført ud til et panelstik, som et eksternt ethernetkabel kan tilsluttes.
+
+## WiFi
+
+Compute Module 5 har sin egen WiFi- og Bluetooth-radio, en Cypress CYW43455. Antennen tilsluttes U.FL-stikket på CM5 og er ført ud til RP-SMA-stikket på frontpanelet. Stikkets placering er vist i [Hardwarevejledningen](./hardware.md).
+
+### Firmwarevarianter til adgangspunktet
+
+Raspberry Pi OS indeholder to firmwarevarianter til denne radio og vælger mellem dem med `update-alternatives`. Varianten `minimal` er tilpasset drift som adgangspunkt, men mangler funktioner, som `standard` har.
+
+| Variant | Klienter på adgangspunktet | Firmwareversion |
+|:--------|:---------------------------|:----------------|
+| `standard` (standardvalg) | omkring 7 | 7.45.265 (2023) |
+| `minimal` | omkring 19 | 7.45.241 (2021) |
+
+Brug varianten `minimal` på enhver HALPI2, hvis adgangspunkt er i reel brug. Antallet af klienter er den mindste grund: i praksis låser varianten `standard` sig fast med kun få tilsluttede klienter og lukker derefter slet ingen ind.
+
+Skift variant:
+
+```bash
+sudo update-alternatives --config cyfmac43455-sdio.bin
+```
+
+Vælg posten `cyfmac43455-sdio-minimal.bin`, og genstart derefter enheden. `update-alternatives` husker valget, så senere opdateringer af firmwarepakken bevarer det.
+
+Varianten `minimal` frigør hukommelse i chippen til de ekstra klientpladser ved at udelade funktioner:
+
+- Automatisk kanalvalg.
+- DFS-radardetektion, så de 5 GHz-kanaler, der kræver den, ikke er tilgængelige.
+- Roamingunderstøttelse efter 802.11k/v/r og antennediversitet.
+
+Hvis adgangspunktet ikke kommer op efter skiftet, skal du angive en fast kanal for det, fordi varianten `minimal` ikke selv kan vælge en. På HaLOS hedder adgangspunktets standardprofil `Halos-AP`:
+
+```bash
+sudo nmcli connection modify Halos-AP wifi.band bg wifi.channel 6
+```
+
+Du vender tilbage til standardfirmwaren ved at køre den samme kommando og vælge posten `standard` eller ved at køre `sudo update-alternatives --auto cyfmac43455-sdio.bin`.
+
+!!! quote "Relaterede oplysninger"
+    - **Opsætning af adgangspunktet på HaLOS:** Se [HaLOS-netværksdokumentationen](https://docs.halos.fi/user-guide/networking/)
 
 ## USB
 

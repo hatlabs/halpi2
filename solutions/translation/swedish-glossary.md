@@ -219,6 +219,9 @@ explanation. Only the Finnish glossary needs that warning.
 | Certificate Authority (CA) | certifikatutfärdare (CA) | |
 | web interface | webbgränssnitt | |
 | browser | webbläsare | |
+| firmware variant | firmwarevariant | `update-alternatives`-alternativen i WiFi-avsnittet i user-guide/interfaces.md. Solid sammansättning per svensk regel |
+| WiFi channel | kanal | `kanalval` för automatiskt val, `fast kanal` för ett fixerat |
+| access point client | klient | Enhet ansluten till accesspunkten; skilj från *klientprogram* (SSH-klient) |
 
 ### Applications and use cases
 
