@@ -15,6 +15,14 @@ This repository contains the HALPI2 User Guide documentation, built with MkDocs 
 - `uv run mkdocs serve` - Start local dev server (http://127.0.0.1:8000)
 - `uv run mkdocs build --strict` - Build the documentation (output goes to `./site`)
 
+**Per-language search.** `hooks/i18n_search.py` splits the merged
+`search/search_index.json` into one index per language edition and repoints
+`__config.base` on that edition's pages at the edition root, which is the only
+value Material derives the index URL from. It runs at event priority -200, after
+the i18n plugin merges the index at -100. The hook aborts the build when an
+edition ends up with no entries, so an upgrade that changes either mechanism
+fails loudly instead of shipping an empty search box.
+
 ## Documentation Structure
 
 - `mkdocs.yml` - MkDocs configuration and navigation structure
@@ -27,6 +35,7 @@ This repository contains the HALPI2 User Guide documentation, built with MkDocs 
 - `docs/stylesheets/extra.css` - Custom CSS (Hat Labs branding)
 - `docs/assets/` - Logo and shared assets
 - `docs/overrides/` - MkDocs Material theme overrides
+- `hooks/i18n_search.py` - Post-build hook giving each language edition its own search index
 
 ## Documentation Status
 
