@@ -335,10 +335,11 @@ A translated page is not done until:
 2. `uv run check-anchors site` passes.
 3. `uv run translation-status` shows the page as current.
 4. `uv run check-glossary da` passes.
-5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
-6. Every number in the English text appears in the translation. A wrong voltage
+5. `uv run check-typography da` passes.
+6. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+7. Every number in the English text appears in the translation. A wrong voltage
    or current in an installation guide is a safety problem, not a typo.
-7. **The five rules at the top are counted against the pages, not re-read.**
+8. **The five rules at the top are counted against the pages, not re-read.**
    Every count below must come out at zero:
 
 ```bash

@@ -372,10 +372,10 @@ A translated page is not done until:
 2. `uv run check-anchors site` passes.
 3. `uv run translation-status` shows the page as current.
 4. `uv run check-glossary it` passes.
-5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
-6. Every term used on the page that appears in this glossary matches it.
-
-7. **The six rules at the top are counted against the pages, not re-read.** A
+5. `uv run check-typography it` passes.
+6. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+7. Every term used on the page that appears in this glossary matches it.
+8. **The six rules at the top are counted against the pages, not re-read.** A
    half-applied typography rule looks followed when you read it, because
    rereading your own text confirms whatever it already says. Both the French and
    German branches shipped one to review for that reason. Run these; every one
@@ -432,8 +432,7 @@ A translated page is not done until:
     print('quotes pair' if checks['open quotes'] == checks['close quotes'] else 'QUOTES DO NOT PAIR')
     PY
     ```
-
-8. **The two-sense terms are counted separately.** `foro pilota` must appear
+9. **The two-sense terms are counted separately.** `foro pilota` must appear
    exactly where the English says *pilot hole* and nowhere else; `predispost*`
    exactly where it says *pre-drilled*. Same for `smontare` (file system) versus
    `rimuovere` (module), and `flashare` (firmware) versus `scrivere` (image).
@@ -446,8 +445,7 @@ A translated page is not done until:
     for t in 'foro pilota' predispost smontare rimuover flashare scriver; do
       printf '%-12s it=%s\n' "$t" "$(grep -rio "$t" docs/it | wc -l)"; done
     ```
-
-9. **Every numeral in the English page appears in the Italian page**, allowing
+10. **Every numeral in the English page appears in the Italian page**, allowing
    for the decimal comma. Diff the extracted number lists rather than skimming.
 
 ## Related

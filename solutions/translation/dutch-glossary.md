@@ -344,8 +344,9 @@ A translated page is not done until:
 2. `uv run check-anchors site` passes.
 3. `uv run translation-status` shows the page as current.
 4. `uv run check-glossary nl` passes.
-5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
-6. **The seven rules at the top are counted against the pages, not re-read.**
+5. `uv run check-typography nl` passes.
+6. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+7. **The seven rules at the top are counted against the pages, not re-read.**
 
 That last one is the point of this section. A half-applied typography rule looks
 followed when you read it, because rereading your own text confirms whatever it

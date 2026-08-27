@@ -123,7 +123,31 @@ is captured.
 
 ## Verifying
 
-All five, every time:
+Two steps are ordered, so run this as a sequence rather than a checklist.
+
+**Build, then compare structure.** The structure comparison at the end of this
+section has to pass before anchor mapping, because the mapping is positional —
+the nth heading of the English page and the nth heading of the translation are
+the same heading. Matching on heading text cannot work once the text is in
+another language.
+
+```bash
+uv run mkdocs build --strict
+```
+
+**Then map the anchors.** Leave every anchor fragment in its English form while
+translating, and map them all at once once the language is complete and the site
+has been built:
+
+```bash
+uv run map-anchors site fi          # report
+uv run map-anchors site fi --apply  # rewrite
+```
+
+**Then all five checks, every time.** `check-anchors` belongs after the mapping:
+until the fragments are rewritten, a translated page linking to a translated
+heading points at an id that does not exist in that locale, so the check fails
+on work that is correct.
 
 ```bash
 uv run mkdocs build --strict
@@ -132,19 +156,6 @@ uv run translation-status --check
 uv run check-glossary fi
 uv run check-typography fi
 ```
-
-**Leave every anchor fragment in its English form while translating**, then map
-them all at once once the language is complete and the site has been built:
-
-```bash
-uv run map-anchors site fi          # report
-uv run map-anchors site fi --apply  # rewrite
-```
-
-The mapping is positional — the nth heading of the English page and the nth
-heading of the translation are the same heading — which is why the structure
-comparison below has to pass first. Matching on heading text cannot work once
-the text is in another language.
 
 **Measure the glossary, do not reread it.** Rereading your own pages confirms
 whatever they already say, so the terminology looks consistent right up until a
