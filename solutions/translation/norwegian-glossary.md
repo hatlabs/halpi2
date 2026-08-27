@@ -314,15 +314,12 @@ page. Do not "correct" one into the other.
 A translated page is not done until:
 
 1. `uv run mkdocs build --strict` passes.
-2. `uv run python scripts/check_anchors.py site` passes.
-3. `uv run python scripts/translation_status.py` shows the page as current.
-4. `uv run python scripts/check_glossary.py nb` passes.
-5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
-6. Every term used on the page that appears in this glossary matches it.
-
-`scripts/check_glossary.py` needs `"nb": "norwegian-glossary.md"` in its
-`GLOSSARIES` dict before step 4 can run. Whoever translates the first page adds
-that line in the same change.
+2. `uv run check-anchors site` passes.
+3. `uv run translation-status` shows the page as current.
+4. `uv run check-glossary nb` passes.
+5. `uv run check-typography nb` passes.
+6. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+7. Every term used on the page that appears in this glossary matches it.
 
 ### The six rules are measured, not reread
 

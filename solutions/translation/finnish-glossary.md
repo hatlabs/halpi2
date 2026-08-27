@@ -316,11 +316,16 @@ them.
 
 A translated page is not done until:
 
-1. `uv run mkdocs build --strict` passes — the same command CI runs.
-2. `uv run mkdocs serve` shows the page rendering correctly in the browser, with
+1. `uv run mkdocs build --strict` passes.
+2. `uv run check-anchors site` passes.
+3. `uv run translation-status` shows the page as current.
+4. `uv run check-glossary fi` passes.
+5. `uv run check-typography fi` passes.
+6. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+7. `uv run mkdocs serve` shows the page rendering correctly in the browser, with
    lists as lists (see `../best-practices/markdown-lists-need-blank-line-2026-05-16.md`
    — the blank-line rule applies identically to Finnish pages).
-3. Every term used on the page that appears in this glossary matches it.
+8. Every term used on the page that appears in this glossary matches it.
 
 ## Related
 

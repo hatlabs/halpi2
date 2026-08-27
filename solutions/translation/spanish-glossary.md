@@ -341,12 +341,13 @@ extra explanation. Only the Finnish glossary needs that warning.
 A translated page is not done until:
 
 1. `uv run mkdocs build --strict` passes.
-2. `uv run python scripts/check_anchors.py site` passes.
-3. `uv run python scripts/translation_status.py` shows the page as current.
-4. `uv run python scripts/check_glossary.py es` passes.
-5. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
-6. Every term used on the page that appears in this glossary matches it.
-7. **The six rules at the top are measured against the pages, not re-read.** A
+2. `uv run check-anchors site` passes.
+3. `uv run translation-status` shows the page as current.
+4. `uv run check-glossary es` passes.
+5. `uv run check-typography es` passes.
+6. Structure matches the source — see `.claude/skills/translate-page/SKILL.md`.
+7. Every term used on the page that appears in this glossary matches it.
+8. **The six rules at the top are measured against the pages, not re-read.** A
    half-applied typography rule looks followed when you read it, because
    rereading your own text confirms whatever it already says. The French and
    German branches each shipped one to review for exactly this reason. Every
