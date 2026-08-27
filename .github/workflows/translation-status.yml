@@ -30,3 +30,18 @@ jobs:
   # translations re-stamped in the same pull request.
   translation-status:
     uses: halos-org/shared-workflows/.github/workflows/translation-status.yml@main
+
+  # Branch protection requires a context named `status`, and a reusable-workflow
+  # call reports as `<caller job> / <called job>` rather than under its own name.
+  # This job carries that name, so the required context survives the move to the
+  # shared workflow and any later rename of the job inside it. A required
+  # context nothing reports is not a skip: GitHub waits for it forever.
+  status:
+    needs: translation-status
+    # always(), or a failed gate leaves this skipped, and a skipped required
+    # check never reports either.
+    if: always()
+    permissions: {}
+    runs-on: ubuntu-latest
+    steps:
+      - run: '[ "${{ needs.translation-status.result }}" = "success" ]'
