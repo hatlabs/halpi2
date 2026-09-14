@@ -41,6 +41,12 @@ keeps its language. A language picked from the header selector goes into
 `localStorage` under `halpi2.docs.language` and wins over the browser languages
 from then on.
 
+The same override declares `hreflang="x-default"` pointing at the English
+version of each page, so a search engine has a page to offer for a language the
+site is not translated into. The generated `sitemap.xml` carries the per-locale
+`hreflang` annotations but no `x-default`; adding one there would mean vendoring
+the plugin's `sitemap.xml` template into `docs/overrides/`.
+
 **Per-language search.** `hooks/i18n_search.py` splits the merged
 `search/search_index.json` into one index per language edition and repoints
 `__config.base` on that edition's pages at the edition root, which is the only

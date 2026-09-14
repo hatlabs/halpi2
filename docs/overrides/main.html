@@ -11,6 +11,10 @@
 
 {% block extrahead %}
 {% if config.extra.alternate %}
+{%- set default_locale = config.plugins["i18n"].config.languages | selectattr("default") | map(attribute="locale") | first %}
+{%- for alt in config.extra.alternate %}{% if alt.lang == default_locale %}
+<link rel="alternate" href="{{ alt.link | url }}" hreflang="x-default">
+{%- endif %}{% endfor %}
 <script>
   // Send a first-time visitor of the English edition to the edition that matches
   // their browser languages. GitHub Pages cannot negotiate content, so the choice
@@ -18,7 +22,7 @@
   // stored and wins over the browser languages from then on.
   (function () {
     var STORAGE_KEY = "halpi2.docs.language";
-    var DEFAULT_LOCALE = {{ (config.plugins["i18n"].config.languages | selectattr("default") | map(attribute="locale") | first) | tojson }};
+    var DEFAULT_LOCALE = {{ default_locale | tojson }};
     var ALTERNATES = {
       {%- for alt in config.extra.alternate %}
       {{ (alt.lang | d("en")) | tojson }}: {{ (alt.link | url) | tojson }}{{ "," if not loop.last }}
