@@ -10,28 +10,34 @@
 {% endblock %}
 
 {% block extrahead %}
-{% if config.extra.alternate %}
-{%- set default_locale = config.plugins["i18n"].config.languages | selectattr("default") | map(attribute="locale") | first %}
-{%- for alt in config.extra.alternate %}{% if alt.lang == default_locale %}
-<link rel="alternate" href="{{ alt.link | url }}" hreflang="x-default">
-{%- endif %}{% endfor %}
+{%- if page and config.extra.alternate %}
+{%- set default_locale = config.extra.default_locale %}
+{%- set default_alternate = config.extra.alternate | selectattr("lang", "equalto", default_locale) | first %}
+{%- if default_alternate %}
+<link rel="alternate" href="{{ default_alternate.link | url }}" hreflang="x-default">
+{%- endif %}
 <script>
-  // Send a first-time visitor of the English edition to the edition that matches
-  // their browser languages. GitHub Pages cannot negotiate content, so the choice
-  // has to happen in the browser. A language picked from the header selector is
-  // stored and wins over the browser languages from then on.
+  // Send a visitor of the English edition to the edition that matches their
+  // browser languages. GitHub Pages cannot negotiate content, so the choice has
+  // to happen in the browser.
   (function () {
     var STORAGE_KEY = "halpi2.docs.language";
-    var DEFAULT_LOCALE = {{ default_locale | tojson }};
+    var DEFAULT_LOCALE = {{ default_locale | lower | tojson }};
     var ALTERNATES = {
       {%- for alt in config.extra.alternate %}
-      {{ (alt.lang | d("en")) | tojson }}: {{ (alt.link | url) | tojson }}{{ "," if not loop.last }}
+      {{ alt.lang | lower | tojson }}: {{ (alt.link | url) | tojson }}{{ "," if not loop.last }}
       {%- endfor %}
     };
-    // Browsers of Norwegian readers send either the macrolanguage or a written form.
+    // Browsers of Norwegian readers send either the macrolanguage `no` or the
+    // written form `nn`. Both belong in the `nb` edition. The entry is inert
+    // when `nb` is not built, and an exact match always wins over an alias.
     var ALIASES = { no: "nb", nn: "nb" };
 
-    function stored() {
+    function owns(map, key) {
+      return Object.prototype.hasOwnProperty.call(map, key);
+    }
+
+    function storedLocale() {
       try {
         return window.localStorage.getItem(STORAGE_KEY);
       } catch (error) {
@@ -39,26 +45,29 @@
       }
     }
 
-    function resolve(tag) {
+    function matchingLocale(tag) {
       var lower = String(tag).toLowerCase();
       var primary = lower.split("-")[0];
-      var candidates = [lower, ALIASES[primary] || primary];
+      var candidates = [lower, owns(ALIASES, primary) ? ALIASES[primary] : primary];
       for (var i = 0; i < candidates.length; i++) {
-        if (ALTERNATES[candidates[i]]) {
+        if (owns(ALTERNATES, candidates[i])) {
           return candidates[i];
         }
       }
       return null;
     }
 
-    function preferred() {
-      var saved = stored();
-      if (saved) {
-        return resolve(saved);
+    function preferredLocale() {
+      // A stored locale that no longer exists falls through to the browser
+      // languages rather than stranding the reader on the default edition.
+      var saved = storedLocale();
+      var match = saved && matchingLocale(saved);
+      if (match) {
+        return match;
       }
       var tags = navigator.languages || [navigator.language];
       for (var i = 0; i < tags.length; i++) {
-        var match = tags[i] && resolve(tags[i]);
+        match = tags[i] && matchingLocale(tags[i]);
         if (match) {
           return match;
         }
@@ -66,28 +75,53 @@
       return null;
     }
 
-    // Only the default edition redirects. A link shared in one language keeps
-    // taking the reader to that language.
-    if ((document.documentElement.lang || DEFAULT_LOCALE) === DEFAULT_LOCALE) {
-      var target = preferred();
-      if (target && target !== DEFAULT_LOCALE) {
-        window.location.replace(ALTERNATES[target]);
+    function cameFromThisSite() {
+      if (!document.referrer) {
+        return false;
+      }
+      try {
+        return new URL(document.referrer).origin === window.location.origin;
+      } catch (error) {
+        return false;
       }
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      var links = document.querySelectorAll(".md-select__link[hreflang]");
-      Array.prototype.forEach.call(links, function (link) {
-        link.addEventListener("click", function () {
-          try {
-            window.localStorage.setItem(STORAGE_KEY, link.getAttribute("hreflang"));
-          } catch (error) {
-            // A browser with storage disabled just gets no memory of the choice.
-          }
-        });
-      });
-    });
+    // Three rules keep the redirect out of the reader's way. Only the default
+    // edition redirects, so a link shared in one language keeps its language.
+    // A fragment means the sender aimed at one section, and heading ids are
+    // translated, so the anchor would not survive the move. A same-origin
+    // referrer means the reader reached this page from inside the site, which
+    // is a deliberate choice the browser languages must not override.
+    var currentLocale = (document.documentElement.lang || DEFAULT_LOCALE).toLowerCase();
+    if (currentLocale === DEFAULT_LOCALE && !window.location.hash && !cameFromThisSite()) {
+      var target = preferredLocale();
+      if (target && target !== DEFAULT_LOCALE) {
+        // Query parameters are language-neutral: Material's own ?q= and ?h=,
+        // and any campaign parameters, have to survive the move.
+        window.location.replace(ALTERNATES[target] + window.location.search);
+      }
+    }
+
+    // Delegated and registered before the selector is parsed, so a click lands
+    // even on a slow load. Only a plain primary click records the choice; a
+    // modified click opens the language elsewhere and leaves this tab alone.
+    document.addEventListener("click", function (event) {
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      var node = event.target;
+      var link = node && node.closest ? node.closest(".md-select__link[hreflang]") : null;
+      if (!link) {
+        return;
+      }
+      try {
+        window.localStorage.setItem(STORAGE_KEY, link.getAttribute("hreflang").toLowerCase());
+      } catch (error) {
+        // A browser with storage disabled keeps no memory of the choice. The
+        // same-origin referrer rule above still honours it within a session.
+      }
+    }, true);
   })();
 </script>
-{% endif %}
+{%- endif %}
 {% endblock %}
