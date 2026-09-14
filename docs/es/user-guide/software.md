@@ -1,5 +1,5 @@
 ---
-translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
+translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
 ---
 
 # Guía del software
@@ -47,6 +47,39 @@ Si se decide no aplicar personalizaciones, hace falta tener una pantalla y un
 teclado conectados al HALPI2 para completar la configuración inicial. En el
 primer arranque se solicitarán un nombre de usuario y una contraseña.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) es una plataforma de domótica
+que utiliza su propio sistema operativo basado en Linux, HAOS. El HALPI2
+funciona bien como host de Home Assistant: su entrada de alimentación DC, el
+apagado respaldado por supercondensador y el control de puertos USB lo hacen
+adecuado para instalaciones que permanecen siempre encendidas.
+
+Grabar la [imagen de Home Assistant OS para Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+en el NVMe SSD con los métodos descritos a continuación.
+
+En HAOS, `halpid` se instala como complemento de Home Assistant en lugar de
+como paquete Debian. Añadir el [repositorio de complementos HALPI2](https://github.com/hatlabs/HALPI2-hassio-addons)
+en **Settings → Add-ons → Add-on store → ⋮ → Repositories** e instalar el
+complemento **halpid** desde la tienda.
+
+HAOS no habilita I2C de forma predeterminada y el complemento no puede
+modificar la configuración del host. I2C debe habilitarse antes de iniciar el
+complemento — la
+[documentación del complemento](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+contiene los dos comandos necesarios.
+
+Con MQTT habilitado (configuración predeterminada), el complemento publica un
+dispositivo `HALPI2` en Home Assistant mediante descubrimiento MQTT: tensión de
+entrada, corriente, temperaturas, estado del controlador y cuatro interruptores
+de puerto USB.
+
+La herramienta de línea de comandos `halpi` y la API REST están disponibles
+dentro del contenedor del complemento. Las actualizaciones del sistema, las
+actualizaciones de firmware y el archivo de configuración de `halpid` descritos
+en las secciones siguientes se aplican al daemon instalado como paquete Debian
+y no al complemento, que se configura a través del panel de opciones del
+complemento en Home Assistant.
 
 ## Grabación de una imagen del sistema operativo en el SSD
 

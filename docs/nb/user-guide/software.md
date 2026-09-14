@@ -1,5 +1,5 @@
 ---
-translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
+translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
 ---
 
 # Programvareveiledning
@@ -46,6 +46,35 @@ Hvis du velger å ikke bruke tilpasninger, må du ha en skjerm og et tastatur
 koblet til HALPI2 for å fullføre det første oppsettet. Du blir bedt om å oppgi
 brukernavn og passord ved første oppstart.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) er en hjemmeautomatiseringsplattform
+som kjører sitt eget Linux-baserte operativsystem, HAOS. HALPI2 fungerer godt
+som Home Assistant-vert: DC-strøminngang, superkondensatorsikret avslåing og
+USB-portstyring gjør den godt egnet for installasjoner som alltid er på.
+
+Flash [Home Assistant OS-bildet for Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+til NVMe SSD-en med metodene beskrevet nedenfor.
+
+På HAOS installeres `halpid` som et Home Assistant-tillegg i stedet for en
+Debian-pakke. Legg til [HALPI2-tilleggsrepositoriet](https://github.com/hatlabs/HALPI2-hassio-addons)
+under **Settings → Add-ons → Add-on store → ⋮ → Repositories**, og installer
+**halpid**-tillegget fra butikken.
+
+HAOS aktiverer ikke I2C som standard, og tillegget kan ikke endre vertens
+konfigurasjon. I2C må aktiveres før tillegget kan starte —
+[tilleggets dokumentasjon](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+har de to nødvendige kommandoene.
+
+Med MQTT aktivert (standardinnstillingen) publiserer tillegget en
+`HALPI2`-enhet til Home Assistant via MQTT-oppdagelse: inngangsspenning, strøm,
+temperaturer, kontrollerstatus og fire USB-portbrytere.
+
+`halpi`-kommandolinjeverktøyet og REST-API-et er tilgjengelig i tilleggets
+container. Systemoppdateringer, fastvareoppdateringer og
+`halpid`-konfigurasjonsfilen beskrevet i avsnittene nedenfor gjelder for
+daemonen installert som Debian-pakke og ikke for tillegget, som konfigureres
+via tilleggets innstillingspanel i Home Assistant.
 
 ## Flashe et operativsystembilde til SSD
 

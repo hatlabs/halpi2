@@ -1,5 +1,5 @@
 ---
-translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
+translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
 ---
 
 # Software-Handbuch
@@ -41,6 +41,36 @@ Wenn Sie das gewöhnliche Raspberry Pi OS vorziehen, können Sie das aktuelle Ab
 
 Verzichten Sie auf diese Anpassungen, benötigen Sie für die Ersteinrichtung einen Bildschirm und eine Tastatur am HALPI2. Beim ersten Start werden Sie nach Benutzername und Passwort gefragt.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) ist eine Heimautomatisierungsplattform,
+die ihr eigenes Linux-basiertes Betriebssystem HAOS verwendet. Der HALPI2 eignet
+sich gut als Home-Assistant-Host: seine DC-Stromversorgung, die
+superkondensatorgestützte Abschaltung und die USB-Port-Steuerung machen ihn
+ideal für Dauerinstallationen.
+
+Flashen Sie das [Home Assistant OS-Abbild für den Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+mit den unten beschriebenen Methoden auf die NVMe-SSD.
+
+Unter HAOS wird `halpid` als Home-Assistant-Add-on statt als Debian-Paket
+installiert. Fügen Sie das [HALPI2-Add-on-Repository](https://github.com/hatlabs/HALPI2-hassio-addons)
+unter **Settings → Add-ons → Add-on store → ⋮ → Repositories** hinzu und
+installieren Sie das **halpid**-Add-on aus dem Store.
+
+HAOS aktiviert I2C standardmäßig nicht, und das Add-on kann die Host-Konfiguration
+nicht ändern. I2C muss vor dem Start des Add-ons aktiviert werden — die
+[Add-on-Dokumentation](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+enthält die beiden erforderlichen Befehle.
+
+Bei aktiviertem MQTT (Standardeinstellung) veröffentlicht das Add-on ein
+`HALPI2`-Gerät in Home Assistant per MQTT-Discovery: Eingangsspannung, Strom,
+Temperaturen, Controller-Status und vier USB-Port-Schalter.
+
+Das `halpi`-Befehlszeilenwerkzeug und die REST-API stehen im Container des
+Add-ons zur Verfügung. Systemaktualisierungen, Firmware-Updates und die
+`halpid`-Konfigurationsdatei in den folgenden Abschnitten betreffen den als
+Debian-Paket installierten Daemon und nicht das Add-on, das über das
+Einstellungspanel des Add-ons in Home Assistant konfiguriert wird.
 
 ## Ein Systemabbild auf die SSD flashen
 

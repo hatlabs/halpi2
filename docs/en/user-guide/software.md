@@ -43,6 +43,34 @@ If you decide to not apply customizations, you need to have a display and
 keyboard connected to the HALPI2 to complete the initial setup. You will be
 asked to provide a username and password at the first boot.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) is a home automation platform
+that runs its own Linux-based operating system, HAOS. The HALPI2 works as a
+Home Assistant host: its DC power input, supercapacitor-backed shutdown, and
+USB port control make it well suited for always-on installations.
+
+Flash the [Home Assistant OS image for Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+to the NVMe SSD using the same methods described below.
+
+On HAOS, `halpid` is installed as a Home Assistant add-on instead of a Debian
+package. Add the [HALPI2 add-on repository](https://github.com/hatlabs/HALPI2-hassio-addons)
+under **Settings → Add-ons → Add-on store → ⋮ → Repositories**, then install
+the **halpid** add-on from the store.
+
+HAOS does not enable I2C by default, and the add-on cannot change the host
+configuration. I2C must be enabled before the add-on can start — the
+[add-on documentation](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+has the two commands needed.
+
+With MQTT enabled (the default), the add-on publishes a `HALPI2` device to
+Home Assistant via MQTT discovery: input voltage, current, temperatures,
+controller state, and four USB port switches.
+
+The `halpi` CLI and REST API are available inside the add-on container. System
+updates, firmware updates, and the `halpid` configuration file described in the
+sections below apply to the Debian-packaged daemon and do not apply to the
+add-on, which is configured through the add-on's options panel in Home Assistant.
 
 ## Flashing an Operating System Image to SSD
 

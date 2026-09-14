@@ -1,5 +1,5 @@
 ---
-translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
+translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
 ---
 
 # Guida al software
@@ -47,6 +47,40 @@ Se si decide di non applicare personalizzazioni, per completare la
 configurazione iniziale è necessario collegare all’HALPI2 un display e una
 tastiera. Al primo avvio verranno richiesti un nome utente e una password.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) è una piattaforma di domotica
+che utilizza un proprio sistema operativo basato su Linux, HAOS. L’HALPI2
+funziona bene come host di Home Assistant: la sua alimentazione DC, lo
+spegnimento protetto da supercondensatore e il controllo delle porte USB lo
+rendono adatto a installazioni sempre accese.
+
+Scrivere l’[immagine Home Assistant OS per Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+sull’unità NVMe SSD con i metodi descritti di seguito.
+
+Su HAOS, `halpid` si installa come componente aggiuntivo di Home Assistant
+anziché come pacchetto Debian. Aggiungere il [repository di componenti
+aggiuntivi HALPI2](https://github.com/hatlabs/HALPI2-hassio-addons) in
+**Settings → Add-ons → Add-on store → ⋮ → Repositories**, quindi installare
+il componente aggiuntivo **halpid** dallo store.
+
+HAOS non abilita I2C per impostazione predefinita e il componente aggiuntivo
+non può modificare la configurazione dell’host. I2C deve essere abilitato prima
+dell’avvio del componente — la
+[documentazione del componente aggiuntivo](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+contiene i due comandi necessari.
+
+Con MQTT abilitato (impostazione predefinita), il componente aggiuntivo
+pubblica un dispositivo `HALPI2` in Home Assistant tramite MQTT discovery:
+tensione di ingresso, corrente, temperature, stato del controller e quattro
+interruttori delle porte USB.
+
+Lo strumento a riga di comando `halpi` e l’API REST sono disponibili
+all’interno del container del componente aggiuntivo. Gli aggiornamenti di
+sistema, gli aggiornamenti del firmware e il file di configurazione di `halpid`
+descritti nelle sezioni seguenti si applicano al daemon installato come
+pacchetto Debian e non al componente aggiuntivo, che si configura dal pannello
+delle opzioni del componente in Home Assistant.
 
 ## Scrittura di un’immagine del sistema operativo sull’unità SSD
 

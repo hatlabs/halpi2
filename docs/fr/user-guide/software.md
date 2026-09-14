@@ -1,5 +1,5 @@
 ---
-translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
+translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
 ---
 
 # Guide logiciel
@@ -41,6 +41,38 @@ Si vous préférez le Raspberry Pi OS standard, vous pouvez télécharger l'imag
 
 Si vous n'appliquez pas ces réglages, il vous faudra un écran et un clavier raccordés au HALPI2 pour effectuer la configuration initiale. Un nom d'utilisateur et un mot de passe vous seront demandés au premier démarrage.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) est une plateforme de domotique
+qui utilise son propre système d'exploitation basé sur Linux, HAOS. Le HALPI2
+convient bien comme hôte Home Assistant : son alimentation DC, son arrêt
+sécurisé par supercondensateur et le contrôle des ports USB le rendent adapté
+aux installations fonctionnant en permanence.
+
+Flashez l'[image Home Assistant OS pour Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+sur le SSD NVMe avec les méthodes décrites ci-dessous.
+
+Sous HAOS, `halpid` s'installe comme module complémentaire Home Assistant
+plutôt que comme paquet Debian. Ajoutez le [dépôt de modules complémentaires
+HALPI2](https://github.com/hatlabs/HALPI2-hassio-addons) dans **Settings →
+Add-ons → Add-on store → ⋮ → Repositories**, puis installez le module
+**halpid** depuis le magasin.
+
+HAOS n'active pas I2C par défaut et le module complémentaire ne peut pas
+modifier la configuration de l'hôte. I2C doit être activé avant le démarrage
+du module — la [documentation du module](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+contient les deux commandes nécessaires.
+
+Avec MQTT activé (réglage par défaut), le module publie un appareil `HALPI2`
+dans Home Assistant via la découverte MQTT : tension d'entrée, courant,
+températures, état du contrôleur et quatre commutateurs de port USB.
+
+L'outil en ligne de commande `halpi` et l'API REST sont disponibles dans le
+conteneur du module. Les mises à jour système, les mises à jour du
+micrologiciel et le fichier de configuration de `halpid` décrits dans les
+sections suivantes s'appliquent au daemon installé comme paquet Debian et non
+au module complémentaire, qui se configure via le panneau d'options du module
+dans Home Assistant.
 
 ## Flasher une image système sur le SSD
 
