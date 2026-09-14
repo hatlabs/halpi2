@@ -1,0 +1,110 @@
+{% extends "main.html" %}
+
+{#-
+  GitHub Pages serves this one file for every URL that does not resolve, in
+  every edition, and the build can only produce one copy of it. So the page
+  ships every edition's wording and picks one in the browser: from the first
+  path segment of the URL the reader tried, which names the edition they were
+  in, and from their browser languages when that segment names no edition.
+  `hooks/default_404.py` keeps the default edition's copy of this page, so the
+  chrome around the message is stable rather than whichever locale built last.
+-#}
+
+{% block htmltitle %}
+<title>{{ config.extra.not_found[config.extra.default_locale].title }}</title>
+{% endblock %}
+
+{% block site_nav %}{% endblock %}
+
+{% block content %}
+<h1 data-404="title">{{ config.extra.not_found[config.extra.default_locale].title }}</h1>
+<p data-404="message">{{ config.extra.not_found[config.extra.default_locale].message }}</p>
+<p><a href="{{ config.extra.edition_roots[config.extra.default_locale] }}" data-404="home">{{ config.extra.not_found[config.extra.default_locale].home }}</a></p>
+<script>
+  (function () {
+    var DEFAULT_LOCALE = {{ config.extra.default_locale | lower | tojson }};
+    var ORDER = {{ config.extra.locales | map("lower") | list | tojson }};
+    var EDITIONS = {
+      {%- for locale in config.extra.locales %}
+      {{ locale | lower | tojson }}: {
+        url: {{ config.extra.edition_roots[locale] | tojson }},
+        title: {{ config.extra.not_found[locale].title | tojson }},
+        message: {{ config.extra.not_found[locale].message | tojson }},
+        home: {{ config.extra.not_found[locale].home | tojson }}
+      }{{ "," if not loop.last }}
+      {%- endfor %}
+    };
+    // Matches docs/overrides/main.html: Norwegian browsers send either the
+    // macrolanguage `no` or the written form `nn`, and both belong in `nb`.
+    var ALIASES = { no: "nb", nn: "nb" };
+
+    function owns(map, key) {
+      return Object.prototype.hasOwnProperty.call(map, key);
+    }
+
+    // The URL the reader tried names the edition they were reading, which is a
+    // better signal than anything their browser sends.
+    function localeFromPath() {
+      var path = window.location.pathname;
+      for (var i = 0; i < ORDER.length; i++) {
+        var locale = ORDER[i];
+        if (locale !== DEFAULT_LOCALE && path.indexOf(EDITIONS[locale].url) === 0) {
+          return locale;
+        }
+      }
+      return null;
+    }
+
+    function matchingLocale(tag) {
+      var lower = String(tag).toLowerCase();
+      var primary = lower.split("-")[0];
+      var candidates = [lower, owns(ALIASES, primary) ? ALIASES[primary] : primary];
+      for (var i = 0; i < candidates.length; i++) {
+        if (owns(EDITIONS, candidates[i])) {
+          return candidates[i];
+        }
+      }
+      return null;
+    }
+
+    function localeFromBrowser() {
+      var tags = navigator.languages || [navigator.language];
+      for (var i = 0; i < tags.length; i++) {
+        var match = tags[i] && matchingLocale(tags[i]);
+        if (match) {
+          return match;
+        }
+      }
+      return null;
+    }
+
+    var locale = localeFromPath() || localeFromBrowser() || DEFAULT_LOCALE;
+    var edition = EDITIONS[locale];
+
+    document.documentElement.lang = locale;
+    document.title = edition.title;
+    var slots = document.querySelectorAll("[data-404]");
+    for (var i = 0; i < slots.length; i++) {
+      slots[i].textContent = edition[slots[i].getAttribute("data-404")];
+    }
+
+    var home = document.querySelector('a[data-404="home"]');
+    if (home) {
+      home.href = edition.url;
+    }
+    // The header was rendered for one edition and its links point into that
+    // edition. Send every one of them to the matching edition root instead.
+    var logo = document.querySelector(".md-header__button.md-logo");
+    if (logo) {
+      logo.href = edition.url;
+    }
+    var picks = document.querySelectorAll(".md-select__link[hreflang]");
+    for (var j = 0; j < picks.length; j++) {
+      var tag = picks[j].getAttribute("hreflang").toLowerCase();
+      if (owns(EDITIONS, tag)) {
+        picks[j].href = EDITIONS[tag].url;
+      }
+    }
+  })();
+</script>
+{% endblock %}

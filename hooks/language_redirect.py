@@ -1,9 +1,11 @@
 """Feed the language-selection template and check what it produced.
 
 `docs/overrides/main.html` sends a visitor of the default edition to the
-edition matching their browser languages. It needs one fact the theme context
-does not carry, the default locale, and it is built entirely from values
-`mkdocs-static-i18n` injects: `config.extra.alternate` and the locale list.
+edition matching their browser languages, and `docs/overrides/404.html` picks a
+language for a page that has no edition of its own. Both need facts the theme
+context does not carry, the default locale and the built locale list, and the
+redirect is built from values `mkdocs-static-i18n` injects into
+`config.extra.alternate`.
 
 Every one of those assumptions degrades to omitted output rather than a build
 error, so a plugin upgrade could ship a site that silently stops selecting a
@@ -19,21 +21,24 @@ builds have finished.
 import json
 import re
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from mkdocs.exceptions import PluginError
 from mkdocs.plugins import event_priority
 
 ALTERNATES_MAP = re.compile(r"var ALTERNATES = (\{.*?\n    \});", re.S)
+EDITION_LOCALES = re.compile(r'\n      "([a-z-]+)": \{\n        url:')
 X_DEFAULT_LINK = re.compile(r'<link rel="alternate" [^>]*hreflang="x-default">')
 HTML_LANG = re.compile(r"<html[^>]*\blang=\"([^\"]*)\"")
 
-# Rendered by MkDocs itself rather than from a page, so the template skips it.
+# Rendered by MkDocs itself rather than from a page, so it carries no redirect
+# script. `docs/overrides/404.html` selects a language for it at runtime.
 UNPAGED = "404.html"
 
 
 @event_priority(-100)
 def on_config(config):
-    """Publish the default locale for the language-selection template."""
+    """Publish the locale list for the templates that select a language."""
     languages = _languages(config)
     default = [lang.locale for lang in languages if lang.default]
     if len(default) != 1:
@@ -41,6 +46,18 @@ def on_config(config):
             f"language_redirect: expected exactly one default locale, got {default}"
         )
     config["extra"]["default_locale"] = default[0]
+    locales = [lang.locale for lang in languages if lang.build]
+    config["extra"]["locales"] = locales
+
+    # 404.html is served for URLs at any depth, so its links cannot be
+    # relative. MkDocs' `url` filter has no spelling for the site root on that
+    # page, so build the roots from `site_url` here instead.
+    base = urlsplit(config["site_url"] or "/").path
+    if not base.endswith("/"):
+        base += "/"
+    config["extra"]["edition_roots"] = {
+        locale: base if locale == default[0] else f"{base}{locale}/" for locale in locales
+    }
     return config
 
 
@@ -58,6 +75,7 @@ def on_post_build(config):
     site_dir = Path(config["site_dir"])
     for page in sorted(site_dir.rglob("*.html")):
         if page.name == UNPAGED and page.parent == site_dir:
+            _check_unpaged(page, expected, config["extra"]["default_locale"].lower())
             continue
         _check_page(page, expected)
 
@@ -91,3 +109,21 @@ def _check_page(page, expected):
 
     if '<a href="' not in text or "md-select__link" not in text:
         raise PluginError(f"language_redirect: no language selector in {page}")
+
+
+def _check_unpaged(page, expected, default_locale):
+    """The 404 page ships every edition's wording and picks one in the browser."""
+    text = page.read_text(encoding="utf-8")
+
+    lang = HTML_LANG.search(text)
+    if lang is None or lang.group(1).lower() != default_locale:
+        found = lang.group(1) if lang else "nothing"
+        raise PluginError(
+            f"language_redirect: {page} was built as {found}, not {default_locale}"
+        )
+
+    locales = sorted(EDITION_LOCALES.findall(text))
+    if locales != expected:
+        raise PluginError(
+            f"language_redirect: {page} offers {locales}, expected {expected}"
+        )

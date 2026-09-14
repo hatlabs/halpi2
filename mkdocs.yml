@@ -345,6 +345,7 @@ plugins:
 
 hooks:
   - hooks/language_redirect.py
+  - hooks/default_404.py
   - hooks/i18n_search.py
 
 markdown_extensions:
@@ -372,6 +373,50 @@ extra_css:
   - stylesheets/extra.css
 
 extra:
+  # Shown by docs/overrides/404.html, which GitHub Pages serves for every URL
+  # that does not resolve, in every edition. The page is built once and picks
+  # one of these at runtime, so the keys must cover every built locale.
+  not_found:
+    en:
+      title: "Page not found"
+      message: "The page you asked for does not exist. It may have been moved or renamed."
+      home: "Go to the documentation home page"
+    fi:
+      title: "Sivua ei löytynyt"
+      message: "Pyytämääsi sivua ei ole. Se on voitu siirtää tai nimetä uudelleen."
+      home: "Siirry dokumentaation etusivulle"
+    fr:
+      title: "Page introuvable"
+      message: "La page que vous demandez n'existe pas. Elle a peut-être été déplacée ou renommée."
+      home: "Aller à l'accueil de la documentation"
+    de:
+      title: "Seite nicht gefunden"
+      message: "Die angeforderte Seite existiert nicht. Sie wurde möglicherweise verschoben oder umbenannt."
+      home: "Zur Startseite der Dokumentation"
+    sv:
+      title: "Sidan hittades inte"
+      message: "Sidan du efterfrågade finns inte. Den kan ha flyttats eller bytt namn."
+      home: "Gå till dokumentationens startsida"
+    es:
+      title: "Página no encontrada"
+      message: "La página solicitada no existe. Es posible que se haya movido o cambiado de nombre."
+      home: "Ir a la página principal de la documentación"
+    it:
+      title: "Pagina non trovata"
+      message: "La pagina richiesta non esiste. Potrebbe essere stata spostata o rinominata."
+      home: "Vai alla pagina iniziale della documentazione"
+    nl:
+      title: "Pagina niet gevonden"
+      message: "De opgevraagde pagina bestaat niet. Mogelijk is deze verplaatst of hernoemd."
+      home: "Ga naar de startpagina van de documentatie"
+    nb:
+      title: "Siden ble ikke funnet"
+      message: "Siden du ba om, finnes ikke. Den kan ha blitt flyttet eller fått nytt navn."
+      home: "Gå til dokumentasjonens forside"
+    da:
+      title: "Siden blev ikke fundet"
+      message: "Siden, du bad om, findes ikke. Den kan være flyttet eller omdøbt."
+      home: "Gå til dokumentationens forside"
   analytics:
     provider: google
     property: G-F3KDPEBJEF
