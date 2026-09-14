@@ -8,3 +8,82 @@
   <a href="https://github.com/hatlabs/discussions/discussions">Discussion</a>
 </nav>
 {% endblock %}
+
+{% block extrahead %}
+{% if config.extra.alternate %}
+<script>
+  // Send a first-time visitor of the English edition to the edition that matches
+  // their browser languages. GitHub Pages cannot negotiate content, so the choice
+  // has to happen in the browser. A language picked from the header selector is
+  // stored and wins over the browser languages from then on.
+  (function () {
+    var STORAGE_KEY = "halpi2.docs.language";
+    var DEFAULT_LOCALE = {{ (config.plugins["i18n"].config.languages | selectattr("default") | map(attribute="locale") | first) | tojson }};
+    var ALTERNATES = {
+      {%- for alt in config.extra.alternate %}
+      {{ (alt.lang | d("en")) | tojson }}: {{ (alt.link | url) | tojson }}{{ "," if not loop.last }}
+      {%- endfor %}
+    };
+    // Browsers of Norwegian readers send either the macrolanguage or a written form.
+    var ALIASES = { no: "nb", nn: "nb" };
+
+    function stored() {
+      try {
+        return window.localStorage.getItem(STORAGE_KEY);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function resolve(tag) {
+      var lower = String(tag).toLowerCase();
+      var primary = lower.split("-")[0];
+      var candidates = [lower, ALIASES[primary] || primary];
+      for (var i = 0; i < candidates.length; i++) {
+        if (ALTERNATES[candidates[i]]) {
+          return candidates[i];
+        }
+      }
+      return null;
+    }
+
+    function preferred() {
+      var saved = stored();
+      if (saved) {
+        return resolve(saved);
+      }
+      var tags = navigator.languages || [navigator.language];
+      for (var i = 0; i < tags.length; i++) {
+        var match = tags[i] && resolve(tags[i]);
+        if (match) {
+          return match;
+        }
+      }
+      return null;
+    }
+
+    // Only the default edition redirects. A link shared in one language keeps
+    // taking the reader to that language.
+    if ((document.documentElement.lang || DEFAULT_LOCALE) === DEFAULT_LOCALE) {
+      var target = preferred();
+      if (target && target !== DEFAULT_LOCALE) {
+        window.location.replace(ALTERNATES[target]);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var links = document.querySelectorAll(".md-select__link[hreflang]");
+      Array.prototype.forEach.call(links, function (link) {
+        link.addEventListener("click", function () {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, link.getAttribute("hreflang"));
+          } catch (error) {
+            // A browser with storage disabled just gets no memory of the choice.
+          }
+        });
+      });
+    });
+  })();
+</script>
+{% endif %}
+{% endblock %}

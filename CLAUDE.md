@@ -31,6 +31,16 @@ locally can still go red after `main` moves.
 - `uv run check-glossary <locale>` / `uv run check-typography <locale>` - Per-language conventions
 - `uv run map-anchors site <locale>` - Report English fragments that should become translated ids; `--apply` rewrites them
 
+**Automatic language selection.** `docs/overrides/main.html` adds an inline head
+script to every page. On a page of the default edition it matches
+`navigator.languages` against the locales in `mkdocs.yml` and calls
+`location.replace()` on the matching translation of that same page. GitHub Pages
+serves static files and cannot negotiate content, so the choice has to happen in
+the browser. Translated pages never redirect, so a link shared in one language
+keeps its language. A language picked from the header selector goes into
+`localStorage` under `halpi2.docs.language` and wins over the browser languages
+from then on.
+
 **Per-language search.** `hooks/i18n_search.py` splits the merged
 `search/search_index.json` into one index per language edition and repoints
 `__config.base` on that edition's pages at the edition root, which is the only
@@ -51,7 +61,7 @@ fails loudly instead of shipping an empty search box.
 - `docs/<locale>/` - Translations, one directory per locale, mirroring `docs/en/`
 - `docs/stylesheets/extra.css` - Custom CSS (Hat Labs branding)
 - `docs/assets/` - Logo and shared assets
-- `docs/overrides/` - MkDocs Material theme overrides
+- `docs/overrides/main.html` - Theme override: Hat Labs header nav and the language-selection script
 - `hooks/i18n_search.py` - Post-build hook giving each language edition its own search index
 
 ## Documentation Status
