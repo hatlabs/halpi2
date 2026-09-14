@@ -31,6 +31,39 @@ locally can still go red after `main` moves.
 - `uv run check-glossary <locale>` / `uv run check-typography <locale>` - Per-language conventions
 - `uv run map-anchors site <locale>` - Report English fragments that should become translated ids; `--apply` rewrites them
 
+**Automatic language selection.** `docs/overrides/main.html` adds an inline head
+script to every page of a multi-language build. On a page of the default edition
+it matches `navigator.languages` against the locales in `mkdocs.yml` and calls
+`location.replace()` on the matching translation of that same page, carrying the
+query string over. GitHub Pages serves static files and cannot negotiate
+content, so the choice has to happen in the browser. `no` and `nn` both resolve
+to the `nb` edition.
+
+Three rules keep the redirect out of the reader's way. A translated page never
+redirects, so a link shared in one language keeps its language. A URL with a
+fragment never redirects, because heading ids are translated and the anchor
+would not survive the move. A page reached from a same-origin referrer never
+redirects, which is what makes the header language selector work: picking
+English is an in-site navigation, so nothing sends the reader back. The choice
+also goes to `localStorage` under `halpi2.docs.language` and outranks the
+browser languages on later visits, but the selector still works when storage is
+blocked.
+
+The same override declares `hreflang="x-default"` pointing at the English
+version of each page, so a search engine has a page to offer for a language the
+site is not translated into. The generated `sitemap.xml` carries the per-locale
+`hreflang` annotations but no `x-default`; adding one there would mean vendoring
+the plugin's `sitemap.xml` template into `docs/overrides/`.
+
+**Language-selection checks.** `hooks/language_redirect.py` publishes the
+default locale as `config.extra.default_locale` for that template, then walks
+the built site and aborts the build unless every page declares a configured
+`lang`, carries exactly one `x-default` link, offers every built locale in its
+`ALTERNATES` map, and still has a language selector. Everything the template
+reads comes from `mkdocs-static-i18n` and would otherwise degrade to omitted
+output, so without these checks a plugin upgrade could ship a site that
+silently stopped selecting a language.
+
 **Per-language search.** `hooks/i18n_search.py` splits the merged
 `search/search_index.json` into one index per language edition and repoints
 `__config.base` on that edition's pages at the edition root, which is the only
@@ -51,7 +84,8 @@ fails loudly instead of shipping an empty search box.
 - `docs/<locale>/` - Translations, one directory per locale, mirroring `docs/en/`
 - `docs/stylesheets/extra.css` - Custom CSS (Hat Labs branding)
 - `docs/assets/` - Logo and shared assets
-- `docs/overrides/` - MkDocs Material theme overrides
+- `docs/overrides/main.html` - Theme override: Hat Labs header nav and the language-selection script
+- `hooks/language_redirect.py` - Supplies the default locale to the theme override and asserts the built pages kept the language selection
 - `hooks/i18n_search.py` - Post-build hook giving each language edition its own search index
 
 ## Documentation Status
