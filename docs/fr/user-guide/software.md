@@ -1,5 +1,5 @@
 ---
-translated_from: 14a7c45fdb780582813fb147c7e6e5c28f41ae7b
+translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
 ---
 
 # Guide logiciel
