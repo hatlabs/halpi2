@@ -47,6 +47,37 @@ Als u ervoor kiest geen aanpassingen toe te passen, moet er een beeldscherm en
 toetsenbord op de HALPI2 zijn aangesloten om de eerste installatie te voltooien.
 Bij de eerste start wordt om een gebruikersnaam en wachtwoord gevraagd.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) is een domoticaplatform dat
+een eigen op Linux gebaseerd besturingssysteem gebruikt, HAOS. De HALPI2 is
+geschikt als Home Assistant-host: de DC-voeding, de supercondensator-beveiligde
+uitschakeling en de USB-poortaansturing maken het apparaat ideaal voor
+installaties die altijd ingeschakeld zijn.
+
+Flash het [Home Assistant OS-image voor Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+naar de NVMe SSD met de hieronder beschreven methoden.
+
+Op HAOS wordt `halpid` geïnstalleerd als Home Assistant-add-on in plaats van
+als Debian-pakket. Voeg de [HALPI2-add-on-repository](https://github.com/hatlabs/HALPI2-hassio-addons)
+toe via **Settings → Add-ons → Add-on store → ⋮ → Repositories** en installeer
+de **halpid**-add-on vanuit de winkel.
+
+HAOS schakelt I2C standaard niet in en de add-on kan de hostconfiguratie niet
+wijzigen. I2C moet worden ingeschakeld voordat de add-on kan starten — de
+[add-on-documentatie](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+bevat de twee benodigde commando's.
+
+Met MQTT ingeschakeld (de standaardinstelling) publiceert de add-on een
+`HALPI2`-apparaat in Home Assistant via MQTT-discovery: ingangsspanning, stroom,
+temperaturen, controllerstatus en vier USB-poortschakelaars.
+
+Het `halpi`-opdrachtregelprogramma en de REST-API zijn beschikbaar in de
+container van de add-on. Systeemupdates, firmware-updates en het
+`halpid`-configuratiebestand die in de volgende secties worden beschreven,
+gelden voor de als Debian-pakket geïnstalleerde daemon en niet voor de add-on,
+die wordt geconfigureerd via het instellingenpaneel van de add-on in
+Home Assistant.
 
 ## Een systeemimage naar de SSD flashen
 

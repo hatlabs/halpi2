@@ -41,6 +41,36 @@ Jos haluat käyttää tavallista Raspberry Pi OS:ää, voit ladata uusimman HALP
 
 Jos et tee näitä muutoksia, tarvitset HALPI2:een kytketyn näytön ja näppäimistön alkuasetusten tekemiseen. Ensikäynnistyksessä sinulta kysytään käyttäjätunnusta ja salasanaa.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) on kotiautomaatioalusta,
+joka käyttää omaa Linux-pohjaista käyttöjärjestelmäänsä, HAOS:ia. HALPI2
+soveltuu hyvin Home Assistant -isännäksi: sen DC-virransyöttö,
+superkondensaattorilla varmistettu sammutus ja USB-porttien ohjaus tekevät
+siitä sopivan jatkuvasti päällä oleviin asennuksiin.
+
+Flashaa [Home Assistant OS -levykuva Raspberry Pi 5:lle](https://www.home-assistant.io/installation/raspberrypi)
+NVMe SSD:lle alla kuvatuilla menetelmillä.
+
+HAOS:ssa `halpid` asennetaan Home Assistant -lisäosana Debian-paketin sijaan.
+Lisää [HALPI2-lisäosarepositorio](https://github.com/hatlabs/HALPI2-hassio-addons)
+kohdassa **Settings → Add-ons → Add-on store → ⋮ → Repositories** ja asenna
+**halpid**-lisäosa kaupasta.
+
+HAOS ei ota I2C:tä käyttöön oletuksena, eikä lisäosa voi muuttaa isännän
+asetuksia. I2C on otettava käyttöön ennen lisäosan käynnistämistä —
+[lisäosan dokumentaatiossa](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+on tarvittavat kaksi komentoa.
+
+Kun MQTT on käytössä (oletusasetus), lisäosa julkaisee `HALPI2`-laitteen
+Home Assistantiin MQTT-löydön kautta: tulojännite, virta, lämpötilat,
+ohjaimen tila ja neljä USB-porttikytkintä.
+
+`halpi`-komentorivityökalu ja REST-rajapinta ovat käytettävissä lisäosan
+kontissa. Alla kuvatut järjestelmäpäivitykset, laiteohjelmistopäivitykset
+ja `halpid`-asetustiedosto koskevat Debian-pakettina asennettua daemonia,
+eivät lisäosaa, jonka asetukset tehdään Home Assistantin lisäosan
+asetuspaneelissa.
 
 ## Käyttöjärjestelmän flashaus SSD:lle
 

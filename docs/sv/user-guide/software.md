@@ -41,6 +41,36 @@ Om du föredrar vanliga Raspberry Pi OS kan du hämta den senaste avbilden med H
 
 Om du hoppar över anpassningarna behöver du en skärm och ett tangentbord anslutna till HALPI2 för den första konfigurationen. Vid första start får du ange användarnamn och lösenord.
 
+### Home Assistant OS
+
+[Home Assistant](https://www.home-assistant.io/) är en hemautomationsplattform
+som kör sitt eget Linux-baserade operativsystem, HAOS. HALPI2 fungerar bra
+som Home Assistant-värd: dess DC-strömingång, superkondensatorstödd
+avstängning och USB-portstyrning gör den väl lämpad för installationer som
+alltid är igång.
+
+Flasha [Home Assistant OS-avbilden för Raspberry Pi 5](https://www.home-assistant.io/installation/raspberrypi)
+till NVMe SSD-enheten med metoderna som beskrivs nedan.
+
+På HAOS installeras `halpid` som ett Home Assistant-tillägg i stället för ett
+Debian-paket. Lägg till [HALPI2-tilläggsrepositoriet](https://github.com/hatlabs/HALPI2-hassio-addons)
+under **Settings → Add-ons → Add-on store → ⋮ → Repositories** och installera
+**halpid**-tillägget från butiken.
+
+HAOS aktiverar inte I2C som standard och tillägget kan inte ändra värdmaskinens
+konfiguration. I2C måste aktiveras innan tillägget kan starta —
+[tilläggets dokumentation](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
+har de två kommandon som behövs.
+
+Med MQTT aktiverat (standardinställningen) publicerar tillägget en
+`HALPI2`-enhet till Home Assistant via MQTT-discovery: ingångsspänning, ström,
+temperaturer, controllerstatus och fyra USB-portomkopplare.
+
+Kommandoradsverktyget `halpi` och REST-API:et är tillgängliga i tilläggets
+container. Systemuppdateringar, firmwareuppdateringar och
+`halpid`-konfigurationsfilen som beskrivs i avsnitten nedan gäller den som
+Debian-paket installerade daemonen och inte tillägget, som konfigureras via
+tilläggets inställningspanel i Home Assistant.
 
 ## Flasha en systemavbild till SSD-enheten
 
