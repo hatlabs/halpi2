@@ -55,14 +55,32 @@ site is not translated into. The generated `sitemap.xml` carries the per-locale
 `hreflang` annotations but no `x-default`; adding one there would mean vendoring
 the plugin's `sitemap.xml` template into `docs/overrides/`.
 
+**The 404 page.** GitHub Pages serves `site/404.html` for every URL that does
+not resolve, in every edition, and a build can only produce one copy of it. The
+i18n plugin builds the default language first and then each remaining locale
+with a nested `build()` call, every one of which overwrites that file, so the
+copy that survived belonged to whichever locale came last in `mkdocs.yml`.
+`hooks/default_404.py` keeps the default edition's copy and writes it back after
+each nested build, which makes the chrome stable.
+
+`docs/overrides/404.html` then chooses a language in the browser. It reads the
+first path segment of the URL the reader tried, which names the edition they
+were in, and falls back to `navigator.languages` when that segment names no
+edition. It sets the page language, the wording, the home link, the logo link
+and the language selector for that edition. The wording lives in
+`extra.not_found` in `mkdocs.yml`, one `title`, `message` and `home` per locale;
+a built locale with no entry fails the build.
+
 **Language-selection checks.** `hooks/language_redirect.py` publishes the
-default locale as `config.extra.default_locale` for that template, then walks
-the built site and aborts the build unless every page declares a configured
-`lang`, carries exactly one `x-default` link, offers every built locale in its
-`ALTERNATES` map, and still has a language selector. Everything the template
-reads comes from `mkdocs-static-i18n` and would otherwise degrade to omitted
-output, so without these checks a plugin upgrade could ship a site that
-silently stopped selecting a language.
+default locale, the built locale list and each edition's root path under
+`config.extra`, then walks the built site and aborts the build unless every page
+declares a configured `lang`, carries exactly one `x-default` link, offers every
+built locale in its `ALTERNATES` map, and still has a language selector. The 404
+page is checked against its own rules: built as the default locale, and offering
+every locale in its editions map. Everything these templates read comes from
+`mkdocs-static-i18n` and would otherwise degrade to omitted output, so without
+these checks a plugin upgrade could ship a site that silently stopped selecting
+a language.
 
 **Per-language search.** `hooks/i18n_search.py` splits the merged
 `search/search_index.json` into one index per language edition and repoints
@@ -85,7 +103,9 @@ fails loudly instead of shipping an empty search box.
 - `docs/stylesheets/extra.css` - Custom CSS (Hat Labs branding)
 - `docs/assets/` - Logo and shared assets
 - `docs/overrides/main.html` - Theme override: Hat Labs header nav and the language-selection script
-- `hooks/language_redirect.py` - Supplies the default locale to the theme override and asserts the built pages kept the language selection
+- `docs/overrides/404.html` - Theme override: the 404 page, which picks a language at runtime
+- `hooks/language_redirect.py` - Supplies the locale facts to the theme overrides and asserts the built pages kept the language selection
+- `hooks/default_404.py` - Keeps the default edition's 404 page and checks every locale has 404 wording
 - `hooks/i18n_search.py` - Post-build hook giving each language edition its own search index
 
 ## Documentation Status
