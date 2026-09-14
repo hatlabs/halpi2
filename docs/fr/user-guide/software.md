@@ -45,7 +45,7 @@ Si vous n'appliquez pas ces réglages, il vous faudra un écran et un clavier ra
 
 [Home Assistant](https://www.home-assistant.io/) est une plateforme de domotique
 qui utilise son propre système d'exploitation basé sur Linux, HAOS. Le HALPI2
-convient bien comme hôte Home Assistant : son alimentation DC, son arrêt
+convient bien comme hôte Home Assistant : son alimentation DC, son arrêt
 sécurisé par supercondensateur et le contrôle des ports USB le rendent adapté
 aux installations fonctionnant en permanence.
 
@@ -64,7 +64,7 @@ du module — la [documentation du module](https://github.com/hatlabs/HALPI2-has
 contient les deux commandes nécessaires.
 
 Avec MQTT activé (réglage par défaut), le module publie un appareil `HALPI2`
-dans Home Assistant via la découverte MQTT : tension d'entrée, courant,
+dans Home Assistant via la découverte MQTT : tension d'entrée, courant,
 températures, état du contrôleur et quatre commutateurs de port USB.
 
 L'outil en ligne de commande `halpi` et l'API REST sont disponibles dans le
