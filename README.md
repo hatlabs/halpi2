@@ -8,7 +8,7 @@ a static website that can be hosted on any web server (in our case, GitHub Pages
 
 ## Prerequisites
 
-Python 3.11+ and [uv](https://docs.astral.sh/uv/) must be installed.
+Python 3.14 and [uv](https://docs.astral.sh/uv/) must be installed.
 
 ## Getting Started
 
