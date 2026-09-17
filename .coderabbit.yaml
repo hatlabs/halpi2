@@ -72,14 +72,6 @@ reviews:
         to the published site, and they deliberately record history, evidence
         and rejected approaches — that is what they are for. Do not apply the
         published-docs rule against development history here.
-    - path: "hooks/**/*.py"
-      instructions: |
-        MkDocs build hooks. `i18n_search.py` manipulates Material for MkDocs'
-        `__config.base` and depends on the i18n plugin's post-build event
-        priority. That coupling is deliberate and documented in CLAUDE.md;
-        flagging it as fragile repeats what the code already says. Review the
-        logic instead: locale detection, path arithmetic, and whether a
-        malformed or missing index fails loudly rather than silently.
 
   tools:
     markdownlint:

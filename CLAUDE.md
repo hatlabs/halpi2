@@ -8,7 +8,7 @@ This repository contains the HALPI2 User Guide documentation, built with MkDocs 
 
 ## Build System
 
-**Prerequisites:** Python 3.11+ and `uv` must be installed.
+**Prerequisites:** Python 3.14 (pinned in `.python-version`) and `uv` must be installed.
 
 **Common Commands:**
 - `uv sync` - Install dependencies
@@ -31,64 +31,15 @@ locally can still go red after `main` moves.
 - `uv run check-glossary <locale>` / `uv run check-typography <locale>` - Per-language conventions
 - `uv run map-anchors site <locale>` - Report English fragments that should become translated ids; `--apply` rewrites them
 
-**Automatic language selection.** `docs/overrides/main.html` adds an inline head
-script to every page of a multi-language build. On a page of the default edition
-it matches `navigator.languages` against the locales in `mkdocs.yml` and calls
-`location.replace()` on the matching translation of that same page, carrying the
-query string over. GitHub Pages serves static files and cannot negotiate
-content, so the choice has to happen in the browser. `no` and `nn` both resolve
-to the `nb` edition.
-
-Three rules keep the redirect out of the reader's way. A translated page never
-redirects, so a link shared in one language keeps its language. A URL with a
-fragment never redirects, because heading ids are translated and the anchor
-would not survive the move. A page reached from a same-origin referrer never
-redirects, which is what makes the header language selector work: picking
-English is an in-site navigation, so nothing sends the reader back. The choice
-also goes to `localStorage` under `halpi2.docs.language` and outranks the
-browser languages on later visits, but the selector still works when storage is
-blocked.
-
-The same override declares `hreflang="x-default"` pointing at the English
-version of each page, so a search engine has a page to offer for a language the
-site is not translated into. The generated `sitemap.xml` carries the per-locale
-`hreflang` annotations but no `x-default`; adding one there would mean vendoring
-the plugin's `sitemap.xml` template into `docs/overrides/`.
-
-**The 404 page.** GitHub Pages serves `site/404.html` for every URL that does
-not resolve, in every edition, and a build can only produce one copy of it. The
-i18n plugin builds the default language first and then each remaining locale
-with a nested `build()` call, every one of which overwrites that file, so the
-copy that survived belonged to whichever locale came last in `mkdocs.yml`.
-`hooks/default_404.py` keeps the default edition's copy and writes it back after
-each nested build, which makes the chrome stable.
-
-`docs/overrides/404.html` then chooses a language in the browser. It reads the
-first path segment of the URL the reader tried, which names the edition they
-were in, and falls back to `navigator.languages` when that segment names no
-edition. It sets the page language, the wording, the home link, the logo link
-and the language selector for that edition. The wording lives in
-`extra.not_found` in `mkdocs.yml`, one `title`, `message` and `home` per locale;
-a built locale with no entry fails the build.
-
-**Language-selection checks.** `hooks/language_redirect.py` publishes the
-default locale, the built locale list and each edition's root path under
-`config.extra`, then walks the built site and aborts the build unless every page
-declares a configured `lang`, carries exactly one `x-default` link, offers every
-built locale in its `ALTERNATES` map, and still has a language selector. The 404
-page is checked against its own rules: built as the default locale, and offering
-every locale in its editions map. Everything these templates read comes from
-`mkdocs-static-i18n` and would otherwise degrade to omitted output, so without
-these checks a plugin upgrade could ship a site that silently stopped selecting
-a language.
-
-**Per-language search.** `hooks/i18n_search.py` splits the merged
-`search/search_index.json` into one index per language edition and repoints
-`__config.base` on that edition's pages at the edition root, which is the only
-value Material derives the index URL from. It runs at event priority -200, after
-the i18n plugin merges the index at -100. The hook aborts the build when an
-edition ends up with no entries, so an upgrade that changes either mechanism
-fails loudly instead of shipping an empty search box.
+**Language selection, the 404 page and per-language search** come from the
+`halos-i18n` MkDocs plugin in `halos-docs-tools`, enabled by name under
+`plugins:` in `mkdocs.yml`. It redirects a visitor of the English edition to the
+edition matching their browser languages, serves one 404 page that picks the
+reader's language at runtime, gives each edition its own search index, and fails
+the build when the built pages lose any of that. Its behaviour, the 404 wording
+override and the local-storage key are documented in the docs-tools README. This
+repository has no `hooks/`, no `theme.custom_dir` and no `extra.not_found`; a
+`custom_dir` put back would shadow the plugin's templates.
 
 ## Documentation Structure
 
@@ -102,11 +53,6 @@ fails loudly instead of shipping an empty search box.
 - `docs/<locale>/` - Translations, one directory per locale, mirroring `docs/en/`
 - `docs/stylesheets/extra.css` - Custom CSS (Hat Labs branding)
 - `docs/assets/` - Logo and shared assets
-- `docs/overrides/main.html` - Theme override: Hat Labs header nav and the language-selection script
-- `docs/overrides/404.html` - Theme override: the 404 page, which picks a language at runtime
-- `hooks/language_redirect.py` - Supplies the locale facts to the theme overrides and asserts the built pages kept the language selection
-- `hooks/default_404.py` - Keeps the default edition's 404 page and checks every locale has 404 wording
-- `hooks/i18n_search.py` - Post-build hook giving each language edition its own search index
 
 ## Documentation Status
 
