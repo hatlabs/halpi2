@@ -1,5 +1,5 @@
 ---
-translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
+translated_from: 800340a4123ad21d7b128c5465889c0bcfeb8ff4
 ---
 
 # Programvaruguide
@@ -61,6 +61,17 @@ HAOS aktiverar inte I2C som standard och tillägget kan inte ändra värdmaskine
 konfiguration. I2C måste aktiveras innan tillägget kan starta —
 [tilläggets dokumentation](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
 har de två kommandon som behövs.
+
+När Compute Module 5:s SD-gränssnitt är aktiverat kan HAOS fastna under
+avstängningen så länge att superkondensatorerna tar slut innan systemet har
+stannat, så att ett strömavbrott slutar med att strömmen bryts okontrollerat. Om
+det körande systemet startar HAOS från NVMe SSD-enheten ska du stänga av
+SD-gränssnittet enligt beskrivningen i
+[tilläggets dokumentation](https://github.com/hatlabs/HALPI2-hassio-addons#booting-from-nvme-disable-the-sd-interface);
+det räcker inte att HAOS är installerat på NVMe SSD-enheten.
+
+!!! danger "Bara vid start från NVMe"
+    SD-gränssnittet betjänar både microSD-facket och Compute Module 5:s inbyggda eMMC. Om HAOS startar från microSD eller eMMC startar enheten inte efter nästa omstart när gränssnittet är avstängt.
 
 Med MQTT aktiverat (standardinställningen) publicerar tillägget en
 `HALPI2`-enhet till Home Assistant via MQTT-discovery: ingångsspänning, ström,
