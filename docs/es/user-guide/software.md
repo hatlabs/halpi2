@@ -1,5 +1,5 @@
 ---
-translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
+translated_from: 800340a4123ad21d7b128c5465889c0bcfeb8ff4
 ---
 
 # Guía del software
@@ -68,6 +68,18 @@ modificar la configuración del host. I2C debe habilitarse antes de iniciar el
 complemento — la
 [documentación del complemento](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
 contiene los dos comandos necesarios.
+
+Con la interfaz SD del Compute Module 5 habilitada, HAOS puede quedarse
+bloqueado durante el apagado el tiempo suficiente para que los
+supercondensadores se agoten antes de que el sistema se haya detenido, de modo
+que un corte de corriente termina en una pérdida de alimentación no controlada.
+Si el sistema en ejecución arranca HAOS desde el SSD NVMe, hay que desactivar
+la interfaz SD como se describe en la
+[documentación del complemento](https://github.com/hatlabs/HALPI2-hassio-addons#booting-from-nvme-disable-the-sd-interface);
+no basta con tener HAOS instalado en el SSD NVMe.
+
+!!! danger "Solo al arrancar desde NVMe"
+    La interfaz SD da servicio tanto a la ranura microSD como a la eMMC integrada del Compute Module 5. Si HAOS arranca desde microSD o eMMC, al desactivarla el equipo no arrancará tras el siguiente reinicio.
 
 Con MQTT habilitado (configuración predeterminada), el complemento publica un
 dispositivo `HALPI2` en Home Assistant mediante descubrimiento MQTT: tensión de

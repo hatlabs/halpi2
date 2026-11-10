@@ -1,5 +1,5 @@
 ---
-translated_from: f9111e097715ed3fb98bb13d8b8738a3c828590e
+translated_from: 800340a4123ad21d7b128c5465889c0bcfeb8ff4
 ---
 
 # Ohjelmisto-opas
@@ -61,6 +61,17 @@ HAOS ei ota I2C:tä käyttöön oletuksena, eikä lisäosa voi muuttaa isännän
 asetuksia. I2C on otettava käyttöön ennen lisäosan käynnistämistä —
 [lisäosan dokumentaatiossa](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
 on tarvittavat kaksi komentoa.
+
+Kun Compute Module 5:n SD-liitäntä on käytössä, HAOS voi jumittua sammutuksen
+aikana niin pitkäksi aikaa, että superkondensaattorit tyhjenevät ennen kuin
+järjestelmä on pysähtynyt, jolloin sähkökatko päättyy hallitsemattomaan
+virrankatkaisuun. Jos käynnissä oleva HAOS on käynnistynyt NVMe SSD:ltä, poista
+SD-liitäntä käytöstä
+[lisäosan dokumentaatiossa](https://github.com/hatlabs/HALPI2-hassio-addons#booting-from-nvme-disable-the-sd-interface)
+kuvatulla tavalla; ei riitä, että HAOS on asennettu NVMe SSD:lle.
+
+!!! danger "Vain NVMe-levyltä käynnistettäessä"
+    SD-liitäntä palvelee sekä microSD-paikkaa että Compute Module 5:n omaa eMMC:tä. Jos HAOS käynnistyy microSD-kortilta tai eMMC:ltä, liitännän poistaminen käytöstä estää laitetta käynnistymästä seuraavan uudelleenkäynnistyksen jälkeen.
 
 Kun MQTT on käytössä (oletusasetus), lisäosa julkaisee `HALPI2`-laitteen
 Home Assistantiin MQTT-löydön kautta: tulojännite, virta, lämpötilat,

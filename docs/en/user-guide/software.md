@@ -63,6 +63,17 @@ configuration. I2C must be enabled before the add-on can start — the
 [add-on documentation](https://github.com/hatlabs/HALPI2-hassio-addons#before-you-install-enable-i2c-on-the-host)
 has the two commands needed.
 
+With the Compute Module 5's SD interface enabled, HAOS can stall during
+shutdown long enough for the supercapacitors to run out before the system has
+halted, so a power failure ends in an uncontrolled power cut. If the running
+system boots HAOS from the NVMe SSD, disable the SD interface as
+described in the
+[add-on documentation](https://github.com/hatlabs/HALPI2-hassio-addons#booting-from-nvme-disable-the-sd-interface);
+having HAOS installed on the NVMe SSD is not enough.
+
+!!! danger "Only when booting from NVMe"
+    The SD interface serves both the microSD slot and the Compute Module 5's onboard eMMC. If HAOS boots from microSD or eMMC, disabling it leaves the device unable to boot after the next restart.
+
 With MQTT enabled (the default), the add-on publishes a `HALPI2` device to
 Home Assistant via MQTT discovery: input voltage, current, temperatures,
 controller state, and four USB port switches.
